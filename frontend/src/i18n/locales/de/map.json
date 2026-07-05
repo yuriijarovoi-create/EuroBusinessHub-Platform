@@ -76,6 +76,7 @@
     "tech": "Tech",
     "logistics": "Logistik",
     "innovation": "Innovation",
+    "sustainability": "Nachhaltigkeit",
     "gdpShort": "{{value}} Mrd. € BIP",
     "gdpEstimate": "Geschätztes BIP: {{value}} Mrd. €",
     "marketplaceDesc": "Aktive Marketplace-Angebote in der Region",
@@ -98,6 +99,32 @@
         "inland_port": "Binnenhafen",
         "air_cargo": "Luftfracht-Hub",
         "industrial_zone": "Industriegebiet"
+      }
+    },
+    "localNode": {
+      "title": "Lokale Services & Regional-Hub",
+      "nearestHub": "Nächster Großhub",
+      "hubRoute": "Empfohlene Route",
+      "useCases": "Haupt-Anwendungsfälle",
+      "transport": "Lokaler Transport",
+      "warehouses": "Lager in der Nähe",
+      "services": "Lokale Dienstleister",
+      "craft": "Handwerker",
+      "nearbyHubs": "Hubs in der Nähe",
+      "marketplaceDesc": "Lokale Marketplace-Angebote in der Region",
+      "jobsDesc": "Jobs vor Ort und über Regional-Hub",
+      "jobsViaHub": "Pendler- & Logistikjobs über {{hub}}",
+      "useCase": {
+        "local_transport": "Lokaler Transport",
+        "moving_service": "Umzugsservice",
+        "warehouse_near_me": "Lager in der Nähe",
+        "jobs_near_me": "Jobs in der Nähe",
+        "craftsmen": "Handwerker",
+        "business_services": "Business Services",
+        "local_marketplace": "Lokaler Marktplatz",
+        "regional_logistics": "Regionale Logistik",
+        "agricultural_services": "Landwirtschaftliche Services",
+        "tourism_services": "Tourismus-Services"
       }
     }
   },

@@ -1018,6 +1018,27 @@
   color: var(--map-panel-muted, #cbd5e1);
 }
 
+.germanyLocalSection {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--map-panel-subtle-border);
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.germanyLocalRegion {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--map-panel-muted, #94a3b8);
+}
+
+.germanyLocalRoute {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--map-panel-muted, #cbd5e1);
+  overflow-wrap: anywhere;
+}
+
 .germanyPartnerList {
   list-style: none;
   display: flex;

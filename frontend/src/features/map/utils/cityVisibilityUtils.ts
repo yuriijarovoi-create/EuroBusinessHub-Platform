@@ -10,6 +10,7 @@ export function isMobileViewport(): boolean {
 
 /** Derive display tier from existing city fields — no data mutation */
 export function getCityDisplayTier(city: MapCityRecord): CityDisplayTier {
+  if (city.mapTier === 4) return 4;
   if (city.mapTier === 1 || city.isMajorHub) return 1;
   if (city.mapTier === 2) return 2;
   if (city.mapTier === 3) {

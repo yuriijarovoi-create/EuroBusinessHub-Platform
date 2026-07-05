@@ -1,6 +1,8 @@
 /** Per-city Germany digital-twin metadata — tier, population, industry (mock → API) */
 
-export type GermanyCityTier = 1 | 2 | 3;
+import { getGermanyLocalNodeMeta } from './germanyLocalNodes';
+
+export type GermanyCityTier = 1 | 2 | 3 | 4;
 
 export interface GermanyCityMeta {
   tier: GermanyCityTier;
@@ -120,6 +122,8 @@ export const GERMANY_CITY_META: Record<string, GermanyCityMeta> = {
 };
 
 export function getGermanyCityMeta(cityId: string): GermanyCityMeta {
+  const localMeta = getGermanyLocalNodeMeta(cityId);
+  if (localMeta) return localMeta;
   return (
     GERMANY_CITY_META[cityId] ?? {
       tier: 3,

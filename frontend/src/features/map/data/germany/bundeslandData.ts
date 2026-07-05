@@ -1,4 +1,6 @@
 import type { BundeslandDef } from '../../types/germanyTypes';
+import { GERMANY_LOCAL_NODE_BUNDESLAND_MAP } from './germanyLocalNodes';
+import { GERMANY_REGIONAL_CLUSTER_BUNDESLAND_MAP } from './germanyRegionalClusters';
 
 /** Simplified Bundesland boundaries — mock polygons for map selection */
 export const BUNDESLAENDER: BundeslandDef[] = [
@@ -208,4 +210,6 @@ export const CITY_BUNDESLAND_MAP: Record<string, string> = {
   iserlohn: 'DE-NW',
   schwerin: 'DE-MV',
   zwickau: 'DE-SN',
+  ...GERMANY_LOCAL_NODE_BUNDESLAND_MAP,
+  ...GERMANY_REGIONAL_CLUSTER_BUNDESLAND_MAP,
 };

@@ -4,7 +4,7 @@ import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { getRoutesForCity } from '../data/routeData';
 import { getMapCityById } from '../data/mapData';
 import { getNearbyInfrastructureForCity } from '../data/germany/germanyInfrastructureUtils';
-import type { GermanyInfrastructureHub } from '../types/germanyTypes';
+import type { GermanyInfrastructureHub, GermanyLocalServiceNode } from '../types/germanyTypes';
 import type { MapCityRecord, CityPanelTab } from '../types/mapTypes';
 import styles from './EuropeBusinessMap.module.css';
 
@@ -55,6 +55,63 @@ function InfrastructureHubList({
   );
 }
 
+function LocalServiceNodeSection({
+  local,
+  t,
+}: {
+  local: GermanyLocalServiceNode;
+  t: (key: string, opts?: Record<string, unknown>) => string;
+}) {
+  return (
+    <div className={styles.germanyLocalSection}>
+      <h4 className={styles.germanyInfraTitle}>{t('germany.localNode.title')}</h4>
+      <p className={styles.germanyLocalRegion}>
+        {local.region} · {local.federalState}
+      </p>
+      <div className={styles.germanyMetaGrid}>
+        <div>
+          <span className={styles.germanyMetaLabel}>{t('germany.localNode.nearestHub')}</span>
+          <span className={styles.germanyMetaValue}>{local.nearestMajorCity}</span>
+        </div>
+        <div>
+          <span className={styles.germanyMetaLabel}>{t('germany.localNode.hubRoute')}</span>
+          <span className={styles.germanyMetaValue}>{local.recommendedHubRoute}</span>
+        </div>
+      </div>
+      <span className={styles.germanyInfraGroupLabel}>{t('germany.localNode.useCases')}</span>
+      <ul className={styles.germanyList}>
+        {local.mainUseCases.map((uc) => (
+          <li key={uc}>{t(`germany.localNode.useCase.${uc}`)}</li>
+        ))}
+      </ul>
+      <span className={styles.germanyInfraGroupLabel}>{t('germany.localNode.transport')}</span>
+      <ul className={styles.germanyList}>
+        {local.smallTransport.map((s) => (
+          <li key={s}>{s}</li>
+        ))}
+      </ul>
+      <span className={styles.germanyInfraGroupLabel}>{t('germany.localNode.warehouses')}</span>
+      <ul className={styles.germanyList}>
+        {local.storageOptions.map((s) => (
+          <li key={s}>{s}</li>
+        ))}
+      </ul>
+      <span className={styles.germanyInfraGroupLabel}>{t('germany.localNode.services')}</span>
+      <ul className={styles.germanyList}>
+        {local.localServices.map((s) => (
+          <li key={s}>{s}</li>
+        ))}
+      </ul>
+      <span className={styles.germanyInfraGroupLabel}>{t('germany.localNode.craft')}</span>
+      <ul className={styles.germanyList}>
+        {local.craftServices.map((s) => (
+          <li key={s}>{s}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function GermanyCityInfoPanel({
   city,
   open = true,
@@ -66,6 +123,7 @@ export function GermanyCityInfoPanel({
   const [tab, setTab] = useState<CityPanelTab>('overview');
 
   const profile = city.germanyProfile;
+  const localNode = city.localServiceNode;
   const m = city.metrics;
   const cityRoutes = getRoutesForCity(city.id).slice(0, 8);
   const population = profile?.population ?? m.population;
@@ -176,6 +234,7 @@ export function GermanyCityInfoPanel({
                   <span className={styles.germanyMetaValue}>{profile?.transportRole ?? '—'}</span>
                 </div>
               </div>
+              {localNode && <LocalServiceNodeSection local={localNode} t={t} />}
               {hasNearbyInfra && (
                 <div className={styles.germanyInfraSection}>
                   <h4 className={styles.germanyInfraTitle}>{t('germany.infrastructure.nearbyTitle')}</h4>
@@ -219,23 +278,42 @@ export function GermanyCityInfoPanel({
 
           {tab === 'jobs' && (
             <div className={styles.panelStatBlock}>
-              <AnimatedCounter value={m.jobs} className={styles.panelBigStat} />
-              <p>{t('panel.jobsDesc')}</p>
+              <AnimatedCounter value={localNode?.jobs ?? m.jobs} className={styles.panelBigStat} />
+              <p>{t('germany.localNode.jobsDesc')}</p>
+              {localNode && (
+                <p className={styles.germanyLocalRoute}>
+                  {t('germany.localNode.jobsViaHub', { hub: localNode.nearestMajorCity })}
+                </p>
+              )}
             </div>
           )}
 
           {tab === 'transport' && profile && (
             <>
-              <ul className={styles.germanyList}>
-                {profile.infrastructure.motorwayConnections.map((mwy) => (
-                  <li key={mwy}>{mwy}</li>
-                ))}
-                <li>{profile.infrastructure.railwayCargoTerminal}</li>
-                {profile.infrastructure.inlandPort && <li>{profile.infrastructure.inlandPort}</li>}
-                {profile.infrastructure.airports.map((a) => (
-                  <li key={a}>{a}</li>
-                ))}
-              </ul>
+              {localNode ? (
+                <>
+                  <ul className={styles.germanyList}>
+                    {localNode.smallTransport.map((s) => (
+                      <li key={s}>{s}</li>
+                    ))}
+                    {localNode.movingServices.map((s) => (
+                      <li key={s}>{s}</li>
+                    ))}
+                  </ul>
+                  <p className={styles.germanyLocalRoute}>{localNode.recommendedHubRoute}</p>
+                </>
+              ) : (
+                <ul className={styles.germanyList}>
+                  {profile.infrastructure.motorwayConnections.map((mwy) => (
+                    <li key={mwy}>{mwy}</li>
+                  ))}
+                  <li>{profile.infrastructure.railwayCargoTerminal}</li>
+                  {profile.infrastructure.inlandPort && <li>{profile.infrastructure.inlandPort}</li>}
+                  {profile.infrastructure.airports.map((a) => (
+                    <li key={a}>{a}</li>
+                  ))}
+                </ul>
+              )}
               {hasNearbyInfra && (
                 <div className={styles.germanyInfraSection}>
                   <h4 className={styles.germanyInfraTitle}>{t('germany.infrastructure.nearbyTitle')}</h4>
@@ -266,7 +344,13 @@ export function GermanyCityInfoPanel({
             <div className={styles.panelStatBlock}>
               <AnimatedCounter value={m.warehouses} className={styles.panelBigStat} />
               <p>{t('panel.warehousesDesc')}</p>
-              {profile && (
+              {localNode ? (
+                <ul className={styles.germanyList}>
+                  {localNode.storageOptions.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              ) : profile && (
                 <ul className={styles.germanyList}>
                   {profile.infrastructure.logisticsHubs.map((h) => (
                     <li key={h}>{h}</li>
@@ -284,26 +368,50 @@ export function GermanyCityInfoPanel({
 
           {tab === 'marketplace' && (
             <div className={styles.panelStatBlock}>
-              <AnimatedCounter value={m.marketplace} className={styles.panelBigStat} />
-              <p>{t('germany.marketplaceDesc')}</p>
+              <AnimatedCounter
+                value={localNode?.marketplaceOffers ?? m.marketplace}
+                className={styles.panelBigStat}
+              />
+              <p>{t('germany.localNode.marketplaceDesc')}</p>
             </div>
           )}
 
           {tab === 'services' && (
             <>
-              <ul className={styles.germanyList}>
-                {profile?.infrastructure.industrialZones.map((z) => (
-                  <li key={z}>{z}</li>
-                ))}
-                {profile?.infrastructure.airports.map((a) => (
-                  <li key={a}>{a}</li>
-                ))}
-              </ul>
-              {nearbyInfra.industrialZones.length > 0 && (
-                <div className={styles.germanyInfraSection}>
-                  <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.industrialZones')}</span>
-                  <InfrastructureHubList hubs={nearbyInfra.industrialZones} t={t} />
-                </div>
+              {localNode ? (
+                <>
+                  <ul className={styles.germanyList}>
+                    {localNode.localServices.map((s) => (
+                      <li key={s}>{s}</li>
+                    ))}
+                    {localNode.craftServices.map((s) => (
+                      <li key={s}>{s}</li>
+                    ))}
+                  </ul>
+                  <span className={styles.germanyInfraGroupLabel}>{t('germany.localNode.nearbyHubs')}</span>
+                  <ul className={styles.germanyList}>
+                    {localNode.nearbyHubs.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <ul className={styles.germanyList}>
+                    {profile?.infrastructure.industrialZones.map((z) => (
+                      <li key={z}>{z}</li>
+                    ))}
+                    {profile?.infrastructure.airports.map((a) => (
+                      <li key={a}>{a}</li>
+                    ))}
+                  </ul>
+                  {nearbyInfra.industrialZones.length > 0 && (
+                    <div className={styles.germanyInfraSection}>
+                      <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.industrialZones')}</span>
+                      <InfrastructureHubList hubs={nearbyInfra.industrialZones} t={t} />
+                    </div>
+                  )}
+                </>
               )}
             </>
           )}
@@ -322,6 +430,14 @@ export function GermanyCityInfoPanel({
                   <div className={styles.countryAiFill} style={{ width: `${m.aiScore}%` }} />
                 </div>
               </div>
+              {profile.sustainabilityScore != null && (
+                <div className={styles.germanyAnalyticsBar}>
+                  <span>{t('germany.sustainability')}</span>
+                  <div className={styles.countryAiBar}>
+                    <div className={styles.countryAiFill} style={{ width: `${profile.sustainabilityScore}%` }} />
+                  </div>
+                </div>
+              )}
               <p className={styles.germanyGdpLine}>
                 {t('germany.gdpEstimate', { value: profile.gdpEstimateBillionEur })}
               </p>

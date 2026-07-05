@@ -2,6 +2,8 @@ import type { City } from '@shared/types';
 import { europeBusinessCitiesExtra } from './europeBusinessCitiesExtra';
 import { germanyCitiesExtra } from '@/features/map/data/germany/germanyCitiesExtra';
 import { germanyCitiesDense } from '@/features/map/data/germany/germanyCitiesDense';
+import { germanyLocalNodeCities } from '@/features/map/data/germany/germanyLocalNodes';
+import { germanyRegionalClusterCities } from '@/features/map/data/germany/germanyRegionalClusters';
 import { latLngToMapXY } from '@/features/map/utils/projection';
 
 /** Normalize city with projected map coordinates */
@@ -202,7 +204,7 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
   { id: 'istanbul', name: 'Istanbul', country: 'Türkei', countryCode: 'TR', lat: 41.008, lng: 28.978, mapX: 72, mapY: 52, businesses: 920, activeModules: ['marketplace', 'transport', 'logistik', 'ki'], isMajorHub: true },
 ];
 
-export const cities: City[] = [...coreCities, ...europeBusinessCitiesExtra, ...germanyCitiesExtra, ...germanyCitiesDense].map(withMapXY);
+export const cities: City[] = [...coreCities, ...europeBusinessCitiesExtra, ...germanyCitiesExtra, ...germanyCitiesDense, ...germanyLocalNodeCities, ...germanyRegionalClusterCities].map(withMapXY);
 
 export function getCityById(id: string): City | undefined {
   return cities.find((c) => c.id === id);

@@ -31,10 +31,45 @@ export interface GermanyActivityItem {
   timestamp: string;
 }
 
+export type GermanyLocalUseCase =
+  | 'local_transport'
+  | 'moving_service'
+  | 'warehouse_near_me'
+  | 'jobs_near_me'
+  | 'craftsmen'
+  | 'business_services'
+  | 'local_marketplace'
+  | 'regional_logistics'
+  | 'agricultural_services'
+  | 'tourism_services';
+
+/** Tier-4 local / rural service node — mock → API */
+export interface GermanyLocalServiceNode {
+  federalState: string;
+  region: string;
+  population: number;
+  companies: number;
+  jobs: number;
+  warehouses: number;
+  transportOffers: number;
+  marketplaceOffers: number;
+  localServices: string[];
+  craftServices: string[];
+  movingServices: string[];
+  smallTransport: string[];
+  storageOptions: string[];
+  nearbyHubs: string[];
+  nearestMajorCity: string;
+  nearestMajorCityId: string;
+  aiScore: number;
+  mainUseCases: GermanyLocalUseCase[];
+  recommendedHubRoute: string;
+}
+
 export interface GermanyCityProfile {
   bundeslandId: string;
   bundeslandName: string;
-  mapTier: 1 | 2 | 3;
+  mapTier: 1 | 2 | 3 | 4;
   population: number;
   mainIndustry: string;
   transportRole: string;
@@ -43,6 +78,7 @@ export interface GermanyCityProfile {
   techScore?: number;
   logisticsScore?: number;
   innovationScore?: number;
+  sustainabilityScore?: number;
   infrastructure: GermanyInfrastructure;
   topTradePartners: GermanyTradePartner[];
   recentActivity: GermanyActivityItem[];

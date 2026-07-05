@@ -4,7 +4,7 @@ import type { City, MapCityMetrics } from '@shared/types';
 export type TransportMode = 'road' | 'rail' | 'air' | 'sea' | 'river';
 
 /** City enriched with projected map coordinates and metrics */
-import type { GermanyCityProfile } from './germanyTypes';
+import type { GermanyCityProfile, GermanyLocalServiceNode } from './germanyTypes';
 
 export interface MapCityRecord extends City {
   mapX: number;
@@ -12,6 +12,8 @@ export interface MapCityRecord extends City {
   metrics: MapCityMetrics;
   /** Germany digital twin profile — present for DE cities */
   germanyProfile?: GermanyCityProfile;
+  /** Tier-4 local service node data — towns & rural regions */
+  localServiceNode?: GermanyLocalServiceNode;
 }
 
 /** Route definition — path computed at render from city coordinates */

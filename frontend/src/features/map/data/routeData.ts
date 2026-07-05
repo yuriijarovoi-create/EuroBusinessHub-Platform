@@ -2,6 +2,7 @@ import type { BusinessRouteDef, MapLayerState, ResolvedRoute } from '../types/ma
 import { DEFAULT_HUB_ID } from './mapData';
 import { CORRIDOR_ROUTES, mergeRoutes } from './routeCorridors';
 import { GERMANY_NETWORK_ROUTES } from './germany/germanyRoutes';
+import { GERMANY_REGIONAL_CLUSTER_ROUTES } from './germany/germanyRegionalClusters';
 
 const H = DEFAULT_HUB_ID;
 
@@ -54,6 +55,7 @@ export const BUSINESS_ROUTES: BusinessRouteDef[] = mergeRoutes(
   CORE_ROUTES,
   CORRIDOR_ROUTES,
   GERMANY_NETWORK_ROUTES,
+  GERMANY_REGIONAL_CLUSTER_ROUTES,
 );
 
 export function filterRoutesByLayers(routes: BusinessRouteDef[], layers: MapLayerState): BusinessRouteDef[] {

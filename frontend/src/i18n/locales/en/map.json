@@ -76,6 +76,7 @@
     "tech": "Tech",
     "logistics": "Logistics",
     "innovation": "Innovation",
+    "sustainability": "Sustainability",
     "gdpShort": "{{value}} bn € GDP",
     "gdpEstimate": "Estimated GDP: {{value}} bn €",
     "marketplaceDesc": "Active marketplace offers in the region",
@@ -98,6 +99,32 @@
         "inland_port": "Inland port",
         "air_cargo": "Air cargo hub",
         "industrial_zone": "Industrial zone"
+      }
+    },
+    "localNode": {
+      "title": "Local services & regional hub",
+      "nearestHub": "Nearest major hub",
+      "hubRoute": "Recommended route",
+      "useCases": "Main use cases",
+      "transport": "Local transport",
+      "warehouses": "Storage nearby",
+      "services": "Local services",
+      "craft": "Craftsmen",
+      "nearbyHubs": "Nearby hubs",
+      "marketplaceDesc": "Local marketplace offers in your region",
+      "jobsDesc": "Jobs in town and via regional hub",
+      "jobsViaHub": "Commuter & logistics jobs via {{hub}}",
+      "useCase": {
+        "local_transport": "Local transport",
+        "moving_service": "Moving service",
+        "warehouse_near_me": "Warehouse near me",
+        "jobs_near_me": "Jobs near me",
+        "craftsmen": "Craftsmen",
+        "business_services": "Business services",
+        "local_marketplace": "Local marketplace",
+        "regional_logistics": "Regional logistics",
+        "agricultural_services": "Agricultural services",
+        "tourism_services": "Tourism services"
       }
     }
   },
