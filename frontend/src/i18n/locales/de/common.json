@@ -1,8 +1,57 @@
 {
   "app": {
     "name": "EuroBusinessHub",
-    "tagline": "KI Business Operating System für Europa",
-    "description": "Die zentrale Plattform für europäisches Wirtschaftswachstum"
+    "tagline": "Eine Plattform. Unbegrenzte Geschäftschancen.",
+    "subtitle": "Das KI Business Operating System für Europa",
+    "description": "Transport, Marktplatz, Logistik, Jobs, Partner und KI — vereint in einem intelligenten europäischen Ökosystem."
+  },
+  "hero": {
+    "badge": "Live · Europäisches Netzwerk",
+    "headlineLine1": "Eine Plattform.",
+    "headlineLine2": "Unbegrenzte Geschäftschancen.",
+    "cta": "Dashboard öffnen",
+    "ctaButtons": {
+      "marketplace": "Marketplace",
+      "transport": "Transport",
+      "unternehmen": "Unternehmen",
+      "jobs": "Jobs"
+    },
+    "stats": {
+      "modules": "Module",
+      "cities": "Städte",
+      "businesses": "Unternehmen"
+    }
+  },
+  "stats": {
+    "title": "Europäische Business-Statistiken",
+    "subtitle": "Live-Daten aus dem EuroBusinessHub-Netzwerk",
+    "companies": "Unternehmen",
+    "transportOrders": "Transportaufträge",
+    "openJobs": "Offene Stellen",
+    "warehouses": "Lager",
+    "marketplaceProducts": "Marktplatz-Produkte",
+    "users": "Nutzer",
+    "partners": "Partner"
+  },
+  "dashboard": {
+    "title": "Plattform-Dashboard",
+    "subtitle": "Ihre Geschäftskennzahlen auf einen Blick",
+    "viewAll": "Alle anzeigen",
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "jobs": "Jobs",
+    "companies": "Unternehmen",
+    "revenue": "Umsatz",
+    "deals": "Deals",
+    "subscriptions": "Abonnements",
+    "analytics": "Analytics"
+  },
+  "modules": {
+    "title": "Ihr europäisches Business-Ökosystem",
+    "subtitle": "Alle Geschäftsbereiche — verbunden durch KI, Suche und ein einheitliches Konto."
+  },
+  "ai": {
+    "title": "KI-Fähigkeiten"
   },
   "nav": {
     "home": "Start",
@@ -10,9 +59,19 @@
     "modules": "Module",
     "workspace": "Arbeitsbereich",
     "search": "Suche",
+    "dashboard": "Dashboard",
+    "notifications": "Benachrichtigungen",
     "login": "Anmelden",
     "register": "Registrieren",
-    "language": "Sprache"
+    "language": "Sprache",
+    "theme": "Design"
+  },
+  "userMenu": {
+    "guest": "Gast",
+    "company": "Firmenkonto"
+  },
+  "notifications": {
+    "empty": "Keine Benachrichtigungen"
   },
   "future": {
     "auth": "Authentifizierung folgt",
@@ -22,6 +81,7 @@
   },
   "footer": {
     "copyright": "© {{year}} EuroBusinessHub. Alle Rechte vorbehalten.",
-    "mockData": "Demo-Daten — keine echten API-Verbindungen"
+    "mockData": "Demo-Daten — keine echten API-Verbindungen",
+    "tagline": "Das europäische Business Operating System"
   }
 }

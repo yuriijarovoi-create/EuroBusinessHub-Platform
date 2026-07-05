@@ -1,0 +1,166 @@
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import type { Map as LeafletMap } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import type { MapCountry } from '@shared/types';
+import {
+  DARK_TILE_URL,
+  TILE_ATTRIBUTION,
+  EUROPE_CENTER,
+  EUROPE_DEFAULT_ZOOM,
+  EUROPE_MIN_ZOOM,
+  EUROPE_MAX_ZOOM,
+  EUROPE_BOUNDS,
+} from '../../config/leafletConfig';
+import { LeafletMapProvider } from '../../context/LeafletMapContext';
+import { EuropeGeoJsonLayer } from './EuropeGeoJsonLayer';
+import { LeafletRouteLayer } from './LeafletRouteLayer';
+import { LeafletCityMarkers } from './LeafletCityMarkers';
+import { MapInstanceCapture, LeafletFitEurope, LeafletCountryFocus } from './LeafletMapBridge';
+import { GermanyBundeslandLayer } from './GermanyBundeslandLayer';
+import { GermanyCityLabels } from './GermanyCityLabels';
+import type { BusinessRouteDef, MapCityRecord, MapLayerState } from '../../types/mapTypes';
+import styles from './RealEuropeMap.module.css';
+
+interface RealEuropeMapProps {
+  routes: BusinessRouteDef[];
+  cities: MapCityRecord[];
+  cityMap: Map<string, MapCityRecord>;
+  layers: MapLayerState;
+  selectedCountryCode?: string;
+  selectedBundeslandId?: string;
+  selectedCityId?: string;
+  hoveredCityId?: string;
+  countries: MapCountry[];
+  onCountrySelect?: (country: MapCountry) => void;
+  onBundeslandSelect?: (bundeslandId: string) => void;
+  onCitySelect: (city: MapCityRecord) => void;
+  onCityHover: (city: MapCityRecord | null) => void;
+  onCountryHover?: (isoCode: string | null) => void;
+  children?: React.ReactNode;
+}
+
+export const RealEuropeMap = memo(function RealEuropeMap({
+  routes,
+  cities,
+  cityMap,
+  layers,
+  selectedCountryCode,
+  selectedBundeslandId,
+  selectedCityId,
+  hoveredCityId,
+  countries,
+  onCountrySelect,
+  onBundeslandSelect,
+  onCitySelect,
+  onCityHover,
+  onCountryHover,
+  children,
+}: RealEuropeMapProps) {
+  const [leafletMap, setLeafletMap] = useState<LeafletMap | null>(null);
+  const [mapReady, setMapReady] = useState(false);
+  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+
+  useEffect(() => {
+    setMapReady(true);
+    return () => setMapReady(false);
+  }, []);
+
+  const countryByCode = useMemo(
+    () => new Map(countries.map((c) => [c.code, c])),
+    [countries],
+  );
+
+  const handleGeoCountry = useCallback(
+    (iso: string) => {
+      const country = countryByCode.get(iso);
+      if (country) onCountrySelect?.(country);
+    },
+    [countryByCode, onCountrySelect],
+  );
+
+  const handleCountryHover = useCallback(
+    (iso: string | null) => {
+      setHoveredCountry(iso);
+      onCountryHover?.(iso);
+    },
+    [onCountryHover],
+  );
+
+  const handleMapReady = useCallback((map: LeafletMap) => {
+    setLeafletMap(map);
+  }, []);
+
+  const controls = useMemo(
+    () => ({
+      map: leafletMap,
+      zoomIn: () => leafletMap?.zoomIn(),
+      zoomOut: () => leafletMap?.zoomOut(),
+      resetView: () =>
+        leafletMap?.fitBounds(EUROPE_BOUNDS, { padding: [24, 24], maxZoom: EUROPE_DEFAULT_ZOOM }),
+    }),
+    [leafletMap],
+  );
+
+  return (
+    <LeafletMapProvider value={controls}>
+      {children}
+      {mapReady ? (
+        <MapContainer
+          key="europe-leaflet-map"
+          className={styles.map}
+          center={EUROPE_CENTER}
+          zoom={EUROPE_DEFAULT_ZOOM}
+          minZoom={EUROPE_MIN_ZOOM}
+          maxZoom={EUROPE_MAX_ZOOM}
+          maxBounds={EUROPE_BOUNDS}
+          maxBoundsViscosity={0.85}
+          scrollWheelZoom
+          zoomControl={false}
+          attributionControl
+        >
+          <TileLayer url={DARK_TILE_URL} attribution={TILE_ATTRIBUTION} />
+          <EuropeGeoJsonLayer
+            selectedCountryCode={selectedCountryCode}
+            hoveredCountryCode={hoveredCountry ?? undefined}
+            onCountrySelect={handleGeoCountry}
+            onCountryHover={handleCountryHover}
+          />
+          {selectedCountryCode === 'DE' && (
+            <GermanyBundeslandLayer
+              active
+              selectedBundeslandId={selectedBundeslandId}
+              onSelect={onBundeslandSelect}
+            />
+          )}
+          {layers.routes && <LeafletRouteLayer routes={routes} cityMap={cityMap} />}
+          <LeafletCityMarkers
+            cities={cities}
+            selectedCityId={selectedCityId}
+            hoveredCityId={hoveredCityId}
+            layers={layers}
+            onSelect={onCitySelect}
+            onHover={onCityHover}
+          />
+          {selectedCountryCode === 'DE' && (
+            <GermanyCityLabels
+              active
+              cities={cities}
+              selectedCityId={selectedCityId}
+              hoveredCityId={hoveredCityId}
+            />
+          )}
+          <LeafletFitEurope active={!selectedCountryCode} />
+          <LeafletCountryFocus
+            countryCode={selectedCountryCode}
+            bundeslandId={selectedBundeslandId}
+            cities={cities}
+          />
+          <MapInstanceCapture onReady={handleMapReady} />
+        </MapContainer>
+      ) : (
+        <div className={styles.map} aria-hidden />
+      )}
+    </LeafletMapProvider>
+  );
+});

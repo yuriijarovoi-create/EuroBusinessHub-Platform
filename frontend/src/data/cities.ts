@@ -1,7 +1,17 @@
 import type { City } from '@shared/types';
+import { europeBusinessCitiesExtra } from './europeBusinessCitiesExtra';
+import { germanyCitiesExtra } from '@/features/map/data/germany/germanyCitiesExtra';
+import { germanyCitiesDense } from '@/features/map/data/germany/germanyCitiesDense';
+import { latLngToMapXY } from '@/features/map/utils/projection';
+
+/** Normalize city with projected map coordinates */
+function withMapXY(c: Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: number }): City {
+  const { mapX, mapY } = latLngToMapXY(c.lat, c.lng);
+  return { ...c, mapX, mapY };
+}
 
 /** Mock European cities with map coordinates (percentage on simplified SVG viewBox) */
-export const cities: City[] = [
+const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: number }> = [
   {
     id: 'berlin',
     name: 'Berlin',
@@ -13,6 +23,8 @@ export const cities: City[] = [
     mapY: 38,
     businesses: 1240,
     activeModules: ['marketplace', 'transport', 'logistik', 'jobs', 'ki'],
+    isMajorHub: true,
+    mapTier: 1,
   },
   {
     id: 'hamburg',
@@ -25,6 +37,8 @@ export const cities: City[] = [
     mapY: 32,
     businesses: 890,
     activeModules: ['marketplace', 'transport', 'logistik', 'lager'],
+    mapTier: 1,
+    isMajorHub: true,
   },
   {
     id: 'munich',
@@ -37,10 +51,12 @@ export const cities: City[] = [
     mapY: 52,
     businesses: 980,
     activeModules: ['marketplace', 'unternehmen', 'akademie', 'ki'],
+    mapTier: 1,
+    isMajorHub: true,
   },
   {
     id: 'frankfurt',
-    name: 'Frankfurt',
+    name: 'Frankfurt am Main',
     country: 'Deutschland',
     countryCode: 'DE',
     lat: 50.11,
@@ -49,6 +65,8 @@ export const cities: City[] = [
     mapY: 46,
     businesses: 760,
     activeModules: ['marketplace', 'partner', 'digitale-produkte', 'jobs'],
+    isMajorHub: true,
+    mapTier: 1,
   },
   {
     id: 'vienna',
@@ -85,6 +103,7 @@ export const cities: City[] = [
     mapY: 36,
     businesses: 710,
     activeModules: ['marketplace', 'logistik', 'transport', 'jobs'],
+    isMajorHub: true,
   },
   {
     id: 'paris',
@@ -97,6 +116,7 @@ export const cities: City[] = [
     mapY: 48,
     businesses: 1580,
     activeModules: ['marketplace', 'transport', 'jobs', 'akademie', 'ki'],
+    isMajorHub: true,
   },
   {
     id: 'brussels',
@@ -146,7 +166,43 @@ export const cities: City[] = [
     businesses: 290,
     activeModules: ['marketplace', 'transport', 'partner'],
   },
+  // Germany — extended
+  { id: 'cologne', name: 'Köln', country: 'Deutschland', countryCode: 'DE', lat: 50.938, lng: 6.960, mapX: 48, mapY: 44, businesses: 620, activeModules: ['marketplace', 'logistik', 'jobs'], mapTier: 1, isMajorHub: true },
+  { id: 'stuttgart', name: 'Stuttgart', country: 'Deutschland', countryCode: 'DE', lat: 48.776, lng: 9.183, mapX: 52, mapY: 50, businesses: 710, activeModules: ['marketplace', 'unternehmen', 'transport'], mapTier: 1, isMajorHub: true },
+  { id: 'duesseldorf', name: 'Düsseldorf', country: 'Deutschland', countryCode: 'DE', lat: 51.227, lng: 6.773, mapX: 47, mapY: 43, businesses: 580, activeModules: ['marketplace', 'partner', 'services'], mapTier: 1, isMajorHub: true },
+  { id: 'leipzig', name: 'Leipzig', country: 'Deutschland', countryCode: 'DE', lat: 51.340, lng: 12.374, mapX: 56, mapY: 42, businesses: 410, activeModules: ['marketplace', 'logistik', 'akademie'], mapTier: 1, isMajorHub: true },
+  { id: 'dortmund', name: 'Dortmund', country: 'Deutschland', countryCode: 'DE', lat: 51.513, lng: 7.465, mapX: 48, mapY: 42, businesses: 390, activeModules: ['marketplace', 'transport', 'lager'], mapTier: 2 },
+  { id: 'bremen', name: 'Bremen', country: 'Deutschland', countryCode: 'DE', lat: 53.079, lng: 8.802, mapX: 50, mapY: 34, businesses: 340, activeModules: ['marketplace', 'transport', 'logistik'], mapTier: 2 },
+  { id: 'hanover', name: 'Hannover', country: 'Deutschland', countryCode: 'DE', lat: 52.376, lng: 9.732, mapX: 52, mapY: 38, businesses: 360, activeModules: ['marketplace', 'jobs', 'ki'], mapTier: 2 },
+  { id: 'nuremberg', name: 'Nürnberg', country: 'Deutschland', countryCode: 'DE', lat: 49.452, lng: 11.077, mapX: 54, mapY: 48, businesses: 420, activeModules: ['marketplace', 'akademie', 'digitale-produkte'], mapTier: 2 },
+  // Europe — capital & hub cities
+  { id: 'rome', name: 'Rom', country: 'Italien', countryCode: 'IT', lat: 41.903, lng: 12.496, mapX: 54, mapY: 58, businesses: 920, activeModules: ['marketplace', 'transport', 'akademie'], isMajorHub: true },
+  { id: 'madrid', name: 'Madrid', country: 'Spanien', countryCode: 'ES', lat: 40.416, lng: -3.703, mapX: 30, mapY: 58, businesses: 880, activeModules: ['marketplace', 'jobs', 'ki'], isMajorHub: true },
+  { id: 'lisbon', name: 'Lissabon', country: 'Portugal', countryCode: 'PT', lat: 38.722, lng: -9.139, mapX: 22, mapY: 60, businesses: 450, activeModules: ['marketplace', 'partner', 'transport'] },
+  { id: 'london', name: 'London', country: 'Vereinigtes Königreich', countryCode: 'GB', lat: 51.507, lng: -0.128, mapX: 38, mapY: 40, businesses: 2100, activeModules: ['marketplace', 'transport', 'jobs', 'ki'], isMajorHub: true },
+  { id: 'dublin', name: 'Dublin', country: 'Irland', countryCode: 'IE', lat: 53.349, lng: -6.260, mapX: 28, mapY: 38, businesses: 520, activeModules: ['marketplace', 'digitale-produkte', 'partner'] },
+  { id: 'stockholm', name: 'Stockholm', country: 'Schweden', countryCode: 'SE', lat: 59.329, lng: 18.068, mapX: 58, mapY: 24, businesses: 640, activeModules: ['marketplace', 'transport', 'akademie'], isMajorHub: true },
+  { id: 'oslo', name: 'Oslo', country: 'Norwegen', countryCode: 'NO', lat: 59.913, lng: 10.752, mapX: 50, mapY: 22, businesses: 380, activeModules: ['marketplace', 'partner', 'logistik'] },
+  { id: 'helsinki', name: 'Helsinki', country: 'Finnland', countryCode: 'FI', lat: 60.169, lng: 24.938, mapX: 66, mapY: 22, businesses: 410, activeModules: ['marketplace', 'transport', 'ki'] },
+  { id: 'budapest', name: 'Budapest', country: 'Ungarn', countryCode: 'HU', lat: 47.497, lng: 19.040, mapX: 62, mapY: 50, businesses: 560, activeModules: ['marketplace', 'logistik', 'jobs'], isMajorHub: true },
+  { id: 'bucharest', name: 'Bukarest', country: 'Rumänien', countryCode: 'RO', lat: 44.426, lng: 26.102, mapX: 68, mapY: 54, businesses: 480, activeModules: ['marketplace', 'transport', 'lager'] },
+  { id: 'athens', name: 'Athen', country: 'Griechenland', countryCode: 'GR', lat: 37.983, lng: 23.727, mapX: 66, mapY: 62, businesses: 510, activeModules: ['marketplace', 'akademie', 'partner'] },
+  { id: 'bratislava', name: 'Bratislava', country: 'Slowakei', countryCode: 'SK', lat: 48.148, lng: 17.107, mapX: 62, mapY: 48, businesses: 280, activeModules: ['marketplace', 'transport'] },
+  { id: 'luxembourg', name: 'Luxemburg', country: 'Luxemburg', countryCode: 'LU', lat: 49.611, lng: 6.131, mapX: 46, mapY: 45, businesses: 220, activeModules: ['marketplace', 'partner', 'unternehmen'] },
+  { id: 'tallinn', name: 'Tallinn', country: 'Estland', countryCode: 'EE', lat: 59.437, lng: 24.753, mapX: 66, mapY: 28, businesses: 190, activeModules: ['marketplace', 'digitale-produkte', 'ki'] },
+  { id: 'riga', name: 'Riga', country: 'Lettland', countryCode: 'LV', lat: 56.949, lng: 24.105, mapX: 66, mapY: 32, businesses: 210, activeModules: ['marketplace', 'logistik'] },
+  { id: 'vilnius', name: 'Vilnius', country: 'Litauen', countryCode: 'LT', lat: 54.687, lng: 25.280, mapX: 66, mapY: 36, businesses: 240, activeModules: ['marketplace', 'jobs', 'transport'] },
+  { id: 'milan', name: 'Mailand', country: 'Italien', countryCode: 'IT', lat: 45.464, lng: 9.190, mapX: 54, mapY: 52, businesses: 1100, activeModules: ['marketplace', 'transport', 'unternehmen', 'ki'], isMajorHub: true },
+  { id: 'barcelona', name: 'Barcelona', country: 'Spanien', countryCode: 'ES', lat: 41.387, lng: 2.168, mapX: 38, mapY: 56, businesses: 940, activeModules: ['marketplace', 'logistik', 'jobs', 'ki'], isMajorHub: true },
+  { id: 'sofia', name: 'Sofia', country: 'Bulgarien', countryCode: 'BG', lat: 42.698, lng: 23.322, mapX: 66, mapY: 54, businesses: 420, activeModules: ['marketplace', 'transport', 'partner'] },
+  { id: 'kyiv', name: 'Kiew', country: 'Ukraine', countryCode: 'UA', lat: 50.450, lng: 30.524, mapX: 72, mapY: 44, businesses: 680, activeModules: ['marketplace', 'transport', 'jobs'], isMajorHub: true },
+  { id: 'marseille', name: 'Marseille', country: 'Frankreich', countryCode: 'FR', lat: 43.296, lng: 5.369, mapX: 44, mapY: 54, businesses: 620, activeModules: ['marketplace', 'transport', 'logistik'] },
+  { id: 'lyon', name: 'Lyon', country: 'Frankreich', countryCode: 'FR', lat: 45.764, lng: 4.835, mapX: 44, mapY: 50, businesses: 580, activeModules: ['marketplace', 'jobs', 'partner'] },
+  { id: 'krakow', name: 'Krakau', country: 'Polen', countryCode: 'PL', lat: 50.065, lng: 19.945, mapX: 62, mapY: 46, businesses: 490, activeModules: ['marketplace', 'akademie', 'transport'] },
+  { id: 'istanbul', name: 'Istanbul', country: 'Türkei', countryCode: 'TR', lat: 41.008, lng: 28.978, mapX: 72, mapY: 52, businesses: 920, activeModules: ['marketplace', 'transport', 'logistik', 'ki'], isMajorHub: true },
 ];
+
+export const cities: City[] = [...coreCities, ...europeBusinessCitiesExtra, ...germanyCitiesExtra, ...germanyCitiesDense].map(withMapXY);
 
 export function getCityById(id: string): City | undefined {
   return cities.find((c) => c.id === id);

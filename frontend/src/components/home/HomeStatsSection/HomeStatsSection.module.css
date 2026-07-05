@@ -1,0 +1,4 @@
+.section {
+  margin-bottom: var(--space-3xl);
+  animation: fade-in-up 0.6s ease-out 0.1s both;
+}

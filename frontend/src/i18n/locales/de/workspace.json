@@ -6,6 +6,17 @@
     "openOrders": "Offene Aufträge",
     "listings": "Einträge"
   },
+  "metrics": {
+    "companies": "Unternehmen",
+    "jobs": "Jobs",
+    "transport": "Transport",
+    "warehouses": "Lager",
+    "marketplace": "Marketplace",
+    "partners": "Partner",
+    "digitalProducts": "Digitale Produkte",
+    "services": "Services"
+  },
+  "ecosystemMetrics": "Business-Ökosystem",
   "activeModules": "Aktive Module in dieser Stadt",
   "backToMap": "Zurück zur Karte",
   "quickActions": "Schnellaktionen",

@@ -1,0 +1,20 @@
+.page {
+  width: 100%;
+  max-width: none;
+  animation: fade-in-up 0.4s ease-out;
+}
+
+.header {
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.header h1 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-xs);
+}
+
+.header p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}

@@ -1,0 +1,1 @@
+export { PremiumHero } from './PremiumHero';

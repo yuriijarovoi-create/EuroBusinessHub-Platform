@@ -1,9 +1,120 @@
 {
-  "title": "Europe Business Map",
-  "subtitle": "Select a city to open its workspace",
-  "legend": "Active business hubs",
-  "businesses": "{{count}} businesses",
-  "openWorkspace": "Open workspace",
-  "selected": "Selected: {{city}}",
-  "zoomHint": "Tap a city on the map"
+  "title": "Living European Business Network",
+  "eyebrow": "Live map",
+  "subtitle": "Berlin as central hub — Interactive European business network",
+  "legend": "Interactive Europe map with business nodes",
+  "hubLabel": "Berlin Hub",
+  "liveNetwork": "Live network active",
+  "businesses": "{{count}} companies",
+  "zoomHint": "Select a city or country · Each city opens its own workspace",
+  "interactionHint": "Scroll to zoom · Drag to pan · Click a city for details",
+  "loading": "Loading map…",
+  "controls": {
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "reset": "Reset view",
+    "backEurope": "Europe"
+  },
+  "nav": {
+    "europe": "Europe",
+    "selectCity": "Select city"
+  },
+  "layers": {
+    "title": "Layers",
+    "routes": "Routes",
+    "road": "Road",
+    "rail": "Rail",
+    "air": "Air",
+    "sea": "Sea",
+    "river": "River",
+    "companies": "Companies",
+    "jobs": "Jobs",
+    "warehouses": "Warehouses"
+  },
+  "activity": {
+    "liveActivity": "Live activity",
+    "freightVolume": "Freight volume 24h",
+    "transportOffers": "Open transport offers",
+    "deliveryTime": "Avg. delivery time",
+    "co2Saving": "CO₂ savings"
+  },
+  "live": {
+    "title": "Live platform",
+    "companies": "Companies",
+    "jobs": "Jobs",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "warehouses": "Warehouses",
+    "partners": "Partners",
+    "digitalProducts": "Digital products",
+    "subscriptions": "Subscriptions",
+    "aiRequests": "AI requests"
+  },
+  "tooltip": {
+    "companies": "{{count}} companies",
+    "jobs": "{{count}} jobs",
+    "warehouses": "{{count}} warehouses",
+    "transport": "{{count}} transport",
+    "aiScore": "AI score {{score}}"
+  },
+  "country": {
+    "title": "Country {{country}}",
+    "cities": "{{count}} business cities",
+    "aiScore": "AI infrastructure score",
+    "selectCity": "Select a city on the map for details"
+  },
+  "germany": {
+    "bundeslandPicker": "Select federal state",
+    "bundeslandTitle": "State {{name}}",
+    "bundeslandSubtitle": "Regional economic profile",
+    "selectCityInState": "Select a city in this state",
+    "population": "Population",
+    "federalState": "Federal state",
+    "mainIndustry": "Main industry",
+    "transportRole": "Transport role",
+    "finance": "Finance",
+    "tech": "Tech",
+    "logistics": "Logistics",
+    "innovation": "Innovation",
+    "gdpShort": "{{value}} bn € GDP",
+    "gdpEstimate": "Estimated GDP: {{value}} bn €",
+    "marketplaceDesc": "Active marketplace offers in the region",
+    "stats": {
+      "cities": "Cities",
+      "gdp": "GDP (est.)",
+      "logistics": "Logistics score",
+      "businesses": "Businesses"
+    }
+  },
+  "panel": {
+    "title": "City {{city}}",
+    "close": "Close",
+    "openWorkspace": "Open workspace",
+    "allRoutes": "Show all routes",
+    "companies": "Companies",
+    "jobs": "Jobs",
+    "warehouses": "Warehouses",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "partners": "Partners",
+    "aiScore": "AI score",
+    "digitalProducts": "Digital products",
+    "transportOffers": "Transport offers",
+    "companiesDesc": "Registered companies in this city",
+    "jobsDesc": "Active job listings",
+    "warehousesDesc": "Available warehouse capacity",
+    "tabs": {
+      "overview": "Overview",
+      "companies": "Companies",
+      "jobs": "Jobs",
+      "warehouses": "Warehouses",
+      "routes": "Routes",
+      "transport": "Transport",
+      "marketplace": "Marketplace",
+      "services": "Services",
+      "analytics": "Analytics",
+      "partners": "Partners",
+      "activity": "Activity"
+    }
+  }
 }

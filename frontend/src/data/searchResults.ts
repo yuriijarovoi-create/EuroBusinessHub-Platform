@@ -1,9 +1,12 @@
 import type { SearchResult } from '@shared/types';
 import { cities } from './cities';
-import { businessModules } from './modules';
+import { platformModules } from './modules';
+
+export const SEARCHABLE_MODULES = [
+  'companies', 'transport', 'marketplace', 'jobs', 'warehouses', 'services', 'ai',
+] as const;
 
 export const searchIndex: SearchResult[] = [
-  // cities and modules get localized titles at render time via routes
   ...cities.map((city) => ({
     id: `city-${city.id}`,
     type: 'city' as const,
@@ -11,12 +14,13 @@ export const searchIndex: SearchResult[] = [
     subtitle: `${city.country} · ${city.businesses} Unternehmen`,
     route: `/workspace/${city.id}`,
   })),
-  ...businessModules.map((mod) => ({
+  ...platformModules.map((mod) => ({
     id: `module-${mod.id}`,
     type: 'module' as const,
     title: mod.id,
     subtitle: mod.status,
     route: mod.route,
+    module: mod.id,
   })),
   {
     id: 'biz-1',
@@ -24,6 +28,7 @@ export const searchIndex: SearchResult[] = [
     title: 'EuroLog GmbH',
     subtitle: 'Logistik · Berlin',
     route: '/workspace/berlin',
+    module: 'unternehmen',
   },
   {
     id: 'biz-2',
@@ -31,6 +36,32 @@ export const searchIndex: SearchResult[] = [
     title: 'NordTrans AG',
     subtitle: 'Transport · Hamburg',
     route: '/workspace/hamburg',
+    module: 'transport',
+  },
+  {
+    id: 'transport-1',
+    type: 'transport',
+    title: 'Fracht Frankfurt → Paris',
+    subtitle: '24t · Kühltransport',
+    route: '/module/transport',
+    module: 'transport',
+    score: 0.92,
+  },
+  {
+    id: 'warehouse-1',
+    type: 'warehouse',
+    title: 'Lager Hamburg Hafen',
+    subtitle: '12.000 m² · verfügbar',
+    route: '/module/lager',
+    module: 'lager',
+  },
+  {
+    id: 'service-1',
+    type: 'service',
+    title: 'Buchhaltung & Compliance',
+    subtitle: 'Business Services · München',
+    route: '/module/services',
+    module: 'services',
   },
   {
     id: 'job-1',
@@ -38,6 +69,7 @@ export const searchIndex: SearchResult[] = [
     title: 'Logistikkoordinator (m/w/d)',
     subtitle: 'München · Vollzeit',
     route: '/module/jobs',
+    module: 'jobs',
   },
   {
     id: 'prod-1',
@@ -45,6 +77,16 @@ export const searchIndex: SearchResult[] = [
     title: 'KI-Automatisierung Starter',
     subtitle: 'Digitale Produkte',
     route: '/module/digitale-produkte',
+    module: 'digitale-produkte',
+  },
+  {
+    id: 'ai-1',
+    type: 'ai',
+    title: 'Transport-Matching Vorschläge',
+    subtitle: 'KI · 5 neue Matches',
+    route: '/module/ki',
+    module: 'ki',
+    score: 0.88,
   },
 ];
 
@@ -54,6 +96,7 @@ export function searchMock(query: string): SearchResult[] {
   return searchIndex.filter(
     (item) =>
       item.title.toLowerCase().includes(q) ||
-      item.subtitle.toLowerCase().includes(q),
+      item.subtitle.toLowerCase().includes(q) ||
+      item.type.includes(q),
   );
 }

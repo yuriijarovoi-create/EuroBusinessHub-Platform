@@ -1,13 +1,17 @@
 {
-  "placeholder": "AI search: cities, modules, businesses…",
-  "aiLabel": "Global AI Search",
+  "placeholder": "Companies, transport, jobs, warehouses, AI…",
+  "aiLabel": "Global AI search",
   "noResults": "No results for \"{{query}}\"",
   "recent": "Suggestions",
   "types": {
     "city": "City",
     "module": "Module",
-    "business": "Business",
+    "business": "Company",
     "product": "Product",
-    "job": "Job"
+    "job": "Job",
+    "transport": "Transport",
+    "warehouse": "Warehouse",
+    "service": "Service",
+    "ai": "AI"
   }
 }

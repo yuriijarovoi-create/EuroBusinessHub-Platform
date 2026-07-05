@@ -1,96 +1,112 @@
+import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cities } from '@/data/cities';
-import type { City } from '@shared/types';
+import { countries } from '@/data/countries';
+import { getHubRoutes } from '@/utils/mapRoutes';
+import { GlassPanel } from '@/components/GlassPanel';
+import { useMapViewport } from './hooks/useMapViewport';
+import { EuropeMapCanvas } from './components/EuropeMapCanvas';
+import { MapLiveOverlay } from './components/MapLiveOverlay';
+import type { City, EuropeMapVariant, MapCountry } from '@shared/types';
 import styles from './EuropeMap.module.css';
 
+const InteractiveEuropeMap = lazy(() =>
+  import('./components/InteractiveEuropeMap').then((m) => ({ default: m.InteractiveEuropeMap })),
+);
+
 interface EuropeMapProps {
+  variant?: EuropeMapVariant;
   selectedCityId?: string;
+  selectedCountryCode?: string;
   onCitySelect?: (city: City) => void;
+  onCountrySelect?: (country: MapCountry) => void;
+  showHeader?: boolean;
 }
 
-export function EuropeMap({ selectedCityId, onCitySelect }: EuropeMapProps) {
+export function EuropeMap({
+  variant = 'section',
+  selectedCityId,
+  selectedCountryCode,
+  onCitySelect,
+  onCountrySelect,
+  showHeader = true,
+}: EuropeMapProps) {
   const { t } = useTranslation('map');
   const navigate = useNavigate();
+  const { transform } = useMapViewport();
+  const routes = getHubRoutes(cities);
 
   const handleCityClick = (city: City) => {
     onCitySelect?.(city);
     navigate(`/workspace/${city.id}`);
   };
 
+  const handleCountryClick = (country: MapCountry) => {
+    onCountrySelect?.(country);
+    if (country.hubCityId) {
+      navigate(`/workspace/${country.hubCityId}`);
+    }
+  };
+
+  const canvas = (
+    <EuropeMapCanvas
+      transform={transform}
+      routes={routes}
+      cities={cities}
+      countries={countries}
+      hubLabel={t('hubLabel')}
+      selectedCityId={selectedCityId}
+      selectedCountryCode={selectedCountryCode}
+      showLabels={variant !== 'hero'}
+      onCitySelect={handleCityClick}
+      onCountrySelect={handleCountryClick}
+      getCityAriaLabel={(city) => `${city.name}, ${t('businesses', { count: city.businesses })}`}
+    />
+  );
+
+  const isFullscreen = variant === 'fullscreen';
+  const isInteractive = variant === 'interactive';
+  const isHero = variant === 'hero';
+
+  if (isFullscreen || isInteractive) {
+    return (
+      <div
+        className={`${styles.fullscreenWrapper} ${isInteractive ? styles.interactiveWrapper : ''}`}
+        aria-label={t('title')}
+      >
+        <Suspense fallback={<div className={styles.mapLoading}>{t('loading')}</div>}>
+          <InteractiveEuropeMap />
+        </Suspense>
+      </div>
+    );
+  }
+
+  const mapContent = (
+    <div
+      className={`${styles.mapContainer} ${isHero ? styles.heroMap : ''} ${isFullscreen ? styles.fullscreenMap : ''}`}
+    >
+      {canvas}
+      {isHero && (
+        <MapLiveOverlay label={t('liveNetwork')} />
+      )}
+    </div>
+  );
+
+  if (isHero) {
+    return <div className={styles.heroWrapper} aria-label={t('title')}>{mapContent}</div>;
+  }
+
   return (
     <section className={styles.mapSection} id="map" aria-label={t('title')}>
-      <header className={styles.header}>
-        <h2>{t('title')}</h2>
-        <p>{t('subtitle')}</p>
-      </header>
-
-      <div className={styles.mapContainer}>
-        <svg
-          viewBox="0 0 100 70"
-          className={styles.mapSvg}
-          role="img"
-          aria-label={t('legend')}
-        >
-          {/* Simplified Europe landmass */}
-          <rect x="0" y="0" width="100" height="70" fill="var(--color-map-ocean)" />
-          <path
-            d="M 30 15 Q 35 10 45 12 L 55 8 Q 65 6 72 12 L 78 18 Q 82 25 80 35
-               L 75 45 Q 70 55 62 58 L 55 62 Q 48 65 42 60 L 35 55 Q 28 50 26 42
-               L 24 35 Q 22 28 25 22 Z"
-            fill="var(--color-map-land)"
-            stroke="var(--color-map-border)"
-            strokeWidth="0.3"
-          />
-          <path
-            d="M 38 48 Q 42 52 48 54 L 52 58 Q 48 62 44 58 L 40 52 Z"
-            fill="var(--color-map-land)"
-            stroke="var(--color-map-border)"
-            strokeWidth="0.2"
-          />
-          <path
-            d="M 68 38 Q 74 36 78 40 L 80 48 Q 76 52 70 50 Z"
-            fill="var(--color-map-land)"
-            stroke="var(--color-map-border)"
-            strokeWidth="0.2"
-          />
-
-          {cities.map((city) => {
-            const isSelected = city.id === selectedCityId;
-            return (
-              <g
-                key={city.id}
-                className={styles.markerGroup}
-                transform={`translate(${city.mapX}, ${city.mapY})`}
-                onClick={() => handleCityClick(city)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    handleCityClick(city);
-                  }
-                }}
-                role="button"
-                tabIndex={0}
-                aria-label={`${city.name}, ${t('businesses', { count: city.businesses })}`}
-              >
-                <circle
-                  r={isSelected ? 2.8 : 2.2}
-                  className={`${styles.marker} ${isSelected ? styles.markerActive : ''}`}
-                />
-                <text
-                  y={-3.5}
-                  textAnchor="middle"
-                  className={styles.markerLabel}
-                >
-                  {city.name}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-
-        <p className={styles.hint}>{t('zoomHint')}</p>
-      </div>
+      {showHeader && (
+        <header className={styles.header}>
+          <h2>{t('title')}</h2>
+          <p>{t('subtitle')}</p>
+        </header>
+      )}
+      <GlassPanel padding="sm">{mapContent}</GlassPanel>
+      <p className={styles.hint}>{t('zoomHint')}</p>
     </section>
   );
 }

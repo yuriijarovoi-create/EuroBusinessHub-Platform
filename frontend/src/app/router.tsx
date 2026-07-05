@@ -1,9 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { AppShell } from '@/shared/layout/AppShell';
-import { HomePage } from '@/features/home/HomePage';
-import { ModulesPage } from '@/features/modules/ModulesPage';
-import { ModulePage } from '@/features/modules/ModulePage';
-import { CityWorkspacePage } from '@/features/workspace/CityWorkspacePage';
+import { AppShell } from '@/layouts/AppShell';
+import { HomePage, ModulesPage, ModulePage, CityWorkspacePage, DashboardPage, MapPage } from '@/pages';
 
 export const router = createBrowserRouter([
   {
@@ -11,9 +8,12 @@ export const router = createBrowserRouter([
     element: <AppShell />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'map', element: <MapPage /> },
       { path: 'modules', element: <ModulesPage /> },
       { path: 'module/:moduleId', element: <ModulePage /> },
       { path: 'workspace/:cityId', element: <CityWorkspacePage /> },
+      { path: 'dashboard', element: <DashboardPage /> },
+      { path: 'admin', element: <ModulePage /> },
     ],
   },
 ]);

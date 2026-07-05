@@ -1,9 +1,120 @@
 {
-  "title": "Europa Geschäftskarte",
-  "subtitle": "Wählen Sie eine Stadt, um den Arbeitsbereich zu öffnen",
-  "legend": "Aktive Geschäftszentren",
+  "title": "Living European Business Network",
+  "eyebrow": "Live-Karte",
+  "subtitle": "Berlin als zentraler Hub — Interaktives Geschäftsnetzwerk Europas",
+  "legend": "Interaktive Europakarte mit Geschäftsknoten",
+  "hubLabel": "Berlin Hub",
+  "liveNetwork": "Live-Netzwerk aktiv",
   "businesses": "{{count}} Unternehmen",
-  "openWorkspace": "Arbeitsbereich öffnen",
-  "selected": "Ausgewählt: {{city}}",
-  "zoomHint": "Tippen Sie auf eine Stadt"
+  "zoomHint": "Stadt oder Land auswählen · Jede Stadt öffnet einen eigenen Arbeitsbereich",
+  "interactionHint": "Scrollen zum Zoomen · Ziehen zum Verschieben · Stadt anklicken für Details",
+  "loading": "Karte wird geladen…",
+  "controls": {
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "reset": "Ansicht zurücksetzen",
+    "backEurope": "Europa"
+  },
+  "nav": {
+    "europe": "Europa",
+    "selectCity": "Stadt auswählen"
+  },
+  "layers": {
+    "title": "Ebenen",
+    "routes": "Routen",
+    "road": "Straße",
+    "rail": "Schiene",
+    "air": "Luft",
+    "sea": "See",
+    "river": "Fluss",
+    "companies": "Unternehmen",
+    "jobs": "Jobs",
+    "warehouses": "Lager"
+  },
+  "activity": {
+    "liveActivity": "Live-Aktivität",
+    "freightVolume": "Frachtvolumen 24h",
+    "transportOffers": "Offene Transportangebote",
+    "deliveryTime": "Ø Lieferzeit",
+    "co2Saving": "CO₂-Einsparung"
+  },
+  "live": {
+    "title": "Live-Plattform",
+    "companies": "Unternehmen",
+    "jobs": "Jobs",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "warehouses": "Lager",
+    "partners": "Partner",
+    "digitalProducts": "Digitale Produkte",
+    "subscriptions": "Abonnements",
+    "aiRequests": "KI-Anfragen"
+  },
+  "tooltip": {
+    "companies": "{{count}} Unternehmen",
+    "jobs": "{{count}} Jobs",
+    "warehouses": "{{count}} Lager",
+    "transport": "{{count}} Transport",
+    "aiScore": "KI-Score {{score}}"
+  },
+  "country": {
+    "title": "Land {{country}}",
+    "cities": "{{count}} Geschäftsstädte",
+    "aiScore": "KI-Infrastruktur-Score",
+    "selectCity": "Stadt auf der Karte auswählen für Details"
+  },
+  "germany": {
+    "bundeslandPicker": "Bundesland wählen",
+    "bundeslandTitle": "Bundesland {{name}}",
+    "bundeslandSubtitle": "Regionales Wirtschaftsprofil",
+    "selectCityInState": "Stadt im Bundesland auswählen",
+    "population": "Bevölkerung",
+    "federalState": "Bundesland",
+    "mainIndustry": "Hauptbranche",
+    "transportRole": "Transportrolle",
+    "finance": "Finanz",
+    "tech": "Tech",
+    "logistics": "Logistik",
+    "innovation": "Innovation",
+    "gdpShort": "{{value}} Mrd. € BIP",
+    "gdpEstimate": "Geschätztes BIP: {{value}} Mrd. €",
+    "marketplaceDesc": "Aktive Marketplace-Angebote in der Region",
+    "stats": {
+      "cities": "Städte",
+      "gdp": "BIP (Schätz.)",
+      "logistics": "Logistik-Score",
+      "businesses": "Unternehmen"
+    }
+  },
+  "panel": {
+    "title": "Stadt {{city}}",
+    "close": "Schließen",
+    "openWorkspace": "Arbeitsbereich öffnen",
+    "allRoutes": "Alle Routen anzeigen",
+    "companies": "Unternehmen",
+    "jobs": "Jobs",
+    "warehouses": "Lager",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "partners": "Partner",
+    "aiScore": "KI-Score",
+    "digitalProducts": "Digitale Produkte",
+    "transportOffers": "Transportangebote",
+    "companiesDesc": "Registrierte Unternehmen in dieser Stadt",
+    "jobsDesc": "Aktive Stellenangebote",
+    "warehousesDesc": "Verfügbare Lagerkapazitäten",
+    "tabs": {
+      "overview": "Übersicht",
+      "companies": "Unternehmen",
+      "jobs": "Jobs",
+      "warehouses": "Lager",
+      "routes": "Routen",
+      "transport": "Transport",
+      "marketplace": "Marketplace",
+      "services": "Services",
+      "analytics": "Analytics",
+      "partners": "Partner",
+      "activity": "Aktivität"
+    }
+  }
 }

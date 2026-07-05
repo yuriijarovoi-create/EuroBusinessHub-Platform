@@ -1,0 +1,65 @@
+.page {
+  animation: fade-in-up 0.4s ease-out;
+}
+
+.section {
+  margin-top: var(--space-2xl);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+}
+
+.aiGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+.aiCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.aiCard strong {
+  font-size: var(--font-size-sm);
+}
+
+.aiCard p {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.aiStatus {
+  align-self: flex-start;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.note {
+  margin-top: var(--space-2xl);
+}
+
+.note p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 640px) {
+  .aiGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .aiGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+}

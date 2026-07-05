@@ -1,0 +1,6 @@
+export { HomePage } from './HomePage';
+export { ModulesPage } from './ModulesPage';
+export { ModulePage } from './ModulePage';
+export { CityWorkspacePage } from './CityWorkspacePage';
+export { DashboardPage } from './DashboardPage';
+export { MapPage } from './MapPage';

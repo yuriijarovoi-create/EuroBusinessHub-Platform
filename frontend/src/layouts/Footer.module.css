@@ -1,0 +1,36 @@
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+}
+
+.inner {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+}
+
+.tagline {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.inner p {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.mock {
+  margin-top: var(--space-xs);
+  font-style: italic;
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    padding: var(--space-lg) var(--space-2xl);
+  }
+}

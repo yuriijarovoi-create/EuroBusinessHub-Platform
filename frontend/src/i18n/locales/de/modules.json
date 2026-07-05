@@ -1,49 +1,30 @@
 {
-  "marketplace": {
-    "name": "Marketplace",
-    "description": "B2B-Marktplatz für Produkte und Dienstleistungen"
-  },
-  "transport": {
-    "name": "Transport",
-    "description": "Fracht, Spedition und Lieferketten"
-  },
-  "logistik": {
-    "name": "Logistik",
-    "description": "Lagerhaltung, Fulfillment und Distribution"
-  },
-  "unternehmen": {
-    "name": "Unternehmen",
-    "description": "Firmenprofile, Netzwerk und Compliance"
-  },
-  "jobs": {
-    "name": "Jobs",
-    "description": "Stellenangebote und Talentmatching"
-  },
-  "lager": {
-    "name": "Lager",
-    "description": "Lagerverwaltung und Bestandsoptimierung"
-  },
-  "partner": {
-    "name": "Partner",
-    "description": "Partnernetzwerk und Kooperationen"
-  },
-  "digitale-produkte": {
-    "name": "Digitale Produkte",
-    "description": "Software, Lizenzen und digitale Assets"
-  },
-  "akademie": {
-    "name": "Akademie",
-    "description": "Weiterbildung und Zertifizierungen"
-  },
-  "ki": {
-    "name": "KI",
-    "description": "KI-Tools, Agenten und Automatisierung"
-  },
+  "dashboard": { "name": "Dashboard", "description": "Ihr persönlicher Business-Arbeitsbereich" },
+  "marketplace": { "name": "Marketplace", "description": "B2B-Marktplatz für Produkte und Dienstleistungen" },
+  "transport": { "name": "Transport Exchange", "description": "Fracht, Spedition und Lieferketten" },
+  "logistik": { "name": "Logistics", "description": "Lagerhaltung, Fulfillment und Distribution" },
+  "lager": { "name": "Warehouses", "description": "Lagerverwaltung und Bestandsoptimierung" },
+  "unternehmen": { "name": "Companies", "description": "Firmenprofile, Netzwerk und Compliance" },
+  "jobs": { "name": "Jobs", "description": "Stellenangebote und Talentmatching" },
+  "services": { "name": "Business Services", "description": "Professionelle B2B-Dienstleistungen" },
+  "partner": { "name": "Partners", "description": "Partnernetzwerk und Kooperationen" },
+  "digitale-produkte": { "name": "Digital Products", "description": "Software, Lizenzen und digitale Assets" },
+  "akademie": { "name": "Academy", "description": "Weiterbildung und Zertifizierungen" },
+  "ki": { "name": "AI Assistant", "description": "KI-Tools, Agenten und Automatisierung" },
+  "analytics": { "name": "Analytics", "description": "Kennzahlen, Berichte und Insights" },
+  "payments": { "name": "Payments", "description": "Abonnements, Rechnungen und Transaktionen" },
+  "notifications": { "name": "Benachrichtigungen", "description": "Alerts, Updates und Systemmeldungen" },
+  "admin": { "name": "Administration", "description": "Plattform-Verwaltung" },
   "status": {
     "active": "Aktiv",
     "beta": "Beta",
     "coming-soon": "Demnächst"
   },
   "openModule": "Modul öffnen",
-  "allModules": "Alle Module"
+  "allModules": "Alle Module",
+  "overview": "Fünfzehn integrierte Module — ein Konto, eine Suche, ein Ökosystem.",
+  "workspace": {
+    "title": "Modul-Arbeitsbereich",
+    "description": "Dieses Modul ist als Platzhalter vorbereitet. Mock-Daten werden hier angezeigt, bis Backend-APIs angebunden sind."
+  }
 }

@@ -1,0 +1,26 @@
+.panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+}
+
+.strong {
+  background: var(--glass-bg-strong);
+}
+
+.subtle {
+  background: rgb(255 255 255 / 0.4);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme='dark'] .subtle {
+  background: rgb(17 24 39 / 0.4);
+}
+
+.pad-none { padding: 0; }
+.pad-sm { padding: var(--space-md); }
+.pad-md { padding: var(--space-lg); }
+.pad-lg { padding: var(--space-xl); }

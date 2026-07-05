@@ -1,8 +1,57 @@
 {
   "app": {
     "name": "EuroBusinessHub",
-    "tagline": "AI Business Operating System for Europe",
-    "description": "The central platform for European business growth"
+    "tagline": "One Platform. Unlimited Business Opportunities.",
+    "subtitle": "AI Business Operating System for Europe",
+    "description": "Transport, marketplace, logistics, jobs, partners and AI — united in one intelligent European ecosystem."
+  },
+  "hero": {
+    "badge": "Live · European Network",
+    "headlineLine1": "One Platform.",
+    "headlineLine2": "Unlimited Business Opportunities.",
+    "cta": "Open dashboard",
+    "ctaButtons": {
+      "marketplace": "Marketplace",
+      "transport": "Transport",
+      "unternehmen": "Companies",
+      "jobs": "Jobs"
+    },
+    "stats": {
+      "modules": "Modules",
+      "cities": "Cities",
+      "businesses": "Businesses"
+    }
+  },
+  "stats": {
+    "title": "European Business Statistics",
+    "subtitle": "Live data from the EuroBusinessHub network",
+    "companies": "Companies",
+    "transportOrders": "Transport orders",
+    "openJobs": "Open jobs",
+    "warehouses": "Warehouses",
+    "marketplaceProducts": "Marketplace products",
+    "users": "Users",
+    "partners": "Partners"
+  },
+  "dashboard": {
+    "title": "Platform dashboard",
+    "subtitle": "Your business metrics at a glance",
+    "viewAll": "View all",
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "jobs": "Jobs",
+    "companies": "Companies",
+    "revenue": "Revenue",
+    "deals": "Deals",
+    "subscriptions": "Subscriptions",
+    "analytics": "Analytics"
+  },
+  "modules": {
+    "title": "Your European business ecosystem",
+    "subtitle": "All business areas — connected by AI, search and one unified account."
+  },
+  "ai": {
+    "title": "AI capabilities"
   },
   "nav": {
     "home": "Home",
@@ -10,9 +59,19 @@
     "modules": "Modules",
     "workspace": "Workspace",
     "search": "Search",
+    "dashboard": "Dashboard",
+    "notifications": "Notifications",
     "login": "Sign in",
     "register": "Register",
-    "language": "Language"
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "userMenu": {
+    "guest": "Guest",
+    "company": "Company account"
+  },
+  "notifications": {
+    "empty": "No notifications"
   },
   "future": {
     "auth": "Authentication coming soon",
@@ -22,6 +81,7 @@
   },
   "footer": {
     "copyright": "© {{year}} EuroBusinessHub. All rights reserved.",
-    "mockData": "Demo data — no real API connections"
+    "mockData": "Demo data — no real API connections",
+    "tagline": "The European Business Operating System"
   }
 }

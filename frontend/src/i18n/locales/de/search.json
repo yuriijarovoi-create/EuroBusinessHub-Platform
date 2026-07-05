@@ -1,5 +1,5 @@
 {
-  "placeholder": "KI-Suche: Städte, Module, Unternehmen…",
+  "placeholder": "Unternehmen, Transport, Jobs, Lager, KI…",
   "aiLabel": "Globale KI-Suche",
   "noResults": "Keine Ergebnisse für „{{query}}\"",
   "recent": "Vorschläge",
@@ -8,6 +8,10 @@
     "module": "Modul",
     "business": "Unternehmen",
     "product": "Produkt",
-    "job": "Stelle"
+    "job": "Stelle",
+    "transport": "Transport",
+    "warehouse": "Lager",
+    "service": "Service",
+    "ai": "KI"
   }
 }

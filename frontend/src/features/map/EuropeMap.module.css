@@ -1,13 +1,21 @@
+.heroWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+}
+
 .mapSection {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-2xl);
 }
 
 .header {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .header h2 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
   margin-bottom: var(--space-xs);
 }
 
@@ -17,49 +25,157 @@
 }
 
 .mapContainer {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  position: relative;
+  width: 100%;
   border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.heroMap {
+  min-height: 300px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
 }
 
 .mapSvg {
   width: 100%;
   height: auto;
-  min-height: 200px;
-  max-height: 420px;
+  min-height: 280px;
+}
+
+.germanyGlow {
+  animation: pulse-dot 4s ease-in-out infinite;
+}
+
+.land {
+  fill: var(--color-map-land);
+  stroke: var(--color-map-border);
+  stroke-width: 0.2;
+}
+
+.landMain {
+  fill: rgb(30 41 59 / 0.85);
+  stroke: rgb(56 189 248 / 0.25);
+  stroke-width: 0.25;
+  filter: drop-shadow(0 0 2px rgb(56 189 248 / 0.08));
+}
+
+.landIsland {
+  fill: rgb(30 41 59 / 0.9);
+  stroke: rgb(56 189 248 / 0.3);
+  stroke-width: 0.2;
+}
+
+.landDetail {
+  fill: rgb(30 41 59 / 0.88);
+  stroke: rgb(56 189 248 / 0.2);
+  stroke-width: 0.15;
+}
+
+.landmass {
+  pointer-events: none;
+}
+
+.germany {
+  fill: rgb(99 102 241 / 0.12);
+  stroke: var(--color-accent);
+  stroke-width: 0.3;
+  animation: pulse-dot 5s ease-in-out infinite;
+}
+
+.majorRing {
+  animation: pulse-ring 3s ease-out infinite;
+}
+
+.major {
+  fill: var(--color-map-hub);
+}
+
+.route {
+  animation: route-flow 2s linear infinite;
+}
+
+.signal {
+  opacity: 0.9;
+}
+
+.aiPulse1 {
+  animation: pulse-ring 3s ease-out infinite;
+}
+
+.aiPulse2 {
+  animation: pulse-ring 3s ease-out infinite 1.5s;
+}
+
+.hubCore {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.hubLabel {
+  font-size: 2.2px;
+  font-weight: 700;
+  fill: var(--color-accent);
+  letter-spacing: 0.02em;
 }
 
 .markerGroup {
   cursor: pointer;
-  outline: none;
+  transition: transform var(--transition-fast);
 }
 
-.markerGroup:focus-visible .marker {
-  stroke: var(--color-accent);
-  stroke-width: 0.5;
+.markerGroup:hover {
+  transform: scale(1.15);
 }
 
 .marker {
   fill: var(--color-map-marker);
-  transition: r var(--transition-fast), fill var(--transition-fast);
+  stroke: var(--color-surface);
+  stroke-width: 0.4;
+  transition: fill var(--transition-fast);
 }
 
 .markerActive {
   fill: var(--color-map-marker-active);
 }
 
-.markerGroup:hover .marker {
-  fill: var(--color-accent);
+.nodePulse {
+  animation: pulse-dot 2.5s ease-in-out infinite;
+  opacity: 0.6;
 }
 
 .markerLabel {
-  font-size: 2.5px;
-  fill: var(--color-text);
-  font-weight: 600;
+  font-size: 2px;
+  font-weight: 500;
+  fill: var(--color-text-secondary);
   pointer-events: none;
-  user-select: none;
+}
+
+.liveIndicator {
+  position: absolute;
+  bottom: var(--space-md);
+  left: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-success);
+  animation: pulse-dot 1.5s ease-in-out infinite;
 }
 
 .hint {
@@ -70,11 +186,121 @@
 }
 
 @media (min-width: 768px) {
-  .header h2 {
-    font-size: var(--font-size-2xl);
+  .heroMap {
+    min-height: 360px;
   }
 
-  .mapContainer {
-    padding: var(--space-lg);
+  .mapSvg {
+    min-height: 340px;
+  }
+}
+
+.fullscreenWrapper {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.interactiveWrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.mapLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  background: rgb(6 11 20 / 0.6);
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgb(56 189 248 / 0.15);
+}
+
+.fullscreenPanel {
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg), 0 0 60px rgb(99 102 241 / 0.1);
+}
+
+.fullscreenMap {
+  min-height: 420px;
+  position: relative;
+  background: var(--glass-bg);
+}
+
+.fullscreenMap .mapSvg {
+  min-height: 420px;
+}
+
+.countries {
+  pointer-events: all;
+}
+
+.country {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 0.2;
+  cursor: pointer;
+  transition: fill var(--transition-fast), stroke var(--transition-fast);
+}
+
+.country:hover {
+  fill: rgb(99 102 241 / 0.08);
+  stroke: rgb(99 102 241 / 0.2);
+}
+
+.countryHub {
+  fill: rgb(99 102 241 / 0.14);
+  stroke: var(--color-accent);
+  stroke-width: 0.35;
+  animation: pulse-dot 5s ease-in-out infinite;
+}
+
+.countrySelected {
+  fill: rgb(99 102 241 / 0.2);
+  stroke: var(--color-accent);
+}
+
+.mapStats {
+  position: absolute;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.mapStatsSep {
+  opacity: 0.4;
+}
+
+@media (min-width: 768px) {
+  .fullscreenMap {
+    min-height: 520px;
+  }
+
+  .fullscreenMap .mapSvg {
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fullscreenMap {
+    min-height: 580px;
+  }
+
+  .fullscreenMap .mapSvg {
+    min-height: 560px;
   }
 }

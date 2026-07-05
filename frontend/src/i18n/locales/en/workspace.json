@@ -6,6 +6,17 @@
     "openOrders": "Open orders",
     "listings": "Listings"
   },
+  "metrics": {
+    "companies": "Companies",
+    "jobs": "Jobs",
+    "transport": "Transport",
+    "warehouses": "Warehouses",
+    "marketplace": "Marketplace",
+    "partners": "Partners",
+    "digitalProducts": "Digital products",
+    "services": "Services"
+  },
+  "ecosystemMetrics": "Business ecosystem",
   "activeModules": "Active modules in this city",
   "backToMap": "Back to map",
   "quickActions": "Quick actions",
