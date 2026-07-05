@@ -30,6 +30,7 @@ export const germanyCitiesDense: Seed[] = [
   // Tier 2 additions
   de('duisburg', 'Duisburg', 51.434, 6.762, 470, 2, ['marketplace', 'logistik', 'lager', 'transport']),
   de('muenster', 'Münster', 51.961, 7.626, 380, 2, ['marketplace', 'transport', 'partner']),
+  de('bielefeld', 'Bielefeld', 52.020, 8.532, 380, 2, ['marketplace', 'logistik', 'unternehmen']),
 
   // Ruhr & NRW cluster
   de('bochum', 'Bochum', 51.481, 7.216, 260, 3, ['marketplace', 'transport', 'jobs']),
@@ -58,6 +59,7 @@ export const germanyCitiesDense: Seed[] = [
   de('hildesheim', 'Hildesheim', 52.151, 9.951, 170, 3, ['marketplace', 'transport', 'jobs']),
   de('wolfsburg', 'Wolfsburg', 52.422, 10.787, 230, 3, ['marketplace', 'logistik', 'unternehmen']),
   de('bremerhaven', 'Bremerhaven', 53.539, 8.581, 200, 3, ['marketplace', 'transport', 'lager']),
+  de('wilhelmshaven', 'Wilhelmshaven', 53.517, 8.106, 280, 3, ['marketplace', 'transport', 'lager', 'logistik']),
   de('schwerin', 'Schwerin', 53.635, 11.401, 165, 3, ['marketplace', 'transport', 'partner']),
 
   // Eastern Germany

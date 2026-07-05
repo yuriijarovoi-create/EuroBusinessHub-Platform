@@ -51,6 +51,7 @@ export const GERMANY_CITY_META: Record<string, GermanyCityMeta> = {
   bonn: T2(331000, 'Verwaltung & Services', 'Rhein-Sieg Business'),
   duisburg: T2(498000, 'Stahl & Hafen', 'Größter Binnenhafen EU'),
   muenster: T2(317000, 'Dienstleistung', 'Westfalen Distribution'),
+  bielefeld: T2(334000, 'Maschinenbau & Handel', 'Ostwestfalen Logistik'),
 
   // Tier 3 — existing extras
   aachen: T3(249000, 'Forschung & Tech', 'Grenzüberschreitender Verkehr'),
@@ -102,6 +103,7 @@ export const GERMANY_CITY_META: Record<string, GermanyCityMeta> = {
   reutlingen: T3(116000, 'Textil & Tech', 'Schwäbische Alb'),
   koblenz: T3(114000, 'Logistik & Tourismus', 'Rhein-Mosel Knoten'),
   bremerhaven: T3(114000, 'Hafen & Automotive', 'Auto-Terminal Nordsee'),
+  wilhelmshaven: T3(76000, 'Hafen & Energie', 'JadeWeserPort Tiefwasserhub'),
   bergisch_gladbach: T3(111000, 'Handel & Pharma', 'Köln Metro Logistik'),
   jena: T3(111000, 'Optik & Forschung', 'Thüringer Tech-Korridor'),
   remscheid: T3(111000, 'Werkzeug & Metall', 'Bergisches Land'),

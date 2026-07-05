@@ -13,6 +13,9 @@ export const FEATURED_CITY_IDS = BUSINESS_CITY_IDS;
 
 export type FeaturedCityId = string;
 
+import {
+  getGermanyCityEnrichment,
+} from './germany/germanyCityEnrichment';
 import { getGermanyCityProfile } from './germany/germanyCityProfiles';
 import { getGermanyCityMeta, getGermanyMapTier } from './germany/germanyCityMeta';
 
@@ -26,10 +29,14 @@ export function enrichCity(city: (typeof cities)[number]): MapCityRecord {
   };
   if (city.countryCode === 'DE') {
     const meta = getGermanyCityMeta(city.id);
+    const enrich = getGermanyCityEnrichment(city.id);
     record.germanyProfile = getGermanyCityProfile(city.id, city.name, city.businesses);
     record.mapTier = city.mapTier ?? getGermanyMapTier(city.id);
     if (record.mapTier === 1) record.isMajorHub = true;
     record.metrics = { ...record.metrics, population: meta.population };
+    if (enrich) {
+      record.metrics = { ...record.metrics, ...enrich.metrics };
+    }
   }
   return record;
 }

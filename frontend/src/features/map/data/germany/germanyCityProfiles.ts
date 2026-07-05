@@ -6,6 +6,7 @@ import type {
 } from '../../types/germanyTypes';
 import { BUNDESLAENDER, CITY_BUNDESLAND_MAP } from './bundeslandData';
 import { getGermanyCityMeta } from './germanyCityMeta';
+import { getGermanyCityEnrichment } from './germanyCityEnrichment';
 
 const CITY_TRAITS: Record<
   string,
@@ -155,6 +156,7 @@ export function getGermanyCityProfile(cityId: string, cityName: string, business
   const bundeslandId = CITY_BUNDESLAND_MAP[cityId] ?? 'DE-NW';
   const bl = BUNDESLAENDER.find((b) => b.id === bundeslandId)!;
   const meta = getGermanyCityMeta(cityId);
+  const enrich = getGermanyCityEnrichment(cityId);
   const traits = CITY_TRAITS[cityId] ?? {};
   const base = businesses * 0.08;
 
@@ -165,12 +167,15 @@ export function getGermanyCityProfile(cityId: string, cityName: string, business
     population: meta.population,
     mainIndustry: meta.mainIndustry,
     transportRole: meta.transportRole,
-    gdpEstimateBillionEur: traits.gdpEstimateBillionEur ?? Math.round(base * 10) / 10,
-    financeScore: traits.financeScore ?? Math.min(95, 40 + (businesses % 50)),
-    techScore: traits.techScore ?? Math.min(92, 35 + (businesses % 45)),
-    logisticsScore: traits.logisticsScore ?? Math.min(90, 38 + (businesses % 48)),
-    innovationScore: traits.innovationScore ?? Math.min(94, 30 + (businesses % 55)),
-    infrastructure: { ...defaultInfra(cityName), ...traits.infra },
+    gdpEstimateBillionEur:
+      enrich?.gdpEstimateBillionEur ?? traits.gdpEstimateBillionEur ?? Math.round(base * 10) / 10,
+    financeScore: enrich?.financeScore ?? traits.financeScore ?? Math.min(95, 40 + (businesses % 50)),
+    techScore: enrich?.techScore ?? traits.techScore ?? Math.min(92, 35 + (businesses % 45)),
+    logisticsScore:
+      enrich?.logisticsScore ?? traits.logisticsScore ?? Math.min(90, 38 + (businesses % 48)),
+    innovationScore:
+      enrich?.innovationScore ?? traits.innovationScore ?? Math.min(94, 30 + (businesses % 55)),
+    infrastructure: { ...defaultInfra(cityName), ...traits.infra, ...enrich?.infra },
     topTradePartners: DEFAULT_PARTNERS.map((p, i) => ({
       ...p,
       volumeMillionEur: p.volumeMillionEur + (businesses % 20) - i * 2,
