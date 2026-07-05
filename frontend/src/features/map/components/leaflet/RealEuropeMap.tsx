@@ -17,9 +17,10 @@ import { LeafletMapProvider } from '../../context/LeafletMapContext';
 import { EuropeGeoJsonLayer } from './EuropeGeoJsonLayer';
 import { LeafletRouteLayer } from './LeafletRouteLayer';
 import { LeafletCityMarkers } from './LeafletCityMarkers';
-import { MapInstanceCapture, LeafletFitEurope, LeafletCountryFocus } from './LeafletMapBridge';
+import { MapInstanceCapture, LeafletFitEurope, LeafletCountryFocus, LeafletCityFocus } from './LeafletMapBridge';
 import { GermanyBundeslandLayer } from './GermanyBundeslandLayer';
 import { GermanyCityLabels } from './GermanyCityLabels';
+import { LeafletGermanyInfrastructureLayer } from './LeafletGermanyInfrastructureLayer';
 import type { BusinessRouteDef, MapCityRecord, MapLayerState } from '../../types/mapTypes';
 import styles from './RealEuropeMap.module.css';
 
@@ -32,6 +33,7 @@ interface RealEuropeMapProps {
   selectedBundeslandId?: string;
   selectedCityId?: string;
   hoveredCityId?: string;
+  searchResultCityId?: string;
   countries: MapCountry[];
   onCountrySelect?: (country: MapCountry) => void;
   onBundeslandSelect?: (bundeslandId: string) => void;
@@ -50,6 +52,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   selectedBundeslandId,
   selectedCityId,
   hoveredCityId,
+  searchResultCityId,
   countries,
   onCountrySelect,
   onBundeslandSelect,
@@ -140,10 +143,18 @@ export const RealEuropeMap = memo(function RealEuropeMap({
             />
           )}
           {layers.routes && <LeafletRouteLayer routes={routes} cityMap={cityMap} />}
+          {selectedCountryCode === 'DE' && (
+            <LeafletGermanyInfrastructureLayer
+              active
+              layers={layers}
+              onCitySelect={onCitySelect}
+            />
+          )}
           <LeafletCityMarkers
             cities={cities}
             selectedCityId={selectedCityId}
             hoveredCityId={hoveredCityId}
+            searchResultCityId={searchResultCityId}
             layers={layers}
             onSelect={onCitySelect}
             onHover={onCityHover}
@@ -154,8 +165,10 @@ export const RealEuropeMap = memo(function RealEuropeMap({
               cities={cities}
               selectedCityId={selectedCityId}
               hoveredCityId={hoveredCityId}
+              searchResultCityId={searchResultCityId}
             />
           )}
+          <LeafletCityFocus cityId={searchResultCityId} cityMap={cityMap} countryCode={selectedCountryCode} />
           <LeafletFitEurope active={!selectedCountryCode} />
           <LeafletCountryFocus
             countryCode={selectedCountryCode}

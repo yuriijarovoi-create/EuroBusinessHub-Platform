@@ -4,33 +4,41 @@ import L from 'leaflet';
 import { useTranslation } from 'react-i18next';
 import type { MapCityRecord, MapLayerState } from '../../types/mapTypes';
 import { DEFAULT_HUB_ID } from '../../data/mapData';
+import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
+import {
+  getCityDisplayTier,
+  getVisibleCityNodes,
+  type CityDisplayTier,
+} from '../../utils/cityVisibilityUtils';
 
 interface LeafletCityMarkersProps {
   cities: MapCityRecord[];
   selectedCityId?: string;
   hoveredCityId?: string;
+  searchResultCityId?: string;
   layers: MapLayerState;
   onSelect: (city: MapCityRecord) => void;
   onHover: (city: MapCityRecord | null) => void;
 }
 
-function getTier(city: MapCityRecord): 1 | 2 | 3 {
-  return city.mapTier ?? (city.isMajorHub ? 1 : 3);
-}
-
-function createCityIcon(city: MapCityRecord, isSelected: boolean, isHub: boolean) {
-  const tier = getTier(city);
-  const size = isHub ? 32 : tier === 1 ? 28 : tier === 2 ? 22 : 16;
+function createCityIcon(
+  city: MapCityRecord,
+  isSelected: boolean,
+  isHub: boolean,
+  displayTier: CityDisplayTier,
+) {
+  const size = isHub ? 32 : displayTier === 1 ? 28 : displayTier === 2 ? 22 : displayTier === 3 ? 16 : 14;
   const anchor = size / 2;
 
   const cls = [
     'ebh-marker',
     isHub ? 'ebh-marker-hub' : '',
-    tier === 1 ? 'ebh-marker-tier1' : '',
-    tier === 2 ? 'ebh-marker-tier2' : '',
-    tier === 3 ? 'ebh-marker-tier3' : '',
+    displayTier === 1 ? 'ebh-marker-tier1' : '',
+    displayTier === 2 ? 'ebh-marker-tier2' : '',
+    displayTier === 3 ? 'ebh-marker-tier3' : '',
+    displayTier === 4 ? 'ebh-marker-tier4' : '',
     isSelected ? 'ebh-marker-selected' : '',
-    tier === 3 && !isHub ? 'ebh-marker-small' : '',
+    displayTier >= 3 && !isHub ? 'ebh-marker-small' : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -47,12 +55,14 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   cities,
   selectedCityId,
   hoveredCityId,
+  searchResultCityId,
   layers,
   onSelect,
   onHover,
 }: LeafletCityMarkersProps) {
   const { t } = useTranslation('map');
   const map = useMap();
+  const { zoom, isMobile } = useLeafletMapViewport();
 
   useEffect(() => {
     const handler = () => onHover(null);
@@ -62,13 +72,18 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
     };
   }, [map, onHover]);
 
+  const visibleCities = useMemo(
+    () => getVisibleCityNodes(cities, zoom, selectedCityId, hoveredCityId, searchResultCityId, isMobile),
+    [cities, zoom, selectedCityId, hoveredCityId, searchResultCityId, isMobile],
+  );
+
   const markers = useMemo(
     () =>
-      cities.map((city) => {
+      visibleCities.map((city) => {
         const isHub = city.id === DEFAULT_HUB_ID;
         const isSelected = city.id === selectedCityId || city.id === hoveredCityId;
-        const tier = getTier(city);
-        const icon = createCityIcon(city, isSelected, isHub);
+        const displayTier = getCityDisplayTier(city);
+        const icon = createCityIcon(city, isSelected, isHub, displayTier);
 
         return (
           <Marker
@@ -76,11 +91,12 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
             position={[city.lat, city.lng]}
             icon={icon}
             zIndexOffset={
-              isHub ? 1000 : isSelected ? 500 : tier === 1 ? 250 : tier === 2 ? 120 : 0
+              isHub ? 1000 : isSelected ? 500 : displayTier === 1 ? 250 : displayTier === 2 ? 120 : 0
             }
             eventHandlers={{
               click: (e) => {
                 L.DomEvent.stopPropagation(e);
+                onHover(city);
                 onSelect(city);
               },
               mouseover: () => onHover(city),
@@ -89,7 +105,7 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
           >
             <Tooltip
               direction="top"
-              offset={[0, tier === 3 ? -10 : -14]}
+              offset={[0, displayTier >= 3 ? -10 : -14]}
               opacity={0.95}
               className="ebh-tooltip"
               sticky
@@ -117,7 +133,7 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
           </Marker>
         );
       }),
-    [cities, selectedCityId, hoveredCityId, layers, onSelect, onHover, t],
+    [visibleCities, selectedCityId, hoveredCityId, layers, onSelect, onHover, t],
   );
 
   return <>{markers}</>;

@@ -207,6 +207,20 @@
   opacity: 0.35;
 }
 
+:global(.ebh-marker-tier4 .ebh-marker-core) {
+  width: 5px;
+  height: 5px;
+  background: var(--map-marker-tier3);
+  box-shadow: 0 0 3px var(--map-marker-tier3-glow);
+  opacity: 0.85;
+}
+
+:global(.ebh-marker-tier4 .ebh-marker-pulse) {
+  width: 10px;
+  height: 10px;
+  opacity: 0.25;
+}
+
 :global(.ebh-city-label-tier1) {
   font-size: 11px;
   font-weight: 700;
@@ -226,6 +240,13 @@
   color: var(--map-label-tier3);
 }
 
+:global(.ebh-city-label-tier4) {
+  font-size: 8px;
+  font-weight: 500;
+  color: var(--map-label-tier3);
+  opacity: 0.85;
+}
+
 :global(.ebh-city-label-selected) {
   color: var(--map-label-selected);
   font-size: 12px;
@@ -242,4 +263,53 @@
     width: 16px;
     height: 16px;
   }
+
+  :global(.ebh-infra-core) {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* Germany logistics infrastructure markers */
+:global(.ebh-infra-wrap) {
+  background: none !important;
+  border: none !important;
+}
+
+:global(.ebh-infra) {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:global(.ebh-infra-core) {
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  border: 2px solid var(--map-marker-core-border);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--map-accent) 45%, transparent);
+}
+
+:global(.ebh-infra-seaport .ebh-infra-core) {
+  background: var(--map-route-sea);
+  border-color: var(--map-marker-core-border);
+}
+
+:global(.ebh-infra-inland .ebh-infra-core) {
+  background: var(--map-route-river);
+}
+
+:global(.ebh-infra-air .ebh-infra-core) {
+  background: var(--map-route-air);
+  border-radius: 50%;
+  transform: none;
+}
+
+:global(.ebh-infra-industrial .ebh-infra-core) {
+  background: var(--map-gold);
+  transform: none;
+  border-radius: var(--radius-sm);
 }

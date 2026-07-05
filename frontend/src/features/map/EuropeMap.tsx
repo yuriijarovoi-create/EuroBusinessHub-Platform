@@ -19,6 +19,7 @@ interface EuropeMapProps {
   variant?: EuropeMapVariant;
   selectedCityId?: string;
   selectedCountryCode?: string;
+  focusCityId?: string;
   onCitySelect?: (city: City) => void;
   onCountrySelect?: (country: MapCountry) => void;
   showHeader?: boolean;
@@ -28,6 +29,7 @@ export function EuropeMap({
   variant = 'section',
   selectedCityId,
   selectedCountryCode,
+  focusCityId,
   onCitySelect,
   onCountrySelect,
   showHeader = true,
@@ -76,7 +78,7 @@ export function EuropeMap({
         aria-label={t('title')}
       >
         <Suspense fallback={<div className={styles.mapLoading}>{t('loading')}</div>}>
-          <InteractiveEuropeMap />
+          <InteractiveEuropeMap focusCityId={focusCityId} />
         </Suspense>
       </div>
     );

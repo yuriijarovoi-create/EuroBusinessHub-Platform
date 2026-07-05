@@ -12,7 +12,7 @@ export const searchIndex: SearchResult[] = [
     type: 'city' as const,
     title: city.name,
     subtitle: `${city.country} · ${city.businesses} Unternehmen`,
-    route: `/workspace/${city.id}`,
+    route: `/map?city=${city.id}`,
   })),
   ...platformModules.map((mod) => ({
     id: `module-${mod.id}`,

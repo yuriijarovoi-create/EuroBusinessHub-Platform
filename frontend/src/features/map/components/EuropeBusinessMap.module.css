@@ -956,6 +956,68 @@
   border-radius: var(--radius-md);
 }
 
+.germanyInfraSection {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--map-panel-subtle-border);
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.germanyInfraTitle {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--map-panel-text, #e2e8f0);
+}
+
+.germanyInfraGroupLabel {
+  display: block;
+  margin: var(--space-sm) 0 var(--space-xs);
+  font-size: 0.5625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--map-panel-muted, #64748b);
+}
+
+.germanyInfraList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: 0 0 var(--space-sm);
+  padding: 0;
+  max-width: 100%;
+}
+
+.germanyInfraItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-xs) var(--space-sm);
+  background: rgb(255 255 255 / 0.03);
+  border-radius: var(--radius-md);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.germanyInfraName {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--map-panel-text, #e2e8f0);
+}
+
+.germanyInfraMeta {
+  font-size: 0.625rem;
+  color: var(--map-panel-muted, #94a3b8);
+}
+
+.germanyInfraDesc {
+  font-size: 0.625rem;
+  line-height: 1.35;
+  color: var(--map-panel-muted, #cbd5e1);
+}
+
 .germanyPartnerList {
   list-style: none;
   display: flex;

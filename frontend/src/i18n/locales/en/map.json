@@ -84,6 +84,21 @@
       "gdp": "GDP (est.)",
       "logistics": "Logistics score",
       "businesses": "Businesses"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Nearby infrastructure",
+      "seaports": "Seaports",
+      "inlandPorts": "Inland ports",
+      "airCargo": "Air cargo hubs",
+      "industrialZones": "Industrial zones",
+      "logisticsHubs": "Logistics hubs",
+      "importance": "Importance {{score}}/100",
+      "types": {
+        "seaport": "Seaport",
+        "inland_port": "Inland port",
+        "air_cargo": "Air cargo hub",
+        "industrial_zone": "Industrial zone"
+      }
     }
   },
   "panel": {

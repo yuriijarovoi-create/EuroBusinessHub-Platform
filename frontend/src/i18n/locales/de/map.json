@@ -84,6 +84,21 @@
       "gdp": "BIP (Schätz.)",
       "logistics": "Logistik-Score",
       "businesses": "Unternehmen"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Infrastruktur in der Nähe",
+      "seaports": "Seehäfen",
+      "inlandPorts": "Binnenhäfen",
+      "airCargo": "Luftfracht-Hubs",
+      "industrialZones": "Industriegebiete",
+      "logisticsHubs": "Logistik-Hubs",
+      "importance": "Bedeutung {{score}}/100",
+      "types": {
+        "seaport": "Seehafen",
+        "inland_port": "Binnenhafen",
+        "air_cargo": "Luftfracht-Hub",
+        "industrial_zone": "Industriegebiet"
+      }
     }
   },
   "panel": {

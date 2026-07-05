@@ -4,6 +4,7 @@ import type { Map as LeafletMap } from 'leaflet';
 import L from 'leaflet';
 import { EUROPE_BOUNDS, EUROPE_DEFAULT_ZOOM } from '../../config/leafletConfig';
 import { getBundeslandById } from '../../data/germany/bundeslandData';
+import { getFocusZoomForCity } from '../../utils/cityVisibilityUtils';
 import type { MapCityRecord } from '../../types/mapTypes';
 
 export function MapInstanceCapture({ onReady }: { onReady: (map: LeafletMap) => void }) {
@@ -69,6 +70,36 @@ export function LeafletCountryFocus({
     const maxZoom = countryCode === 'DE' ? 6.5 : 7;
     map.flyToBounds(bounds, { padding: [48, 48], maxZoom, duration: 1.2 });
   }, [map, countryCode, cities, bundeslandId]);
+
+  return null;
+}
+
+/** Fly to a searched or focused city — centers map and ensures visibility */
+export function LeafletCityFocus({
+  cityId,
+  cityMap,
+  countryCode,
+}: {
+  cityId?: string;
+  cityMap: Map<string, MapCityRecord>;
+  countryCode?: string;
+}) {
+  const map = useMap();
+  const prevId = useRef('');
+
+  useEffect(() => {
+    if (!cityId || cityId === prevId.current) return;
+
+    const city = cityMap.get(cityId);
+    if (!city) return;
+    if (countryCode && city.countryCode !== countryCode) return;
+
+    prevId.current = cityId;
+
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+    const zoom = getFocusZoomForCity(city, isMobile);
+    map.flyTo([city.lat, city.lng], zoom, { duration: 1.1 });
+  }, [map, cityId, cityMap, countryCode]);
 
   return null;
 }

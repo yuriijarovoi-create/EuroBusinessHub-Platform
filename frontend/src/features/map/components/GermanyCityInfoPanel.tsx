@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { getRoutesForCity } from '../data/routeData';
 import { getMapCityById } from '../data/mapData';
+import { getNearbyInfrastructureForCity } from '../data/germany/germanyInfrastructureUtils';
+import type { GermanyInfrastructureHub } from '../types/germanyTypes';
 import type { MapCityRecord, CityPanelTab } from '../types/mapTypes';
 import styles from './EuropeBusinessMap.module.css';
 
@@ -28,6 +30,31 @@ const TABS: CityPanelTab[] = [
   'activity',
 ];
 
+function InfrastructureHubList({
+  hubs,
+  t,
+}: {
+  hubs: GermanyInfrastructureHub[];
+  t: (key: string, opts?: Record<string, unknown>) => string;
+}) {
+  if (hubs.length === 0) return null;
+  return (
+    <ul className={styles.germanyInfraList}>
+      {hubs.map((hub) => (
+        <li key={hub.id} className={styles.germanyInfraItem}>
+          <span className={styles.germanyInfraName}>{hub.name}</span>
+          <span className={styles.germanyInfraMeta}>
+            {t('germany.infrastructure.importance', { score: hub.importanceScore })}
+            {' · '}
+            {t('panel.transportOffers')}: {hub.transportOffers}
+          </span>
+          <span className={styles.germanyInfraDesc}>{hub.description}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function GermanyCityInfoPanel({
   city,
   open = true,
@@ -42,6 +69,12 @@ export function GermanyCityInfoPanel({
   const m = city.metrics;
   const cityRoutes = getRoutesForCity(city.id).slice(0, 8);
   const population = profile?.population ?? m.population;
+  const nearbyInfra = useMemo(() => getNearbyInfrastructureForCity(city.id), [city.id]);
+  const hasNearbyInfra =
+    nearbyInfra.seaports.length > 0 ||
+    nearbyInfra.inlandPorts.length > 0 ||
+    nearbyInfra.airCargo.length > 0 ||
+    nearbyInfra.industrialZones.length > 0;
 
   return (
     <>
@@ -143,6 +176,35 @@ export function GermanyCityInfoPanel({
                   <span className={styles.germanyMetaValue}>{profile?.transportRole ?? '—'}</span>
                 </div>
               </div>
+              {hasNearbyInfra && (
+                <div className={styles.germanyInfraSection}>
+                  <h4 className={styles.germanyInfraTitle}>{t('germany.infrastructure.nearbyTitle')}</h4>
+                  {nearbyInfra.seaports.length > 0 && (
+                    <>
+                      <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.seaports')}</span>
+                      <InfrastructureHubList hubs={nearbyInfra.seaports} t={t} />
+                    </>
+                  )}
+                  {nearbyInfra.inlandPorts.length > 0 && (
+                    <>
+                      <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.inlandPorts')}</span>
+                      <InfrastructureHubList hubs={nearbyInfra.inlandPorts} t={t} />
+                    </>
+                  )}
+                  {nearbyInfra.airCargo.length > 0 && (
+                    <>
+                      <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.airCargo')}</span>
+                      <InfrastructureHubList hubs={nearbyInfra.airCargo} t={t} />
+                    </>
+                  )}
+                  {nearbyInfra.industrialZones.length > 0 && (
+                    <>
+                      <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.industrialZones')}</span>
+                      <InfrastructureHubList hubs={nearbyInfra.industrialZones} t={t} />
+                    </>
+                  )}
+                </div>
+              )}
             </>
           )}
 
@@ -163,13 +225,41 @@ export function GermanyCityInfoPanel({
           )}
 
           {tab === 'transport' && profile && (
-            <ul className={styles.germanyList}>
-              {profile.infrastructure.motorwayConnections.map((mwy) => (
-                <li key={mwy}>{mwy}</li>
-              ))}
-              <li>{profile.infrastructure.railwayCargoTerminal}</li>
-              {profile.infrastructure.inlandPort && <li>{profile.infrastructure.inlandPort}</li>}
-            </ul>
+            <>
+              <ul className={styles.germanyList}>
+                {profile.infrastructure.motorwayConnections.map((mwy) => (
+                  <li key={mwy}>{mwy}</li>
+                ))}
+                <li>{profile.infrastructure.railwayCargoTerminal}</li>
+                {profile.infrastructure.inlandPort && <li>{profile.infrastructure.inlandPort}</li>}
+                {profile.infrastructure.airports.map((a) => (
+                  <li key={a}>{a}</li>
+                ))}
+              </ul>
+              {hasNearbyInfra && (
+                <div className={styles.germanyInfraSection}>
+                  <h4 className={styles.germanyInfraTitle}>{t('germany.infrastructure.nearbyTitle')}</h4>
+                  {nearbyInfra.seaports.length > 0 && (
+                    <>
+                      <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.seaports')}</span>
+                      <InfrastructureHubList hubs={nearbyInfra.seaports} t={t} />
+                    </>
+                  )}
+                  {nearbyInfra.inlandPorts.length > 0 && (
+                    <>
+                      <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.inlandPorts')}</span>
+                      <InfrastructureHubList hubs={nearbyInfra.inlandPorts} t={t} />
+                    </>
+                  )}
+                  {nearbyInfra.airCargo.length > 0 && (
+                    <>
+                      <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.airCargo')}</span>
+                      <InfrastructureHubList hubs={nearbyInfra.airCargo} t={t} />
+                    </>
+                  )}
+                </div>
+              )}
+            </>
           )}
 
           {tab === 'warehouses' && (
@@ -183,6 +273,12 @@ export function GermanyCityInfoPanel({
                   ))}
                 </ul>
               )}
+              {nearbyInfra.industrialZones.length > 0 && (
+                <div className={styles.germanyInfraSection}>
+                  <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.industrialZones')}</span>
+                  <InfrastructureHubList hubs={nearbyInfra.industrialZones} t={t} />
+                </div>
+              )}
             </div>
           )}
 
@@ -194,14 +290,22 @@ export function GermanyCityInfoPanel({
           )}
 
           {tab === 'services' && (
-            <ul className={styles.germanyList}>
-              {profile?.infrastructure.industrialZones.map((z) => (
-                <li key={z}>{z}</li>
-              ))}
-              {profile?.infrastructure.airports.map((a) => (
-                <li key={a}>{a}</li>
-              ))}
-            </ul>
+            <>
+              <ul className={styles.germanyList}>
+                {profile?.infrastructure.industrialZones.map((z) => (
+                  <li key={z}>{z}</li>
+                ))}
+                {profile?.infrastructure.airports.map((a) => (
+                  <li key={a}>{a}</li>
+                ))}
+              </ul>
+              {nearbyInfra.industrialZones.length > 0 && (
+                <div className={styles.germanyInfraSection}>
+                  <span className={styles.germanyInfraGroupLabel}>{t('germany.infrastructure.industrialZones')}</span>
+                  <InfrastructureHubList hubs={nearbyInfra.industrialZones} t={t} />
+                </div>
+              )}
+            </>
           )}
 
           {tab === 'analytics' && profile && (

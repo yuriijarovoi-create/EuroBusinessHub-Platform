@@ -51,3 +51,26 @@ export interface GermanyCityProfile {
 export interface GermanyMapCityRecord {
   germanyProfile: GermanyCityProfile;
 }
+
+export type GermanyInfrastructureType = 'seaport' | 'inland_port' | 'air_cargo' | 'industrial_zone';
+
+/** Logistics / industrial hub — separate from city records (no duplicate cities) */
+export interface GermanyInfrastructureHub {
+  id: string;
+  name: string;
+  type: GermanyInfrastructureType;
+  /** Linked city id (existing Germany city) */
+  cityId: string;
+  cityName: string;
+  bundeslandId: string;
+  lat: number;
+  lng: number;
+  description: string;
+  companies: number;
+  jobs: number;
+  warehouses: number;
+  transportOffers: number;
+  mainIndustries: string[];
+  importanceScore: number;
+  connectedCityIds: string[];
+}

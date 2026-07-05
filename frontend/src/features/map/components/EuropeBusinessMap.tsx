@@ -6,6 +6,7 @@ import {
   getDefaultHubCity,
   getFeaturedMapCities,
   getFeaturedInCountry,
+  getMapCityById,
 } from '../data/mapData';
 import { CITY_BUNDESLAND_MAP } from '../data/germany/bundeslandData';
 import {
@@ -27,6 +28,7 @@ interface EuropeBusinessMapProps {
   countries: MapCountry[];
   selectedCountryCode?: string;
   hubLabel?: string;
+  focusCityId?: string;
   onCountrySelect?: (country: MapCountry) => void;
   onOpenWorkspace: (city: MapCityRecord) => void;
 }
@@ -34,6 +36,7 @@ interface EuropeBusinessMapProps {
 export function EuropeBusinessMap({
   countries,
   selectedCountryCode,
+  focusCityId,
   onCountrySelect,
   onOpenWorkspace,
 }: EuropeBusinessMapProps) {
@@ -92,6 +95,12 @@ export function EuropeBusinessMap({
     setBundeslandPanelOpen(false);
   }, []);
 
+  useEffect(() => {
+    if (!focusCityId) return;
+    const city = getMapCityById(focusCityId);
+    if (city) handleSelect(city);
+  }, [focusCityId, handleSelect]);
+
   const handleCountryClose = useCallback(() => {
     setCountryPanelOpen(false);
   }, []);
@@ -140,6 +149,7 @@ export function EuropeBusinessMap({
           selectedBundeslandId={selectedBundeslandId}
           selectedCityId={panelCity?.id}
           hoveredCityId={hoveredCity?.id}
+          searchResultCityId={focusCityId}
           countries={countries}
           onCountrySelect={onCountrySelect}
           onBundeslandSelect={handleBundeslandSelect}
