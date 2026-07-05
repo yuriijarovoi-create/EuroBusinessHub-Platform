@@ -1,0 +1,13 @@
+{
+  "placeholder": "AI search: cities, modules, businesses…",
+  "aiLabel": "Global AI Search",
+  "noResults": "No results for \"{{query}}\"",
+  "recent": "Suggestions",
+  "types": {
+    "city": "City",
+    "module": "Module",
+    "business": "Business",
+    "product": "Product",
+    "job": "Job"
+  }
+}

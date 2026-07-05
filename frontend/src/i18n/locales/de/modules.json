@@ -1,0 +1,49 @@
+{
+  "marketplace": {
+    "name": "Marketplace",
+    "description": "B2B-Marktplatz für Produkte und Dienstleistungen"
+  },
+  "transport": {
+    "name": "Transport",
+    "description": "Fracht, Spedition und Lieferketten"
+  },
+  "logistik": {
+    "name": "Logistik",
+    "description": "Lagerhaltung, Fulfillment und Distribution"
+  },
+  "unternehmen": {
+    "name": "Unternehmen",
+    "description": "Firmenprofile, Netzwerk und Compliance"
+  },
+  "jobs": {
+    "name": "Jobs",
+    "description": "Stellenangebote und Talentmatching"
+  },
+  "lager": {
+    "name": "Lager",
+    "description": "Lagerverwaltung und Bestandsoptimierung"
+  },
+  "partner": {
+    "name": "Partner",
+    "description": "Partnernetzwerk und Kooperationen"
+  },
+  "digitale-produkte": {
+    "name": "Digitale Produkte",
+    "description": "Software, Lizenzen und digitale Assets"
+  },
+  "akademie": {
+    "name": "Akademie",
+    "description": "Weiterbildung und Zertifizierungen"
+  },
+  "ki": {
+    "name": "KI",
+    "description": "KI-Tools, Agenten und Automatisierung"
+  },
+  "status": {
+    "active": "Aktiv",
+    "beta": "Beta",
+    "coming-soon": "Demnächst"
+  },
+  "openModule": "Modul öffnen",
+  "allModules": "Alle Module"
+}

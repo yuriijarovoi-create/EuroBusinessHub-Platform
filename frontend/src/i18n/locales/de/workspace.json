@@ -1,0 +1,17 @@
+{
+  "title": "Arbeitsbereich {{city}}",
+  "subtitle": "{{country}} · {{count}} Unternehmen",
+  "stats": {
+    "activeUsers": "Aktive Nutzer",
+    "openOrders": "Offene Aufträge",
+    "listings": "Einträge"
+  },
+  "activeModules": "Aktive Module in dieser Stadt",
+  "backToMap": "Zurück zur Karte",
+  "quickActions": "Schnellaktionen",
+  "actions": {
+    "search": "In Stadt suchen",
+    "marketplace": "Marketplace öffnen",
+    "ki": "KI-Assistent starten"
+  }
+}

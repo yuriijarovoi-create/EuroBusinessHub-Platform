@@ -1,0 +1,27 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "KI Business Operating System für Europa",
+    "description": "Die zentrale Plattform für europäisches Wirtschaftswachstum"
+  },
+  "nav": {
+    "home": "Start",
+    "map": "Karte",
+    "modules": "Module",
+    "workspace": "Arbeitsbereich",
+    "search": "Suche",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "language": "Sprache"
+  },
+  "future": {
+    "auth": "Authentifizierung folgt",
+    "payments": "Zahlungen folgen",
+    "agents": "KI-Agenten folgen",
+    "automation": "n8n-Automatisierung folgt"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Alle Rechte vorbehalten.",
+    "mockData": "Demo-Daten — keine echten API-Verbindungen"
+  }
+}

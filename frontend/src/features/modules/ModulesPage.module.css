@@ -1,0 +1,17 @@
+.page {
+  max-width: 100%;
+}
+
+.header {
+  margin-bottom: var(--space-xl);
+}
+
+.header h1 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-xs);
+}
+
+.header p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}

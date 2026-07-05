@@ -1,0 +1,9 @@
+{
+  "title": "Europe Business Map",
+  "subtitle": "Select a city to open its workspace",
+  "legend": "Active business hubs",
+  "businesses": "{{count}} businesses",
+  "openWorkspace": "Open workspace",
+  "selected": "Selected: {{city}}",
+  "zoomHint": "Tap a city on the map"
+}

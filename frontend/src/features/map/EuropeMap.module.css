@@ -1,0 +1,80 @@
+.mapSection {
+  margin-bottom: var(--space-xl);
+}
+
+.header {
+  margin-bottom: var(--space-md);
+}
+
+.header h2 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-xs);
+}
+
+.header p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.mapContainer {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-md);
+}
+
+.mapSvg {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  max-height: 420px;
+}
+
+.markerGroup {
+  cursor: pointer;
+  outline: none;
+}
+
+.markerGroup:focus-visible .marker {
+  stroke: var(--color-accent);
+  stroke-width: 0.5;
+}
+
+.marker {
+  fill: var(--color-map-marker);
+  transition: r var(--transition-fast), fill var(--transition-fast);
+}
+
+.markerActive {
+  fill: var(--color-map-marker-active);
+}
+
+.markerGroup:hover .marker {
+  fill: var(--color-accent);
+}
+
+.markerLabel {
+  font-size: 2.5px;
+  fill: var(--color-text);
+  font-weight: 600;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hint {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .header h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .mapContainer {
+    padding: var(--space-lg);
+  }
+}

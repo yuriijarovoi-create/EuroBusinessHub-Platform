@@ -1,0 +1,9 @@
+{
+  "title": "Europa Geschäftskarte",
+  "subtitle": "Wählen Sie eine Stadt, um den Arbeitsbereich zu öffnen",
+  "legend": "Aktive Geschäftszentren",
+  "businesses": "{{count}} Unternehmen",
+  "openWorkspace": "Arbeitsbereich öffnen",
+  "selected": "Ausgewählt: {{city}}",
+  "zoomHint": "Tippen Sie auf eine Stadt"
+}

@@ -1,0 +1,13 @@
+{
+  "placeholder": "KI-Suche: Städte, Module, Unternehmen…",
+  "aiLabel": "Globale KI-Suche",
+  "noResults": "Keine Ergebnisse für „{{query}}\"",
+  "recent": "Vorschläge",
+  "types": {
+    "city": "Stadt",
+    "module": "Modul",
+    "business": "Unternehmen",
+    "product": "Produkt",
+    "job": "Stelle"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "AI Business Operating System for Europe",
+    "description": "The central platform for European business growth"
+  },
+  "nav": {
+    "home": "Home",
+    "map": "Map",
+    "modules": "Modules",
+    "workspace": "Workspace",
+    "search": "Search",
+    "login": "Sign in",
+    "register": "Register",
+    "language": "Language"
+  },
+  "future": {
+    "auth": "Authentication coming soon",
+    "payments": "Payments coming soon",
+    "agents": "AI agents coming soon",
+    "automation": "n8n automation coming soon"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. All rights reserved.",
+    "mockData": "Demo data — no real API connections"
+  }
+}

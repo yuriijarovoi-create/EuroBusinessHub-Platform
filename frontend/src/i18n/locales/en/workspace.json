@@ -1,0 +1,17 @@
+{
+  "title": "Workspace {{city}}",
+  "subtitle": "{{country}} · {{count}} businesses",
+  "stats": {
+    "activeUsers": "Active users",
+    "openOrders": "Open orders",
+    "listings": "Listings"
+  },
+  "activeModules": "Active modules in this city",
+  "backToMap": "Back to map",
+  "quickActions": "Quick actions",
+  "actions": {
+    "search": "Search in city",
+    "marketplace": "Open marketplace",
+    "ki": "Start AI assistant"
+  }
+}

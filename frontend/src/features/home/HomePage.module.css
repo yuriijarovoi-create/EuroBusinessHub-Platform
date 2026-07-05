@@ -1,0 +1,39 @@
+.page {
+  max-width: 100%;
+}
+
+.hero {
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.tagline {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  margin-bottom: var(--space-xs);
+}
+
+.description {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    text-align: left;
+  }
+
+  .hero h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .tagline {
+    font-size: var(--font-size-xl);
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "marketplace": { "name": "Marketplace", "description": "B2B marketplace for products and services" },
+  "transport": { "name": "Transport", "description": "Freight, shipping and supply chains" },
+  "logistik": { "name": "Logistics", "description": "Warehousing, fulfillment and distribution" },
+  "unternehmen": { "name": "Companies", "description": "Company profiles, network and compliance" },
+  "jobs": { "name": "Jobs", "description": "Job listings and talent matching" },
+  "lager": { "name": "Warehouse", "description": "Warehouse management and inventory optimization" },
+  "partner": { "name": "Partners", "description": "Partner network and collaborations" },
+  "digitale-produkte": { "name": "Digital Products", "description": "Software, licenses and digital assets" },
+  "akademie": { "name": "Academy", "description": "Training and certifications" },
+  "ki": { "name": "AI", "description": "AI tools, agents and automation" },
+  "status": { "active": "Active", "beta": "Beta", "coming-soon": "Coming soon" },
+  "openModule": "Open module",
+  "allModules": "All modules"
+}
