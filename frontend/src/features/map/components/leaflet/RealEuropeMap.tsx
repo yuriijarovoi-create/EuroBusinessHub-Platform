@@ -4,7 +4,7 @@ import type { Map as LeafletMap } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { MapCountry } from '@shared/types';
 import {
-  DARK_TILE_URL,
+  getTileUrlForTheme,
   TILE_ATTRIBUTION,
   EUROPE_CENTER,
   EUROPE_DEFAULT_ZOOM,
@@ -12,6 +12,7 @@ import {
   EUROPE_MAX_ZOOM,
   EUROPE_BOUNDS,
 } from '../../config/leafletConfig';
+import { getResolvedMapTheme, useMapThemeRevision } from '../../utils/mapThemeUtils';
 import { LeafletMapProvider } from '../../context/LeafletMapContext';
 import { EuropeGeoJsonLayer } from './EuropeGeoJsonLayer';
 import { LeafletRouteLayer } from './LeafletRouteLayer';
@@ -60,6 +61,11 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   const [leafletMap, setLeafletMap] = useState<LeafletMap | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const themeRev = useMapThemeRevision();
+  const tileUrl = useMemo(
+    () => getTileUrlForTheme(getResolvedMapTheme()),
+    [themeRev],
+  );
 
   useEffect(() => {
     setMapReady(true);
@@ -119,7 +125,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           zoomControl={false}
           attributionControl
         >
-          <TileLayer url={DARK_TILE_URL} attribution={TILE_ATTRIBUTION} />
+          <TileLayer key={tileUrl} url={tileUrl} attribution={TILE_ATTRIBUTION} />
           <EuropeGeoJsonLayer
             selectedCountryCode={selectedCountryCode}
             hoveredCountryCode={hoveredCountry ?? undefined}

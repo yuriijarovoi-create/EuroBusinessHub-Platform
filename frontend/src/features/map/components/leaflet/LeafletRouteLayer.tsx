@@ -2,8 +2,13 @@ import { memo, useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { BusinessRouteDef, MapCityRecord } from '../../types/mapTypes';
-import { ROUTE_COLORS, ROUTE_DASH } from '../../config/leafletConfig';
+import { ROUTE_DASH } from '../../config/leafletConfig';
 import { buildRouteLatLngs } from '../../utils/routeGeometry';
+import {
+  getRouteColorsFromTheme,
+  getRouteThemeFromCss,
+  useMapThemeRevision,
+} from '../../utils/mapThemeUtils';
 
 interface LeafletRouteLayerProps {
   routes: BusinessRouteDef[];
@@ -19,8 +24,11 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
   const map = useMap();
   const groupRef = useRef<L.LayerGroup | null>(null);
   const animRef = useRef<number>(0);
+  const themeRev = useMapThemeRevision();
 
   useEffect(() => {
+    const routeColors = getRouteColorsFromTheme();
+    const routeTheme = getRouteThemeFromCss();
     const group = L.layerGroup().addTo(map);
     groupRef.current = group;
 
@@ -41,14 +49,14 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
       const intensity = route.intensity ?? 2;
 
       const latlngs = buildRouteLatLngs(from.lat, from.lng, to.lat, to.lng, route.mode);
-      const color = ROUTE_COLORS[route.mode];
+      const color = routeColors[route.mode];
       const weight = route.mode === 'air' ? 1.2 + intensity * 0.2 : 1.5 + intensity * 0.25;
       const glowWeight = weight + 3;
 
       L.polyline(latlngs, {
         color,
         weight: glowWeight,
-        opacity: 0.08 + intensity * 0.03,
+        opacity: routeTheme.glowBase + intensity * routeTheme.glowIntensity,
         lineCap: 'round',
         interactive: false,
       }).addTo(group);
@@ -56,16 +64,16 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
       L.polyline(latlngs, {
         color,
         weight,
-        opacity: 0.35 + intensity * 0.08,
+        opacity: routeTheme.lineBase + intensity * routeTheme.lineIntensity,
         dashArray: ROUTE_DASH[route.mode],
         lineCap: 'round',
         className: `ebh-route ebh-route-${route.mode}`,
       }).addTo(group);
 
       L.polyline(latlngs, {
-        color: '#f0f9ff',
+        color: routeTheme.highlight,
         weight: Math.max(0.6, weight - 1),
-        opacity: 0.15 + intensity * 0.05,
+        opacity: 0.12 + intensity * 0.04,
         dashArray: '2 14',
         lineCap: 'round',
         interactive: false,
@@ -77,7 +85,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
           radius: route.mode === 'air' ? 2.5 + intensity * 0.3 : 2 + intensity * 0.25,
           fillColor: color,
           fillOpacity: 0.95,
-          color: '#f0f9ff',
+          color: routeTheme.particleStroke,
           weight: 1,
           interactive: false,
         }).addTo(group);
@@ -116,7 +124,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
       map.removeLayer(group);
       groupRef.current = null;
     };
-  }, [map, routes, cityMap]);
+  }, [map, routes, cityMap, themeRev]);
 
   return null;
 });

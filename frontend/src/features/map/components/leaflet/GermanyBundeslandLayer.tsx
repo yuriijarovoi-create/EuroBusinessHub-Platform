@@ -1,8 +1,9 @@
-import { memo, useMemo, useState } from 'react';
+import { memo, useMemo, useRef, useState } from 'react';
 import { GeoJSON } from 'react-leaflet';
-import type { Layer, PathOptions } from 'leaflet';
+import type { Layer } from 'leaflet';
 import type { Feature, Geometry } from 'geojson';
 import { germanyBundeslandGeoJson } from '../../data/germany/bundeslandGeoJson';
+import { getBundeslandGeoStyles, useMapThemeRevision } from '../../utils/mapThemeUtils';
 
 interface GermanyBundeslandLayerProps {
   active: boolean;
@@ -11,38 +12,6 @@ interface GermanyBundeslandLayerProps {
   onHover?: (bundeslandId: string | null) => void;
 }
 
-const BASE: PathOptions = {
-  fillColor: '#243d5c',
-  fillOpacity: 0.26,
-  color: '#52c4f0',
-  weight: 1.1,
-  opacity: 0.62,
-};
-
-const HOVER: PathOptions = {
-  fillColor: '#2d5490',
-  fillOpacity: 0.38,
-  color: '#8dd8fc',
-  weight: 1.65,
-  opacity: 0.9,
-};
-
-const SELECTED: PathOptions = {
-  fillColor: '#3d4f63',
-  fillOpacity: 0.5,
-  color: '#fbbf24',
-  weight: 2.2,
-  opacity: 1,
-};
-
-const DIM: PathOptions = {
-  fillColor: '#141e2e',
-  fillOpacity: 0.14,
-  color: '#2d4a68',
-  weight: 0.7,
-  opacity: 0.32,
-};
-
 export const GermanyBundeslandLayer = memo(function GermanyBundeslandLayer({
   active,
   selectedBundeslandId,
@@ -50,17 +19,22 @@ export const GermanyBundeslandLayer = memo(function GermanyBundeslandLayer({
   onHover,
 }: GermanyBundeslandLayerProps) {
   const [hovered, setHovered] = useState<string | null>(null);
+  const themeRev = useMapThemeRevision();
+  const geoStyles = useMemo(() => getBundeslandGeoStyles(), [themeRev]);
+  const stylesRef = useRef(geoStyles);
+  stylesRef.current = geoStyles;
 
   const style = useMemo(
     () => (feature?: Feature<Geometry>) => {
+      const s = stylesRef.current;
       const id = feature?.properties?.id as string | undefined;
-      if (!id) return BASE;
-      if (selectedBundeslandId && id === selectedBundeslandId) return SELECTED;
-      if (hovered && id === hovered) return HOVER;
-      if (selectedBundeslandId && id !== selectedBundeslandId) return DIM;
-      return BASE;
+      if (!id) return s.base;
+      if (selectedBundeslandId && id === selectedBundeslandId) return s.selected;
+      if (hovered && id === hovered) return s.hover;
+      if (selectedBundeslandId && id !== selectedBundeslandId) return s.dim;
+      return s.base;
     },
-    [selectedBundeslandId, hovered],
+    [selectedBundeslandId, hovered, themeRev],
   );
 
   if (!active) return null;
@@ -89,7 +63,7 @@ export const GermanyBundeslandLayer = memo(function GermanyBundeslandLayer({
 
   return (
     <GeoJSON
-      key={`de-bl-${selectedBundeslandId ?? 'all'}`}
+      key={`de-bl-${selectedBundeslandId ?? 'all'}-${themeRev}`}
       data={germanyBundeslandGeoJson}
       style={style}
       onEachFeature={onEachFeature}

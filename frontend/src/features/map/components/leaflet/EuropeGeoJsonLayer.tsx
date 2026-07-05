@@ -1,8 +1,12 @@
-import { memo, useMemo, useState } from 'react';
+import { memo, useMemo, useRef, useState } from 'react';
 import { GeoJSON } from 'react-leaflet';
-import type { Layer, PathOptions } from 'leaflet';
+import type { Layer } from 'leaflet';
 import type { Feature, Geometry } from 'geojson';
 import { europeCountriesGeoJson } from '../../data/europeCountriesGeoJson';
+import {
+  getEuropeCountryGeoStyles,
+  useMapThemeRevision,
+} from '../../utils/mapThemeUtils';
 
 interface EuropeGeoJsonLayerProps {
   selectedCountryCode?: string;
@@ -10,44 +14,6 @@ interface EuropeGeoJsonLayerProps {
   onCountrySelect?: (isoCode: string) => void;
   onCountryHover?: (isoCode: string | null) => void;
 }
-
-const BASE_STYLE: PathOptions = {
-  fillColor: '#1c2d45',
-  fillOpacity: 0.56,
-  color: '#5da8d8',
-  weight: 1,
-  opacity: 0.72,
-};
-
-const COAST_STYLE: PathOptions = {
-  ...BASE_STYLE,
-  weight: 1.15,
-  opacity: 0.8,
-};
-
-const HOVER_STYLE: PathOptions = {
-  fillColor: '#243f62',
-  fillOpacity: 0.72,
-  color: '#8dd8fc',
-  weight: 1.5,
-  opacity: 0.95,
-};
-
-const SELECTED_STYLE: PathOptions = {
-  fillColor: '#3d4f63',
-  fillOpacity: 0.82,
-  weight: 2,
-  color: '#fbbf24',
-  opacity: 1,
-};
-
-const DIM_STYLE: PathOptions = {
-  fillColor: '#121c2a',
-  fillOpacity: 0.38,
-  color: '#2d4a68',
-  weight: 0.65,
-  opacity: 0.38,
-};
 
 export const EuropeGeoJsonLayer = memo(function EuropeGeoJsonLayer({
   selectedCountryCode,
@@ -58,21 +24,24 @@ export const EuropeGeoJsonLayer = memo(function EuropeGeoJsonLayer({
   const data = europeCountriesGeoJson;
   const [hovered, setHovered] = useState<string | null>(null);
   const activeHover = hoveredCountryCode ?? hovered;
+  const themeRev = useMapThemeRevision();
+  const geoStyles = useMemo(() => getEuropeCountryGeoStyles(), [themeRev]);
+  const stylesRef = useRef(geoStyles);
+  stylesRef.current = geoStyles;
 
   const style = useMemo(
     () => (feature?: Feature<Geometry>) => {
+      const s = stylesRef.current;
       const iso = feature?.properties?.ISO_A2 as string | undefined;
-      if (!iso) return BASE_STYLE;
+      if (!iso) return s.base;
       if (selectedCountryCode && iso === selectedCountryCode) {
-        return iso === 'DE'
-          ? { ...SELECTED_STYLE, weight: 2.6, color: '#fbbf24', fillOpacity: 0.68 }
-          : SELECTED_STYLE;
+        return iso === 'DE' ? s.selectedDe : s.selected;
       }
-      if (activeHover && iso === activeHover) return HOVER_STYLE;
-      if (selectedCountryCode && iso !== selectedCountryCode) return DIM_STYLE;
-      return COAST_STYLE;
+      if (activeHover && iso === activeHover) return s.hover;
+      if (selectedCountryCode && iso !== selectedCountryCode) return s.dim;
+      return s.coast;
     },
-    [selectedCountryCode, activeHover],
+    [selectedCountryCode, activeHover, themeRev],
   );
 
   const onEachFeature = (feature: Feature<Geometry>, layer: Layer) => {
@@ -90,7 +59,7 @@ export const EuropeGeoJsonLayer = memo(function EuropeGeoJsonLayer({
       mouseover: (e) => {
         const path = e.target;
         if (iso && iso !== selectedCountryCode) {
-          path.setStyle(HOVER_STYLE);
+          path.setStyle(stylesRef.current.hover);
           setHovered(iso);
           onCountryHover?.(iso);
         }
@@ -100,12 +69,13 @@ export const EuropeGeoJsonLayer = memo(function EuropeGeoJsonLayer({
         if (!iso) return;
         setHovered(null);
         onCountryHover?.(null);
+        const s = stylesRef.current;
         if (iso === selectedCountryCode) {
-          path.setStyle(SELECTED_STYLE);
+          path.setStyle(iso === 'DE' ? s.selectedDe : s.selected);
         } else if (selectedCountryCode) {
-          path.setStyle(DIM_STYLE);
+          path.setStyle(s.dim);
         } else {
-          path.setStyle(COAST_STYLE);
+          path.setStyle(s.coast);
         }
       },
       click: () => {
@@ -116,7 +86,7 @@ export const EuropeGeoJsonLayer = memo(function EuropeGeoJsonLayer({
 
   return (
     <GeoJSON
-      key={`${selectedCountryCode ?? 'all'}-${activeHover ?? 'none'}`}
+      key={`${selectedCountryCode ?? 'all'}-${activeHover ?? 'none'}-${themeRev}`}
       data={data}
       style={style}
       onEachFeature={onEachFeature}

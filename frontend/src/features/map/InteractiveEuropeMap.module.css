@@ -1,10 +1,4 @@
 .root {
-  --map-neon-primary: #38bdf8;
-  --map-neon-secondary: #6366f1;
-  --map-neon-glow: rgb(56 189 248 / 0.36);
-  --map-bg-deep: #0a1220;
-  --map-bg-ocean: rgb(10 18 32 / 0.92);
-  --map-surface: rgb(18 28 48 / 0.88);
   width: 100%;
 }
 
@@ -13,14 +7,16 @@
   width: 100%;
   max-width: 100%;
   min-height: min(72vh, 820px);
-  background: linear-gradient(180deg, var(--map-bg-deep) 0%, rgb(14 24 40) 50%, var(--map-bg-deep) 100%);
-  border: 1px solid rgb(56 189 248 / 0.15);
+  background: linear-gradient(
+    180deg,
+    var(--map-canvas-bg) 0%,
+    var(--map-canvas-bg-mid) 50%,
+    var(--map-canvas-bg) 100%
+  );
+  border: 1px solid var(--map-canvas-border);
   border-radius: var(--radius-2xl);
   overflow: hidden;
-  box-shadow:
-    0 0 0 1px rgb(99 102 241 / 0.08),
-    0 24px 80px rgb(0 0 0 / 0.45),
-    inset 0 1px 0 rgb(255 255 255 / 0.04);
+  box-shadow: var(--map-canvas-shadow);
   display: flex;
   flex-direction: column;
 }
@@ -47,9 +43,9 @@
   opacity: 0.85;
 }
 
-.routeLogistics { stroke: #38bdf8; filter: drop-shadow(0 0 2px #38bdf8); }
-.routeCargo { stroke: #6366f1; filter: drop-shadow(0 0 2px #6366f1); }
-.routeTruck { stroke: #22d3ee; filter: drop-shadow(0 0 2px #22d3ee); }
+.routeLogistics { stroke: var(--map-route-road); filter: drop-shadow(0 0 2px var(--map-route-road)); }
+.routeCargo { stroke: var(--map-neon-secondary); filter: drop-shadow(0 0 2px var(--map-neon-secondary)); }
+.routeTruck { stroke: var(--map-route-river); filter: drop-shadow(0 0 2px var(--map-route-river)); }
 .routeRail { stroke: #a78bfa; stroke-dasharray: 1 4; opacity: 0.7; }
 .routeShip { stroke: #3b82f6; stroke-dasharray: 3 2; opacity: 0.65; }
 .routeAir { stroke: #f472b6; stroke-dasharray: 1 3; opacity: 0.6; }
@@ -74,9 +70,9 @@
   min-width: 2.25rem;
   height: 2.25rem;
   padding: 0 var(--space-sm);
-  border: 1px solid rgb(56 189 248 / 0.25);
+  border: 1px solid var(--map-control-border);
   border-radius: var(--radius-md);
-  background: var(--map-surface);
+  background: var(--map-control-bg);
   backdrop-filter: blur(12px);
   color: var(--map-neon-primary);
   font-size: var(--font-size-sm);
@@ -86,7 +82,7 @@
 
 .controlBtn:hover {
   border-color: var(--map-neon-primary);
-  box-shadow: 0 0 16px rgb(56 189 248 / 0.25);
+  box-shadow: 0 0 16px var(--map-neon-glow);
 }
 
 .navBar {
@@ -101,7 +97,7 @@
   padding: var(--space-xs) var(--space-md);
   background: var(--map-surface);
   backdrop-filter: blur(12px);
-  border: 1px solid rgb(56 189 248 / 0.2);
+  border: 1px solid var(--map-panel-border);
   border-radius: var(--radius-full);
   font-size: var(--font-size-xs);
 }
@@ -120,16 +116,17 @@
 }
 
 .navSep {
-  color: rgb(148 163 184 / 0.5);
+  color: var(--map-panel-muted);
+  opacity: 0.55;
 }
 
 .navActive {
-  color: #f1f5f9;
+  color: var(--map-panel-text);
   font-weight: 600;
 }
 
 .navHint {
-  color: rgb(148 163 184 / 0.8);
+  color: var(--map-panel-muted);
   margin-left: var(--space-sm);
 }
 
@@ -142,7 +139,7 @@
   padding: var(--space-md);
   background: var(--map-surface);
   backdrop-filter: blur(16px);
-  border: 1px solid rgb(56 189 248 / 0.15);
+  border: 1px solid var(--map-panel-border);
   border-radius: var(--radius-xl);
   max-height: 140px;
   overflow-x: auto;
@@ -175,13 +172,13 @@
 .liveValue {
   font-size: var(--font-size-lg);
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--map-panel-text);
   letter-spacing: -0.02em;
 }
 
 .liveLabel {
   font-size: 0.625rem;
-  color: rgb(148 163 184 / 0.9);
+  color: var(--map-panel-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -193,7 +190,8 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.625rem;
-  color: rgb(148 163 184 / 0.6);
+  color: var(--map-panel-muted);
+  opacity: 0.75;
   white-space: nowrap;
   pointer-events: none;
   z-index: 15;

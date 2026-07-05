@@ -4,6 +4,14 @@ import type { LatLngBoundsExpression, LatLngExpression } from 'leaflet';
 export const DARK_TILE_URL =
   'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
 
+/** CartoDB Positron — premium light basemap */
+export const LIGHT_TILE_URL =
+  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
+export function getTileUrlForTheme(theme: 'light' | 'dark'): string {
+  return theme === 'light' ? LIGHT_TILE_URL : DARK_TILE_URL;
+}
+
 export const TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
 

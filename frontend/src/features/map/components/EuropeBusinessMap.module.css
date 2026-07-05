@@ -36,11 +36,11 @@
   height: 2.5rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(56 189 248 / 0.25);
+  border: 1px solid var(--map-control-border);
   border-radius: var(--radius-md);
-  background: rgb(15 23 42 / 0.92);
+  background: var(--map-panel-bg);
   backdrop-filter: blur(12px);
-  color: #38bdf8;
+  color: var(--map-accent);
   font-size: 1rem;
   cursor: pointer;
 }
@@ -78,15 +78,15 @@
 }
 
 .routeRoad {
-  stroke: #38bdf8;
+  stroke: var(--map-route-road);
   stroke-dasharray: 1.5 2;
-  filter: drop-shadow(0 0 1.2px rgb(56 189 248 / 0.55));
+  filter: drop-shadow(0 0 1.2px color-mix(in srgb, var(--map-route-road) 55%, transparent));
 }
 
 .routeRail {
-  stroke: #34d399;
+  stroke: var(--map-route-rail);
   stroke-dasharray: 0.8 3;
-  filter: drop-shadow(0 0 1.2px rgb(52 211 153 / 0.55));
+  filter: drop-shadow(0 0 1.2px color-mix(in srgb, var(--map-route-rail) 55%, transparent));
 }
 
 .routeAir {
@@ -97,27 +97,27 @@
 }
 
 .routeSea {
-  stroke: #3b82f6;
+  stroke: var(--map-route-sea);
   stroke-dasharray: 2 2;
   opacity: 0.72;
-  filter: drop-shadow(0 0 1.2px rgb(59 130 246 / 0.5));
+  filter: drop-shadow(0 0 1.2px color-mix(in srgb, var(--map-route-sea) 50%, transparent));
 }
 
 .routeRiver {
-  stroke: #22d3ee;
+  stroke: var(--map-route-river);
   stroke-dasharray: 1.5 2;
   opacity: 0.76;
-  filter: drop-shadow(0 0 1.2px rgb(34 211 238 / 0.5));
+  filter: drop-shadow(0 0 1.2px color-mix(in srgb, var(--map-route-river) 50%, transparent));
 }
 
 .routePulse {
-  fill: #38bdf8;
+  fill: var(--map-route-road);
   opacity: 0.58;
-  filter: drop-shadow(0 0 1.5px rgb(56 189 248 / 0.55));
+  filter: drop-shadow(0 0 1.5px color-mix(in srgb, var(--map-route-road) 55%, transparent));
 }
 
 .routeCore {
-  fill: #f0f9ff;
+  fill: var(--map-route-highlight);
   opacity: 0.95;
 }
 
@@ -140,37 +140,37 @@
 
 .cityRing {
   fill: none;
-  stroke: #38bdf8;
+  stroke: var(--map-route-road);
   stroke-width: 0.2;
   opacity: 0.6;
   animation: city-ring 3s ease-out infinite;
 }
 
 .cityGlow {
-  fill: rgb(56 189 248 / 0.15);
-  stroke: rgb(56 189 248 / 0.4);
+  fill: color-mix(in srgb, var(--map-route-road) 15%, transparent);
+  stroke: color-mix(in srgb, var(--map-route-road) 40%, transparent);
   stroke-width: 0.15;
 }
 
 .cityDot {
-  fill: #6366f1;
-  stroke: #f0f9ff;
+  fill: var(--map-marker-core);
+  stroke: var(--map-route-highlight);
   stroke-width: 0.25;
-  filter: drop-shadow(0 0 1px #6366f1);
+  filter: drop-shadow(0 0 1px var(--map-marker-core));
 }
 
 .cityNodeMajor .cityDot {
-  fill: #38bdf8;
-  filter: drop-shadow(0 0 2px #38bdf8);
+  fill: var(--map-route-road);
+  filter: drop-shadow(0 0 2px var(--map-route-road));
 }
 
 .cityNodeActive .cityDot {
-  fill: #22d3ee;
+  fill: var(--map-marker-selected);
   stroke-width: 0.35;
 }
 
 .cityPulse {
-  fill: #38bdf8;
+  fill: var(--map-route-road);
   animation: city-pulse 2s ease-in-out infinite;
   opacity: 0.5;
 }
@@ -178,9 +178,9 @@
 .cityLabel {
   font-size: 1.8px;
   font-weight: 600;
-  fill: #e2e8f0;
+  fill: var(--map-label-tier2);
   pointer-events: none;
-  filter: drop-shadow(0 0 1px rgb(0 0 0 / 0.8));
+  filter: drop-shadow(0 0 1px color-mix(in srgb, var(--map-panel-text) 80%, transparent));
 }
 
 @keyframes city-ring {
@@ -199,11 +199,11 @@
   transform: translate(-50%, calc(-100% - 12px));
   min-width: 140px;
   padding: var(--space-sm) var(--space-md);
-  background: rgb(15 23 42 / 0.92);
+  background: var(--map-tooltip-bg);
   backdrop-filter: blur(16px);
-  border: 1px solid rgb(56 189 248 / 0.3);
+  border: 1px solid var(--map-tooltip-border);
   border-radius: var(--radius-lg);
-  box-shadow: 0 8px 32px rgb(0 0 0 / 0.4), 0 0 20px rgb(56 189 248 / 0.1);
+  box-shadow: var(--map-panel-shadow);
   pointer-events: none;
   animation: tooltip-in 0.15s ease-out;
   z-index: 10;
@@ -213,14 +213,14 @@
   display: block;
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--map-tooltip-text);
   margin-bottom: 2px;
 }
 
 .tooltipCountry {
   display: block;
   font-size: var(--font-size-xs);
-  color: rgb(148 163 184 / 0.9);
+  color: var(--map-panel-muted);
   margin-bottom: var(--space-xs);
 }
 
@@ -229,7 +229,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 2px 8px;
   font-size: 0.625rem;
-  color: #38bdf8;
+  color: var(--map-accent);
 }
 
 @keyframes tooltip-in {
@@ -246,11 +246,11 @@
   width: min(300px, calc(100% - var(--space-md) * 2));
   z-index: 1000;
   padding: var(--space-lg) var(--space-md);
-  background: rgb(15 23 42 / 0.92);
+  background: var(--map-panel-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgb(56 189 248 / 0.2);
+  border: 1px solid var(--map-panel-border);
   border-radius: var(--radius-xl);
-  box-shadow: 0 16px 48px rgb(0 0 0 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.04);
+  box-shadow: var(--map-panel-shadow);
   animation: panel-in 0.25s ease-out;
   display: flex;
   flex-direction: column;
@@ -282,8 +282,8 @@
   height: 1.75rem;
   border: none;
   border-radius: var(--radius-md);
-  background: rgb(255 255 255 / 0.06);
-  color: rgb(148 163 184 / 0.9);
+  background: var(--map-panel-subtle-bg);
+  color: var(--map-panel-muted);
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
@@ -291,20 +291,20 @@
 }
 
 .panelClose:hover {
-  background: rgb(255 255 255 / 0.12);
-  color: #f1f5f9;
+  background: color-mix(in srgb, var(--map-panel-text) 12%, transparent);
+  color: var(--map-panel-text);
 }
 
 .panelHeader h3 {
   font-size: var(--font-size-lg);
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--map-panel-text);
   margin-bottom: 2px;
 }
 
 .panelHeader p {
   font-size: var(--font-size-xs);
-  color: rgb(148 163 184 / 0.9);
+  color: var(--map-panel-muted);
 }
 
 .panelMetrics {
@@ -320,26 +320,26 @@
   flex-direction: column;
   gap: 2px;
   padding: var(--space-sm);
-  background: rgb(255 255 255 / 0.03);
+  background: var(--map-panel-subtle-bg);
   border-radius: var(--radius-md);
-  border: 1px solid rgb(255 255 255 / 0.04);
+  border: 1px solid var(--map-panel-subtle-border);
 }
 
 .panelMetricValue {
   font-size: var(--font-size-md);
   font-weight: 700;
-  color: #38bdf8;
+  color: var(--map-accent);
 }
 
 .panelMetricLabel {
   font-size: 0.625rem;
-  color: rgb(148 163 184 / 0.85);
+  color: var(--map-panel-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .panelMetricAi .panelMetricValue {
-  color: #fbbf24;
+  color: var(--map-gold);
 }
 
 /* ── Country info panel ── */
@@ -351,11 +351,11 @@
   width: min(280px, calc(100% - var(--space-md) * 2));
   max-height: calc(100% - var(--space-md) * 2 - 88px);
   padding: var(--space-lg) var(--space-md);
-  background: rgb(15 23 42 / 0.92);
+  background: var(--map-panel-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgb(251 191 36 / 0.25);
+  border: 1px solid var(--map-panel-border-gold);
   border-radius: var(--radius-xl);
-  box-shadow: 0 16px 48px rgb(0 0 0 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.04);
+  box-shadow: var(--map-panel-shadow);
   animation: panel-in 0.25s ease-out;
   display: flex;
   flex-direction: column;
@@ -366,13 +366,13 @@
 .countryHeader h3 {
   font-size: var(--font-size-lg);
   font-weight: 700;
-  color: #fbbf24;
+  color: var(--map-gold);
   margin-bottom: 2px;
 }
 
 .countryHeader p {
   font-size: var(--font-size-xs);
-  color: rgb(148 163 184 / 0.9);
+  color: var(--map-panel-muted);
 }
 
 .countryAiScore {
@@ -385,13 +385,13 @@
   font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: rgb(148 163 184 / 0.85);
+  color: var(--map-panel-muted);
 }
 
 .countryAiValue {
   font-size: var(--font-size-xl);
   font-weight: 700;
-  color: #fbbf24;
+  color: var(--map-gold);
 }
 
 .countryAiBar {
@@ -404,7 +404,7 @@
 .countryAiFill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #38bdf8, #fbbf24);
+  background: linear-gradient(90deg, var(--map-accent), var(--map-gold));
   transition: width 0.6s ease;
 }
 
@@ -417,10 +417,10 @@
 .panelAction {
   width: 100%;
   padding: var(--space-sm) var(--space-md);
-  border: 1px solid rgb(56 189 248 / 0.4);
+  border: 1px solid color-mix(in srgb, var(--map-accent) 40%, transparent);
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgb(56 189 248 / 0.15), rgb(99 102 241 / 0.15));
-  color: #38bdf8;
+  background: linear-gradient(135deg, var(--map-panel-border), rgb(99 102 241 / 0.15));
+  color: var(--map-accent);
   font-weight: 600;
   font-size: var(--font-size-sm);
   cursor: pointer;
@@ -428,8 +428,8 @@
 }
 
 .panelAction:hover {
-  border-color: #38bdf8;
-  box-shadow: 0 0 24px rgb(56 189 248 / 0.2);
+  border-color: var(--map-accent);
+  box-shadow: 0 0 24px var(--map-panel-border);
 }
 
 @keyframes panel-in {
@@ -480,9 +480,9 @@
     z-index: 1001;
     padding: var(--space-sm) var(--space-md) var(--space-xs);
     border: none;
-    border-top: 1px solid rgb(56 189 248 / 0.2);
+    border-top: 1px solid var(--map-panel-border);
     border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    background: rgb(15 23 42 / 0.96);
+    background: var(--map-panel-bg);
     backdrop-filter: blur(16px);
     cursor: pointer;
   }
@@ -497,7 +497,7 @@
   .panelSheetTitle {
     font-size: var(--font-size-xs);
     font-weight: 600;
-    color: #38bdf8;
+    color: var(--map-accent);
   }
 
   .infoPanel {
@@ -562,7 +562,7 @@
 }
 
 .nightLight {
-  fill: #fbbf24;
+  fill: var(--map-gold);
   opacity: 0.35;
   filter: blur(0.3px);
 }
@@ -585,15 +585,15 @@
 
 /* ── Hub (Berlin) ── */
 .hubAura { animation: hub-pulse 4s ease-in-out infinite; }
-.hubRing { fill: none; stroke: #fbbf24; stroke-width: 0.25; animation: city-ring 3s ease-out infinite; }
-.hubRing2 { fill: none; stroke: #38bdf8; stroke-width: 0.2; animation: city-ring 3s ease-out infinite 1.5s; }
-.hubLabel { font-size: 2px; font-weight: 700; fill: #fbbf24; letter-spacing: 0.04em; }
+.hubRing { fill: none; stroke: var(--map-gold); stroke-width: 0.25; animation: city-ring 3s ease-out infinite; }
+.hubRing2 { fill: none; stroke: var(--map-accent); stroke-width: 0.2; animation: city-ring 3s ease-out infinite 1.5s; }
+.hubLabel { font-size: 2px; font-weight: 700; fill: var(--map-gold); letter-spacing: 0.04em; }
 
 .cityNodeHub .cityDot {
-  fill: #fbbf24;
+  fill: var(--map-gold);
   stroke: #fff;
   stroke-width: 0.35;
-  filter: drop-shadow(0 0 3px #fbbf24);
+  filter: drop-shadow(0 0 3px var(--map-gold));
 }
 
 @keyframes hub-pulse {
@@ -602,15 +602,15 @@
 }
 
 /* ── Route particles & markers ── */
-.particle { fill: #38bdf8; opacity: 0.85; }
+.particle { fill: var(--map-accent); opacity: 0.85; }
 .particleAlt { fill: #f0f9ff; opacity: 0.6; }
 .routeGlow { opacity: 0.32; stroke-linecap: round; }
 .planeIcon { fill: #7dd3fc; }
 .shipIcon { fill: #60a5fa; }
 
-.metricRingCompanies { fill: none; stroke: #38bdf8; stroke-width: 0.1; opacity: 0.4; }
-.metricRingJobs { fill: none; stroke: #34d399; stroke-width: 0.1; opacity: 0.35; }
-.metricRingWarehouses { fill: none; stroke: #fbbf24; stroke-width: 0.1; opacity: 0.3; }
+.metricRingCompanies { fill: none; stroke: var(--map-route-road); stroke-width: 0.1; opacity: 0.4; }
+.metricRingJobs { fill: none; stroke: var(--map-route-rail); stroke-width: 0.1; opacity: 0.35; }
+.metricRingWarehouses { fill: none; stroke: var(--map-gold); stroke-width: 0.1; opacity: 0.3; }
 
 /* ── Layer control panel ── */
 .layerPanel {
@@ -619,9 +619,9 @@
   left: var(--space-md);
   z-index: 1000;
   padding: var(--space-sm);
-  background: rgb(15 23 42 / 0.88);
+  background: var(--map-panel-bg);
   backdrop-filter: blur(16px);
-  border: 1px solid rgb(56 189 248 / 0.15);
+  border: 1px solid var(--map-panel-border);
   border-radius: var(--radius-lg);
   max-width: 200px;
 }
@@ -638,7 +638,7 @@
   display: none;
   border: none;
   background: none;
-  color: rgb(148 163 184 / 0.9);
+  color: var(--map-panel-muted);
   font-size: 1.1rem;
   cursor: pointer;
   line-height: 1;
@@ -650,7 +650,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #38bdf8;
+  color: var(--map-accent);
   margin-bottom: var(--space-xs);
 }
 
@@ -663,18 +663,18 @@
 .layerToggle {
   padding: 3px 8px;
   font-size: 0.625rem;
-  border: 1px solid rgb(255 255 255 / 0.08);
+  border: 1px solid var(--map-panel-subtle-border);
   border-radius: var(--radius-full);
-  background: rgb(255 255 255 / 0.04);
-  color: rgb(148 163 184 / 0.9);
+  background: var(--map-panel-subtle-bg);
+  color: var(--map-panel-muted);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .layerOn {
-  border-color: rgb(56 189 248 / 0.4);
-  background: rgb(56 189 248 / 0.12);
-  color: #38bdf8;
+  border-color: color-mix(in srgb, var(--map-accent) 40%, transparent);
+  background: color-mix(in srgb, var(--map-accent) 12%, transparent);
+  color: var(--map-accent);
 }
 
 /* ── Activity bottom panel ── */
@@ -687,9 +687,9 @@
   display: flex;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
-  background: rgb(15 23 42 / 0.9);
+  background: var(--map-panel-bg);
   backdrop-filter: blur(16px);
-  border: 1px solid rgb(56 189 248 / 0.12);
+  border: 1px solid var(--map-panel-border);
   border-radius: var(--radius-xl);
   overflow-x: auto;
 }
@@ -705,13 +705,13 @@
 .activityValue {
   font-size: var(--font-size-md);
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--map-panel-text);
   letter-spacing: -0.02em;
 }
 
 .activityLabel {
   font-size: 0.5625rem;
-  color: rgb(148 163 184 / 0.85);
+  color: var(--map-panel-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -729,7 +729,12 @@
 .panelPreviewGradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgb(56 189 248 / 0.25), rgb(99 102 241 / 0.2), rgb(251 191 36 / 0.15));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--map-accent) 25%, transparent),
+    color-mix(in srgb, var(--map-neon-secondary) 20%, transparent),
+    color-mix(in srgb, var(--map-gold) 15%, transparent)
+  );
 }
 
 .panelPreviewCity {
@@ -738,7 +743,7 @@
   left: var(--space-sm);
   font-size: var(--font-size-sm);
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--map-panel-text);
 }
 
 .panelTabs {
@@ -753,13 +758,13 @@
   border: none;
   border-radius: var(--radius-md);
   background: rgb(255 255 255 / 0.04);
-  color: rgb(148 163 184 / 0.9);
+  color: var(--map-panel-muted);
   cursor: pointer;
 }
 
 .panelTabActive {
-  background: rgb(56 189 248 / 0.15);
-  color: #38bdf8;
+  background: var(--map-panel-border);
+  color: var(--map-accent);
 }
 
 .panelBody {
@@ -777,13 +782,13 @@
 .panelBigStat {
   font-size: var(--font-size-2xl);
   font-weight: 700;
-  color: #38bdf8;
+  color: var(--map-accent);
 }
 
 .panelSubStat {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: #fbbf24;
+  color: var(--map-gold);
 }
 
 .routeList {
@@ -812,11 +817,11 @@
   text-transform: uppercase;
 }
 
-.routeModeroad { background: rgb(56 189 248 / 0.15); color: #38bdf8; }
-.routeModerail { background: rgb(52 211 153 / 0.15); color: #34d399; }
-.routeModeair { background: rgb(125 211 252 / 0.15); color: #7dd3fc; }
-.routeModesea { background: rgb(96 165 250 / 0.15); color: #60a5fa; }
-.routeModeriver { background: rgb(34 211 238 / 0.15); color: #22d3ee; }
+.routeModeroad { background: color-mix(in srgb, var(--map-route-road) 15%, transparent); color: var(--map-route-road); }
+.routeModerail { background: color-mix(in srgb, var(--map-route-rail) 15%, transparent); color: var(--map-route-rail); }
+.routeModeair { background: color-mix(in srgb, var(--map-route-air) 15%, transparent); color: var(--map-route-air); }
+.routeModesea { background: color-mix(in srgb, var(--map-route-sea) 15%, transparent); color: var(--map-route-sea); }
+.routeModeriver { background: color-mix(in srgb, var(--map-route-river) 15%, transparent); color: var(--map-route-river); }
 
 /* Germany digital twin */
 .bundeslandPanel {
@@ -827,11 +832,11 @@
   width: min(280px, calc(100% - var(--space-md) * 2));
   max-height: calc(100% - var(--space-md) * 2 - 88px);
   padding: var(--space-lg) var(--space-md);
-  background: rgb(15 23 42 / 0.92);
+  background: var(--map-panel-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgb(56 189 248 / 0.3);
+  border: 1px solid var(--map-tooltip-border);
   border-radius: var(--radius-xl);
-  box-shadow: 0 16px 48px rgb(0 0 0 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.04);
+  box-shadow: var(--map-panel-shadow);
   animation: panel-in 0.25s ease-out;
   display: flex;
   flex-direction: column;
@@ -851,29 +856,29 @@
   padding: 4px 8px;
   font-size: 0.625rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgb(56 189 248 / 0.25);
-  background: rgb(255 255 255 / 0.04);
-  color: #94a3b8;
+  border: 1px solid var(--map-control-border);
+  background: var(--map-panel-subtle-bg);
+  color: var(--map-panel-muted);
   cursor: pointer;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .bundeslandChip:hover {
-  background: rgb(56 189 248 / 0.12);
-  color: #e2e8f0;
-  border-color: rgb(56 189 248 / 0.45);
+  background: color-mix(in srgb, var(--map-accent) 12%, transparent);
+  color: var(--map-panel-text);
+  border-color: color-mix(in srgb, var(--map-accent) 45%, transparent);
 }
 
 .bundeslandChipActive {
-  background: rgb(56 189 248 / 0.2);
-  color: #38bdf8;
-  border-color: rgb(56 189 248 / 0.55);
+  background: color-mix(in srgb, var(--map-accent) 12%, transparent);
+  color: var(--map-accent);
+  border-color: color-mix(in srgb, var(--map-accent) 55%, transparent);
 }
 
 .germanySectionLabel {
   font-size: var(--font-size-xs);
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--map-panel-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -909,8 +914,8 @@
   font-size: 0.625rem;
   font-weight: 600;
   background: rgb(251 191 36 / 0.12);
-  color: #fbbf24;
-  border: 1px solid rgb(251 191 36 / 0.25);
+  color: var(--map-gold);
+  border: 1px solid var(--map-panel-border-gold);
 }
 
 .germanyMetaGrid {
@@ -919,7 +924,7 @@
   gap: var(--space-sm);
   margin-top: var(--space-md);
   padding-top: var(--space-sm);
-  border-top: 1px solid rgb(255 255 255 / 0.06);
+  border-top: 1px solid var(--map-panel-subtle-border);
 }
 
 .germanyMetaLabel {
@@ -990,7 +995,7 @@
 .germanyActivityType {
   text-transform: uppercase;
   font-weight: 600;
-  color: #38bdf8;
+  color: var(--map-accent);
   font-size: 0.5rem;
 }
 
@@ -1015,7 +1020,7 @@
 
 .germanyGdpLine {
   font-size: var(--font-size-sm);
-  color: #fbbf24;
+  color: var(--map-gold);
   font-weight: 600;
 }
 
