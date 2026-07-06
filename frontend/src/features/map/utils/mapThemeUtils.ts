@@ -131,11 +131,11 @@ export function getBundeslandGeoStyles(): BundeslandGeoStyles {
 
 export function getRouteColorsFromTheme(): Record<string, string> {
   return {
-    road: cssVar('--map-route-road', '#38bdf8'),
-    rail: cssVar('--map-route-rail', '#34d399'),
-    air: cssVar('--map-route-air', '#7dd3fc'),
-    sea: cssVar('--map-route-sea', '#60a5fa'),
-    river: cssVar('--map-route-river', '#22d3ee'),
+    road: cssVar('--map-route-road', '#2a9fc9'),
+    rail: cssVar('--map-route-rail', '#5b7f9d'),
+    air: cssVar('--map-route-air', '#b8cfe8'),
+    sea: cssVar('--map-route-sea', '#3d9eae'),
+    river: cssVar('--map-route-river', '#3aada8'),
   };
 }
 

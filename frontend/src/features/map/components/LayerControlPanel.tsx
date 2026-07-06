@@ -25,7 +25,15 @@ export function LayerControlPanel({ layers, onChange, open = true, onClose }: La
   const { t } = useTranslation('map');
 
   const toggle = (key: keyof MapLayerState) => {
-    onChange({ ...layers, [key]: !layers[key] });
+    const next = { ...layers, [key]: !layers[key] };
+    if (key === 'routes' && !next.routes) {
+      onChange(next);
+      return;
+    }
+    if (key !== 'routes' && !next.routes && (key === 'road' || key === 'rail' || key === 'air' || key === 'sea' || key === 'river')) {
+      next.routes = true;
+    }
+    onChange(next);
   };
 
   return (

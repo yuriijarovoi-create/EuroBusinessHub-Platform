@@ -8,19 +8,21 @@ import {
   getFeaturedMapCities,
   getFeaturedInCountry,
   getMapCityById,
+  getAllMapCities,
 } from '../data/mapData';
 import { CITY_BUNDESLAND_MAP } from '../data/germany/bundeslandData';
 import {
   filterRoutesByLayers,
-  getEuropeRoutes,
-  getRoutesForCountry,
+  getRoutesForMapView,
 } from '../data/routeData';
+import type { BusinessRouteDef } from '../types/mapTypes';
 import { RealEuropeMap } from './leaflet/RealEuropeMap';
 import { MapControls } from './MapControls';
 import { CityInfoPanel } from './CityInfoPanel';
 import { GermanyCityInfoPanel } from './GermanyCityInfoPanel';
 import { CountryInfoPanel } from './CountryInfoPanel';
 import { BundeslandInfoPanel } from './BundeslandInfoPanel';
+import { RouteInfoPanel } from './RouteInfoPanel';
 import { LayerControlPanel } from './LayerControlPanel';
 import { ActivityBottomPanel } from './ActivityBottomPanel';
 import styles from './EuropeBusinessMap.module.css';
@@ -52,6 +54,8 @@ export function EuropeBusinessMap({
   const [panelCity, setPanelCity] = useState<MapCityRecord | null>(
     () => getDefaultHubCity() ?? null,
   );
+  const [selectedRoute, setSelectedRoute] = useState<BusinessRouteDef | null>(null);
+  const [routePanelOpen, setRoutePanelOpen] = useState(true);
 
   const selectedCountry = useMemo(
     () => countries.find((c) => c.code === selectedCountryCode) ?? null,
@@ -83,12 +87,16 @@ export function EuropeBusinessMap({
     [visibleCities],
   );
 
+  /** Full city index for route geometry — endpoints may lie outside visible country */
+  const routeCityMap = useMemo(
+    () => new Map(getAllMapCities().map((c) => [c.id, c])),
+    [],
+  );
+
   const routes = useMemo(() => {
-    const base = selectedCountryCode
-      ? getRoutesForCountry(selectedCountryCode, visibleCities)
-      : getEuropeRoutes();
+    const base = getRoutesForMapView(selectedCountryCode);
     return filterRoutesByLayers(base, layers);
-  }, [selectedCountryCode, visibleCities, layers]);
+  }, [selectedCountryCode, layers]);
 
   const clearTooltipLeaveTimer = useCallback(() => {
     if (tooltipLeaveTimerRef.current) {
@@ -120,8 +128,10 @@ export function EuropeBusinessMap({
 
   const handleMapBackgroundClick = useCallback(() => {
     clearActiveTooltip();
+    setSelectedRoute(null);
     if (isMobileViewport()) {
       setPanelOpen(false);
+      setRoutePanelOpen(false);
     }
   }, [clearActiveTooltip]);
 
@@ -138,10 +148,19 @@ export function EuropeBusinessMap({
   }, [clearActiveTooltip]);
 
   const handleSelect = useCallback((city: MapCityRecord) => {
+    setSelectedRoute(null);
     setPanelCity(city);
     setPanelOpen(true);
     setCountryPanelOpen(false);
     setBundeslandPanelOpen(false);
+  }, []);
+
+  const handleRouteSelect = useCallback((route: BusinessRouteDef) => {
+    setSelectedRoute(route);
+    setRoutePanelOpen(true);
+    setCountryPanelOpen(false);
+    setBundeslandPanelOpen(false);
+    setPanelOpen(false);
   }, []);
 
   useEffect(() => {
@@ -193,6 +212,7 @@ export function EuropeBusinessMap({
           routes={routes}
           cities={visibleCities}
           cityMap={cityMap}
+          routeCityMap={routeCityMap}
           layers={layers}
           selectedCountryCode={selectedCountryCode}
           selectedBundeslandId={selectedBundeslandId}
@@ -207,6 +227,8 @@ export function EuropeBusinessMap({
           onTooltipLeave={handleTooltipLeave}
           onClearTooltip={clearActiveTooltip}
           onMapBackgroundClick={handleMapBackgroundClick}
+          onRouteSelect={handleRouteSelect}
+          selectedRouteId={selectedRoute?.id}
         >
           <div className={styles.mapControlsSlot}>
             <MapControls />
@@ -233,7 +255,21 @@ export function EuropeBusinessMap({
         />
       )}
 
-      {isGermanyCity && panelCity ? (
+      {selectedRoute ? (
+        <RouteInfoPanel
+          route={selectedRoute}
+          cityMap={routeCityMap}
+          open={routePanelOpen}
+          onClose={() => {
+            setSelectedRoute(null);
+            setRoutePanelOpen(true);
+            if (selectedBundeslandId) setBundeslandPanelOpen(true);
+            else if (selectedCountryCode) setCountryPanelOpen(true);
+            else setPanelOpen(true);
+          }}
+          onToggle={() => setRoutePanelOpen((o) => !o)}
+        />
+      ) : isGermanyCity && panelCity ? (
         <GermanyCityInfoPanel
           city={panelCity}
           open={panelOpen}

@@ -21,12 +21,12 @@
   },
   "layers": {
     "title": "Ebenen",
-    "routes": "Routen",
-    "road": "Straße",
-    "rail": "Schiene",
-    "air": "Luft",
-    "sea": "See",
-    "river": "Fluss",
+    "routes": "Alle Routen",
+    "road": "Straßengüterverkehr",
+    "rail": "Schienengüterverkehr",
+    "air": "Luftfracht",
+    "sea": "Seefracht",
+    "river": "Binnenschifffahrt",
     "companies": "Unternehmen",
     "jobs": "Jobs",
     "warehouses": "Lager"
@@ -158,6 +158,45 @@
       "analytics": "Analytics",
       "partners": "Partner",
       "activity": "Aktivität"
+    }
+  },
+  "routePanel": {
+    "title": "Route {{route}}",
+    "from": "Von",
+    "to": "Nach",
+    "hours": "Std.",
+    "industries": "Hauptbranchen",
+    "delivery": "Durchschnittliche Lieferzeit: {{time}}",
+    "lastActivity": "Letzte Aktivität: {{time}}",
+    "warehousesHint": "Lager und Logistikzentren sind entlang dieser Korridor verfügbar.",
+    "status": {
+      "active": "Aktiv",
+      "congested": "Überlastet",
+      "maintenance": "Wartung",
+      "seasonal": "Saisonal"
+    },
+    "modes": {
+      "road": "Straßengüterverkehr",
+      "rail": "Schienengüterverkehr",
+      "air": "Luftfracht",
+      "sea": "Seefracht",
+      "river": "Binnenschifffahrt"
+    },
+    "stats": {
+      "distance": "Distanz",
+      "time": "Geschätzte Zeit (Std.)",
+      "volume": "Monatsvolumen (t)",
+      "offers": "Transportangebote",
+      "orders": "Aktive Aufträge",
+      "companies": "Unternehmen",
+      "price": "Preisindex",
+      "reliability": "Zuverlässigkeit",
+      "co2": "CO₂-Schätzung"
+    },
+    "actions": {
+      "open": "Route öffnen",
+      "search": "Transport suchen",
+      "create": "Angebot erstellen"
     }
   }
 }

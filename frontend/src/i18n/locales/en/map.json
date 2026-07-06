@@ -21,12 +21,12 @@
   },
   "layers": {
     "title": "Layers",
-    "routes": "Routes",
-    "road": "Road",
-    "rail": "Rail",
-    "air": "Air",
-    "sea": "Sea",
-    "river": "River",
+    "routes": "All Routes",
+    "road": "Road Freight",
+    "rail": "Rail Freight",
+    "air": "Air Cargo",
+    "sea": "Sea Routes",
+    "river": "River / Inland",
     "companies": "Companies",
     "jobs": "Jobs",
     "warehouses": "Warehouses"
@@ -158,6 +158,45 @@
       "analytics": "Analytics",
       "partners": "Partners",
       "activity": "Activity"
+    }
+  },
+  "routePanel": {
+    "title": "Route {{route}}",
+    "from": "From",
+    "to": "To",
+    "hours": "h",
+    "industries": "Main industries",
+    "delivery": "Average delivery time: {{time}}",
+    "lastActivity": "Last activity: {{time}}",
+    "warehousesHint": "Warehouses and logistics hubs are available along this corridor.",
+    "status": {
+      "active": "Active",
+      "congested": "Congested",
+      "maintenance": "Maintenance",
+      "seasonal": "Seasonal"
+    },
+    "modes": {
+      "road": "Road Freight",
+      "rail": "Rail Freight",
+      "air": "Air Cargo",
+      "sea": "Sea Freight",
+      "river": "River / Inland"
+    },
+    "stats": {
+      "distance": "Distance",
+      "time": "Est. time (h)",
+      "volume": "Monthly volume (t)",
+      "offers": "Transport offers",
+      "orders": "Active orders",
+      "companies": "Companies",
+      "price": "Price index",
+      "reliability": "Reliability",
+      "co2": "CO₂ est."
+    },
+    "actions": {
+      "open": "Open route",
+      "search": "Find transport",
+      "create": "Create offer"
     }
   }
 }

@@ -35,11 +35,11 @@ export const EUROPE_BOUNDS: LatLngBoundsExpression = [
 ];
 
 export const ROUTE_COLORS = {
-  road: '#38bdf8',
-  rail: '#34d399',
-  air: '#7dd3fc',
-  sea: '#60a5fa',
-  river: '#22d3ee',
+  road: '#2a9fc9',
+  rail: '#5b7f9d',
+  air: '#b8cfe8',
+  sea: '#3d9eae',
+  river: '#3aada8',
 } as const;
 
 export const ROUTE_DASH = {

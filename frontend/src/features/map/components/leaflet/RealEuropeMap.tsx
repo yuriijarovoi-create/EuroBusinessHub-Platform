@@ -19,6 +19,8 @@ import { getResolvedMapTheme, useMapThemeRevision } from '../../utils/mapThemeUt
 import { LeafletMapProvider } from '../../context/LeafletMapContext';
 import { EuropeGeoJsonLayer } from './EuropeGeoJsonLayer';
 import { LeafletRouteLayer } from './LeafletRouteLayer';
+import { LeafletHubHaloLayer } from './LeafletHubHaloLayer';
+import { LeafletPortLayer } from './LeafletPortLayer';
 import { LeafletCityMarkers } from './LeafletCityMarkers';
 import { LeafletCityTooltipLayer } from './LeafletCityHoverTooltip';
 import { MapInstanceCapture, LeafletFitEurope, LeafletCountryFocus, LeafletCityFocus } from './LeafletMapBridge';
@@ -32,6 +34,8 @@ interface RealEuropeMapProps {
   routes: BusinessRouteDef[];
   cities: MapCityRecord[];
   cityMap: Map<string, MapCityRecord>;
+  /** All map cities — used for route endpoint coordinates only */
+  routeCityMap: Map<string, MapCityRecord>;
   layers: MapLayerState;
   selectedCountryCode?: string;
   selectedBundeslandId?: string;
@@ -47,6 +51,8 @@ interface RealEuropeMapProps {
   onClearTooltip: () => void;
   onMapBackgroundClick: () => void;
   onCountryHover?: (isoCode: string | null) => void;
+  onRouteSelect?: (route: BusinessRouteDef) => void;
+  selectedRouteId?: string;
   children?: React.ReactNode;
 }
 
@@ -54,6 +60,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   routes,
   cities,
   cityMap,
+  routeCityMap,
   layers,
   selectedCountryCode,
   selectedBundeslandId,
@@ -69,6 +76,8 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   onClearTooltip,
   onMapBackgroundClick,
   onCountryHover,
+  onRouteSelect,
+  selectedRouteId,
   children,
 }: RealEuropeMapProps) {
   const [leafletMap, setLeafletMap] = useState<LeafletMap | null>(null);
@@ -160,7 +169,20 @@ export const RealEuropeMap = memo(function RealEuropeMap({
               onSelect={onBundeslandSelect}
             />
           )}
-          {layers.routes && <LeafletRouteLayer routes={routes} cityMap={cityMap} />}
+          {layers.routes && (
+            <>
+              <LeafletHubHaloLayer cityMap={routeCityMap} />
+              <LeafletRouteLayer
+                routes={routes}
+                cityMap={routeCityMap}
+                selectedCountryCode={selectedCountryCode}
+                selectedCityId={selectedCityId}
+                selectedRouteId={selectedRouteId}
+                onRouteSelect={onRouteSelect}
+              />
+              <LeafletPortLayer cityMap={routeCityMap} />
+            </>
+          )}
           {selectedCountryCode === 'DE' && (
             <LeafletGermanyInfrastructureLayer
               active

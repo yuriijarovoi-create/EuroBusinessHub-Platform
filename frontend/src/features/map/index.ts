@@ -23,7 +23,7 @@ export {
   FEATURED_CITY_IDS,
   DEFAULT_HUB_ID,
 } from './data/mapData';
-export { getEuropeRoutes, BUSINESS_ROUTES, getRoutesForCity } from './data/routeData';
+export { getEuropeRoutes, getRoutesForMapView, BUSINESS_ROUTES, getRoutesForCity } from './data/routeData';
 export { ACTIVITY_STATS } from './data/activityData';
 export type {
   MapCityRecord,
@@ -32,6 +32,9 @@ export type {
   MapLayerState,
   CityPanelTab,
   ActivityStats,
+  RouteScope,
+  RoutePriorityTier,
+  RouteTransportType,
 } from './types/mapTypes';
 export { DEFAULT_LAYER_STATE } from './types/mapTypes';
 export { MapProvider, useMapContext } from './context/MapContext';

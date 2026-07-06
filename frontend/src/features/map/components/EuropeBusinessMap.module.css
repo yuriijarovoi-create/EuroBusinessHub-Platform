@@ -1136,3 +1136,306 @@
     right: min(260px, 28vw);
   }
 }
+
+/* ── Route corridor UI ── */
+.routeInfoPanel {
+  z-index: 28;
+}
+
+.routeEndpoints {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm);
+  background: var(--map-panel-subtle-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--map-panel-subtle-border);
+}
+
+.routeEndpointLabel {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--map-panel-muted);
+  margin-bottom: 2px;
+}
+
+.routeEndpointArrow {
+  color: var(--map-panel-muted);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.routeDeliveryNote,
+.routeWarehousesNote {
+  margin: var(--space-sm) 0 0;
+  font-size: var(--font-size-xs);
+  color: var(--map-panel-muted);
+  line-height: 1.45;
+}
+
+.routeIndustries {
+  margin-top: var(--space-md);
+}
+
+.routeIndustryTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+.routeIndustryTag {
+  padding: 2px 8px;
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--map-route-rail, #34d399) 18%, transparent);
+  color: var(--map-panel-text);
+  border: 1px solid var(--map-panel-subtle-border);
+}
+
+:global(.ebh-route-leaflet-tooltip) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+:global(.ebh-route-tooltip) {
+  min-width: 168px;
+  padding: 10px 12px;
+  background: var(--map-tooltip-bg, rgb(15 23 42 / 0.92));
+  border: 1px solid var(--map-tooltip-border, rgb(148 163 184 / 0.35));
+  border-radius: 10px;
+  box-shadow: var(--map-panel-shadow);
+  backdrop-filter: blur(10px);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--map-tooltip-text, #e2e8f0);
+}
+
+:global(.ebh-route-tooltip-title) {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+:global(.ebh-route-tooltip-row) {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 3px;
+  color: var(--map-panel-muted, #94a3b8);
+}
+
+:global(.ebh-route-tooltip-row strong) {
+  color: var(--map-tooltip-text, #e2e8f0);
+  font-weight: 500;
+}
+
+:global(.ebh-route-tooltip-industries) {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgb(148 163 184 / 0.2);
+  font-size: 11px;
+  color: var(--map-panel-muted, #94a3b8);
+}
+
+:global(.ebh-route-vehicle-wrap) {
+  background: transparent !important;
+  border: none !important;
+}
+
+:global(.ebh-route-vehicle) {
+  display: block;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px rgb(0 0 0 / 0.45));
+}
+
+@keyframes ebh-route-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+:global(.ebh-route-pulse-road),
+:global(.ebh-route-pulse-river) {
+  animation: ebh-route-pulse 3.2s ease-in-out infinite;
+}
+
+:global(.ebh-route-pulse-air) {
+  animation: ebh-route-pulse 2.6s ease-in-out infinite;
+}
+
+:global(.ebh-route-highlighted) {
+  filter: drop-shadow(0 0 2px rgb(29 111 216 / 0.25));
+}
+
+:global(.ebh-route-selected) {
+  filter: drop-shadow(0 0 3px rgb(29 111 216 / 0.35));
+}
+
+:global(.ebh-route-tooltip-type) {
+  font-size: 11px;
+  color: var(--map-panel-muted, #64748b);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+:global(.ebh-route-status-active) {
+  color: #15803d;
+}
+
+:global(.ebh-route-status-congested) {
+  color: #c2410c;
+}
+
+:global(.ebh-vehicle-wrap) {
+  background: transparent !important;
+  border: none !important;
+}
+
+:global(.ebh-vehicle-icon) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.35));
+}
+
+:global(.ebh-order-pulse) {
+  animation: ebh-order-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ebh-order-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+.routeMetaLine {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--font-size-xs);
+  color: var(--map-panel-muted);
+}
+
+.routeActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.routeActionPrimary {
+  padding: 10px 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #1d6fd8, #1e4a8c);
+  color: #fff;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.routeActionSecondary {
+  padding: 8px 14px;
+  border: 1px solid var(--map-panel-subtle-border);
+  border-radius: var(--radius-md);
+  background: var(--map-panel-subtle-bg);
+  color: var(--map-panel-text);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.routeActionPrimary:hover,
+.routeActionSecondary:hover {
+  opacity: 0.92;
+}
+
+:global(.ebh-hub-halo) {
+  pointer-events: none;
+}
+
+:global(.ebh-port-anchor-wrap) {
+  background: transparent !important;
+  border: none !important;
+}
+
+:global(.ebh-port-anchor) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.62;
+}
+
+:global(.ebh-vehicle-icon) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+  filter: drop-shadow(0 1px 2px rgb(15 23 42 / 0.35));
+}
+
+:global(.ebh-vehicle-hover .ebh-vehicle-icon) {
+  transform: scale(1.08);
+}
+
+:global(.ebh-route) {
+  transition: opacity 0.35s ease, stroke-width 0.25s ease;
+}
+
+/* Level 1 — European backbone */
+:global(.ebh-route-tier-trunk.ebh-route-road) {
+  filter: drop-shadow(0 0 3px rgb(42 126 200 / 0.6)) drop-shadow(0 0 10px rgb(42 126 200 / 0.22));
+}
+
+:global(.ebh-route-tier-trunk.ebh-route-rail),
+:global(.ebh-route-tier-trunk.ebh-route-rail-track) {
+  filter: drop-shadow(0 0 2px rgb(74 143 196 / 0.55)) drop-shadow(0 0 8px rgb(74 143 196 / 0.18));
+}
+
+:global(.ebh-route-tier-trunk.ebh-route-sea) {
+  filter: drop-shadow(0 0 2px rgb(58 158 184 / 0.5)) drop-shadow(0 0 8px rgb(58 158 184 / 0.16));
+}
+
+:global(.ebh-route-tier-trunk.ebh-route-air) {
+  filter: drop-shadow(0 0 1px rgb(107 168 212 / 0.4));
+}
+
+/* Level 2 — international: minimal glow */
+:global(.ebh-route-tier-international.ebh-route-road),
+:global(.ebh-route-tier-international.ebh-route-rail) {
+  filter: drop-shadow(0 0 1px rgb(42 126 200 / 0.28));
+}
+
+:global(.ebh-route-tier-national),
+:global(.ebh-route-tier-local) {
+  filter: none;
+}
+
+:global(.ebh-route-rail-track-bg) {
+  pointer-events: none;
+}
+
+:global(.ebh-route-locked) {
+  filter: drop-shadow(0 0 2px rgb(42 159 201 / 0.22));
+}
+
+:global(.ebh-freight-marker) {
+  pointer-events: none;
+}
+
+:global(.ebh-route-leaflet-tooltip) {
+  transition: opacity 0.2s ease;
+}
