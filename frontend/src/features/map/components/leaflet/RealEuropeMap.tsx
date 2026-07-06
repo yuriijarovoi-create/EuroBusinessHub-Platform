@@ -17,6 +17,7 @@ import { LeafletMapProvider } from '../../context/LeafletMapContext';
 import { EuropeGeoJsonLayer } from './EuropeGeoJsonLayer';
 import { LeafletRouteLayer } from './LeafletRouteLayer';
 import { LeafletCityMarkers } from './LeafletCityMarkers';
+import { LeafletCityTooltipLayer } from './LeafletCityHoverTooltip';
 import { MapInstanceCapture, LeafletFitEurope, LeafletCountryFocus, LeafletCityFocus } from './LeafletMapBridge';
 import { GermanyBundeslandLayer } from './GermanyBundeslandLayer';
 import { GermanyCityLabels } from './GermanyCityLabels';
@@ -32,13 +33,16 @@ interface RealEuropeMapProps {
   selectedCountryCode?: string;
   selectedBundeslandId?: string;
   selectedCityId?: string;
-  hoveredCityId?: string;
+  activeTooltipId?: string | null;
   searchResultCityId?: string;
   countries: MapCountry[];
   onCountrySelect?: (country: MapCountry) => void;
   onBundeslandSelect?: (bundeslandId: string) => void;
   onCitySelect: (city: MapCityRecord) => void;
-  onCityHover: (city: MapCityRecord | null) => void;
+  onTooltipEnter: (cityId: string) => void;
+  onTooltipLeave: () => void;
+  onClearTooltip: () => void;
+  onMapBackgroundClick: () => void;
   onCountryHover?: (isoCode: string | null) => void;
   children?: React.ReactNode;
 }
@@ -51,13 +55,16 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   selectedCountryCode,
   selectedBundeslandId,
   selectedCityId,
-  hoveredCityId,
+  activeTooltipId,
   searchResultCityId,
   countries,
   onCountrySelect,
   onBundeslandSelect,
   onCitySelect,
-  onCityHover,
+  onTooltipEnter,
+  onTooltipLeave,
+  onClearTooltip,
+  onMapBackgroundClick,
   onCountryHover,
   children,
 }: RealEuropeMapProps) {
@@ -153,18 +160,25 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           <LeafletCityMarkers
             cities={cities}
             selectedCityId={selectedCityId}
-            hoveredCityId={hoveredCityId}
+            activeTooltipId={activeTooltipId}
             searchResultCityId={searchResultCityId}
-            layers={layers}
             onSelect={onCitySelect}
-            onHover={onCityHover}
+            onTooltipEnter={onTooltipEnter}
+            onTooltipLeave={onTooltipLeave}
+            onClearTooltip={onClearTooltip}
+            onMapBackgroundClick={onMapBackgroundClick}
+          />
+          <LeafletCityTooltipLayer
+            activeTooltipId={activeTooltipId ?? null}
+            cityMap={cityMap}
+            layers={layers}
           />
           {selectedCountryCode === 'DE' && (
             <GermanyCityLabels
               active
               cities={cities}
               selectedCityId={selectedCityId}
-              hoveredCityId={hoveredCityId}
+              hoveredCityId={activeTooltipId ?? undefined}
               searchResultCityId={searchResultCityId}
             />
           )}

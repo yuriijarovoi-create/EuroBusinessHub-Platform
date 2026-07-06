@@ -1,8 +1,7 @@
 import { memo, useEffect, useMemo } from 'react';
-import { Marker, Tooltip, useMap } from 'react-leaflet';
+import { Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import { useTranslation } from 'react-i18next';
-import type { MapCityRecord, MapLayerState } from '../../types/mapTypes';
+import type { MapCityRecord } from '../../types/mapTypes';
 import { DEFAULT_HUB_ID } from '../../data/mapData';
 import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
 import {
@@ -14,16 +13,18 @@ import {
 interface LeafletCityMarkersProps {
   cities: MapCityRecord[];
   selectedCityId?: string;
-  hoveredCityId?: string;
+  activeTooltipId?: string | null;
   searchResultCityId?: string;
-  layers: MapLayerState;
   onSelect: (city: MapCityRecord) => void;
-  onHover: (city: MapCityRecord | null) => void;
+  onTooltipEnter: (cityId: string) => void;
+  onTooltipLeave: () => void;
+  onClearTooltip: () => void;
+  onMapBackgroundClick: () => void;
 }
 
 function createCityIcon(
   city: MapCityRecord,
-  isSelected: boolean,
+  isHighlighted: boolean,
   isHub: boolean,
   displayTier: CityDisplayTier,
 ) {
@@ -37,7 +38,7 @@ function createCityIcon(
     displayTier === 2 ? 'ebh-marker-tier2' : '',
     displayTier === 3 ? 'ebh-marker-tier3' : '',
     displayTier === 4 ? 'ebh-marker-tier4' : '',
-    isSelected ? 'ebh-marker-selected' : '',
+    isHighlighted ? 'ebh-marker-selected' : '',
     displayTier >= 3 && !isHub ? 'ebh-marker-small' : '',
   ]
     .filter(Boolean)
@@ -51,92 +52,116 @@ function createCityIcon(
   });
 }
 
+interface LeafletCityMarkerProps {
+  city: MapCityRecord;
+  isSelected: boolean;
+  isHovered: boolean;
+  isMobile: boolean;
+  onSelect: (city: MapCityRecord) => void;
+  onTooltipEnter: (cityId: string) => void;
+  onTooltipLeave: () => void;
+}
+
+const LeafletCityMarker = memo(
+  function LeafletCityMarker({
+    city,
+    isSelected,
+    isHovered,
+    isMobile,
+    onSelect,
+    onTooltipEnter,
+    onTooltipLeave,
+  }: LeafletCityMarkerProps) {
+    const isHub = city.id === DEFAULT_HUB_ID;
+    const isHighlighted = isSelected || isHovered;
+    const displayTier = getCityDisplayTier(city);
+    const icon = useMemo(
+      () => createCityIcon(city, isHighlighted, isHub, displayTier),
+      [city, isHighlighted, isHub, displayTier],
+    );
+
+    return (
+      <Marker
+        position={[city.lat, city.lng]}
+        icon={icon}
+        zIndexOffset={
+          isHub ? 1000 : isHighlighted ? 500 : displayTier === 1 ? 250 : displayTier === 2 ? 120 : 0
+        }
+        eventHandlers={{
+          click: (e) => {
+            L.DomEvent.stopPropagation(e);
+            onSelect(city);
+          },
+          ...(!isMobile
+            ? {
+                mouseover: () => onTooltipEnter(city.id),
+                mouseout: () => onTooltipLeave(),
+              }
+            : {}),
+        }}
+      />
+    );
+  },
+  (prev, next) =>
+    prev.city.id === next.city.id &&
+    prev.isSelected === next.isSelected &&
+    prev.isHovered === next.isHovered &&
+    prev.isMobile === next.isMobile,
+);
+
 export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   cities,
   selectedCityId,
-  hoveredCityId,
+  activeTooltipId,
   searchResultCityId,
-  layers,
   onSelect,
-  onHover,
+  onTooltipEnter,
+  onTooltipLeave,
+  onClearTooltip,
+  onMapBackgroundClick,
 }: LeafletCityMarkersProps) {
-  const { t } = useTranslation('map');
   const map = useMap();
   const { zoom, isMobile } = useLeafletMapViewport();
 
+  const hoveredCityId = activeTooltipId ?? undefined;
+
   useEffect(() => {
-    const handler = () => onHover(null);
-    map.on('click', handler);
+    map.on('click', onMapBackgroundClick);
+    map.on('dragstart', onClearTooltip);
+    map.on('zoomstart', onClearTooltip);
+
+    const container = map.getContainer();
+    container.addEventListener('wheel', onClearTooltip, { passive: true });
+
     return () => {
-      map.off('click', handler);
+      map.off('click', onMapBackgroundClick);
+      map.off('dragstart', onClearTooltip);
+      map.off('zoomstart', onClearTooltip);
+      container.removeEventListener('wheel', onClearTooltip);
     };
-  }, [map, onHover]);
+  }, [map, onClearTooltip, onMapBackgroundClick]);
 
   const visibleCities = useMemo(
     () => getVisibleCityNodes(cities, zoom, selectedCityId, hoveredCityId, searchResultCityId, isMobile),
     [cities, zoom, selectedCityId, hoveredCityId, searchResultCityId, isMobile],
   );
 
-  const markers = useMemo(
-    () =>
-      visibleCities.map((city) => {
-        const isHub = city.id === DEFAULT_HUB_ID;
-        const isSelected = city.id === selectedCityId || city.id === hoveredCityId;
-        const displayTier = getCityDisplayTier(city);
-        const icon = createCityIcon(city, isSelected, isHub, displayTier);
-
-        return (
-          <Marker
-            key={city.id}
-            position={[city.lat, city.lng]}
-            icon={icon}
-            zIndexOffset={
-              isHub ? 1000 : isSelected ? 500 : displayTier === 1 ? 250 : displayTier === 2 ? 120 : 0
-            }
-            eventHandlers={{
-              click: (e) => {
-                L.DomEvent.stopPropagation(e);
-                onHover(city);
-                onSelect(city);
-              },
-              mouseover: () => onHover(city),
-              mouseout: () => onHover(null),
-            }}
-          >
-            <Tooltip
-              direction="top"
-              offset={[0, displayTier >= 3 ? -10 : -14]}
-              opacity={0.95}
-              className="ebh-tooltip"
-              sticky
-            >
-              <strong>{city.name}</strong>
-              <br />
-              {city.germanyProfile?.mainIndustry ?? city.country}
-              {layers.companies && (
-                <>
-                  <br />
-                  {t('tooltip.companies', { count: city.metrics.companies })}
-                </>
-              )}
-              {layers.jobs && (
-                <>
-                  <br />
-                  {t('tooltip.jobs', { count: city.metrics.jobs })}
-                </>
-              )}
-              <>
-                <br />
-                {t('tooltip.aiScore', { score: city.metrics.aiScore })}
-              </>
-            </Tooltip>
-          </Marker>
-        );
-      }),
-    [visibleCities, selectedCityId, hoveredCityId, layers, onSelect, onHover, t],
+  return (
+    <>
+      {visibleCities.map((city) => (
+        <LeafletCityMarker
+          key={city.id}
+          city={city}
+          isSelected={city.id === selectedCityId}
+          isHovered={city.id === activeTooltipId}
+          isMobile={isMobile}
+          onSelect={onSelect}
+          onTooltipEnter={onTooltipEnter}
+          onTooltipLeave={onTooltipLeave}
+        />
+      ))}
+    </>
   );
-
-  return <>{markers}</>;
 });
 
 /** Fly to hub on first load */

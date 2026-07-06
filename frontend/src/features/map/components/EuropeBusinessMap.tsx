@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useState, useEffect } from 'react';
+import { useCallback, useMemo, useState, useEffect, useRef } from 'react';
+import { isMobileViewport } from '../utils/cityVisibilityUtils';
 import type { MapCountry } from '@shared/types';
 import { DEFAULT_LAYER_STATE, type MapLayerState } from '../types/mapTypes';
 import type { MapCityRecord } from '../types/mapTypes';
@@ -46,7 +47,8 @@ export function EuropeBusinessMap({
   const [countryPanelOpen, setCountryPanelOpen] = useState(true);
   const [selectedBundeslandId, setSelectedBundeslandId] = useState<string | undefined>();
   const [bundeslandPanelOpen, setBundeslandPanelOpen] = useState(false);
-  const [hoveredCity, setHoveredCity] = useState<MapCityRecord | null>(null);
+  const [activeTooltipId, setActiveTooltipId] = useState<string | null>(null);
+  const tooltipLeaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [panelCity, setPanelCity] = useState<MapCityRecord | null>(
     () => getDefaultHubCity() ?? null,
   );
@@ -87,6 +89,53 @@ export function EuropeBusinessMap({
       : getEuropeRoutes();
     return filterRoutesByLayers(base, layers);
   }, [selectedCountryCode, visibleCities, layers]);
+
+  const clearTooltipLeaveTimer = useCallback(() => {
+    if (tooltipLeaveTimerRef.current) {
+      clearTimeout(tooltipLeaveTimerRef.current);
+      tooltipLeaveTimerRef.current = null;
+    }
+  }, []);
+
+  const handleTooltipEnter = useCallback(
+    (cityId: string) => {
+      clearTooltipLeaveTimer();
+      setActiveTooltipId(cityId);
+    },
+    [clearTooltipLeaveTimer],
+  );
+
+  const handleTooltipLeave = useCallback(() => {
+    clearTooltipLeaveTimer();
+    tooltipLeaveTimerRef.current = setTimeout(() => {
+      setActiveTooltipId(null);
+      tooltipLeaveTimerRef.current = null;
+    }, 150);
+  }, [clearTooltipLeaveTimer]);
+
+  const clearActiveTooltip = useCallback(() => {
+    clearTooltipLeaveTimer();
+    setActiveTooltipId(null);
+  }, [clearTooltipLeaveTimer]);
+
+  const handleMapBackgroundClick = useCallback(() => {
+    clearActiveTooltip();
+    if (isMobileViewport()) {
+      setPanelOpen(false);
+    }
+  }, [clearActiveTooltip]);
+
+  useEffect(() => {
+    return () => clearTooltipLeaveTimer();
+  }, [clearTooltipLeaveTimer]);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') clearActiveTooltip();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [clearActiveTooltip]);
 
   const handleSelect = useCallback((city: MapCityRecord) => {
     setPanelCity(city);
@@ -148,13 +197,16 @@ export function EuropeBusinessMap({
           selectedCountryCode={selectedCountryCode}
           selectedBundeslandId={selectedBundeslandId}
           selectedCityId={panelCity?.id}
-          hoveredCityId={hoveredCity?.id}
+          activeTooltipId={activeTooltipId}
           searchResultCityId={focusCityId}
           countries={countries}
           onCountrySelect={onCountrySelect}
           onBundeslandSelect={handleBundeslandSelect}
           onCitySelect={handleSelect}
-          onCityHover={setHoveredCity}
+          onTooltipEnter={handleTooltipEnter}
+          onTooltipLeave={handleTooltipLeave}
+          onClearTooltip={clearActiveTooltip}
+          onMapBackgroundClick={handleMapBackgroundClick}
         >
           <div className={styles.mapControlsSlot}>
             <MapControls />

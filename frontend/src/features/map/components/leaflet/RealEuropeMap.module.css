@@ -124,6 +124,40 @@
   font-size: 11px !important;
   line-height: 1.45 !important;
   box-shadow: var(--map-panel-shadow) !important;
+  pointer-events: none !important;
+}
+
+:global(.leaflet-tooltip.ebh-tooltip.ebh-tooltip-enter) {
+  animation: ebh-tooltip-fade-in 150ms ease-out;
+}
+
+:global(.leaflet-tooltip.ebh-tooltip.ebh-tooltip-exit) {
+  animation: ebh-tooltip-fade-out 150ms ease-in forwards;
+}
+
+:global(.ebh-tooltip-anchor) {
+  width: 0 !important;
+  height: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+@keyframes ebh-tooltip-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ebh-tooltip-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 :global(.leaflet-tooltip-top.ebh-tooltip::before) {
