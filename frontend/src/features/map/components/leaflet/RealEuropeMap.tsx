@@ -75,10 +75,6 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   const [mapReady, setMapReady] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [tooltipEligibleIds, setTooltipEligibleIds] = useState<Set<string>>(() => new Set());
-  const [spiderTooltipPositions, setSpiderTooltipPositions] = useState<Map<
-    string,
-    { lat: number; lng: number }
-  > | null>(null);
   const themeRev = useMapThemeRevision();
   const tileUrl = useMemo(
     () => getTileUrlForTheme(getResolvedMapTheme()),
@@ -118,13 +114,6 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   const handleVisibleIndividualsChange = useCallback((ids: Set<string>) => {
     setTooltipEligibleIds(ids);
   }, []);
-
-  const handleSpiderTooltipPositionsChange = useCallback(
-    (positions: Map<string, { lat: number; lng: number }> | null) => {
-      setSpiderTooltipPositions(positions);
-    },
-    [],
-  );
 
   const controls = useMemo(
     () => ({
@@ -190,14 +179,12 @@ export const RealEuropeMap = memo(function RealEuropeMap({
             onClearTooltip={onClearTooltip}
             onMapBackgroundClick={onMapBackgroundClick}
             onVisibleIndividualsChange={handleVisibleIndividualsChange}
-            onSpiderTooltipPositionsChange={handleSpiderTooltipPositionsChange}
           />
           <LeafletCityTooltipLayer
             activeTooltipId={activeTooltipId ?? null}
             cityMap={cityMap}
             layers={layers}
             tooltipEligibleIds={tooltipEligibleIds}
-            tooltipPositionOverrides={spiderTooltipPositions ?? undefined}
           />
           {selectedCountryCode === 'DE' && (
             <GermanyCityLabels

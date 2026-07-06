@@ -28,6 +28,8 @@
   mix-blend-mode: normal !important;
   visibility: visible !important;
   opacity: 1 !important;
+  filter: contrast(var(--map-tile-contrast, 1)) saturate(var(--map-tile-saturate, 1))
+    brightness(var(--map-tile-brightness, 1)) hue-rotate(var(--map-tile-hue-rotate, 0deg));
 }
 
 .map:global(.leaflet-fade-anim) :global(.leaflet-tile) {
@@ -62,7 +64,9 @@
   border-radius: 50%;
   background: var(--map-marker-core);
   border: 2px solid var(--map-marker-core-border);
-  box-shadow: 0 0 6px color-mix(in srgb, var(--map-marker-core) calc(var(--map-marker-glow) * 100%), transparent);
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 6px color-mix(in srgb, var(--map-marker-core) calc(var(--map-marker-glow) * 100%), transparent);
   opacity: var(--map-node-opacity, 1);
   position: relative;
   z-index: 2;
@@ -81,7 +85,9 @@
   width: 12px;
   height: 12px;
   background: var(--map-marker-tier1);
-  box-shadow: 0 0 8px var(--map-marker-tier1-glow);
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 8px var(--map-marker-tier1-glow);
 }
 
 :global(.ebh-marker-hub .ebh-marker-core) {
@@ -89,12 +95,16 @@
   height: 14px;
   background: var(--map-marker-hub);
   border-color: var(--map-marker-core-border);
-  box-shadow: 0 0 11px var(--map-marker-hub-glow);
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 11px var(--map-marker-hub-glow);
 }
 
 :global(.ebh-marker-selected .ebh-marker-core) {
   background: var(--map-marker-selected);
-  box-shadow: 0 0 12px var(--map-marker-selected-glow);
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 12px var(--map-marker-selected-glow);
 }
 
 :global(.ebh-marker-small .ebh-marker-core) {
@@ -116,6 +126,10 @@
 :global(.ebh-marker-tier5 .ebh-marker-core) {
   width: 5px;
   height: 5px;
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 4px color-mix(in srgb, var(--map-marker-core) calc(var(--map-marker-glow) * 100%), transparent);
+  opacity: 0.96;
 }
 
 :global(.ebh-marker-tier5 .ebh-marker-pulse) {
@@ -257,8 +271,8 @@
 }
 
 @keyframes ebh-pulse {
-  0%, 100% { transform: scale(0.85); opacity: 0.42; }
-  50% { transform: scale(1.12); opacity: 0.68; }
+  0%, 100% { transform: scale(0.85); opacity: 0.5; }
+  50% { transform: scale(1.12); opacity: 0.74; }
 }
 
 :global(.ebh-city-label-wrap) {
@@ -271,10 +285,11 @@
   left: 12px;
   top: -6px;
   white-space: nowrap;
-  font-size: 10px;
+  font-size: var(--map-label-size-tier2, 10px);
   font-weight: 600;
   color: var(--map-label-text);
   text-shadow: var(--map-label-shadow);
+  letter-spacing: 0.01em;
   pointer-events: none;
 }
 
@@ -282,7 +297,9 @@
   width: 13px;
   height: 13px;
   background: var(--map-marker-tier1);
-  box-shadow: 0 0 9px var(--map-marker-tier1-glow);
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 9px var(--map-marker-tier1-glow);
 }
 
 :global(.ebh-marker-tier1 .ebh-marker-pulse) {
@@ -295,7 +312,9 @@
   width: 10px;
   height: 10px;
   background: var(--map-marker-tier2);
-  box-shadow: 0 0 6px var(--map-marker-tier2-glow);
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 6px var(--map-marker-tier2-glow);
 }
 
 :global(.ebh-marker-tier2 .ebh-marker-pulse) {
@@ -307,21 +326,25 @@
   width: 7px;
   height: 7px;
   background: var(--map-marker-tier3);
-  box-shadow: 0 0 4px var(--map-marker-tier3-glow);
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 4px var(--map-marker-tier3-glow);
 }
 
 :global(.ebh-marker-tier3 .ebh-marker-pulse) {
   width: 12px;
   height: 12px;
-  opacity: 0.35;
+  opacity: 0.42;
 }
 
 :global(.ebh-marker-tier4 .ebh-marker-core) {
   width: 5px;
   height: 5px;
   background: var(--map-marker-tier3);
-  box-shadow: 0 0 3px var(--map-marker-tier3-glow);
-  opacity: 0.85;
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 4px var(--map-marker-tier3-glow);
+  opacity: 0.93;
 }
 
 :global(.ebh-marker-tier4 .ebh-marker-pulse) {
@@ -331,36 +354,37 @@
 }
 
 :global(.ebh-city-label-tier1) {
-  font-size: 11px;
+  font-size: var(--map-label-size-tier1, 12px);
   font-weight: 700;
   color: var(--map-label-tier1);
+  letter-spacing: 0.02em;
   text-shadow: var(--map-label-shadow);
 }
 
 :global(.ebh-city-label-tier2) {
-  font-size: 10px;
+  font-size: var(--map-label-size-tier2, 10.5px);
   font-weight: 600;
   color: var(--map-label-tier2);
 }
 
 :global(.ebh-city-label-tier3) {
-  font-size: 9px;
+  font-size: var(--map-label-size-tier3, 9.5px);
   font-weight: 500;
   color: var(--map-label-tier3);
 }
 
 :global(.ebh-city-label-tier4) {
-  font-size: 8px;
+  font-size: var(--map-label-size-tier4, 8px);
   font-weight: 500;
   color: var(--map-label-tier3);
-  opacity: 0.85;
+  opacity: var(--map-label-opacity-tier4, 0.88);
 }
 
 :global(.ebh-city-label-tier5) {
-  font-size: 7px;
+  font-size: var(--map-label-size-tier5, 7px);
   font-weight: 500;
   color: var(--map-label-tier3);
-  opacity: 0.72;
+  opacity: var(--map-label-opacity-tier5, 0.76);
 }
 
 :global(.ebh-city-label-selected) {

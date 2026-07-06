@@ -3,6 +3,10 @@ export interface RawLocalNodeDef {
   id: string; name: string; lat: number; lng: number; bundeslandId: string;
   federalState: string; region: string; population: number;
   nearestMajorCityId: string; nearestMajorCity: string; tourism?: boolean;
+  /** Verwaltungsgemeinde / municipality (optional metadata) */
+  municipality?: string;
+  /** Landkreis (optional metadata) */
+  landkreis?: string;
 }
 
 export const GERMANY_LOCAL_NODE_DEFS: RawLocalNodeDef[] = [

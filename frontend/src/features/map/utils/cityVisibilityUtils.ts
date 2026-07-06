@@ -66,9 +66,9 @@ export function minLabelZoomForTier(tier: CityDisplayTier, isMobile: boolean): n
     case 3:
       return isMobile ? 7.25 : 6.75;
     case 4:
-      return isMobile ? 9.5 : 9;
+      return isMobile ? 10 : 9.5;
     case 5:
-      return isMobile ? 12 : 11.5;
+      return isMobile ? 12.25 : 12;
     default:
       return 0;
   }
@@ -158,8 +158,8 @@ export function filterVisibleCityLabels(
   const sorted = [...candidates].sort((a, b) => labelPriority(b, ctx) - labelPriority(a, ctx));
 
   const minDist = isMobile
-    ? zoom >= 11 ? 0.18 : zoom >= 9 ? 0.28 : zoom >= 7 ? 0.42 : 0.55
-    : zoom >= 11 ? 0.14 : zoom >= 9 ? 0.22 : zoom >= 7 ? 0.32 : 0.48;
+    ? zoom >= 11 ? 0.17 : zoom >= 9 ? 0.26 : zoom >= 7 ? 0.38 : 0.52
+    : zoom >= 11 ? 0.15 : zoom >= 9 ? 0.24 : zoom >= 7 ? 0.34 : 0.5;
 
   const placed: { lat: number; lng: number }[] = [];
   const visible: MapCityRecord[] = [];
@@ -171,8 +171,8 @@ export function filterVisibleCityLabels(
       (p) => Math.hypot(p.lat - city.lat, p.lng - city.lng) < minDist,
     );
     if (tooClose && tier >= 4 && !forced) continue;
-    if (tooClose && tier === 3 && !forced && zoom < (isMobile ? 8 : 7.5)) continue;
-    if (tooClose && tier === 2 && !forced && zoom < (isMobile ? 7.5 : 7)) continue;
+    if (tooClose && tier === 3 && !forced && zoom < (isMobile ? 8.25 : 8)) continue;
+    if (tooClose && tier === 2 && !forced && zoom < (isMobile ? 7.75 : 7.25)) continue;
     placed.push({ lat: city.lat, lng: city.lng });
     visible.push(city);
   }

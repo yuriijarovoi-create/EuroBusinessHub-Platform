@@ -1,9 +1,8 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
 import { Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { MapCityRecord } from '../../types/mapTypes';
 import { DEFAULT_HUB_ID } from '../../data/mapData';
-import { EUROPE_MAX_ZOOM } from '../../config/leafletConfig';
 import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
 import {
   getCityDisplayTier,
@@ -13,25 +12,7 @@ import {
 import {
   buildCityMarkerDisplayItems,
   getIndividualVisibleCityIds,
-  type CityMarkerCluster,
 } from '../../utils/cityClusterUtils';
-import {
-  buildSpiderLayoutMap,
-  CLUSTER_ZOOM_DURATION_S,
-  findResidualCluster,
-  getClusterZoomTarget,
-  lerpSpiderPosition,
-  shouldSpiderfyCluster,
-  SPIDERFY_ANIM_MS,
-  type LatLngPoint,
-} from '../../utils/cityClusterSpiderfy';
-import {
-  clusterHasMoselVillage,
-  MOSEL_INDIVIDUAL_MARKER_ZOOM,
-} from '../../utils/moselVillageUtils';
-import { LeafletSpiderfyLegs } from './LeafletSpiderfyLegs';
-
-const CLUSTER_HIT_SIZE = 44;
 
 interface LeafletCityMarkersProps {
   cities: MapCityRecord[];
@@ -44,7 +25,23 @@ interface LeafletCityMarkersProps {
   onClearTooltip: () => void;
   onMapBackgroundClick: () => void;
   onVisibleIndividualsChange?: (ids: Set<string>) => void;
-  onSpiderTooltipPositionsChange?: (positions: Map<string, LatLngPoint> | null) => void;
+}
+
+function markerSizeForTier(
+  displayTier: CityDisplayTier,
+  isHub: boolean,
+  zoom: number,
+): number {
+  if (isHub) return 32;
+  const base =
+    displayTier === 1 ? 28
+    : displayTier === 2 ? 22
+    : displayTier === 3 ? 16
+    : displayTier === 4 ? 13
+    : 11;
+  if (displayTier >= 4 && zoom < 9) return Math.max(7, base - 4);
+  if (displayTier >= 4 && zoom < 11) return Math.max(8, base - 2);
+  return base;
 }
 
 function createCityIcon(
@@ -52,14 +49,9 @@ function createCityIcon(
   isHighlighted: boolean,
   isHub: boolean,
   displayTier: CityDisplayTier,
+  zoom: number,
 ) {
-  const size =
-    isHub ? 32
-    : displayTier === 1 ? 28
-    : displayTier === 2 ? 22
-    : displayTier === 3 ? 16
-    : displayTier === 4 ? 13
-    : 11;
+  const size = markerSizeForTier(displayTier, isHub, zoom);
   const anchor = size / 2;
 
   const cls = [
@@ -84,29 +76,12 @@ function createCityIcon(
   });
 }
 
-function createClusterIcon(count: number) {
-  const label = count > 99 ? '99+' : String(count);
-  return L.divIcon({
-    className: 'ebh-marker-wrap ebh-cluster-marker-wrap',
-    html: `<div class="ebh-cluster-marker" role="button" aria-label="Expand ${label} places"><span class="ebh-cluster-glow"></span><span class="ebh-cluster-core">${label}</span></div>`,
-    iconSize: [CLUSTER_HIT_SIZE, CLUSTER_HIT_SIZE],
-    iconAnchor: [CLUSTER_HIT_SIZE / 2, CLUSTER_HIT_SIZE / 2],
-  });
-}
-
-function clusterStableKey(cluster: CityMarkerCluster): string {
-  return cluster.cities
-    .map((c) => c.id)
-    .sort()
-    .join('|');
-}
-
 interface LeafletCityMarkerProps {
   city: MapCityRecord;
   isSelected: boolean;
   isHovered: boolean;
   isMobile: boolean;
-  position?: [number, number];
+  zoom: number;
   onSelect: (city: MapCityRecord) => void;
   onTooltipEnter: (cityId: string) => void;
   onTooltipLeave: () => void;
@@ -118,7 +93,7 @@ const LeafletCityMarker = memo(
     isSelected,
     isHovered,
     isMobile,
-    position,
+    zoom,
     onSelect,
     onTooltipEnter,
     onTooltipLeave,
@@ -127,13 +102,13 @@ const LeafletCityMarker = memo(
     const isHighlighted = isSelected || isHovered;
     const displayTier = getCityDisplayTier(city);
     const icon = useMemo(
-      () => createCityIcon(city, isHighlighted, isHub, displayTier),
-      [city, isHighlighted, isHub, displayTier],
+      () => createCityIcon(city, isHighlighted, isHub, displayTier, zoom),
+      [city, isHighlighted, isHub, displayTier, zoom],
     );
 
     return (
       <Marker
-        position={position ?? [city.lat, city.lng]}
+        position={[city.lat, city.lng]}
         icon={icon}
         interactive
         bubblingMouseEvents={false}
@@ -160,46 +135,8 @@ const LeafletCityMarker = memo(
     prev.isSelected === next.isSelected &&
     prev.isHovered === next.isHovered &&
     prev.isMobile === next.isMobile &&
-    prev.position?.[0] === next.position?.[0] &&
-    prev.position?.[1] === next.position?.[1],
+    prev.zoom === next.zoom,
 );
-
-interface LeafletCityClusterMarkerProps {
-  cluster: CityMarkerCluster;
-  onClusterClick: (cluster: CityMarkerCluster) => void;
-}
-
-const LeafletCityClusterMarker = memo(function LeafletCityClusterMarker({
-  cluster,
-  onClusterClick,
-}: LeafletCityClusterMarkerProps) {
-  const icon = useMemo(() => createClusterIcon(cluster.count), [cluster.count]);
-
-  const handleActivate = useCallback(
-    (e: L.LeafletMouseEvent) => {
-      L.DomEvent.stopPropagation(e);
-      L.DomEvent.preventDefault(e);
-      onClusterClick(cluster);
-    },
-    [cluster, onClusterClick],
-  );
-
-  return (
-    <Marker
-      position={[cluster.lat, cluster.lng]}
-      icon={icon}
-      interactive
-      bubblingMouseEvents={false}
-      riseOnHover
-      zIndexOffset={650}
-      eventHandlers={{
-        click: handleActivate,
-        mousedown: (e) => L.DomEvent.stopPropagation(e),
-        touchstart: (e) => L.DomEvent.stopPropagation(e),
-      }}
-    />
-  );
-});
 
 export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   cities,
@@ -212,52 +149,11 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   onClearTooltip,
   onMapBackgroundClick,
   onVisibleIndividualsChange,
-  onSpiderTooltipPositionsChange,
 }: LeafletCityMarkersProps) {
   const map = useMap();
   const { zoom, isMobile } = useLeafletMapViewport();
-  const [spiderfiedCluster, setSpiderfiedCluster] = useState<CityMarkerCluster | null>(null);
-  const [spiderProgress, setSpiderProgress] = useState(1);
-
-  const pendingClusterRef = useRef<CityMarkerCluster | null>(null);
-  const isProgrammaticClusterZoomRef = useRef(false);
-  const spiderAnimRef = useRef(0);
 
   const hoveredCityId = activeTooltipId ?? undefined;
-
-  const clearSpiderfy = useCallback(() => {
-    setSpiderfiedCluster(null);
-    setSpiderProgress(1);
-    onSpiderTooltipPositionsChange?.(null);
-    if (spiderAnimRef.current) {
-      cancelAnimationFrame(spiderAnimRef.current);
-      spiderAnimRef.current = 0;
-    }
-  }, [onSpiderTooltipPositionsChange]);
-
-  const startSpiderfyAnimation = useCallback((cluster: CityMarkerCluster) => {
-    setSpiderfiedCluster(cluster);
-    setSpiderProgress(0);
-    const layout = buildSpiderLayoutMap(cluster);
-    onSpiderTooltipPositionsChange?.(layout);
-
-    const start = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / SPIDERFY_ANIM_MS);
-      setSpiderProgress(t);
-      if (t < 1) {
-        spiderAnimRef.current = requestAnimationFrame(tick);
-      }
-    };
-    if (spiderAnimRef.current) cancelAnimationFrame(spiderAnimRef.current);
-    spiderAnimRef.current = requestAnimationFrame(tick);
-  }, [onSpiderTooltipPositionsChange]);
-
-  const handleMapBackgroundClick = useCallback(() => {
-    clearSpiderfy();
-    pendingClusterRef.current = null;
-    onMapBackgroundClick();
-  }, [clearSpiderfy, onMapBackgroundClick]);
 
   const forcedIds = useMemo(() => {
     const ids = new Set<string>();
@@ -267,101 +163,17 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
     return ids;
   }, [selectedCityId, hoveredCityId, searchResultCityId]);
 
-  const trySpiderfyAfterZoom = useCallback(() => {
-    const pending = pendingClusterRef.current;
-    if (!pending) return;
-
-    pendingClusterRef.current = null;
-    const cityIds = new Set(pending.cities.map((c) => c.id));
-    const visible = getVisibleCityNodes(
-      cities,
-      map.getZoom(),
-      selectedCityId,
-      hoveredCityId,
-      searchResultCityId,
-      isMobile,
-    );
-    const items = buildCityMarkerDisplayItems(visible, map.getZoom(), forcedIds);
-    const residual = findResidualCluster(items, cityIds);
-
-    if (
-      residual &&
-      shouldSpiderfyCluster(residual.cities, map.getZoom(), forcedIds)
-    ) {
-      startSpiderfyAnimation(residual);
-    }
-  }, [
-    cities,
-    map,
-    selectedCityId,
-    hoveredCityId,
-    searchResultCityId,
-    isMobile,
-    forcedIds,
-    startSpiderfyAnimation,
-  ]);
-
-  const handleClusterClick = useCallback(
-    (cluster: CityMarkerCluster) => {
-      clearSpiderfy();
-      const currentZoom = map.getZoom();
-      const targetZoom = getClusterZoomTarget(currentZoom);
-      const isMosel = clusterHasMoselVillage(cluster.cities);
-
-      if (isMosel) {
-        const moselTarget = Math.max(targetZoom, MOSEL_INDIVIDUAL_MARKER_ZOOM);
-        if (moselTarget > currentZoom) {
-          pendingClusterRef.current = cluster;
-          isProgrammaticClusterZoomRef.current = true;
-          map.flyTo([cluster.lat, cluster.lng], moselTarget, {
-            duration: CLUSTER_ZOOM_DURATION_S,
-            easeLinearity: 0.25,
-          });
-        }
-        return;
-      }
-
-      if (targetZoom <= currentZoom) {
-        startSpiderfyAnimation(cluster);
-        return;
-      }
-
-      pendingClusterRef.current = cluster;
-      isProgrammaticClusterZoomRef.current = true;
-      map.flyTo([cluster.lat, cluster.lng], targetZoom, {
-        duration: CLUSTER_ZOOM_DURATION_S,
-        easeLinearity: 0.25,
-      });
-    },
-    [map, clearSpiderfy, startSpiderfyAnimation],
-  );
+  const handleMapBackgroundClick = useCallback(() => {
+    onMapBackgroundClick();
+  }, [onMapBackgroundClick]);
 
   useEffect(() => {
-    const onDragStart = () => {
-      pendingClusterRef.current = null;
-      clearSpiderfy();
-      onClearTooltip();
-    };
-
-    const onZoomStart = () => {
-      onClearTooltip();
-      if (isProgrammaticClusterZoomRef.current) return;
-      pendingClusterRef.current = null;
-      clearSpiderfy();
-    };
-
-    const onZoomEnd = () => {
-      if (isProgrammaticClusterZoomRef.current) {
-        isProgrammaticClusterZoomRef.current = false;
-        trySpiderfyAfterZoom();
-        return;
-      }
-    };
+    const onDragStart = () => onClearTooltip();
+    const onZoomStart = () => onClearTooltip();
 
     map.on('click', handleMapBackgroundClick);
     map.on('dragstart', onDragStart);
     map.on('zoomstart', onZoomStart);
-    map.on('zoomend', onZoomEnd);
 
     const container = map.getContainer();
     container.addEventListener('wheel', onClearTooltip, { passive: true });
@@ -370,27 +182,9 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
       map.off('click', handleMapBackgroundClick);
       map.off('dragstart', onDragStart);
       map.off('zoomstart', onZoomStart);
-      map.off('zoomend', onZoomEnd);
       container.removeEventListener('wheel', onClearTooltip);
     };
-  }, [
-    map,
-    onClearTooltip,
-    handleMapBackgroundClick,
-    clearSpiderfy,
-    trySpiderfyAfterZoom,
-  ]);
-
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        pendingClusterRef.current = null;
-        clearSpiderfy();
-      }
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [clearSpiderfy]);
+  }, [map, onClearTooltip, handleMapBackgroundClick]);
 
   const displayItems = useMemo(() => {
     const visible = getVisibleCityNodes(
@@ -404,25 +198,10 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
     return buildCityMarkerDisplayItems(visible, zoom, forcedIds);
   }, [cities, zoom, selectedCityId, hoveredCityId, searchResultCityId, isMobile, forcedIds]);
 
-  const spiderfiedKey = spiderfiedCluster ? clusterStableKey(spiderfiedCluster) : null;
-
-  const spiderLayout = useMemo(() => {
-    if (!spiderfiedCluster) return null;
-    return buildSpiderLayoutMap(spiderfiedCluster);
-  }, [spiderfiedCluster]);
-
-  const spiderCenter = useMemo<LatLngPoint | null>(() => {
-    if (!spiderfiedCluster) return null;
-    return { lat: spiderfiedCluster.lat, lng: spiderfiedCluster.lng };
-  }, [spiderfiedCluster]);
-
-  const individualIds = useMemo(() => {
-    const ids = getIndividualVisibleCityIds(displayItems);
-    if (spiderfiedCluster) {
-      spiderfiedCluster.cities.forEach((c) => ids.add(c.id));
-    }
-    return ids;
-  }, [displayItems, spiderfiedCluster]);
+  const individualIds = useMemo(
+    () => getIndividualVisibleCityIds(displayItems),
+    [displayItems],
+  );
 
   useEffect(() => {
     onVisibleIndividualsChange?.(individualIds);
@@ -435,33 +214,13 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
 
   return (
     <>
-      {spiderfiedCluster && spiderLayout && spiderCenter && (
-        <LeafletSpiderfyLegs
-          cluster={spiderfiedCluster}
-          layout={spiderLayout}
-          progress={spiderProgress}
-        />
-      )}
       {displayItems.map((item) => {
-        if (item.type === 'cluster') {
-          if (spiderfiedKey === clusterStableKey(item)) return null;
-          return (
-            <LeafletCityClusterMarker
-              key={clusterStableKey(item)}
-              cluster={item}
-              onClusterClick={handleClusterClick}
-            />
-          );
-        }
-
-        if (spiderfiedCluster?.cities.some((c) => c.id === item.city.id)) {
-          return null;
-        }
-
+        if (item.type !== 'city') return null;
         return (
           <LeafletCityMarker
             key={item.city.id}
             city={item.city}
+            zoom={zoom}
             isSelected={item.city.id === selectedCityId}
             isHovered={item.city.id === activeTooltipId}
             isMobile={isMobile}
@@ -471,27 +230,6 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
           />
         );
       })}
-      {spiderfiedCluster &&
-        spiderLayout &&
-        spiderCenter &&
-        spiderfiedCluster.cities.map((city) => {
-          const target = spiderLayout.get(city.id);
-          if (!target) return null;
-          const pos = lerpSpiderPosition(spiderCenter, target, spiderProgress);
-          return (
-            <LeafletCityMarker
-              key={`spider-${city.id}`}
-              city={city}
-              position={[pos.lat, pos.lng]}
-              isSelected={city.id === selectedCityId}
-              isHovered={city.id === activeTooltipId}
-              isMobile={isMobile}
-              onSelect={onSelect}
-              onTooltipEnter={onTooltipEnter}
-              onTooltipLeave={onTooltipLeave}
-            />
-          );
-        })}
     </>
   );
 });

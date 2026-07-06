@@ -1,0 +1,212 @@
+﻿[
+  {
+    "id": "winningen",
+    "name": "Winningen",
+    "lat": 50.31388,
+    "lng": 7.518218,
+    "osm_type": "relation",
+    "osm_id": 546654,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Mayen-Koblenz",
+    "municipality": "Rhein-Mosel",
+    "display_name": "Winningen, Rhein-Mosel, Landkreis Mayen-Koblenz, Rheinland-Pfalz, 56333, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "hatzenport",
+    "name": "Hatzenport",
+    "lat": 50.227991,
+    "lng": 7.417635,
+    "osm_type": "relation",
+    "osm_id": 546634,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Mayen-Koblenz",
+    "municipality": "Rhein-Mosel",
+    "display_name": "Hatzenport, Rhein-Mosel, Landkreis Mayen-Koblenz, Rheinland-Pfalz, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "burgen",
+    "name": "Burgen",
+    "lat": 50.212045,
+    "lng": 7.388241,
+    "osm_type": "relation",
+    "osm_id": 546627,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Mayen-Koblenz",
+    "municipality": "Rhein-Mosel",
+    "display_name": "Burgen, Rhein-Mosel, Landkreis Mayen-Koblenz, Rheinland-Pfalz, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "kattenes",
+    "name": "Kattenes",
+    "lat": 50.251746,
+    "lng": 7.441778,
+    "osm_type": "node",
+    "osm_id": 240057267,
+    "place_class": "place",
+    "place_type": "village",
+    "landkreis": "Landkreis Mayen-Koblenz",
+    "municipality": "Rhein-Mosel",
+    "display_name": "Kattenes, L├Âf, Rhein-Mosel, Landkreis Mayen-Koblenz, Rheinland-Pfalz, 56332, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "reil",
+    "query": "Reil, Mosel, Rheinland-Pfalz, Deutschland",
+    "status": "NOT_FOUND",
+    "candidates": 1
+  },
+  {
+    "id": "alken",
+    "query": "Alken an der Mosel, Cochem-Zell, Rheinland-Pfalz, Deutschland",
+    "status": "NOT_FOUND",
+    "candidates": 0
+  },
+  {
+    "id": "gondorf",
+    "query": "Gondorf, Cochem-Zell, Rheinland-Pfalz, Deutschland",
+    "status": "NOT_FOUND",
+    "candidates": 1
+  },
+  {
+    "id": "enkirch",
+    "name": "Enkirch",
+    "lat": 49.983039,
+    "lng": 7.125758,
+    "osm_type": "relation",
+    "osm_id": 1261695,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Bernkastel-Wittlich",
+    "municipality": "Traben-Trarbach",
+    "display_name": "Enkirch, Traben-Trarbach, Landkreis Bernkastel-Wittlich, Rheinland-Pfalz, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "osann_monzel",
+    "name": "Osann-Monzel",
+    "lat": 49.917139,
+    "lng": 6.952409,
+    "osm_type": "relation",
+    "osm_id": 1259146,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Bernkastel-Wittlich",
+    "municipality": "Wittlich-Land",
+    "display_name": "Osann-Monzel, Wittlich-Land, Landkreis Bernkastel-Wittlich, Rheinland-Pfalz, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "niederfell",
+    "query": "Niederfell, Bernkastel-Wittlich, Rheinland-Pfalz, Deutschland",
+    "status": "NOT_FOUND",
+    "candidates": 0
+  },
+  {
+    "id": "niederemmel",
+    "query": "Niederemmel, Bernkastel-Wittlich, Rheinland-Pfalz, Deutschland",
+    "status": "NOT_FOUND",
+    "candidates": 1
+  },
+  {
+    "id": "mehring",
+    "name": "Mehring",
+    "lat": 49.798028,
+    "lng": 6.825346,
+    "osm_type": "relation",
+    "osm_id": 1260244,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Trier-Saarburg",
+    "municipality": "Schweich an der R├Âmischen Weinstra├ƒe",
+    "display_name": "Mehring, Schweich an der R├Âmischen Weinstra├ƒe, Landkreis Trier-Saarburg, Rheinland-Pfalz, 54346, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "fils",
+    "query": "Fils, Trier-Saarburg, Rheinland-Pfalz, Deutschland",
+    "status": "NOT_FOUND",
+    "candidates": 0
+  },
+  {
+    "id": "fell",
+    "name": "Fell",
+    "lat": 49.7749,
+    "lng": 6.780507,
+    "osm_type": "relation",
+    "osm_id": 1255915,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Trier-Saarburg",
+    "municipality": "Schweich an der R├Âmischen Weinstra├ƒe",
+    "display_name": "Fell, Schweich an der R├Âmischen Weinstra├ƒe, Landkreis Trier-Saarburg, Rheinland-Pfalz, 54341, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "kaifen",
+    "query": "Kaifen, Cochem-Zell, Rheinland-Pfalz, Deutschland",
+    "status": "NOT_FOUND",
+    "candidates": 0
+  },
+  {
+    "id": "lehmen",
+    "name": "Lehmen",
+    "lat": 50.283939,
+    "lng": 7.454023,
+    "osm_type": "relation",
+    "osm_id": 546640,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Mayen-Koblenz",
+    "municipality": "Rhein-Mosel",
+    "display_name": "Lehmen, Rhein-Mosel, Landkreis Mayen-Koblenz, Rheinland-Pfalz, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "bassenheim",
+    "name": "Bassenheim",
+    "lat": 50.35877,
+    "lng": 7.456835,
+    "osm_type": "relation",
+    "osm_id": 548976,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Mayen-Koblenz",
+    "municipality": "Wei├ƒenthurm",
+    "display_name": "Bassenheim, Wei├ƒenthurm, Landkreis Mayen-Koblenz, Rheinland-Pfalz, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "urmitz",
+    "name": "Urmitz",
+    "lat": 50.414715,
+    "lng": 7.519051,
+    "osm_type": "relation",
+    "osm_id": 548981,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Mayen-Koblenz",
+    "municipality": "Wei├ƒenthurm",
+    "display_name": "Urmitz, Wei├ƒenthurm, Landkreis Mayen-Koblenz, Rheinland-Pfalz, Deutschland",
+    "status": "OK"
+  },
+  {
+    "id": "loesnich",
+    "name": "L├Âsnich",
+    "lat": 49.973906,
+    "lng": 7.043382,
+    "osm_type": "relation",
+    "osm_id": 1258357,
+    "place_class": "boundary",
+    "place_type": "administrative",
+    "landkreis": "Landkreis Bernkastel-Wittlich",
+    "municipality": "Bernkastel-Kues",
+    "display_name": "L├Âsnich, Bernkastel-Kues, Landkreis Bernkastel-Wittlich, Rheinland-Pfalz, Deutschland",
+    "status": "OK"
+  }
+]
