@@ -50,7 +50,7 @@ export function LeafletCountryFocus({
       const bl = getBundeslandById(bundeslandId);
       if (!bl) return;
       const bounds = L.latLngBounds(bl.ring.map(([lat, lng]) => [lat, lng] as [number, number]));
-      map.flyToBounds(bounds, { padding: [40, 40], maxZoom: 8, duration: 1.1 });
+      map.flyToBounds(bounds, { padding: [40, 40], maxZoom: 10, duration: 1.1 });
       return;
     }
 
@@ -67,7 +67,7 @@ export function LeafletCountryFocus({
     if (countryCities.length === 0) return;
 
     const bounds = L.latLngBounds(countryCities.map((c) => [c.lat, c.lng] as [number, number]));
-    const maxZoom = countryCode === 'DE' ? 6.5 : 7;
+    const maxZoom = countryCode === 'DE' ? 7 : 7.5;
     map.flyToBounds(bounds, { padding: [48, 48], maxZoom, duration: 1.2 });
   }, [map, countryCode, cities, bundeslandId]);
 

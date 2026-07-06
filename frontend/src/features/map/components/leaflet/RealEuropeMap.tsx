@@ -11,6 +11,9 @@ import {
   EUROPE_MIN_ZOOM,
   EUROPE_MAX_ZOOM,
   EUROPE_BOUNDS,
+  MAP_ZOOM_SNAP,
+  MAP_ZOOM_DELTA,
+  MAP_WHEEL_PX_PER_ZOOM,
 } from '../../config/leafletConfig';
 import { getResolvedMapTheme, useMapThemeRevision } from '../../utils/mapThemeUtils';
 import { LeafletMapProvider } from '../../context/LeafletMapContext';
@@ -71,6 +74,11 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   const [leafletMap, setLeafletMap] = useState<LeafletMap | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const [tooltipEligibleIds, setTooltipEligibleIds] = useState<Set<string>>(() => new Set());
+  const [spiderTooltipPositions, setSpiderTooltipPositions] = useState<Map<
+    string,
+    { lat: number; lng: number }
+  > | null>(null);
   const themeRev = useMapThemeRevision();
   const tileUrl = useMemo(
     () => getTileUrlForTheme(getResolvedMapTheme()),
@@ -107,6 +115,17 @@ export const RealEuropeMap = memo(function RealEuropeMap({
     setLeafletMap(map);
   }, []);
 
+  const handleVisibleIndividualsChange = useCallback((ids: Set<string>) => {
+    setTooltipEligibleIds(ids);
+  }, []);
+
+  const handleSpiderTooltipPositionsChange = useCallback(
+    (positions: Map<string, { lat: number; lng: number }> | null) => {
+      setSpiderTooltipPositions(positions);
+    },
+    [],
+  );
+
   const controls = useMemo(
     () => ({
       map: leafletMap,
@@ -129,6 +148,9 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           zoom={EUROPE_DEFAULT_ZOOM}
           minZoom={EUROPE_MIN_ZOOM}
           maxZoom={EUROPE_MAX_ZOOM}
+          zoomSnap={MAP_ZOOM_SNAP}
+          zoomDelta={MAP_ZOOM_DELTA}
+          wheelPxPerZoomLevel={MAP_WHEEL_PX_PER_ZOOM}
           maxBounds={EUROPE_BOUNDS}
           maxBoundsViscosity={0.85}
           scrollWheelZoom
@@ -167,11 +189,15 @@ export const RealEuropeMap = memo(function RealEuropeMap({
             onTooltipLeave={onTooltipLeave}
             onClearTooltip={onClearTooltip}
             onMapBackgroundClick={onMapBackgroundClick}
+            onVisibleIndividualsChange={handleVisibleIndividualsChange}
+            onSpiderTooltipPositionsChange={handleSpiderTooltipPositionsChange}
           />
           <LeafletCityTooltipLayer
             activeTooltipId={activeTooltipId ?? null}
             cityMap={cityMap}
             layers={layers}
+            tooltipEligibleIds={tooltipEligibleIds}
+            tooltipPositionOverrides={spiderTooltipPositions ?? undefined}
           />
           {selectedCountryCode === 'DE' && (
             <GermanyCityLabels

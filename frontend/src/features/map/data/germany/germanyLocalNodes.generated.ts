@@ -9,7 +9,7 @@ export const GERMANY_LOCAL_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: "cochem",
     name: "Cochem",
-    lat: 50.145, lng: 7.168,
+    lat: 50.1469, lng: 7.1667,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",

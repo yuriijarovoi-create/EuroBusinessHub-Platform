@@ -5,7 +5,7 @@ export const GERMANY_RP_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: 'treis_karden',
     name: 'Treis-Karden',
-    lat: 50.174, lng: 7.3,
+    lat: 50.1781, lng: 7.3022,
     bundeslandId: 'DE-RP',
     federalState: 'Rheinland-Pfalz',
     region: 'Mosel',
@@ -28,7 +28,7 @@ export const GERMANY_RP_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: 'alf',
     name: 'Alf',
-    lat: 50.06, lng: 7.119,
+    lat: 50.057, lng: 7.058,
     bundeslandId: 'DE-RP',
     federalState: 'Rheinland-Pfalz',
     region: 'Mosel',
@@ -40,7 +40,7 @@ export const GERMANY_RP_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: 'senheim',
     name: 'Senheim',
-    lat: 50.067, lng: 7.083,
+    lat: 50.0856, lng: 7.2131,
     bundeslandId: 'DE-RP',
     federalState: 'Rheinland-Pfalz',
     region: 'Mosel',
@@ -52,7 +52,7 @@ export const GERMANY_RP_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: 'bullay',
     name: 'Bullay',
-    lat: 50.058, lng: 7.133,
+    lat: 50.053, lng: 7.134,
     bundeslandId: 'DE-RP',
     federalState: 'Rheinland-Pfalz',
     region: 'Mosel',
@@ -64,7 +64,7 @@ export const GERMANY_RP_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: 'klotten',
     name: 'Klotten',
-    lat: 50.168, lng: 7.017,
+    lat: 50.1667, lng: 7.1997,
     bundeslandId: 'DE-RP',
     federalState: 'Rheinland-Pfalz',
     region: 'Mosel',
@@ -76,7 +76,7 @@ export const GERMANY_RP_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: 'mueden',
     name: 'Müden (Mosel)',
-    lat: 50.202, lng: 7.317,
+    lat: 50.1867, lng: 7.3403,
     bundeslandId: 'DE-RP',
     federalState: 'Rheinland-Pfalz',
     region: 'Mosel',
@@ -88,7 +88,7 @@ export const GERMANY_RP_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: 'pommern',
     name: 'Pommern',
-    lat: 50.067, lng: 7.25,
+    lat: 50.1711, lng: 7.2739,
     bundeslandId: 'DE-RP',
     federalState: 'Rheinland-Pfalz',
     region: 'Mosel',
@@ -100,7 +100,7 @@ export const GERMANY_RP_NODE_DEFS: RawLocalNodeDef[] = [
   {
     id: 'moselkern',
     name: 'Moselkern',
-    lat: 50.197, lng: 7.317,
+    lat: 50.1936, lng: 7.3711,
     bundeslandId: 'DE-RP',
     federalState: 'Rheinland-Pfalz',
     region: 'Mosel',

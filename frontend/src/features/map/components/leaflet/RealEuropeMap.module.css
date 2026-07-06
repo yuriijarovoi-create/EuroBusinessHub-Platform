@@ -113,6 +113,81 @@
   background: color-mix(in srgb, var(--map-marker-hub) 14%, transparent);
 }
 
+:global(.ebh-marker-tier5 .ebh-marker-core) {
+  width: 5px;
+  height: 5px;
+}
+
+:global(.ebh-marker-tier5 .ebh-marker-pulse) {
+  width: 10px;
+  height: 10px;
+}
+
+:global(.ebh-cluster-marker) {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 220ms ease;
+}
+
+:global(.ebh-cluster-marker-wrap) {
+  cursor: pointer;
+  pointer-events: auto !important;
+}
+
+:global(.ebh-cluster-marker-wrap:hover .ebh-cluster-marker) {
+  transform: scale(1.12);
+}
+
+:global(.ebh-cluster-glow) {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--map-marker-tier2) 18%, transparent);
+  animation: ebh-cluster-glow 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+:global(.ebh-cluster-core) {
+  position: relative;
+  z-index: 2;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--map-tooltip-text);
+  background: color-mix(in srgb, var(--map-tooltip-bg) 88%, transparent);
+  border: 1px solid var(--map-tooltip-border);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--map-marker-tier2) 35%, transparent);
+  pointer-events: none;
+}
+
+@keyframes ebh-cluster-glow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+}
+
+:global(.leaflet-overlay-pane svg path.ebh-spiderfy-leg) {
+  pointer-events: none;
+}
+
 :global(.leaflet-tooltip.ebh-tooltip) {
   background: var(--map-tooltip-bg) !important;
   backdrop-filter: blur(12px) !important;
@@ -279,6 +354,13 @@
   font-weight: 500;
   color: var(--map-label-tier3);
   opacity: 0.85;
+}
+
+:global(.ebh-city-label-tier5) {
+  font-size: 7px;
+  font-weight: 500;
+  color: var(--map-label-tier3);
+  opacity: 0.72;
 }
 
 :global(.ebh-city-label-selected) {

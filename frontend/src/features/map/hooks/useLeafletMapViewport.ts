@@ -11,9 +11,11 @@ export function useLeafletMapViewport() {
   useEffect(() => {
     const onZoom = () => setZoom(map.getZoom());
     const onResize = () => setIsMobile(isMobileViewport());
+    map.on('zoom', onZoom);
     map.on('zoomend', onZoom);
     window.addEventListener('resize', onResize);
     return () => {
+      map.off('zoom', onZoom);
       map.off('zoomend', onZoom);
       window.removeEventListener('resize', onResize);
     };

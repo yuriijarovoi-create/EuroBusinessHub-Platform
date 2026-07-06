@@ -5,7 +5,7 @@ export const GERMANY_LOCAL_NODE_RURAL_DEFS: RawLocalNodeDef[] = [
   {
     id: "bruttig_fankel",
     name: "Bruttig-Fankel",
-    lat: 50.133, lng: 7.133,
+    lat: 50.1314, lng: 7.2317,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",
@@ -17,7 +17,7 @@ export const GERMANY_LOCAL_NODE_RURAL_DEFS: RawLocalNodeDef[] = [
   {
     id: "ernst",
     name: "Ernst",
-    lat: 50.148, lng: 7.152,
+    lat: 50.1447, lng: 7.2253,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",
@@ -29,7 +29,7 @@ export const GERMANY_LOCAL_NODE_RURAL_DEFS: RawLocalNodeDef[] = [
   {
     id: "valwig",
     name: "Valwig",
-    lat: 50.158, lng: 7.198,
+    lat: 50.1431, lng: 7.2103,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",
@@ -41,7 +41,7 @@ export const GERMANY_LOCAL_NODE_RURAL_DEFS: RawLocalNodeDef[] = [
   {
     id: "ellenz_poltersdorf",
     name: "Ellenz-Poltersdorf",
-    lat: 50.133, lng: 7.233,
+    lat: 50.1142, lng: 7.2339,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",
@@ -53,7 +53,7 @@ export const GERMANY_LOCAL_NODE_RURAL_DEFS: RawLocalNodeDef[] = [
   {
     id: "beilstein",
     name: "Beilstein",
-    lat: 50.1, lng: 7.133,
+    lat: 50.1103, lng: 7.2394,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",
@@ -65,7 +65,7 @@ export const GERMANY_LOCAL_NODE_RURAL_DEFS: RawLocalNodeDef[] = [
   {
     id: "ediger_eller",
     name: "Ediger-Eller",
-    lat: 50.117, lng: 7.117,
+    lat: 50.0981, lng: 7.1508,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",
@@ -77,7 +77,7 @@ export const GERMANY_LOCAL_NODE_RURAL_DEFS: RawLocalNodeDef[] = [
   {
     id: "bremm",
     name: "Bremm",
-    lat: 50.117, lng: 7.117,
+    lat: 50.1014, lng: 7.1178,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",
@@ -1486,7 +1486,7 @@ export const GERMANY_LOCAL_NODE_RURAL_ENRICH: RawLocalNodeDef[] = [
   {
     id: "cochem",
     name: "Cochem",
-    lat: 50.145, lng: 7.168,
+    lat: 50.1469, lng: 7.1667,
     bundeslandId: "DE-RP",
     federalState: "Rheinland-Pfalz",
     region: "Mosel",

@@ -21,7 +21,12 @@ export const EUROPE_DEFAULT_ZOOM = 4;
 
 export const EUROPE_MIN_ZOOM = 3;
 
-export const EUROPE_MAX_ZOOM = 8;
+export const EUROPE_MAX_ZOOM = 14;
+
+/** Finer wheel / pinch steps for regional & village zoom */
+export const MAP_ZOOM_SNAP = 0.25;
+export const MAP_ZOOM_DELTA = 0.5;
+export const MAP_WHEEL_PX_PER_ZOOM = 90;
 
 /** Bounds: [southWest, northEast] — includes Ukraine, Turkey (Istanbul), Iceland */
 export const EUROPE_BOUNDS: LatLngBoundsExpression = [

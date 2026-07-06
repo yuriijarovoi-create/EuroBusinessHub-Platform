@@ -1,6 +1,7 @@
 import type { MapCityRecord } from '../types/mapTypes';
+import { isMoselVillageId } from './moselVillageUtils';
 
-export type CityDisplayTier = 1 | 2 | 3 | 4;
+export type CityDisplayTier = 1 | 2 | 3 | 4 | 5;
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -10,7 +11,11 @@ export function isMobileViewport(): boolean {
 
 /** Derive display tier from existing city fields — no data mutation */
 export function getCityDisplayTier(city: MapCityRecord): CityDisplayTier {
-  if (city.mapTier === 4) return 4;
+  if (city.mapTier === 4) {
+    if (city.localServiceNode || city.businesses < 100) return 5;
+    if (city.population != null && city.population < 3500) return 5;
+    return 4;
+  }
   if (city.mapTier === 1 || city.isMajorHub) return 1;
   if (city.mapTier === 2) return 2;
   if (city.mapTier === 3) {
@@ -20,7 +25,8 @@ export function getCityDisplayTier(city: MapCityRecord): CityDisplayTier {
   if (city.businesses >= 700) return 1;
   if (city.businesses >= 400) return 2;
   if (city.businesses >= 200) return 3;
-  return 4;
+  if (city.businesses >= 100) return 4;
+  return 5;
 }
 
 function isForcedVisible(
@@ -38,11 +44,13 @@ export function minNodeZoomForTier(tier: CityDisplayTier, isMobile: boolean): nu
     case 1:
       return 0;
     case 2:
-      return isMobile ? 5.5 : 5;
+      return isMobile ? 5 : 4.5;
     case 3:
       return isMobile ? 6.75 : 6.25;
     case 4:
-      return isMobile ? 7.75 : 7.25;
+      return isMobile ? 8.25 : 7.75;
+    case 5:
+      return isMobile ? 11 : 10.5;
     default:
       return 0;
   }
@@ -54,11 +62,13 @@ export function minLabelZoomForTier(tier: CityDisplayTier, isMobile: boolean): n
     case 1:
       return 0;
     case 2:
-      return isMobile ? 6.25 : 5.75;
+      return isMobile ? 6 : 5.5;
     case 3:
       return isMobile ? 7.25 : 6.75;
     case 4:
-      return isMobile ? 8 : 7.75;
+      return isMobile ? 9.5 : 9;
+    case 5:
+      return isMobile ? 12 : 11.5;
     default:
       return 0;
   }
@@ -73,6 +83,9 @@ export function isCityNodeVisible(
   searchResultId?: string,
 ): boolean {
   if (isForcedVisible(city.id, selectedCityId, hoveredCityId, searchResultId)) return true;
+  if (isMoselVillageId(city.id)) {
+    return zoom >= minNodeZoomForTier(4, isMobile);
+  }
   const tier = getCityDisplayTier(city);
   return zoom >= minNodeZoomForTier(tier, isMobile);
 }
@@ -120,7 +133,7 @@ export function getVisibleCityNodes(
 function labelPriority(city: MapCityRecord, ctx: CityVisibilityContext): number {
   const tier = getCityDisplayTier(city);
   const forced = isForcedVisible(city.id, ctx.selectedCityId, ctx.hoveredCityId, ctx.searchResultId);
-  return (5 - tier) * 1000 + city.businesses + (forced ? 500 : 0) + (city.id === 'berlin' ? 50 : 0);
+  return (6 - tier) * 1000 + city.businesses + (forced ? 500 : 0) + (city.id === 'berlin' ? 50 : 0);
 }
 
 /** Overlap avoidance — higher tiers win; forced labels always pass */
@@ -145,8 +158,8 @@ export function filterVisibleCityLabels(
   const sorted = [...candidates].sort((a, b) => labelPriority(b, ctx) - labelPriority(a, ctx));
 
   const minDist = isMobile
-    ? zoom >= 8 ? 0.28 : 0.5
-    : zoom >= 8 ? 0.22 : zoom >= 7 ? 0.35 : 0.5;
+    ? zoom >= 11 ? 0.18 : zoom >= 9 ? 0.28 : zoom >= 7 ? 0.42 : 0.55
+    : zoom >= 11 ? 0.14 : zoom >= 9 ? 0.22 : zoom >= 7 ? 0.32 : 0.48;
 
   const placed: { lat: number; lng: number }[] = [];
   const visible: MapCityRecord[] = [];
@@ -157,7 +170,8 @@ export function filterVisibleCityLabels(
     const tooClose = placed.some(
       (p) => Math.hypot(p.lat - city.lat, p.lng - city.lng) < minDist,
     );
-    if (tooClose && tier >= 3 && !forced) continue;
+    if (tooClose && tier >= 4 && !forced) continue;
+    if (tooClose && tier === 3 && !forced && zoom < (isMobile ? 8 : 7.5)) continue;
     if (tooClose && tier === 2 && !forced && zoom < (isMobile ? 7.5 : 7)) continue;
     placed.push({ lat: city.lat, lng: city.lng });
     visible.push(city);
@@ -168,8 +182,9 @@ export function filterVisibleCityLabels(
 
 export function getFocusZoomForCity(city: MapCityRecord, isMobile: boolean): number {
   const tier = getCityDisplayTier(city);
-  if (tier === 4) return isMobile ? 8 : 7.75;
-  if (tier === 3) return isMobile ? 7.25 : 7;
+  if (tier === 5) return isMobile ? 12 : 11.5;
+  if (tier === 4) return isMobile ? 9.5 : 9;
+  if (tier === 3) return isMobile ? 7.5 : 7;
   if (tier === 2) return isMobile ? 6.5 : 6;
   return isMobile ? 5.5 : 5;
 }

@@ -4,6 +4,8 @@ import L from 'leaflet';
 import type { BusinessRouteDef, MapCityRecord } from '../../types/mapTypes';
 import { ROUTE_DASH } from '../../config/leafletConfig';
 import { buildRouteLatLngs } from '../../utils/routeGeometry';
+import { filterRoutesByZoom } from '../../utils/routeVisibilityUtils';
+import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
 import {
   getRouteColorsFromTheme,
   getRouteThemeFromCss,
@@ -22,6 +24,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
   cityMap,
 }: LeafletRouteLayerProps) {
   const map = useMap();
+  const { zoom } = useLeafletMapViewport();
   const groupRef = useRef<L.LayerGroup | null>(null);
   const animRef = useRef<number>(0);
   const themeRev = useMapThemeRevision();
@@ -39,7 +42,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
       speed: number;
     }[] = [];
 
-    const visible = routes
+    const visible = filterRoutesByZoom(routes, cityMap, zoom)
       .filter((r) => cityMap.has(r.fromCityId) && cityMap.has(r.toCityId))
       .slice(0, MAX_ROUTES);
 
@@ -124,7 +127,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
       map.removeLayer(group);
       groupRef.current = null;
     };
-  }, [map, routes, cityMap, themeRev]);
+  }, [map, routes, cityMap, themeRev, zoom]);
 
   return null;
 });

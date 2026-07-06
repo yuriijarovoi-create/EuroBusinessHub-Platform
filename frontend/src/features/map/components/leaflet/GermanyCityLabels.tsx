@@ -24,6 +24,7 @@ function labelIcon(name: string, tier: CityDisplayTier, selected: boolean) {
     tier === 2 ? 'ebh-city-label-tier2' : '',
     tier === 3 ? 'ebh-city-label-tier3' : '',
     tier === 4 ? 'ebh-city-label-tier4' : '',
+    tier === 5 ? 'ebh-city-label-tier5' : '',
     selected ? 'ebh-city-label-selected' : '',
   ]
     .filter(Boolean)
