@@ -34,6 +34,11 @@ interface EuropeBusinessMapProps {
   focusCityId?: string;
   onCountrySelect?: (country: MapCountry) => void;
   onOpenWorkspace: (city: MapCityRecord) => void;
+  /** Enterprise shell — hide legacy panels, fly-to-city on click */
+  enterpriseShell?: boolean;
+  onCityActivate?: (city: MapCityRecord) => void;
+  onRouteSelect?: (route: BusinessRouteDef) => void;
+  externalLayers?: MapLayerState;
 }
 
 export function EuropeBusinessMap({
@@ -42,8 +47,12 @@ export function EuropeBusinessMap({
   focusCityId,
   onCountrySelect,
   onOpenWorkspace,
+  enterpriseShell = false,
+  onCityActivate,
+  onRouteSelect: onRouteSelectExternal,
+  externalLayers,
 }: EuropeBusinessMapProps) {
-  const [layers, setLayers] = useState<MapLayerState>(DEFAULT_LAYER_STATE);
+  const [layers, setLayers] = useState<MapLayerState>(externalLayers ?? DEFAULT_LAYER_STATE);
   const [layerOpen, setLayerOpen] = useState(false);
   const [panelOpen, setPanelOpen] = useState(true);
   const [countryPanelOpen, setCountryPanelOpen] = useState(true);
@@ -56,6 +65,10 @@ export function EuropeBusinessMap({
   );
   const [selectedRoute, setSelectedRoute] = useState<BusinessRouteDef | null>(null);
   const [routePanelOpen, setRoutePanelOpen] = useState(true);
+
+  useEffect(() => {
+    if (externalLayers) setLayers(externalLayers);
+  }, [externalLayers]);
 
   const selectedCountry = useMemo(
     () => countries.find((c) => c.code === selectedCountryCode) ?? null,
@@ -150,18 +163,26 @@ export function EuropeBusinessMap({
   const handleSelect = useCallback((city: MapCityRecord) => {
     setSelectedRoute(null);
     setPanelCity(city);
+    if (enterpriseShell && onCityActivate) {
+      onCityActivate(city);
+      return;
+    }
     setPanelOpen(true);
     setCountryPanelOpen(false);
     setBundeslandPanelOpen(false);
-  }, []);
+  }, [enterpriseShell, onCityActivate]);
 
   const handleRouteSelect = useCallback((route: BusinessRouteDef) => {
     setSelectedRoute(route);
+    if (enterpriseShell && onRouteSelectExternal) {
+      onRouteSelectExternal(route);
+      return;
+    }
     setRoutePanelOpen(true);
     setCountryPanelOpen(false);
     setBundeslandPanelOpen(false);
     setPanelOpen(false);
-  }, []);
+  }, [enterpriseShell, onRouteSelectExternal]);
 
   useEffect(() => {
     if (!focusCityId) return;
@@ -190,22 +211,26 @@ export function EuropeBusinessMap({
 
   return (
     <div className={styles.stage}>
-      <button
-        type="button"
-        className={styles.layerFab}
-        onClick={() => setLayerOpen((o) => !o)}
-        aria-expanded={layerOpen}
-        aria-label="Ebenen"
-      >
-        ☰
-      </button>
+      {!enterpriseShell && (
+        <>
+          <button
+            type="button"
+            className={styles.layerFab}
+            onClick={() => setLayerOpen((o) => !o)}
+            aria-expanded={layerOpen}
+            aria-label="Ebenen"
+          >
+            ☰
+          </button>
 
-      <LayerControlPanel
-        layers={layers}
-        onChange={setLayers}
-        open={layerOpen}
-        onClose={() => setLayerOpen(false)}
-      />
+          <LayerControlPanel
+            layers={layers}
+            onChange={setLayers}
+            open={layerOpen}
+            onClose={() => setLayerOpen(false)}
+          />
+        </>
+      )}
 
       <div className={styles.mapShell}>
         <RealEuropeMap
@@ -236,7 +261,7 @@ export function EuropeBusinessMap({
         </RealEuropeMap>
       </div>
 
-      {selectedCountry && countryPanelOpen && !selectedBundeslandId && (
+      {!enterpriseShell && selectedCountry && countryPanelOpen && !selectedBundeslandId && (
         <CountryInfoPanel
           country={selectedCountry}
           open={countryPanelOpen}
@@ -246,7 +271,7 @@ export function EuropeBusinessMap({
         />
       )}
 
-      {selectedBundeslandId && bundeslandPanelOpen && (
+      {!enterpriseShell && selectedBundeslandId && bundeslandPanelOpen && (
         <BundeslandInfoPanel
           bundeslandId={selectedBundeslandId}
           cities={allCountryCities}
@@ -255,7 +280,7 @@ export function EuropeBusinessMap({
         />
       )}
 
-      {selectedRoute ? (
+      {!enterpriseShell && (selectedRoute ? (
         <RouteInfoPanel
           route={selectedRoute}
           cityMap={routeCityMap}
@@ -295,9 +320,9 @@ export function EuropeBusinessMap({
           onToggle={() => setPanelOpen((o) => !o)}
           onOpenWorkspace={onOpenWorkspace}
         />
-      )}
+      ))}
 
-      <ActivityBottomPanel />
+      {!enterpriseShell && <ActivityBottomPanel />}
     </div>
   );
 }

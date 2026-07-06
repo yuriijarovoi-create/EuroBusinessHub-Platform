@@ -53,10 +53,12 @@ function createCityIcon(
 ) {
   const size = markerSizeForTier(displayTier, isHub, zoom);
   const anchor = size / 2;
+  const isIzium = city.id === 'izium';
 
   const cls = [
     'ebh-marker',
     isHub ? 'ebh-marker-hub' : '',
+    isIzium ? 'ebh-marker-izium' : '',
     displayTier === 1 ? 'ebh-marker-tier1' : '',
     displayTier === 2 ? 'ebh-marker-tier2' : '',
     displayTier === 3 ? 'ebh-marker-tier3' : '',
@@ -98,7 +100,7 @@ const LeafletCityMarker = memo(
     onTooltipEnter,
     onTooltipLeave,
   }: LeafletCityMarkerProps) {
-    const isHub = city.id === DEFAULT_HUB_ID;
+    const isHub = Boolean(city.isMajorHub) || city.id === DEFAULT_HUB_ID;
     const isHighlighted = isSelected || isHovered;
     const displayTier = getCityDisplayTier(city);
     const icon = useMemo(

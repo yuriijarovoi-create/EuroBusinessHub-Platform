@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { GlobalSearch } from '@/features/search/GlobalSearch';
 import { HeroCtaGroup } from '@/components/HeroCtaGroup';
 import { routes } from '@/config';
+import { HeroMapEmbed } from '@/features/map/shell/HeroMapEmbed';
 import styles from './PremiumHero.module.css';
 
 export function PremiumHero() {
@@ -11,6 +12,7 @@ export function PremiumHero() {
   return (
     <header className={styles.hero}>
       <div className={styles.backdrop} aria-hidden>
+        <HeroMapEmbed />
         <div className={styles.orb1} />
         <div className={styles.orb2} />
         <div className={styles.grid} />

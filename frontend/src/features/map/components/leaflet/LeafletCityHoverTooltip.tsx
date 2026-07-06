@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import type { MapCityRecord, MapLayerState } from '../../types/mapTypes';
 import { getCityDisplayTier } from '../../utils/cityVisibilityUtils';
 import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
+import { countCityNetworkConnections, computeBusinessScore } from '../../utils/cityNetworkUtils';
+import { getCityHubProfile } from '../../data/cityHubEnrichment';
 
 const TOOLTIP_ANCHOR_ICON = L.divIcon({
   className: 'ebh-tooltip-anchor',
@@ -108,6 +110,9 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
 
   const displayTier = getCityDisplayTier(city);
   const override = displayId ? tooltipPositionOverrides?.get(displayId) : undefined;
+  const businessScore = computeBusinessScore(city.metrics);
+  const networkConnections = countCityNetworkConnections(displayId!);
+  const hubProfile = getCityHubProfile(displayId!);
   const tooltipClass = [
     'ebh-tooltip',
     entering ? 'ebh-tooltip-enter' : '',
@@ -134,11 +139,29 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
       >
         <strong>{city.name}</strong>
         <br />
-        {city.germanyProfile?.mainIndustry ?? city.country}
+        <span className="ebh-tooltip-country">{city.country}</span>
+        {hubProfile?.businessCategory && (
+          <>
+            <br />
+            <span className="ebh-tooltip-category">{hubProfile.businessCategory}</span>
+          </>
+        )}
         {layers.companies && (
           <>
             <br />
             {t('tooltip.companies', { count: city.metrics.companies })}
+          </>
+        )}
+        {layers.routes && city.metrics.transport > 0 && (
+          <>
+            <br />
+            {t('tooltip.transport', { count: city.metrics.transport })}
+          </>
+        )}
+        {layers.warehouses && city.metrics.warehouses > 0 && (
+          <>
+            <br />
+            {t('tooltip.warehouses', { count: city.metrics.warehouses })}
           </>
         )}
         {layers.jobs && (
@@ -149,8 +172,18 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
         )}
         <>
           <br />
+          {t('tooltip.businessScore', { score: businessScore })}
+        </>
+        <>
+          <br />
           {t('tooltip.aiScore', { score: city.metrics.aiScore })}
         </>
+        {networkConnections > 0 && (
+          <>
+            <br />
+            {t('tooltip.networkConnections', { count: networkConnections })}
+          </>
+        )}
       </Tooltip>
     </Marker>
   );

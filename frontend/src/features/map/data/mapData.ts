@@ -26,6 +26,8 @@ import {
   getGermanyRegionalCluster,
   getGermanyRegionalClusterMeta,
 } from './germany/germanyRegionalClusters';
+import { applyCityHubProfile, getCityHubProfile } from './cityHubEnrichment';
+import { applyFranceHubMetrics, FRANCE_HUB_CATEGORIES, isFranceHubCity } from './franceHubData';
 
 export function enrichCity(city: (typeof cities)[number]): MapCityRecord {
   const { mapX, mapY } = latLngToMapXY(city.lat, city.lng);
@@ -35,6 +37,15 @@ export function enrichCity(city: (typeof cities)[number]): MapCityRecord {
     mapY,
     metrics: createCityMetrics(city.businesses),
   };
+  record.metrics = applyCityHubProfile(city.id, record.metrics);
+  if (city.countryCode === 'FR') {
+    record.metrics = applyFranceHubMetrics(city.id, record.metrics);
+    if (isFranceHubCity(city.id)) record.isMajorHub = true;
+  }
+  const hubProfile = getCityHubProfile(city.id);
+  if (hubProfile && city.isMajorHub !== false) {
+    record.isMajorHub = true;
+  }
   if (city.countryCode === 'DE') {
     const regionalCluster = getGermanyRegionalCluster(city.id);
     const regionalMeta = getGermanyRegionalClusterMeta(city.id);

@@ -54,7 +54,9 @@
     "companies": "{{count}} companies",
     "jobs": "{{count}} jobs",
     "warehouses": "{{count}} warehouses",
-    "transport": "{{count}} transport",
+    "transport": "{{count}} transport offers",
+    "businessScore": "Business score {{score}}",
+    "networkConnections": "{{count}} network connections",
     "aiScore": "AI score {{score}}"
   },
   "country": {

@@ -81,6 +81,7 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
     mapY: 50,
     businesses: 540,
     activeModules: ['marketplace', 'transport', 'akademie'],
+    isMajorHub: true,
   },
   {
     id: 'zurich',
@@ -93,6 +94,7 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
     mapY: 52,
     businesses: 620,
     activeModules: ['marketplace', 'unternehmen', 'partner'],
+    isMajorHub: true,
   },
   {
     id: 'amsterdam',
@@ -131,6 +133,7 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
     mapY: 42,
     businesses: 430,
     activeModules: ['marketplace', 'partner', 'unternehmen'],
+    isMajorHub: true,
   },
   {
     id: 'warsaw',
@@ -143,6 +146,7 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
     mapY: 40,
     businesses: 520,
     activeModules: ['marketplace', 'logistik', 'lager', 'jobs'],
+    isMajorHub: true,
   },
   {
     id: 'prague',
@@ -155,6 +159,7 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
     mapY: 44,
     businesses: 380,
     activeModules: ['marketplace', 'transport', 'akademie'],
+    isMajorHub: true,
   },
   {
     id: 'copenhagen',
@@ -167,6 +172,7 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
     mapY: 28,
     businesses: 290,
     activeModules: ['marketplace', 'transport', 'partner'],
+    isMajorHub: true,
   },
   // Germany — extended
   { id: 'cologne', name: 'Köln', country: 'Deutschland', countryCode: 'DE', lat: 50.938, lng: 6.960, mapX: 48, mapY: 44, businesses: 620, activeModules: ['marketplace', 'logistik', 'jobs'], mapTier: 1, isMajorHub: true },
@@ -180,15 +186,15 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
   // Europe — capital & hub cities
   { id: 'rome', name: 'Rom', country: 'Italien', countryCode: 'IT', lat: 41.903, lng: 12.496, mapX: 54, mapY: 58, businesses: 920, activeModules: ['marketplace', 'transport', 'akademie'], isMajorHub: true },
   { id: 'madrid', name: 'Madrid', country: 'Spanien', countryCode: 'ES', lat: 40.416, lng: -3.703, mapX: 30, mapY: 58, businesses: 880, activeModules: ['marketplace', 'jobs', 'ki'], isMajorHub: true },
-  { id: 'lisbon', name: 'Lissabon', country: 'Portugal', countryCode: 'PT', lat: 38.722, lng: -9.139, mapX: 22, mapY: 60, businesses: 450, activeModules: ['marketplace', 'partner', 'transport'] },
+  { id: 'lisbon', name: 'Lissabon', country: 'Portugal', countryCode: 'PT', lat: 38.722, lng: -9.139, mapX: 22, mapY: 60, businesses: 450, activeModules: ['marketplace', 'partner', 'transport'], isMajorHub: true },
   { id: 'london', name: 'London', country: 'Vereinigtes Königreich', countryCode: 'GB', lat: 51.507, lng: -0.128, mapX: 38, mapY: 40, businesses: 2100, activeModules: ['marketplace', 'transport', 'jobs', 'ki'], isMajorHub: true },
   { id: 'dublin', name: 'Dublin', country: 'Irland', countryCode: 'IE', lat: 53.349, lng: -6.260, mapX: 28, mapY: 38, businesses: 520, activeModules: ['marketplace', 'digitale-produkte', 'partner'] },
   { id: 'stockholm', name: 'Stockholm', country: 'Schweden', countryCode: 'SE', lat: 59.329, lng: 18.068, mapX: 58, mapY: 24, businesses: 640, activeModules: ['marketplace', 'transport', 'akademie'], isMajorHub: true },
   { id: 'oslo', name: 'Oslo', country: 'Norwegen', countryCode: 'NO', lat: 59.913, lng: 10.752, mapX: 50, mapY: 22, businesses: 380, activeModules: ['marketplace', 'partner', 'logistik'] },
-  { id: 'helsinki', name: 'Helsinki', country: 'Finnland', countryCode: 'FI', lat: 60.169, lng: 24.938, mapX: 66, mapY: 22, businesses: 410, activeModules: ['marketplace', 'transport', 'ki'] },
+  { id: 'helsinki', name: 'Helsinki', country: 'Finnland', countryCode: 'FI', lat: 60.169, lng: 24.938, mapX: 66, mapY: 22, businesses: 410, activeModules: ['marketplace', 'transport', 'ki'], isMajorHub: true },
   { id: 'budapest', name: 'Budapest', country: 'Ungarn', countryCode: 'HU', lat: 47.497, lng: 19.040, mapX: 62, mapY: 50, businesses: 560, activeModules: ['marketplace', 'logistik', 'jobs'], isMajorHub: true },
-  { id: 'bucharest', name: 'Bukarest', country: 'Rumänien', countryCode: 'RO', lat: 44.426, lng: 26.102, mapX: 68, mapY: 54, businesses: 480, activeModules: ['marketplace', 'transport', 'lager'] },
-  { id: 'athens', name: 'Athen', country: 'Griechenland', countryCode: 'GR', lat: 37.983, lng: 23.727, mapX: 66, mapY: 62, businesses: 510, activeModules: ['marketplace', 'akademie', 'partner'] },
+  { id: 'bucharest', name: 'Bukarest', country: 'Rumänien', countryCode: 'RO', lat: 44.426, lng: 26.102, mapX: 68, mapY: 54, businesses: 480, activeModules: ['marketplace', 'transport', 'lager'], isMajorHub: true },
+  { id: 'athens', name: 'Athen', country: 'Griechenland', countryCode: 'GR', lat: 37.983, lng: 23.727, mapX: 66, mapY: 62, businesses: 510, activeModules: ['marketplace', 'akademie', 'partner'], isMajorHub: true },
   { id: 'bratislava', name: 'Bratislava', country: 'Slowakei', countryCode: 'SK', lat: 48.148, lng: 17.107, mapX: 62, mapY: 48, businesses: 280, activeModules: ['marketplace', 'transport'] },
   { id: 'luxembourg', name: 'Luxemburg', country: 'Luxemburg', countryCode: 'LU', lat: 49.611, lng: 6.131, mapX: 46, mapY: 45, businesses: 220, activeModules: ['marketplace', 'partner', 'unternehmen'] },
   { id: 'tallinn', name: 'Tallinn', country: 'Estland', countryCode: 'EE', lat: 59.437, lng: 24.753, mapX: 66, mapY: 28, businesses: 190, activeModules: ['marketplace', 'digitale-produkte', 'ki'] },
@@ -196,10 +202,10 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
   { id: 'vilnius', name: 'Vilnius', country: 'Litauen', countryCode: 'LT', lat: 54.687, lng: 25.280, mapX: 66, mapY: 36, businesses: 240, activeModules: ['marketplace', 'jobs', 'transport'] },
   { id: 'milan', name: 'Mailand', country: 'Italien', countryCode: 'IT', lat: 45.464, lng: 9.190, mapX: 54, mapY: 52, businesses: 1100, activeModules: ['marketplace', 'transport', 'unternehmen', 'ki'], isMajorHub: true },
   { id: 'barcelona', name: 'Barcelona', country: 'Spanien', countryCode: 'ES', lat: 41.387, lng: 2.168, mapX: 38, mapY: 56, businesses: 940, activeModules: ['marketplace', 'logistik', 'jobs', 'ki'], isMajorHub: true },
-  { id: 'sofia', name: 'Sofia', country: 'Bulgarien', countryCode: 'BG', lat: 42.698, lng: 23.322, mapX: 66, mapY: 54, businesses: 420, activeModules: ['marketplace', 'transport', 'partner'] },
+  { id: 'sofia', name: 'Sofia', country: 'Bulgarien', countryCode: 'BG', lat: 42.698, lng: 23.322, mapX: 66, mapY: 54, businesses: 420, activeModules: ['marketplace', 'transport', 'partner'], isMajorHub: true },
   { id: 'kyiv', name: 'Kiew', country: 'Ukraine', countryCode: 'UA', lat: 50.450, lng: 30.524, mapX: 72, mapY: 44, businesses: 680, activeModules: ['marketplace', 'transport', 'jobs'], isMajorHub: true },
-  { id: 'marseille', name: 'Marseille', country: 'Frankreich', countryCode: 'FR', lat: 43.296, lng: 5.369, mapX: 44, mapY: 54, businesses: 620, activeModules: ['marketplace', 'transport', 'logistik'] },
-  { id: 'lyon', name: 'Lyon', country: 'Frankreich', countryCode: 'FR', lat: 45.764, lng: 4.835, mapX: 44, mapY: 50, businesses: 580, activeModules: ['marketplace', 'jobs', 'partner'] },
+  { id: 'marseille', name: 'Marseille', country: 'Frankreich', countryCode: 'FR', lat: 43.296, lng: 5.369, mapX: 44, mapY: 54, businesses: 620, activeModules: ['marketplace', 'transport', 'logistik'], isMajorHub: true },
+  { id: 'lyon', name: 'Lyon', country: 'Frankreich', countryCode: 'FR', lat: 45.764, lng: 4.835, mapX: 44, mapY: 50, businesses: 580, activeModules: ['marketplace', 'jobs', 'partner'], isMajorHub: true },
   { id: 'krakow', name: 'Krakau', country: 'Polen', countryCode: 'PL', lat: 50.065, lng: 19.945, mapX: 62, mapY: 46, businesses: 490, activeModules: ['marketplace', 'akademie', 'transport'] },
   { id: 'istanbul', name: 'Istanbul', country: 'Türkei', countryCode: 'TR', lat: 41.008, lng: 28.978, mapX: 72, mapY: 52, businesses: 920, activeModules: ['marketplace', 'transport', 'logistik', 'ki'], isMajorHub: true },
 ];

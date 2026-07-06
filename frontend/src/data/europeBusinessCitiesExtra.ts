@@ -18,13 +18,21 @@ function c(
 
 /** Additional major European business cities — merged into cities.ts */
 export const europeBusinessCitiesExtra: CitySeed[] = [
-  // France
-  c('toulouse', 'Toulouse', 'Frankreich', 'FR', 43.604, 1.444, 480, ['marketplace', 'transport', 'akademie']),
-  c('lille', 'Lille', 'Frankreich', 'FR', 50.629, 3.057, 520, ['marketplace', 'logistik', 'jobs']),
-  c('bordeaux', 'Bordeaux', 'Frankreich', 'FR', 44.837, -0.579, 440, ['marketplace', 'transport', 'partner']),
-  c('nice', 'Nice', 'Frankreich', 'FR', 43.71, 7.262, 410, ['marketplace', 'partner', 'services']),
-  c('strasbourg', 'Straßburg', 'Frankreich', 'FR', 48.573, 7.753, 390, ['marketplace', 'partner', 'unternehmen']),
-  c('nantes', 'Nantes', 'Frankreich', 'FR', 47.218, -1.554, 370, ['marketplace', 'transport', 'logistik']),
+  // France — major business hubs
+  c('lille', 'Lille', 'Frankreich', 'FR', 50.629, 3.057, 520, ['marketplace', 'logistik', 'jobs'], true),
+  c('bordeaux', 'Bordeaux', 'Frankreich', 'FR', 44.837, -0.579, 440, ['marketplace', 'transport', 'partner'], true),
+  c('toulouse', 'Toulouse', 'Frankreich', 'FR', 43.604, 1.444, 480, ['marketplace', 'transport', 'akademie'], true),
+  c('nice', 'Nice', 'Frankreich', 'FR', 43.71, 7.262, 410, ['marketplace', 'partner', 'transport'], true),
+  c('strasbourg', 'Straßburg', 'Frankreich', 'FR', 48.573, 7.753, 390, ['marketplace', 'partner', 'unternehmen'], true),
+  c('nantes', 'Nantes', 'Frankreich', 'FR', 47.218, -1.554, 370, ['marketplace', 'transport', 'logistik'], true),
+  c('lehavre', 'Le Havre', 'Frankreich', 'FR', 49.494, 0.107, 360, ['marketplace', 'transport', 'logistik', 'lager'], true),
+  c('rouen', 'Rouen', 'Frankreich', 'FR', 49.443, 1.099, 310, ['marketplace', 'transport', 'logistik'], true),
+  c('reims', 'Reims', 'Frankreich', 'FR', 49.258, 4.031, 280, ['marketplace', 'logistik', 'jobs'], true),
+  c('metz', 'Metz', 'Frankreich', 'FR', 49.119, 6.176, 290, ['marketplace', 'transport', 'logistik'], true),
+  c('dijon', 'Dijon', 'Frankreich', 'FR', 47.322, 5.041, 270, ['marketplace', 'transport', 'akademie'], true),
+  c('clermont', 'Clermont-Ferrand', 'Frankreich', 'FR', 45.777, 3.087, 260, ['marketplace', 'unternehmen', 'transport'], true),
+  c('montpellier', 'Montpellier', 'Frankreich', 'FR', 43.611, 3.877, 340, ['marketplace', 'transport', 'ki'], true),
+  c('grenoble', 'Grenoble', 'Frankreich', 'FR', 45.188, 5.724, 320, ['marketplace', 'transport', 'ki'], true),
   // Spain
   c('valencia', 'Valencia', 'Spanien', 'ES', 39.47, -0.376, 560, ['marketplace', 'transport', 'logistik']),
   c('seville', 'Sevilla', 'Spanien', 'ES', 37.389, -5.984, 490, ['marketplace', 'akademie', 'partner']),
@@ -82,7 +90,18 @@ export const europeBusinessCitiesExtra: CitySeed[] = [
   // Lithuania
   c('kaunas', 'Kaunas', 'Litauen', 'LT', 54.898, 23.904, 240, ['marketplace', 'logistik', 'transport']),
   // Ukraine
-  c('lviv', 'Lemberg', 'Ukraine', 'UA', 49.839, 24.03, 420, ['marketplace', 'transport', 'jobs']),
-  c('odesa', 'Odessa', 'Ukraine', 'UA', 46.482, 30.724, 380, ['marketplace', 'transport', 'logistik']),
-  c('dnipro', 'Dnipro', 'Ukraine', 'UA', 48.464, 35.046, 360, ['marketplace', 'logistik', 'lager']),
+  c('kharkiv', 'Charkiw', 'Ukraine', 'UA', 49.993, 36.230, 520, ['marketplace', 'transport', 'logistik', 'lager'], true),
+  c('lviv', 'Lemberg', 'Ukraine', 'UA', 49.839, 24.03, 420, ['marketplace', 'transport', 'jobs'], true),
+  c('odesa', 'Odessa', 'Ukraine', 'UA', 46.482, 30.724, 380, ['marketplace', 'transport', 'logistik'], true),
+  c('dnipro', 'Dnipro', 'Ukraine', 'UA', 48.464, 35.046, 360, ['marketplace', 'logistik', 'lager'], true),
+  c('izium', 'Isjum', 'Ukraine', 'UA', 49.209, 37.298, 280, ['marketplace', 'transport', 'logistik', 'lager'], true),
+  // Turkey
+  c('ankara', 'Ankara', 'Türkei', 'TR', 39.933, 32.860, 640, ['marketplace', 'transport', 'logistik', 'ki'], true),
+  c('izmir', 'Izmir', 'Türkei', 'TR', 38.419, 27.129, 580, ['marketplace', 'transport', 'logistik'], true),
+  c('bursa', 'Bursa', 'Türkei', 'TR', 40.188, 29.061, 420, ['marketplace', 'transport', 'lager'], true),
+  // Balkans
+  c('belgrade', 'Belgrad', 'Serbien', 'RS', 44.786, 20.448, 410, ['marketplace', 'transport', 'logistik']),
+  c('zagreb', 'Zagreb', 'Kroatien', 'HR', 45.815, 15.982, 360, ['marketplace', 'transport', 'partner']),
+  c('ljubljana', 'Ljubljana', 'Slowenien', 'SI', 46.056, 14.505, 290, ['marketplace', 'transport', 'jobs']),
+  c('sarajevo', 'Sarajevo', 'Bosnien und Herzegowina', 'BA', 43.856, 18.413, 240, ['marketplace', 'transport', 'partner']),
 ];

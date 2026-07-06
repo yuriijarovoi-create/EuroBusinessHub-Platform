@@ -1367,6 +1367,81 @@
   pointer-events: none;
 }
 
+@keyframes ebh-hub-breathe {
+  0%, 100% {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.32;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes ebh-hub-energy-ring {
+  0% {
+    opacity: 0.45;
+    stroke-width: 1;
+    r: 8;
+  }
+  70% {
+    opacity: 0.08;
+    stroke-width: 0.4;
+    r: 22;
+  }
+  100% {
+    opacity: 0;
+    stroke-width: 0;
+    r: 26;
+  }
+}
+
+:global(.ebh-hub-energy) {
+  pointer-events: none;
+  animation: ebh-hub-energy-pulse 4.2s ease-out infinite;
+}
+
+:global(.ebh-hub-energy-strategic) {
+  animation-duration: 3.6s;
+}
+
+@keyframes ebh-hub-energy-pulse {
+  0% {
+    opacity: 0.42;
+    transform: scale(0.72);
+  }
+  55% {
+    opacity: 0.12;
+    transform: scale(1.35);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+
+:global(.ebh-hub-halo-hover) {
+  filter: drop-shadow(0 0 8px rgb(61 184 232 / 0.55));
+}
+
+@keyframes ebh-route-breathe {
+  0%, 100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+:global(.ebh-route-glow-atmo) {
+  animation: ebh-route-breathe 4.8s ease-in-out infinite;
+}
+
+:global(.ebh-route-level-1.ebh-route-glow-outer) {
+  animation: ebh-route-breathe 3.6s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
 :global(.ebh-port-anchor-wrap) {
   background: transparent !important;
   border: none !important;
@@ -1392,10 +1467,136 @@
 }
 
 :global(.ebh-route) {
-  transition: opacity 0.35s ease, stroke-width 0.25s ease;
+  transition: opacity 0.28s ease, stroke-width 0.22s ease, filter 0.28s ease;
 }
 
-/* Level 1 — European backbone */
+:global(.ebh-route-glow-atmo),
+:global(.ebh-route-glow-outer) {
+  pointer-events: none;
+}
+
+/* Level 1 — major European corridors */
+:global(.ebh-route-level-1.ebh-route-road.ebh-route-core) {
+  filter: drop-shadow(0 0 4px rgb(45 156 255 / 0.65)) drop-shadow(0 0 14px rgb(45 156 255 / 0.28));
+}
+
+:global(.ebh-route-level-1.ebh-route-rail.ebh-route-core),
+:global(.ebh-route-level-1.ebh-route-rail-track) {
+  filter: drop-shadow(0 0 3px rgb(52 199 89 / 0.6)) drop-shadow(0 0 12px rgb(52 199 89 / 0.22));
+}
+
+:global(.ebh-route-level-1.ebh-route-sea.ebh-route-core) {
+  filter: drop-shadow(0 0 3px rgb(255 140 66 / 0.55)) drop-shadow(0 0 12px rgb(255 140 66 / 0.2));
+}
+
+:global(.ebh-route-level-1.ebh-route-air.ebh-route-core) {
+  filter: drop-shadow(0 0 3px rgb(155 109 255 / 0.55)) drop-shadow(0 0 10px rgb(155 109 255 / 0.2));
+}
+
+:global(.ebh-route-level-1.ebh-route-ai.ebh-route-core) {
+  filter: drop-shadow(0 0 4px rgb(34 211 238 / 0.6)) drop-shadow(0 0 12px rgb(34 211 238 / 0.24));
+}
+
+:global(.ebh-route-level-1.ebh-route-partnership.ebh-route-core) {
+  filter: drop-shadow(0 0 3px rgb(232 238 244 / 0.45)) drop-shadow(0 0 10px rgb(232 238 244 / 0.15));
+}
+
+/* Level 2 — national */
+:global(.ebh-route-level-2.ebh-route-core) {
+  filter: drop-shadow(0 0 2px rgb(100 160 220 / 0.35));
+}
+
+/* Level 3 — regional */
+:global(.ebh-route-level-3.ebh-route-core) {
+  filter: none;
+}
+
+/* Hover — brighten + strengthen glow */
+:global(.ebh-route-hovered.ebh-route-core) {
+  filter: drop-shadow(0 0 6px rgb(120 190 255 / 0.75)) drop-shadow(0 0 18px rgb(80 160 255 / 0.35)) !important;
+}
+
+:global(.ebh-route-particle-head) {
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+:global(.ebh-particle-road.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 5px rgb(45 156 255 / 0.85));
+}
+
+:global(.ebh-particle-rail.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 4px rgb(52 199 89 / 0.8));
+}
+
+:global(.ebh-particle-air.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 6px rgb(155 109 255 / 0.9));
+}
+
+:global(.ebh-particle-sea.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 5px rgb(255 140 66 / 0.85));
+}
+
+:global(.ebh-particle-ai.ebh-route-particle-head) {
+  animation: ebh-ai-particle-pulse 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 7px rgb(34 211 238 / 0.95));
+}
+
+@keyframes ebh-ai-particle-pulse {
+  0%, 100% { opacity: 0.82; }
+  50% { opacity: 1; }
+}
+
+:global(.ebh-route-inner-core) {
+  pointer-events: none;
+}
+
+:global(.ebh-route-base) {
+  pointer-events: none;
+}
+
+:global(.ebh-route-direction) {
+  pointer-events: none;
+  animation: ebh-direction-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ebh-direction-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.75; }
+}
+
+:global(.ebh-route-selected.ebh-route-core) {
+  filter: drop-shadow(0 0 8px rgb(140 210 255 / 0.9)) drop-shadow(0 0 22px rgb(80 170 255 / 0.45)) !important;
+}
+
+:global(.ebh-route-selected.ebh-route-inner-core) {
+  opacity: 0.98 !important;
+}
+
+:global(.ebh-route-particle-trail) {
+  pointer-events: none;
+}
+
+:global(.ebh-route-tooltip-premium) {
+  min-width: 200px;
+}
+
+:global(.ebh-route-tooltip-ai) {
+  margin-left: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  background: rgb(34 211 238 / 0.18);
+  color: #67e8f9;
+  border: 1px solid rgb(34 211 238 / 0.35);
+}
+
+:global(.ebh-route-tooltip-score) {
+  color: #67e8f9 !important;
+}
+
+/* Legacy tier glow — fallback */
 :global(.ebh-route-tier-trunk.ebh-route-road) {
   filter: drop-shadow(0 0 3px rgb(42 126 200 / 0.6)) drop-shadow(0 0 10px rgb(42 126 200 / 0.22));
 }
@@ -1413,7 +1614,6 @@
   filter: drop-shadow(0 0 1px rgb(107 168 212 / 0.4));
 }
 
-/* Level 2 — international: minimal glow */
 :global(.ebh-route-tier-international.ebh-route-road),
 :global(.ebh-route-tier-international.ebh-route-rail) {
   filter: drop-shadow(0 0 1px rgb(42 126 200 / 0.28));

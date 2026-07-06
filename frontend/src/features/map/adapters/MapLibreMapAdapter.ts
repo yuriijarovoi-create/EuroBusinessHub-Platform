@@ -1,6 +1,6 @@
 import type { MapProviderAdapter, MapAdapterOptions, MapViewportState } from '@shared/types';
 
-/** MapLibre GL adapter stub */
+/** MapLibre GL adapter — Mapbox-compatible; swap Leaflet renderer without UI changes */
 export class MapLibreMapAdapter implements MapProviderAdapter {
   id = 'maplibre' as const;
 

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
+import { getCityHubProfile } from '../data/cityHubEnrichment';
 import { getRoutesForCity } from '../data/routeData';
 import { getMapCityById } from '../data/mapData';
+import { getRouteArrowName } from '../data/routeMetadata';
 import type { MapCityRecord, CityPanelTab } from '../types/mapTypes';
 import styles from './EuropeBusinessMap.module.css';
 
@@ -22,6 +24,7 @@ export function CityInfoPanel({ city, open = true, onClose, onToggle, onOpenWork
 
   if (!city) return null;
 
+  const hubProfile = getCityHubProfile(city.id);
   const cityRoutes = getRoutesForCity(city.id).slice(0, 6);
   const m = city.metrics;
 
@@ -49,7 +52,16 @@ export function CityInfoPanel({ city, open = true, onClose, onToggle, onOpenWork
 
       <header className={styles.panelHeader}>
         <h3>{city.name}</h3>
-        <p>{city.country}</p>
+        <p>{hubProfile?.businessCategory ?? city.country}</p>
+        {hubProfile?.specialTags && (
+          <div className={styles.routeIndustryTags}>
+            {hubProfile.specialTags.map((tag) => (
+              <span key={tag} className={styles.routeIndustryTag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </header>
 
       <nav className={styles.panelTabs}>
@@ -112,18 +124,35 @@ export function CityInfoPanel({ city, open = true, onClose, onToggle, onOpenWork
         )}
         {tab === 'routes' && (
           <ul className={styles.routeList}>
-            {cityRoutes.map((route) => {
-              const destId = route.fromCityId === city.id ? route.toCityId : route.fromCityId;
-              const destName = getMapCityById(destId)?.name ?? destId;
-              return (
-                <li key={route.id} className={styles.routeListItem}>
-                  <span className={`${styles.routeMode} ${styles[`routeMode${route.mode}`]}`}>
-                    {t(`layers.${route.mode}`)}
-                  </span>
-                  <span>{destName}</span>
-                </li>
-              );
-            })}
+            {(hubProfile?.topRoutePairs
+              ? hubProfile.topRoutePairs.map(([fromId, toId]) => {
+                  const route = getRoutesForCity(city.id).find(
+                    (r) =>
+                      (r.fromCityId === fromId && r.toCityId === toId) ||
+                      (r.fromCityId === toId && r.toCityId === fromId),
+                  );
+                  const label = route
+                    ? getRouteArrowName(route, new Map([[fromId, { name: getMapCityById(fromId)?.name ?? fromId }], [toId, { name: getMapCityById(toId)?.name ?? toId }]]))
+                    : `${getMapCityById(fromId)?.name ?? fromId} → ${getMapCityById(toId)?.name ?? toId}`;
+                  return (
+                    <li key={`${fromId}-${toId}`} className={styles.routeListItem}>
+                      <span className={styles.routeMode}>{route ? t(`layers.${route.mode}`) : '—'}</span>
+                      <span>{label}</span>
+                    </li>
+                  );
+                })
+              : cityRoutes.map((route) => {
+                  const destId = route.fromCityId === city.id ? route.toCityId : route.fromCityId;
+                  const destName = getMapCityById(destId)?.name ?? destId;
+                  return (
+                    <li key={route.id} className={styles.routeListItem}>
+                      <span className={`${styles.routeMode} ${styles[`routeMode${route.mode}`]}`}>
+                        {t(`layers.${route.mode}`)}
+                      </span>
+                      <span>{destName}</span>
+                    </li>
+                  );
+                }))}
           </ul>
         )}
       </div>

@@ -121,6 +121,48 @@
   width: 32px;
   height: 32px;
   background: color-mix(in srgb, var(--map-marker-hub) 14%, transparent);
+  animation: ebh-hub-marker-pulse 4s ease-in-out infinite;
+}
+
+:global(.ebh-marker-hub.ebh-marker-selected .ebh-marker-core),
+:global(.ebh-marker-hub:hover .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 16px var(--map-marker-hub-glow),
+    0 0 28px color-mix(in srgb, var(--map-marker-hub) 45%, transparent);
+}
+
+:global(.ebh-marker-izium .ebh-marker-core) {
+  background: #22d3ee;
+  border-color: #67e8f9;
+  box-shadow:
+    0 0 0 1px rgb(34 211 238 / 0.4),
+    0 0 14px rgb(34 211 238 / 0.75),
+    0 0 26px rgb(34 211 238 / 0.35);
+}
+
+:global(.ebh-marker-izium .ebh-marker-pulse) {
+  background: color-mix(in srgb, #22d3ee 22%, transparent);
+  animation: ebh-hub-marker-pulse 3.2s ease-in-out infinite;
+}
+
+:global(.ebh-marker-izium.ebh-marker-selected .ebh-marker-core),
+:global(.ebh-marker-izium:hover .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px rgb(103 232 249 / 0.55),
+    0 0 20px rgb(34 211 238 / 0.9),
+    0 0 36px rgb(34 211 238 / 0.5);
+}
+
+@keyframes ebh-hub-marker-pulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.88);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.12);
+  }
 }
 
 :global(.ebh-marker-tier5 .ebh-marker-core) {
@@ -214,6 +256,17 @@
   line-height: 1.45 !important;
   box-shadow: var(--map-panel-shadow) !important;
   pointer-events: none !important;
+}
+
+:global(.ebh-tooltip-country) {
+  opacity: 0.78;
+  font-size: 10px;
+}
+
+:global(.ebh-tooltip-category) {
+  opacity: 0.85;
+  font-size: 10px;
+  font-style: italic;
 }
 
 :global(.leaflet-tooltip.ebh-tooltip.ebh-tooltip-enter) {

@@ -31,6 +31,24 @@ const LIVE_CORRIDOR_OVERRIDES: Record<string, Partial<BusinessRouteDef>> = {
   'corridor-rail-munich-vienna': { activeOffers: 9, activeOrders: 7 },
   'corridor-sea-hamburg-copenhagen': { activeOffers: 7, activeOrders: 5 },
   'corridor-rail-frankfurt-cologne': { activeOffers: 15, activeOrders: 11 },
+  'eu-east-rail-izium-kyiv': { activeOffers: 22, activeOrders: 16 },
+  'eu-east-rail-izium-warsaw': { activeOffers: 18, activeOrders: 14 },
+  'eu-east-rail-izium-berlin': { activeOffers: 15, activeOrders: 11 },
+  'eu-east-rail-izium-frankfurt': { activeOffers: 14, activeOrders: 10 },
+  'eu-east-rail-istanbul-sofia': { activeOffers: 20, activeOrders: 15 },
+  'eu-east-rail-istanbul-budapest': { activeOffers: 17, activeOrders: 12 },
+  'eu-east-air-istanbul-berlin': { activeOffers: 11, activeOrders: 8 },
+  'eu-east-rail-kyiv-kharkiv': { activeOffers: 16, activeOrders: 12 },
+  'eu-east-rail-odesa-izium': { activeOffers: 16, activeOrders: 12 },
+  'eu-east-rail-istanbul-izmir': { activeOffers: 21, activeOrders: 15 },
+  'eu-east-road-krakow-lviv': { activeOffers: 14, activeOrders: 10 },
+  'fr-rail-paris-rotterdam': { activeOffers: 28, activeOrders: 21 },
+  'fr-rail-paris-lehavre': { activeOffers: 22, activeOrders: 16 },
+  'fr-rail-lyon-marseille': { activeOffers: 19, activeOrders: 14 },
+  'fr-rail-lille-brussels': { activeOffers: 24, activeOrders: 18 },
+  'fr-sea-marseille-genoa': { activeOffers: 17, activeOrders: 12 },
+  'corridor-rail-paris-brussels': { activeOffers: 26, activeOrders: 19 },
+  'corridor-rail-paris-lyon': { activeOffers: 20, activeOrders: 15 },
 };
 
 function inferRoutePriority(scope: string, tier?: number): RoutePriorityLevel {
@@ -131,39 +149,27 @@ const MODE_LABELS: Record<string, string> = {
   river: 'River / Inland',
 };
 
-const STATUS_LABELS: Record<string, string> = {
-  active: 'Active',
-  congested: 'Congested',
-  maintenance: 'Maintenance',
-  seasonal: 'Seasonal',
-};
-
 export function buildRouteTooltipHtml(
   route: BusinessRouteDef,
   cityMap: Map<string, { name: string }>,
 ): string {
-  const name = getRouteArrowName(route, cityMap);
+  const from = cityMap.get(route.fromCityId)?.name ?? route.fromCityId;
+  const to = cityMap.get(route.toCityId)?.name ?? route.toCityId;
   const mode = MODE_LABELS[route.transportMode ?? route.mode] ?? route.mode;
-  const dist = route.distanceKm != null ? `${route.distanceKm} km` : '—';
   const time = route.estimatedTime != null ? formatEstimatedTime(route.estimatedTime) : '—';
-  const volume =
-    route.monthlyVolumeTons != null
-      ? `${route.monthlyVolumeTons.toLocaleString()} t/mo`
-      : '—';
   const offers = route.activeOffers != null ? String(route.activeOffers) : '—';
-  const price = route.averagePriceIndex != null ? String(route.averagePriceIndex) : '—';
-  const status = STATUS_LABELS[route.status ?? 'active'] ?? route.status;
-  const industries = (route.mainIndustries ?? route.industries ?? []).slice(0, 3).join(' · ') || 'Logistics';
+  const aiScore = route.reliabilityScore != null ? `${route.reliabilityScore}` : '—';
+  const aiTag = route.aiRecommended ? '<span class="ebh-route-tooltip-ai">AI Optimized</span>' : '';
 
-  return `<div class="ebh-route-tooltip">
-    <div class="ebh-route-tooltip-title">${name}</div>
-    <div class="ebh-route-tooltip-type">${mode}</div>
-    <div class="ebh-route-tooltip-row"><span>Distance</span><strong>${dist}</strong></div>
+  return `<div class="ebh-route-tooltip ebh-route-tooltip-premium">
+    <div class="ebh-route-tooltip-title">${from} → ${to}</div>
+    <div class="ebh-route-tooltip-type">${mode}${aiTag}</div>
+    <div class="ebh-route-tooltip-row"><span>Origin</span><strong>${from}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>Destination</span><strong>${to}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>Route type</span><strong>${mode}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>Distance</span><strong>${route.distanceKm ?? route.distance ?? '—'} km</strong></div>
+    <div class="ebh-route-tooltip-row"><span>Active offers</span><strong>${offers}</strong></div>
     <div class="ebh-route-tooltip-row"><span>Est. time</span><strong>${time}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Volume</span><strong>${volume}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Offers</span><strong>${offers}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Price idx</span><strong>${price}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Status</span><strong class="ebh-route-status-${route.status ?? 'active'}">${status}</strong></div>
-    <div class="ebh-route-tooltip-industries">${industries}</div>
+    <div class="ebh-route-tooltip-row"><span>AI score</span><strong class="ebh-route-tooltip-score">${aiScore}</strong></div>
   </div>`;
 }

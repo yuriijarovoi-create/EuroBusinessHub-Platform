@@ -50,7 +50,9 @@ export {
   getFullCityWorkspace,
 } from './services/mapService';
 export { getMapAdapter, svgMapAdapter, leafletMapAdapter, mapLibreMapAdapter } from './adapters';
-export { HUB, MAP_VIEWBOX } from './data/europeGeo';
+export { BusinessOperatingMap, HeroMapEmbed } from './shell';
+export { MapEngineProvider, useMapEngine, futureMapAPI } from './engine';
+export { INDUSTRY_ROUTE_COLORS } from './layers';
 export { EuropeMapCanvas } from './components/EuropeMapCanvas';
 export { MapCountryLayer } from './components/MapCountryLayer';
 export { MapCityNode } from './components/MapCityNode';

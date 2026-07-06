@@ -1,0 +1,416 @@
+.interactiveRoot {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mapLoading {
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  color: rgb(148 163 184);
+  font-size: 14px;
+}
+
+.heroEmbedWrap {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heroEmbedWrap :global(.leaflet-container) {
+  background: transparent;
+}
+
+.operatingRoot {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: min(78vh, 880px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  background: linear-gradient(
+    165deg,
+    #070d1a 0%,
+    #0b1224 42%,
+    #0a101f 100%
+  );
+  border: 1px solid rgb(56 89 145 / 0.28);
+  border-radius: var(--radius-2xl, 20px);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgb(15 23 42 / 0.5),
+    0 24px 80px rgb(0 0 0 / 0.45),
+    inset 0 1px 0 rgb(148 163 184 / 0.06);
+}
+
+.operatingRootHero {
+  min-height: 100%;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.operatingRootFullscreen {
+  min-height: min(85vh, 920px);
+}
+
+.operatingLayout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 300px;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: inherit;
+  width: 100%;
+}
+
+.operatingLayoutNoSidebars {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.mapStage {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  min-height: min(72vh, 800px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.mapStageFull {
+  grid-column: 1 / -1;
+}
+
+.navBar {
+  grid-column: 1 / -1;
+  padding: var(--space-sm, 12px) var(--space-md, 16px);
+  border-bottom: 1px solid rgb(51 65 85 / 0.45);
+  background: rgb(8 14 28 / 0.72);
+  backdrop-filter: blur(16px);
+  z-index: 20;
+}
+
+/* Glass side panels */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+  padding: var(--space-md, 16px);
+  background: rgb(10 18 36 / 0.62);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgb(71 100 150 / 0.22);
+  z-index: 15;
+  overflow-y: auto;
+  max-height: 100%;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+.sidebarLeft {
+  grid-column: 1;
+  grid-row: 1;
+  border-right: 1px solid rgb(51 65 85 / 0.35);
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.sidebarRight {
+  grid-column: 3;
+  grid-row: 1;
+  border-left: 1px solid rgb(51 65 85 / 0.35);
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.sidebarCollapsed {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-12px);
+}
+
+.sidebarRight.sidebarCollapsed {
+  transform: translateX(12px);
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm, 8px);
+}
+
+.sidebarTitle {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgb(203 213 225 / 0.9);
+}
+
+.sidebarToggle {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgb(71 100 150 / 0.35);
+  border-radius: 8px;
+  background: rgb(15 25 48 / 0.6);
+  color: rgb(148 163 184);
+  cursor: pointer;
+}
+
+.sidebarSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 10px);
+}
+
+.sidebarEyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(100 116 139);
+}
+
+.filterGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgb(51 65 85 / 0.55);
+  background: rgb(15 23 42 / 0.55);
+  color: rgb(148 163 184);
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.filterChipOn {
+  border-color: color-mix(in srgb, var(--chip-accent, #3b8ede) 55%, transparent);
+  background: color-mix(in srgb, var(--chip-accent, #3b8ede) 14%, rgb(15 23 42));
+  color: rgb(226 232 240);
+}
+
+.filterDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--chip-accent, #3b8ede);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--chip-accent, #3b8ede) 60%, transparent);
+}
+
+.statBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(51 65 85 / 0.35);
+}
+
+.statEyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(100 116 139);
+}
+
+.statTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(241 245 249);
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.statItem {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgb(15 23 42 / 0.5);
+  border: 1px solid rgb(51 65 85 / 0.4);
+}
+
+.statValue {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(226 232 240);
+}
+
+.statLabel {
+  font-size: 10px;
+  color: rgb(100 116 139);
+}
+
+.statRoute {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--map-tooltip-text, #e2e8f0);
+}
+
+.statRoutes {
+  margin-top: 0.75rem;
+}
+
+.statRouteList {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  opacity: 0.88;
+}
+
+.statRouteList li {
+  padding: 0.15rem 0;
+}
+
+.statMeta {
+  font-size: 10px;
+  color: rgb(100 116 139);
+  letter-spacing: 0.06em;
+}
+
+.activityDock {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+  padding: 12px 20px;
+  background: rgb(8 14 28 / 0.78);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgb(51 65 85 / 0.4);
+}
+
+.activitySection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.activityEyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgb(100 116 139);
+}
+
+.activityRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.activityPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgb(30 58 95 / 0.45);
+  border: 1px solid rgb(59 130 246 / 0.25);
+  font-size: 11px;
+  color: rgb(203 213 225);
+}
+
+.activityPill em {
+  font-style: normal;
+  color: #34c759;
+  font-weight: 600;
+}
+
+.activityTip {
+  font-size: 11px;
+  color: rgb(148 163 184);
+  max-width: 280px;
+}
+
+.activityLiveValue {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(241 245 249);
+}
+
+.liveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgb(15 23 42 / 0.65);
+  border: 1px solid rgb(59 130 246 / 0.3);
+  font-size: 11px;
+  color: rgb(203 213 225);
+}
+
+.livePulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 10px rgb(52 199 89 / 0.65);
+  animation: bos-live-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes bos-live-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 1100px) {
+  .operatingLayout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .sidebarLeft,
+  .sidebarRight {
+    display: none;
+  }
+
+  .mapStage {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .operatingRoot {
+    min-height: min(68vh, 640px);
+    border-radius: var(--radius-xl, 16px);
+  }
+
+  .mapStage {
+    min-height: min(60vh, 560px);
+  }
+
+  .activityDock {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

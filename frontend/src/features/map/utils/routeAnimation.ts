@@ -36,6 +36,15 @@ export function baseSpeedPerFrame(
   }
 }
 
+/** Particles accelerate near hub endpoints — opposite of freight vehicle easing */
+export function particleSpeedMultiplierAt(progress: number): number {
+  const nearHub = progress < 0.07 || progress > 0.93;
+  const midHub = progress < 0.14 || progress > 0.86;
+  if (nearHub) return 1.48;
+  if (midHub) return 1.2;
+  return 1;
+}
+
 /**
  * Trucks ease near hubs; trains stay constant; ships stay slow; air stays fast.
  * Returns multiplier applied to base speed.

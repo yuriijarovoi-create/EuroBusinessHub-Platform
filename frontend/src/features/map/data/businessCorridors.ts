@@ -1,6 +1,8 @@
 import type { BusinessRouteDef } from '../types/mapTypes';
 import { buildRouteBatch } from './routeBuilder';
 import { GERMANY_EXTENDED_CORRIDORS } from './germanyCorridors';
+import { EASTERN_EUROPE_CORRIDORS } from './easternEuropeCorridors';
+import { FRANCE_CORRIDORS } from './franceCorridors';
 
 /**
  * Curated European Business Corridor registry.
@@ -129,4 +131,6 @@ export const BUSINESS_CORRIDORS: BusinessRouteDef[] = [
     'corridor',
   ),
   ...GERMANY_EXTENDED_CORRIDORS,
+  ...EASTERN_EUROPE_CORRIDORS,
+  ...FRANCE_CORRIDORS,
 ];

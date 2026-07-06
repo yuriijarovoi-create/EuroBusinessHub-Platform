@@ -1,6 +1,7 @@
 import type { BusinessRouteDef, RoutePriorityLevel, TransportMode } from '../types/mapTypes';
 import { getRouteScope } from '../data/routeCityIndex';
 import { isEuropeanBackbone } from './routeBackbone';
+import { routeColorForCorridor, INDUSTRY_ROUTE_COLORS } from '../layers/industryRoutePalette';
 
 /** Visual-only tier — does not affect route filtering */
 export type RouteVisualTier = 'trunk' | 'international' | 'national' | 'local';
@@ -16,16 +17,16 @@ export function getRouteVisualTier(route: BusinessRouteDef): RouteVisualTier {
   return 'local';
 }
 
-/** Unified blue logistics palette — no rainbow */
+/** Unified industry logistics palette */
 export const CORRIDOR_PALETTE: Record<
   TransportMode,
   { stroke: string; weight: number; dash?: string }
 > = {
-  road: { stroke: '#2a7ec8', weight: 2.4 },
-  rail: { stroke: '#4a8fc4', weight: 1.4 },
-  sea: { stroke: '#3a9eb8', weight: 1.8, dash: '10 8' },
-  air: { stroke: '#6ba8d4', weight: 1.1, dash: '14 10' },
-  river: { stroke: '#4a9ec8', weight: 1.0, dash: '6 8' },
+  road: { stroke: INDUSTRY_ROUTE_COLORS.road, weight: 2.4 },
+  rail: { stroke: INDUSTRY_ROUTE_COLORS.rail, weight: 1.4 },
+  sea: { stroke: INDUSTRY_ROUTE_COLORS.sea, weight: 1.8, dash: '10 8' },
+  air: { stroke: INDUSTRY_ROUTE_COLORS.air, weight: 1.1, dash: '14 10' },
+  river: { stroke: INDUSTRY_ROUTE_COLORS.river, weight: 1.0, dash: '6 8' },
 };
 
 const TIER_WEIGHT: Record<RouteVisualTier, Record<TransportMode, number>> = {
@@ -96,8 +97,8 @@ export function getRouteVisualStyle(
   };
 }
 
-export function corridorStrokeColor(mode: TransportMode, _route: BusinessRouteDef): string {
-  return CORRIDOR_PALETTE[mode].stroke;
+export function corridorStrokeColor(mode: TransportMode, route: BusinessRouteDef): string {
+  return routeColorForCorridor(route, mode);
 }
 
 export function baseLineOpacity(_prio: RoutePriorityLevel, _themeIsLight: boolean): number {

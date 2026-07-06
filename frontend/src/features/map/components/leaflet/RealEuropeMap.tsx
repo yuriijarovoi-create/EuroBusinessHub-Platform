@@ -171,7 +171,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           )}
           {layers.routes && (
             <>
-              <LeafletHubHaloLayer cityMap={routeCityMap} />
+              <LeafletHubHaloLayer cityMap={routeCityMap} hoveredCityId={activeTooltipId} />
               <LeafletRouteLayer
                 routes={routes}
                 cityMap={routeCityMap}
