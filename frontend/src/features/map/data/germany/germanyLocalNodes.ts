@@ -5,6 +5,12 @@ import {
   GERMANY_LOCAL_NODE_ENRICH_IDS,
   type RawLocalNodeDef,
 } from './germanyLocalNodes.generated';
+import {
+  GERMANY_LOCAL_NODE_RURAL_DEFS,
+  GERMANY_LOCAL_NODE_RURAL_ENRICH,
+} from './germanyLocalNodesRural.generated';
+
+const GERMANY_LOCAL_NODE_SEED_DEFS = [...GERMANY_LOCAL_NODE_DEFS, ...GERMANY_LOCAL_NODE_RURAL_DEFS];
 
 type Seed = Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: number; mapTier?: 4 };
 
@@ -107,14 +113,18 @@ function toCitySeed(def: RawLocalNodeDef, profile: GermanyLocalServiceNode): See
   };
 }
 
-const ALL_DEFS = [...GERMANY_LOCAL_NODE_DEFS, ...GERMANY_LOCAL_NODE_ENRICH_IDS];
+const ALL_DEFS = [
+  ...GERMANY_LOCAL_NODE_SEED_DEFS,
+  ...GERMANY_LOCAL_NODE_ENRICH_IDS,
+  ...GERMANY_LOCAL_NODE_RURAL_ENRICH,
+];
 
 export const GERMANY_LOCAL_NODE_PROFILES: Record<string, GermanyLocalServiceNode> = Object.fromEntries(
   ALL_DEFS.map((def) => [def.id, buildProfile(def)]),
 );
 
 /** Tier-4 city seeds — appended to global cities list */
-export const germanyLocalNodeCities: Seed[] = GERMANY_LOCAL_NODE_DEFS.map((def) =>
+export const germanyLocalNodeCities: Seed[] = GERMANY_LOCAL_NODE_SEED_DEFS.map((def) =>
   toCitySeed(def, GERMANY_LOCAL_NODE_PROFILES[def.id]!),
 );
 
@@ -128,7 +138,7 @@ export function isGermanyLocalServiceNode(cityId: string): boolean {
 
 /** Meta entries for tier-4 local nodes (new seeds only) */
 export function getGermanyLocalNodeMeta(cityId: string) {
-  const def = GERMANY_LOCAL_NODE_DEFS.find((d) => d.id === cityId);
+  const def = GERMANY_LOCAL_NODE_SEED_DEFS.find((d) => d.id === cityId);
   if (!def) return undefined;
   const industry =
     def.tourism ? 'Tourismus & Handwerk' : `${def.region} — Dienstleistung & Logistik`;
