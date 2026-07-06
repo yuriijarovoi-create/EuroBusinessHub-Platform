@@ -8,12 +8,14 @@ export type RouteVisualTier = 'trunk' | 'international' | 'national' | 'local';
 
 export function getRouteVisualTier(route: BusinessRouteDef): RouteVisualTier {
   const scope = getRouteScope(route);
-  const tier = route.priorityTier ?? (scope === 'europe' ? 1 : scope === 'country' ? 2 : 3);
+  const tier =
+    route.priorityTier ??
+    (scope === 'europe' ? 1 : scope === 'country' ? 2 : scope === 'regional' ? 3 : 4);
 
   if (isEuropeanBackbone(route.fromCityId, route.toCityId)) return 'trunk';
-  if (scope === 'europe' && tier === 1) return 'trunk';
-  if (scope === 'europe') return 'international';
-  if (scope === 'country') return 'national';
+  if (tier === 1) return scope === 'europe' ? 'trunk' : 'international';
+  if (tier === 2) return 'national';
+  if (tier === 3) return 'national';
   return 'local';
 }
 

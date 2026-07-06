@@ -5,6 +5,7 @@ import { CityProvider, useCityContext } from '@/features/map/context/CityContext
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { GlassPanel } from '@/components/GlassPanel';
 import { routes } from '@/config';
+import { BackToEuropeMapLink } from '@/features/map/components/BackToEuropeMapLink';
 import styles from './CityWorkspacePage.module.css';
 
 function CityWorkspaceContent() {
@@ -17,7 +18,7 @@ function CityWorkspaceContent() {
     return (
       <div className={styles.notFound}>
         <h1>Stadt nicht gefunden</h1>
-        <Link to={routes.map}>{t('workspace:backToMap')}</Link>
+        <BackToEuropeMapLink />
       </div>
     );
   }
@@ -36,7 +37,7 @@ function CityWorkspaceContent() {
   return (
     <div className={styles.page}>
       <nav className={styles.breadcrumb}>
-        <Link to={routes.map}>{t('workspace:backToMap')}</Link>
+        <BackToEuropeMapLink />
       </nav>
 
       <header className={styles.header}>
@@ -90,9 +91,13 @@ function CityWorkspaceContent() {
       <section className={styles.section}>
         <h2>{t('workspace:quickActions')}</h2>
         <div className={styles.actions}>
-          <Link to={routes.map} className={styles.actionBtn}>{t('workspace:actions.search')}</Link>
-          <Link to={routes.module('marketplace')} className={styles.actionBtn}>{t('workspace:actions.marketplace')}</Link>
-          <Link to={routes.module('ki')} className={styles.actionBtn}>{t('workspace:actions.ki')}</Link>
+          <BackToEuropeMapLink className={styles.actionBtn} />
+          <Link to={routes.module('marketplace')} className={styles.actionBtn}>
+            {t('workspace:actions.marketplace')}
+          </Link>
+          <Link to={routes.module('ki')} className={styles.actionBtn}>
+            {t('workspace:actions.ki')}
+          </Link>
         </div>
       </section>
     </div>

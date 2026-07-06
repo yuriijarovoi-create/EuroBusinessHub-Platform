@@ -13,8 +13,8 @@ export type RouteScope = 'europe' | 'country' | 'regional' | 'local';
 /** @deprecated Use RouteScope — kept for backward compatibility */
 export type RouteLevel = RouteScope;
 
-/** Strategic importance tier — 1 = top corridor */
-export type RoutePriorityTier = 1 | 2 | 3;
+/** Strategic importance tier — 1 = backbone … 4 = local hub */
+export type RoutePriorityTier = 1 | 2 | 3 | 4;
 
 /** Corridor visibility priority */
 export type RoutePriorityLevel = 'primary' | 'secondary' | 'local';

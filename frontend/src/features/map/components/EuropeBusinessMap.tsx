@@ -1,7 +1,7 @@
-import { useCallback, useMemo, useState, useEffect, useRef } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import { isMobileViewport } from '../utils/cityVisibilityUtils';
 import type { MapCountry } from '@shared/types';
-import { DEFAULT_LAYER_STATE, type MapLayerState } from '../types/mapTypes';
+import type { MapLayerState } from '../types/mapTypes';
 import type { MapCityRecord } from '../types/mapTypes';
 import {
   getDefaultHubCity,
@@ -17,6 +17,7 @@ import {
 } from '../data/routeData';
 import type { BusinessRouteDef } from '../types/mapTypes';
 import { RealEuropeMap } from './leaflet/RealEuropeMap';
+import { CountryFocusBackButton } from './CountryFocusBackButton';
 import { MapControls } from './MapControls';
 import { CityInfoPanel } from './CityInfoPanel';
 import { GermanyCityInfoPanel } from './GermanyCityInfoPanel';
@@ -25,6 +26,7 @@ import { BundeslandInfoPanel } from './BundeslandInfoPanel';
 import { RouteInfoPanel } from './RouteInfoPanel';
 import { LayerControlPanel } from './LayerControlPanel';
 import { ActivityBottomPanel } from './ActivityBottomPanel';
+import { mapSessionStore, useMapSessionStore } from '../store/mapSessionStore';
 import styles from './EuropeBusinessMap.module.css';
 
 interface EuropeBusinessMapProps {
@@ -33,9 +35,12 @@ interface EuropeBusinessMapProps {
   hubLabel?: string;
   focusCityId?: string;
   onCountrySelect?: (country: MapCountry) => void;
+  onExitCountryFocus?: () => void;
   onOpenWorkspace: (city: MapCityRecord) => void;
-  /** Enterprise shell — hide legacy panels, fly-to-city on click */
+  /** Enterprise shell — hide legacy panels; select only, no auto-navigate */
   enterpriseShell?: boolean;
+  onCitySelect?: (city: MapCityRecord) => void;
+  /** @deprecated use onCitySelect */
   onCityActivate?: (city: MapCityRecord) => void;
   onRouteSelect?: (route: BusinessRouteDef) => void;
   externalLayers?: MapLayerState;
@@ -46,25 +51,33 @@ export function EuropeBusinessMap({
   selectedCountryCode,
   focusCityId,
   onCountrySelect,
+  onExitCountryFocus,
   onOpenWorkspace,
   enterpriseShell = false,
+  onCitySelect,
   onCityActivate,
   onRouteSelect: onRouteSelectExternal,
   externalLayers,
 }: EuropeBusinessMapProps) {
-  const [layers, setLayers] = useState<MapLayerState>(externalLayers ?? DEFAULT_LAYER_STATE);
+  const session = useMapSessionStore();
+  const [layers, setLayers] = useState<MapLayerState>(externalLayers ?? session.layers);
   const [layerOpen, setLayerOpen] = useState(false);
   const [panelOpen, setPanelOpen] = useState(true);
   const [countryPanelOpen, setCountryPanelOpen] = useState(true);
-  const [selectedBundeslandId, setSelectedBundeslandId] = useState<string | undefined>();
   const [bundeslandPanelOpen, setBundeslandPanelOpen] = useState(false);
-  const [activeTooltipId, setActiveTooltipId] = useState<string | null>(null);
-  const tooltipLeaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [panelCity, setPanelCity] = useState<MapCityRecord | null>(
-    () => getDefaultHubCity() ?? null,
-  );
-  const [selectedRoute, setSelectedRoute] = useState<BusinessRouteDef | null>(null);
+  const [hoveredCityId, setHoveredCityId] = useState<string | null>(null);
   const [routePanelOpen, setRoutePanelOpen] = useState(true);
+
+  const infoCardCityId = session.infoCardCityId;
+  const infoCardCountryCode = session.infoCardCountryCode;
+  const selectedBundeslandId = session.selectedBundeslandId;
+
+  const panelCity = useMemo(() => {
+    if (session.selectedCityId) {
+      return getMapCityById(session.selectedCityId) ?? null;
+    }
+    return getDefaultHubCity() ?? null;
+  }, [session.selectedCityId]);
 
   useEffect(() => {
     if (externalLayers) setLayers(externalLayers);
@@ -83,7 +96,7 @@ export function EuropeBusinessMap({
   useEffect(() => {
     if (selectedCountryCode) setCountryPanelOpen(true);
     if (selectedCountryCode !== 'DE') {
-      setSelectedBundeslandId(undefined);
+      mapSessionStore.patch({ selectedBundeslandId: undefined });
       setBundeslandPanelOpen(false);
     }
   }, [selectedCountryCode]);
@@ -111,78 +124,103 @@ export function EuropeBusinessMap({
     return filterRoutesByLayers(base, layers);
   }, [selectedCountryCode, layers]);
 
-  const clearTooltipLeaveTimer = useCallback(() => {
-    if (tooltipLeaveTimerRef.current) {
-      clearTimeout(tooltipLeaveTimerRef.current);
-      tooltipLeaveTimerRef.current = null;
-    }
+  const selectedRoute = useMemo(() => {
+    if (!session.selectedRouteId) return null;
+    return routes.find((route) => route.id === session.selectedRouteId) ?? null;
+  }, [session.selectedRouteId, routes]);
+
+  const clearInfoCard = useCallback(() => {
+    mapSessionStore.patch({ infoCardCityId: null, infoCardCountryCode: null });
   }, []);
 
-  const handleTooltipEnter = useCallback(
-    (cityId: string) => {
-      clearTooltipLeaveTimer();
-      setActiveTooltipId(cityId);
-    },
-    [clearTooltipLeaveTimer],
-  );
+  const handleExitCountryFocus = useCallback(() => {
+    mapSessionStore.patch({
+      selectedBundeslandId: undefined,
+      infoCardCountryCode: null,
+      infoCardCityId: null,
+      selectedRouteId: null,
+    });
+    setBundeslandPanelOpen(false);
+    setHoveredCityId(null);
+    onExitCountryFocus?.();
+  }, [onExitCountryFocus]);
 
-  const handleTooltipLeave = useCallback(() => {
-    clearTooltipLeaveTimer();
-    tooltipLeaveTimerRef.current = setTimeout(() => {
-      setActiveTooltipId(null);
-      tooltipLeaveTimerRef.current = null;
-    }, 150);
-  }, [clearTooltipLeaveTimer]);
+  const handleCityHover = useCallback((cityId: string) => {
+    setHoveredCityId(cityId);
+  }, []);
 
-  const clearActiveTooltip = useCallback(() => {
-    clearTooltipLeaveTimer();
-    setActiveTooltipId(null);
-  }, [clearTooltipLeaveTimer]);
+  const handleCityHoverLeave = useCallback(() => {
+    setHoveredCityId(null);
+  }, []);
 
   const handleMapBackgroundClick = useCallback(() => {
-    clearActiveTooltip();
-    setSelectedRoute(null);
+    if (selectedCountryCode && onExitCountryFocus) {
+      handleExitCountryFocus();
+      return;
+    }
+    clearInfoCard();
+    setHoveredCityId(null);
+    mapSessionStore.patch({ selectedRouteId: null });
     if (isMobileViewport()) {
       setPanelOpen(false);
       setRoutePanelOpen(false);
     }
-  }, [clearActiveTooltip]);
-
-  useEffect(() => {
-    return () => clearTooltipLeaveTimer();
-  }, [clearTooltipLeaveTimer]);
+  }, [selectedCountryCode, onExitCountryFocus, handleExitCountryFocus, clearInfoCard]);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') clearActiveTooltip();
+      if (e.key !== 'Escape') return;
+      if (selectedCountryCode && onExitCountryFocus) {
+        handleExitCountryFocus();
+        return;
+      }
+      clearInfoCard();
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [clearActiveTooltip]);
+  }, [selectedCountryCode, onExitCountryFocus, handleExitCountryFocus, clearInfoCard]);
 
-  const handleSelect = useCallback((city: MapCityRecord) => {
-    setSelectedRoute(null);
-    setPanelCity(city);
-    if (enterpriseShell && onCityActivate) {
-      onCityActivate(city);
-      return;
-    }
-    setPanelOpen(true);
-    setCountryPanelOpen(false);
-    setBundeslandPanelOpen(false);
-  }, [enterpriseShell, onCityActivate]);
+  const handleCountryPick = useCallback(
+    (country: MapCountry) => {
+      mapSessionStore.patch({ infoCardCountryCode: country.code, infoCardCityId: null });
+      onCountrySelect?.(country);
+    },
+    [onCountrySelect],
+  );
 
-  const handleRouteSelect = useCallback((route: BusinessRouteDef) => {
-    setSelectedRoute(route);
-    if (enterpriseShell && onRouteSelectExternal) {
-      onRouteSelectExternal(route);
-      return;
-    }
-    setRoutePanelOpen(true);
-    setCountryPanelOpen(false);
-    setBundeslandPanelOpen(false);
-    setPanelOpen(false);
-  }, [enterpriseShell, onRouteSelectExternal]);
+  const handleSelect = useCallback(
+    (city: MapCityRecord) => {
+      mapSessionStore.patch({
+        infoCardCityId: city.id,
+        infoCardCountryCode: null,
+        selectedCityId: city.id,
+        selectedRouteId: null,
+      });
+      if (enterpriseShell) {
+        (onCitySelect ?? onCityActivate)?.(city);
+        return;
+      }
+      setPanelOpen(true);
+      setCountryPanelOpen(false);
+      setBundeslandPanelOpen(false);
+    },
+    [enterpriseShell, onCitySelect, onCityActivate],
+  );
+
+  const handleRouteSelect = useCallback(
+    (route: BusinessRouteDef) => {
+      mapSessionStore.patch({ selectedRouteId: route.id });
+      if (enterpriseShell && onRouteSelectExternal) {
+        onRouteSelectExternal(route);
+        return;
+      }
+      setRoutePanelOpen(true);
+      setCountryPanelOpen(false);
+      setBundeslandPanelOpen(false);
+      setPanelOpen(false);
+    },
+    [enterpriseShell, onRouteSelectExternal],
+  );
 
   useEffect(() => {
     if (!focusCityId) return;
@@ -195,14 +233,14 @@ export function EuropeBusinessMap({
   }, []);
 
   const handleBundeslandSelect = useCallback((id: string) => {
-    setSelectedBundeslandId(id);
+    mapSessionStore.patch({ selectedBundeslandId: id });
     setBundeslandPanelOpen(true);
     setCountryPanelOpen(false);
     setPanelOpen(false);
   }, []);
 
   const handleBundeslandClose = useCallback(() => {
-    setSelectedBundeslandId(undefined);
+    mapSessionStore.patch({ selectedBundeslandId: undefined });
     setBundeslandPanelOpen(false);
     if (selectedCountryCode) setCountryPanelOpen(true);
   }, [selectedCountryCode]);
@@ -233,6 +271,12 @@ export function EuropeBusinessMap({
       )}
 
       <div className={styles.mapShell}>
+        {onExitCountryFocus && (
+          <CountryFocusBackButton
+            active={!!selectedCountryCode}
+            onClick={handleExitCountryFocus}
+          />
+        )}
         <RealEuropeMap
           routes={routes}
           cities={visibleCities}
@@ -242,21 +286,28 @@ export function EuropeBusinessMap({
           selectedCountryCode={selectedCountryCode}
           selectedBundeslandId={selectedBundeslandId}
           selectedCityId={panelCity?.id}
-          activeTooltipId={activeTooltipId}
+          hoveredCityId={hoveredCityId}
+          infoCardCityId={infoCardCityId}
+          infoCardCountryCode={infoCardCountryCode}
           searchResultCityId={focusCityId}
           countries={countries}
-          onCountrySelect={onCountrySelect}
+          onCountrySelect={handleCountryPick}
           onBundeslandSelect={handleBundeslandSelect}
           onCitySelect={handleSelect}
-          onTooltipEnter={handleTooltipEnter}
-          onTooltipLeave={handleTooltipLeave}
-          onClearTooltip={clearActiveTooltip}
+          onCityHover={handleCityHover}
+          onCityHoverLeave={handleCityHoverLeave}
+          onClearInfoCard={clearInfoCard}
           onMapBackgroundClick={handleMapBackgroundClick}
+          onExitCountryFocus={onExitCountryFocus ? handleExitCountryFocus : undefined}
           onRouteSelect={handleRouteSelect}
           selectedRouteId={selectedRoute?.id}
+          onOpenWorkspace={onOpenWorkspace}
         >
           <div className={styles.mapControlsSlot}>
-            <MapControls />
+            <MapControls
+              countryFocusActive={!!selectedCountryCode}
+              onExitCountryFocus={onExitCountryFocus ? handleExitCountryFocus : undefined}
+            />
           </div>
         </RealEuropeMap>
       </div>
@@ -286,7 +337,7 @@ export function EuropeBusinessMap({
           cityMap={routeCityMap}
           open={routePanelOpen}
           onClose={() => {
-            setSelectedRoute(null);
+            mapSessionStore.patch({ selectedRouteId: null });
             setRoutePanelOpen(true);
             if (selectedBundeslandId) setBundeslandPanelOpen(true);
             else if (selectedCountryCode) setCountryPanelOpen(true);
@@ -299,7 +350,7 @@ export function EuropeBusinessMap({
           city={panelCity}
           open={panelOpen}
           onClose={() => {
-            setPanelCity(getDefaultHubCity() ?? null);
+            mapSessionStore.patch({ selectedCityId: getDefaultHubCity()?.id ?? null, infoCardCityId: null });
             setPanelOpen(true);
             if (selectedBundeslandId) setBundeslandPanelOpen(true);
             else if (selectedCountryCode) setCountryPanelOpen(true);
@@ -312,7 +363,7 @@ export function EuropeBusinessMap({
           city={panelCity}
           open={panelOpen && (!selectedCountryCode || (!countryPanelOpen && !bundeslandPanelOpen))}
           onClose={() => {
-            setPanelCity(getDefaultHubCity() ?? null);
+            mapSessionStore.patch({ selectedCityId: getDefaultHubCity()?.id ?? null, infoCardCityId: null });
             setPanelOpen(true);
             if (selectedBundeslandId) setBundeslandPanelOpen(true);
             else if (selectedCountryCode) setCountryPanelOpen(true);

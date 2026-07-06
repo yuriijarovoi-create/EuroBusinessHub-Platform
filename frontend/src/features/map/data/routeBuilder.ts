@@ -15,8 +15,9 @@ const SCOPE_ZOOM: Record<RouteScope, { min: number; max: number }> = {
 
 const TIER_PRIORITY: Record<RoutePriorityTier, number> = {
   1: 100,
-  2: 65,
-  3: 35,
+  2: 72,
+  3: 48,
+  4: 28,
 };
 
 export interface BuildRouteOptions {
@@ -69,7 +70,8 @@ export function buildRoute(opts: BuildRouteOptions): BusinessRouteDef {
 function defaultTier(scope: RouteScope): RoutePriorityTier {
   if (scope === 'europe') return 1;
   if (scope === 'country') return 2;
-  return 3;
+  if (scope === 'regional') return 3;
+  return 4;
 }
 
 function defaultPurpose(scope: RouteScope): RouteBusinessPurpose {

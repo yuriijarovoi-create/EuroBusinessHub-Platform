@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import { Marker, Tooltip } from 'react-leaflet';
+import { Marker, Tooltip, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { useTranslation } from 'react-i18next';
 import type { MapCityRecord, MapLayerState } from '../../types/mapTypes';
@@ -7,34 +7,40 @@ import { getCityDisplayTier } from '../../utils/cityVisibilityUtils';
 import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
 import { countCityNetworkConnections, computeBusinessScore } from '../../utils/cityNetworkUtils';
 import { getCityHubProfile } from '../../data/cityHubEnrichment';
+import {
+  resolveSmartTooltipDirection,
+  tooltipOffsetForDirection,
+} from '../../utils/mapInfoCardUtils';
 
-const TOOLTIP_ANCHOR_ICON = L.divIcon({
+const CARD_ANCHOR_ICON = L.divIcon({
   className: 'ebh-tooltip-anchor',
   iconSize: [1, 1],
   iconAnchor: [0, 0],
 });
 
-interface LeafletCityHoverTooltipProps {
-  activeTooltipId: string | null;
+const CARD_TRANSITION_MS = 175;
+
+interface LeafletCityInfoCardProps {
+  infoCardCityId: string | null;
   cityMap: Map<string, MapCityRecord>;
   layers: MapLayerState;
   isMobile: boolean;
-  tooltipEligibleIds?: ReadonlySet<string>;
-  tooltipPositionOverrides?: ReadonlyMap<string, { lat: number; lng: number }>;
+  onOpenWorkspace?: (city: MapCityRecord) => void;
 }
 
-export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
-  activeTooltipId,
+export const LeafletCityInfoCard = memo(function LeafletCityInfoCard({
+  infoCardCityId,
   cityMap,
   layers,
   isMobile,
-  tooltipEligibleIds,
-  tooltipPositionOverrides,
-}: LeafletCityHoverTooltipProps) {
+  onOpenWorkspace,
+}: LeafletCityInfoCardProps) {
   const { t } = useTranslation('map');
+  const map = useMap();
   const [displayId, setDisplayId] = useState<string | null>(null);
   const [exiting, setExiting] = useState(false);
   const [entering, setEntering] = useState(false);
+  const [direction, setDirection] = useState<L.TooltipDirection>('top');
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const enterTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const displayIdRef = useRef<string | null>(null);
@@ -45,27 +51,10 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
       hideTimerRef.current = null;
     }
 
-    if (activeTooltipId) {
-      const eligible =
-        !tooltipEligibleIds ||
-        tooltipEligibleIds.size === 0 ||
-        tooltipEligibleIds.has(activeTooltipId);
-      if (!eligible) {
-        if (displayIdRef.current) {
-          setExiting(true);
-          hideTimerRef.current = setTimeout(() => {
-            displayIdRef.current = null;
-            setDisplayId(null);
-            setExiting(false);
-            hideTimerRef.current = null;
-          }, 150);
-        }
-        return;
-      }
-
+    if (infoCardCityId) {
       const fromHidden = displayIdRef.current === null;
-      displayIdRef.current = activeTooltipId;
-      setDisplayId(activeTooltipId);
+      displayIdRef.current = infoCardCityId;
+      setDisplayId(infoCardCityId);
       setExiting(false);
       setEntering(fromHidden);
       return;
@@ -78,9 +67,9 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
         setDisplayId(null);
         setExiting(false);
         hideTimerRef.current = null;
-      }, 150);
+      }, CARD_TRANSITION_MS);
     }
-  }, [activeTooltipId, tooltipEligibleIds]);
+  }, [infoCardCityId]);
 
   useEffect(() => {
     if (!entering) return;
@@ -88,7 +77,7 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
     enterTimerRef.current = setTimeout(() => {
       setEntering(false);
       enterTimerRef.current = null;
-    }, 150);
+    }, CARD_TRANSITION_MS);
     return () => {
       if (enterTimerRef.current) clearTimeout(enterTimerRef.current);
     };
@@ -103,18 +92,30 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
   );
 
   const city = displayId ? cityMap.get(displayId) : undefined;
+
+  useEffect(() => {
+    if (!city) return;
+    const updateDirection = () => {
+      setDirection(resolveSmartTooltipDirection(map, city.lat, city.lng));
+    };
+    updateDirection();
+    map.on('moveend zoomend', updateDirection);
+    return () => {
+      map.off('moveend zoomend', updateDirection);
+    };
+  }, [map, city?.lat, city?.lng, city]);
+
   if (!city || isMobile) return null;
-  if (tooltipEligibleIds && tooltipEligibleIds.size > 0 && !tooltipEligibleIds.has(displayId!)) {
-    return null;
-  }
 
   const displayTier = getCityDisplayTier(city);
-  const override = displayId ? tooltipPositionOverrides?.get(displayId) : undefined;
   const businessScore = computeBusinessScore(city.metrics);
   const networkConnections = countCityNetworkConnections(displayId!);
   const hubProfile = getCityHubProfile(displayId!);
+  const markerOffset = displayTier >= 5 ? 8 : displayTier >= 3 ? 10 : 14;
   const tooltipClass = [
     'ebh-tooltip',
+    'ebh-info-card',
+    onOpenWorkspace ? 'ebh-info-card-interactive' : '',
     entering ? 'ebh-tooltip-enter' : '',
     exiting ? 'ebh-tooltip-exit' : '',
   ]
@@ -124,16 +125,15 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
   return (
     <Marker
       key={displayId}
-      position={[override?.lat ?? city.lat, override?.lng ?? city.lng]}
-      icon={TOOLTIP_ANCHOR_ICON}
+      position={[city.lat, city.lng]}
+      icon={CARD_ANCHOR_ICON}
       interactive={false}
       zIndexOffset={3000}
     >
       <Tooltip
         permanent
-        sticky
-        direction="top"
-        offset={[0, displayTier >= 5 ? -8 : displayTier >= 3 ? -10 : -14]}
+        direction={direction}
+        offset={tooltipOffsetForDirection(direction, markerOffset)}
         opacity={0.95}
         className={tooltipClass}
       >
@@ -184,33 +184,45 @@ export const LeafletCityHoverTooltip = memo(function LeafletCityHoverTooltip({
             {t('tooltip.networkConnections', { count: networkConnections })}
           </>
         )}
+        {onOpenWorkspace && (
+          <>
+            <br />
+            <button
+              type="button"
+              className="ebh-info-card-cta"
+              onClick={(event) => {
+                L.DomEvent.stopPropagation(event);
+                onOpenWorkspace(city);
+              }}
+            >
+              {t('panel.openWorkspace')}
+            </button>
+          </>
+        )}
       </Tooltip>
     </Marker>
   );
 });
 
 export function LeafletCityTooltipLayer({
-  activeTooltipId,
+  infoCardCityId,
   cityMap,
   layers,
-  tooltipEligibleIds,
-  tooltipPositionOverrides,
+  onOpenWorkspace,
 }: {
-  activeTooltipId: string | null;
+  infoCardCityId: string | null;
   cityMap: Map<string, MapCityRecord>;
   layers: MapLayerState;
-  tooltipEligibleIds?: ReadonlySet<string>;
-  tooltipPositionOverrides?: ReadonlyMap<string, { lat: number; lng: number }>;
+  onOpenWorkspace?: (city: MapCityRecord) => void;
 }) {
   const { isMobile } = useLeafletMapViewport();
   return (
-    <LeafletCityHoverTooltip
-      activeTooltipId={activeTooltipId}
+    <LeafletCityInfoCard
+      infoCardCityId={infoCardCityId}
       cityMap={cityMap}
       layers={layers}
       isMobile={isMobile}
-      tooltipEligibleIds={tooltipEligibleIds}
-      tooltipPositionOverrides={tooltipPositionOverrides}
+      onOpenWorkspace={onOpenWorkspace}
     />
   );
 }

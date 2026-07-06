@@ -1,0 +1,32 @@
+.osRoot {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  isolation: isolate;
+}
+
+.mapPane {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mapPaneHidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.workspacePane {
+  position: relative;
+  z-index: 1;
+  min-height: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 225ms ease;
+}
+
+.workspacePaneActive {
+  opacity: 1;
+  pointer-events: auto;
+  background: var(--color-bg, rgb(8 14 28));
+}

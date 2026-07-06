@@ -1,9 +1,6 @@
 import type { City, MapCountry } from '@shared/types';
-import type { MapRoute } from '@shared/types';
 import { EuropeLandmass } from './EuropeLandmass';
 import { MapCountryLayer } from './MapCountryLayer';
-import { MapRoutes } from './MapRoutes';
-import { MapNetworkLayer } from './MapNetworkLayer';
 import { MapHub } from './MapHub';
 import { MapCityNode } from './MapCityNode';
 import { HUB } from '../data/europeGeo';
@@ -11,7 +8,6 @@ import styles from '../EuropeMap.module.css';
 
 interface EuropeMapCanvasProps {
   transform: string;
-  routes: MapRoute[];
   cities: City[];
   countries: MapCountry[];
   hubLabel: string;
@@ -21,12 +17,10 @@ interface EuropeMapCanvasProps {
   onCitySelect: (city: City) => void;
   onCountrySelect?: (country: MapCountry) => void;
   getCityAriaLabel: (city: City) => string;
-  useNetworkLayer?: boolean;
 }
 
 export function EuropeMapCanvas({
   transform,
-  routes,
   cities,
   countries,
   hubLabel,
@@ -36,7 +30,6 @@ export function EuropeMapCanvas({
   onCitySelect,
   onCountrySelect,
   getCityAriaLabel,
-  useNetworkLayer = false,
 }: EuropeMapCanvasProps) {
   return (
     <svg viewBox="0 0 100 70" className={styles.mapSvg} role="img">
@@ -74,11 +67,6 @@ export function EuropeMapCanvas({
           selectedCountryCode={selectedCountryCode}
           onCountrySelect={onCountrySelect}
         />
-        {useNetworkLayer ? (
-          <MapNetworkLayer routes={routes} />
-        ) : (
-          <MapRoutes routes={routes} />
-        )}
         <MapHub label={hubLabel} />
         {cities.map((city) => (
           <MapCityNode

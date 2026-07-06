@@ -108,6 +108,32 @@
   animation: ebh-hub-marker-pulse 3.6s ease-in-out infinite;
 }
 
+:global(.ebh-marker-primary-hub .ebh-marker-core) {
+  width: 18px;
+  height: 18px;
+  background: var(--map-marker-hub);
+  border-color: var(--map-marker-core-border);
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 16px rgb(0 200 255 / 0.72),
+    0 0 28px rgb(0 200 255 / 0.32);
+}
+
+:global(.ebh-marker-primary-hub .ebh-marker-pulse) {
+  width: 48px;
+  height: 48px;
+  background: color-mix(in srgb, rgb(0 200 255) 22%, transparent);
+  animation: ebh-hub-marker-pulse 3.2s ease-in-out infinite;
+}
+
+:global(.ebh-hub-halo-primary) {
+  animation: ebh-hub-halo-breathe 4.8s ease-in-out infinite;
+}
+
+:global(.ebh-hub-energy-primary) {
+  animation: ebh-hub-energy-pulse 3.6s ease-in-out infinite;
+}
+
 :global(.ebh-marker-hub.ebh-marker-selected .ebh-marker-core),
 :global(.ebh-marker-hub:hover .ebh-marker-core) {
   transform: scale(1.14);
@@ -271,19 +297,50 @@
   font-style: italic;
 }
 
-:global(.leaflet-tooltip.ebh-tooltip.ebh-tooltip-enter) {
-  animation: ebh-tooltip-fade-in 150ms ease-out;
+:global(.leaflet-tooltip.ebh-tooltip.ebh-tooltip-enter),
+:global(.leaflet-tooltip.ebh-country-leaflet-tooltip.ebh-tooltip-enter) {
+  animation: ebh-info-card-in 175ms ease-out;
 }
 
-:global(.leaflet-tooltip.ebh-tooltip.ebh-tooltip-exit) {
-  animation: ebh-tooltip-fade-out 150ms ease-in forwards;
+:global(.leaflet-tooltip.ebh-tooltip.ebh-tooltip-exit),
+:global(.leaflet-tooltip.ebh-country-leaflet-tooltip.ebh-tooltip-exit) {
+  animation: ebh-info-card-out 175ms ease-in forwards;
 }
 
-:global(.ebh-tooltip-anchor) {
-  width: 0 !important;
-  height: 0 !important;
-  border: none !important;
-  overflow: hidden !important;
+@keyframes ebh-info-card-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ebh-info-card-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+:global(.ebh-marker-interactive) {
+  cursor: pointer !important;
+}
+
+:global(.ebh-country-interactive) {
+  cursor: pointer !important;
+}
+
+:global(.ebh-marker-hovered .ebh-marker-core) {
+  box-shadow:
+    0 0 0 2px rgb(141 216 252 / 0.55),
+    0 0 14px rgb(45 156 255 / 0.45);
 }
 
 @keyframes ebh-tooltip-fade-in {
@@ -302,6 +359,39 @@
   to {
     opacity: 0;
   }
+}
+
+:global(.ebh-tooltip-anchor) {
+  width: 0 !important;
+  height: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+:global(.leaflet-tooltip.ebh-info-card) {
+  transform-origin: center bottom;
+  pointer-events: none !important;
+}
+
+:global(.leaflet-tooltip.ebh-info-card-interactive) {
+  pointer-events: auto !important;
+}
+
+:global(.ebh-info-card-cta) {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--map-accent) 40%, transparent);
+  border-radius: var(--radius-md, 8px);
+  background: linear-gradient(135deg, var(--map-panel-border, rgb(99 102 241 / 0.2)), rgb(99 102 241 / 0.15));
+  color: var(--map-accent, rgb(56 189 248));
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+:global(.ebh-info-card-cta:hover) {
+  border-color: var(--map-accent, rgb(56 189 248));
 }
 
 :global(.leaflet-tooltip-top.ebh-tooltip::before) {

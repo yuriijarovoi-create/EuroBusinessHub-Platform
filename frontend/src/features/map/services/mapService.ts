@@ -3,7 +3,6 @@ import type { City } from '@shared/types';
 import { EUROPE_COUNTRY_PATHS } from '@/features/map/data/countryPaths';
 import { cities, getCityById } from '@/data/cities';
 import { createCityMetrics } from '@/data/cityMetrics';
-import { businessRoutes } from '@/data/mapRoutes';
 import { mapLiveStats } from '@/data/mapLiveStats';
 import { getCountryViewport } from '@/features/map/utils/projection';
 import { routes } from '@/config';
@@ -54,12 +53,8 @@ export function getMapCityData(cityId: string): MapCityData | null {
   };
 }
 
-export function getBusinessRoutes(filterCountryCode?: string): MapRoute[] {
-  if (!filterCountryCode) return businessRoutes;
-  const cityIds = new Set(getCitiesByCountry(filterCountryCode).map((c) => c.id));
-  return businessRoutes.filter(
-    (r) => cityIds.has(r.fromCityId) || cityIds.has(r.toCityId),
-  );
+export function getBusinessRoutes(_filterCountryCode?: string): MapRoute[] {
+  return [];
 }
 
 export function getMapLiveStats(): MapLiveStat[] {

@@ -9,6 +9,7 @@ import { MapNavigationBar } from '../components/MapNavigationBar';
 import { MapSidebar } from './MapSidebar';
 import { StatisticsPanel } from './StatisticsPanel';
 import { EnterpriseActivityPanel } from './EnterpriseActivityPanel';
+import { mapSessionStore, useMapSessionStore } from '../store/mapSessionStore';
 import styles from './BusinessOperatingMap.module.css';
 
 export type BusinessOperatingMapMode = 'full' | 'hero' | 'embed';
@@ -17,49 +18,80 @@ interface BusinessOperatingMapProps {
   mode?: BusinessOperatingMapMode;
   focusCityId?: string;
   className?: string;
+  /** MapEngineProvider is supplied by MapOSLayout */
+  useExternalProvider?: boolean;
   onOpenWorkspace?: (city: import('../types/mapTypes').MapCityRecord) => void;
 }
 
-function BusinessOperatingMapInner({
+export function BusinessOperatingMapInner({
   mode = 'full',
   focusCityId,
   onOpenWorkspace,
-}: BusinessOperatingMapProps) {
+}: Omit<BusinessOperatingMapProps, 'useExternalProvider' | 'className'>) {
   const { t } = useTranslation('map');
-  const { state, setLayers, setBusinessFilters, selectCity, selectRoute, selectCountry, loadMapData } = useMapEngine();
+  const session = useMapSessionStore();
+  const { state, setLayers, setBusinessFilters, selectCity, selectRoute, selectCountry, resetToEurope, loadMapData } =
+    useMapEngine();
+
   const [leftOpen, setLeftOpen] = useState(mode === 'full');
   const [rightOpen, setRightOpen] = useState(mode === 'full');
-  const [flyCityId, setFlyCityId] = useState<string | undefined>(focusCityId);
-  const [selectedCountryCode, setSelectedCountryCode] = useState<string | undefined>();
+  const selectedCountryCode = session.selectedCountryCode;
 
   const mapCountries = useMemo(() => countries as MapCountry[], []);
+
+  const selectedCountry = useMemo(
+    () => mapCountries.find((c) => c.code === selectedCountryCode) ?? null,
+    [mapCountries, selectedCountryCode],
+  );
+
+  useEffect(() => {
+    if (focusCityId) {
+      mapSessionStore.patch({ focusCityId });
+      const city = getMapCityById(focusCityId);
+      if (city) {
+        mapSessionStore.patch({
+          selectedCountryCode: city.countryCode,
+          selectedCityId: focusCityId,
+          infoCardCityId: focusCityId,
+        });
+      }
+    }
+  }, [focusCityId]);
 
   useEffect(() => {
     loadMapData(selectedCountryCode);
   }, [loadMapData, selectedCountryCode]);
 
-  useEffect(() => {
-    if (!focusCityId) return;
-    setFlyCityId(focusCityId);
-    const city = getMapCityById(focusCityId);
-    if (city) setSelectedCountryCode(city.countryCode);
-  }, [focusCityId]);
-
   const handleCountrySelect = useCallback((country: MapCountry) => {
-    setSelectedCountryCode(country.code);
+    mapSessionStore.patch({ selectedCountryCode: country.code });
     selectCountry(country, null);
   }, [selectCountry]);
 
-  const handleCityActivate = useCallback(
+  const exitCountryFocus = useCallback(() => {
+    mapSessionStore.patch({
+      selectedCountryCode: undefined,
+      selectedBundeslandId: undefined,
+      selectedCityId: null,
+      infoCardCityId: null,
+      infoCardCountryCode: null,
+      selectedRouteId: null,
+      focusCityId: undefined,
+    });
+    selectCountry(null, null);
+    selectCity(null, { fly: false, openWorkspace: false });
+    resetToEurope(null);
+  }, [selectCountry, selectCity, resetToEurope]);
+
+  const handleCitySelect = useCallback(
     (city: import('../types/mapTypes').MapCityRecord) => {
-      setFlyCityId(city.id);
-      selectCity(city, { fly: true, openWorkspace: true });
+      selectCity(city, { fly: false, openWorkspace: false });
     },
     [selectCity],
   );
 
   const handleRouteSelect = useCallback(
     (route: import('../types/mapTypes').BusinessRouteDef) => {
+      mapSessionStore.patch({ selectedRouteId: route.id });
       selectRoute(route);
     },
     [selectRoute],
@@ -75,13 +107,22 @@ function BusinessOperatingMapInner({
       aria-label={t('title')}
     >
       <div className={`${styles.operatingLayout} ${!showSidebars ? styles.operatingLayoutNoSidebars : ''}`}>
-        {showNav && <MapNavigationBar />}
+        {showNav && (
+          <MapNavigationBar
+            countryFocusActive={!!selectedCountryCode}
+            selectedCountry={selectedCountry}
+            onExitCountryFocus={exitCountryFocus}
+          />
+        )}
 
         {showSidebars && (
           <MapSidebar
             layers={state.layers}
             businessFilters={state.businessFilters}
-            onLayersChange={setLayers}
+            onLayersChange={(layers) => {
+              mapSessionStore.patch({ layers });
+              setLayers(layers);
+            }}
             onBusinessFiltersChange={setBusinessFilters}
             collapsed={!leftOpen}
             onToggle={() => setLeftOpen((o) => !o)}
@@ -92,11 +133,12 @@ function BusinessOperatingMapInner({
           <EuropeBusinessMap
             countries={mapCountries}
             selectedCountryCode={selectedCountryCode}
-            focusCityId={flyCityId}
+            focusCityId={focusCityId}
             onCountrySelect={handleCountrySelect}
+            onExitCountryFocus={exitCountryFocus}
             onOpenWorkspace={onOpenWorkspace ?? (() => {})}
+            onCitySelect={handleCitySelect}
             enterpriseShell
-            onCityActivate={handleCityActivate}
             onRouteSelect={handleRouteSelect}
             externalLayers={state.layers}
           />
@@ -123,17 +165,22 @@ export function BusinessOperatingMap({
   mode = 'full',
   focusCityId,
   className = '',
+  useExternalProvider = false,
   onOpenWorkspace,
 }: BusinessOperatingMapProps) {
-  return (
-    <MapEngineProvider onOpenWorkspace={onOpenWorkspace}>
-      <div className={className}>
-        <BusinessOperatingMapInner
-          mode={mode}
-          focusCityId={focusCityId}
-          onOpenWorkspace={onOpenWorkspace}
-        />
-      </div>
-    </MapEngineProvider>
+  const inner = (
+    <div className={className}>
+      <BusinessOperatingMapInner
+        mode={mode}
+        focusCityId={focusCityId}
+        onOpenWorkspace={onOpenWorkspace}
+      />
+    </div>
   );
+
+  if (useExternalProvider) {
+    return inner;
+  }
+
+  return <MapEngineProvider onOpenWorkspace={onOpenWorkspace}>{inner}</MapEngineProvider>;
 }

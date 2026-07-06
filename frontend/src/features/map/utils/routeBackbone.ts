@@ -1,90 +1,11 @@
-/** Canonical European backbone pairs — visual tier only, ~15–25 strategic corridors */
-function pairKey(a: string, b: string): string {
-  return [a, b].sort().join('|');
-}
+import {
+  BACKBONE_PAIR_KEYS,
+  backbonePairKey,
+} from '../data/logisticsHubNetwork';
 
-const EUROPEAN_BACKBONE_RAW: Array<[string, string]> = [
-  ['rotterdam', 'hamburg'],
-  ['rotterdam', 'cologne'],
-  ['cologne', 'rotterdam'],
-  ['berlin', 'hamburg'],
-  ['berlin', 'warsaw'],
-  ['berlin', 'prague'],
-  ['berlin', 'vienna'],
-  ['berlin', 'paris'],
-  ['frankfurt', 'cologne'],
-  ['frankfurt', 'amsterdam'],
-  ['frankfurt', 'paris'],
-  ['frankfurt', 'zurich'],
-  ['frankfurt', 'vienna'],
-  ['munich', 'vienna'],
-  ['munich', 'zurich'],
-  ['vienna', 'budapest'],
-  ['paris', 'brussels'],
-  ['paris', 'amsterdam'],
-  ['amsterdam', 'brussels'],
-  ['amsterdam', 'rotterdam'],
-  ['rotterdam', 'antwerp'],
-  ['hamburg', 'copenhagen'],
-  ['warsaw', 'kyiv'],
-  ['kyiv', 'berlin'],
-  ['kyiv', 'vienna'],
-  ['istanbul', 'sofia'],
-  ['istanbul', 'budapest'],
-  ['istanbul', 'berlin'],
-  ['ankara', 'istanbul'],
-  ['izium', 'kyiv'],
-  ['izium', 'warsaw'],
-  ['izium', 'berlin'],
-  ['bucharest', 'budapest'],
-  ['sofia', 'bucharest'],
-  ['stockholm', 'helsinki'],
-  ['vilnius', 'warsaw'],
-  ['berlin', 'frankfurt'],
-  ['frankfurt', 'izium'],
-  ['munich', 'milan'],
-  ['warsaw', 'lviv'],
-  ['krakow', 'lviv'],
-  ['odesa', 'bucharest'],
-  ['odesa', 'istanbul'],
-  ['odesa', 'izium'],
-  ['istanbul', 'izmir'],
-  ['istanbul', 'bursa'],
-  ['vienna', 'istanbul'],
-  ['dnipro', 'izium'],
-  ['kharkiv', 'izium'],
-  ['paris', 'rotterdam'],
-  ['paris', 'london'],
-  ['paris', 'lyon'],
-  ['paris', 'marseille'],
-  ['paris', 'milan'],
-  ['paris', 'barcelona'],
-  ['rotterdam', 'munich'],
-  ['berlin', 'amsterdam'],
-  ['lyon', 'marseille'],
-  ['lyon', 'geneva'],
-  ['lyon', 'zurich'],
-  ['marseille', 'genoa'],
-  ['marseille', 'nice'],
-  ['lille', 'brussels'],
-  ['lille', 'london'],
-  ['lille', 'rotterdam'],
-  ['strasbourg', 'stuttgart'],
-  ['strasbourg', 'zurich'],
-  ['paris', 'lille'],
-  ['paris', 'strasbourg'],
-  ['paris', 'frankfurt'],
-  ['paris', 'lehavre'],
-  ['lyon', 'milan'],
-  ['zurich', 'milan'],
-  ['prague', 'berlin'],
-  ['cologne', 'brussels'],
-];
-
-export const EUROPEAN_BACKBONE_PAIRS = new Set(
-  EUROPEAN_BACKBONE_RAW.map(([a, b]) => pairKey(a, b)),
-);
+/** Canonical European backbone pairs — Level 1 logistics corridors */
+export const EUROPEAN_BACKBONE_PAIRS = BACKBONE_PAIR_KEYS;
 
 export function isEuropeanBackbone(fromCityId: string, toCityId: string): boolean {
-  return EUROPEAN_BACKBONE_PAIRS.has(pairKey(fromCityId, toCityId));
+  return EUROPEAN_BACKBONE_PAIRS.has(backbonePairKey(fromCityId, toCityId));
 }

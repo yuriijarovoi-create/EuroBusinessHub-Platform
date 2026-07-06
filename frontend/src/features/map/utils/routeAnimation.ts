@@ -15,7 +15,22 @@ export function interpolateAlongPath(points: LatLngTuple[], t: number): LatLngTu
   return [a[0] + (b[0] - a[0]) * smooth, a[1] + (b[1] - a[1]) * smooth];
 }
 
-/** Mode-specific cruise speed (progress units per frame @ ~60fps) */
+/** Bearing in degrees for vehicle icon rotation (0 = north) */
+export function bearingAlongPath(
+  points: LatLngTuple[],
+  t: number,
+  direction: 1 | -1 = 1,
+): number {
+  const eps = 0.003 * direction;
+  const p1 = interpolateAlongPath(points, t);
+  const p2 = interpolateAlongPath(points, ((t + eps) % 1 + 1) % 1);
+  const dLng = p2[1] - p1[1];
+  const dLat = p2[0] - p1[0];
+  if (Math.hypot(dLng, dLat) < 1e-8) return 0;
+  return (Math.atan2(dLng, dLat) * 180) / Math.PI;
+}
+
+/** Mode-specific cruise speed — road medium, rail slow, air fast, sea slowest */
 export function baseSpeedPerFrame(
   mode: TransportMode,
   distanceKm: number,
@@ -23,17 +38,22 @@ export function baseSpeedPerFrame(
   const distNorm = Math.min(1.4, Math.max(0.65, distanceKm / 450));
   switch (mode) {
     case 'sea':
-      return (0.00014 / distNorm);
+      return 0.00011 / distNorm;
     case 'air':
-      return (0.00042 / distNorm);
+      return 0.00048 / distNorm;
     case 'rail':
-      return (0.00024 / distNorm);
+      return 0.00018 / distNorm;
     case 'river':
-      return (0.00016 / distNorm);
+      return 0.00014 / distNorm;
     case 'road':
     default:
-      return (0.00022 / distNorm);
+      return 0.00024 / distNorm;
   }
+}
+
+/** Vehicle cruise multiplier — continuous motion, no stops */
+export function vehicleSpeedMultiplierAt(mode: TransportMode, progress: number): number {
+  return speedMultiplierAt(mode, progress);
 }
 
 /** Particles accelerate near hub endpoints — opposite of freight vehicle easing */

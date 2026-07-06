@@ -1,14 +1,26 @@
 export { getRouteRenderLevel, LEVEL_STYLE, particleCountForRoute, tierToLevelClass } from './routeLevels';
 export type { RouteRenderLevel, LevelStyleConfig } from './routeLevels';
 export { buildPremiumCorridorPath, buildSmoothCorridorPath } from './routeBezierGeometry';
-export { renderPremiumRoute, applyRouteHover, applyRouteSelected } from './RouteRenderer';
+export {
+  renderPremiumRoute,
+  applyRouteHover,
+  applyRouteSelected,
+  refineVisibleRoutePath,
+  resolveVisibleRouteColor,
+} from './RouteRenderer';
 export type { RouteGlowBundle, RenderRouteOptions } from './RouteRenderer';
 export {
   createParticleEngine,
   addRouteParticles,
   startParticleAnimation,
   stopParticleAnimation,
+  stopAllParticleAnimation,
   setParticleRouteFocus,
-} from './RouteParticles';
-export type { ParticleEngine, RouteParticleSlot, RouteFocusRef } from './RouteParticles';
+  createVehicleEngine,
+  addRouteVehicles,
+  startVehicleAnimation,
+  stopVehicleAnimation,
+  setVehicleRouteFocus,
+} from './RouteVehicles';
+export type { ParticleEngine, RouteParticleSlot, RouteFocusRef } from './RouteVehicles';
 export { addRouteDirectionMarkers } from './routeDirectionMarkers';

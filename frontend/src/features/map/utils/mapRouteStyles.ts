@@ -50,7 +50,7 @@ export function particleClassForMode(mode: TransportMode, isAi: boolean): string
 }
 
 export function particleRadiusForMode(mode: TransportMode, level: RouteRenderLevel): number {
-  const base = level === 1 ? 1.6 : level === 2 ? 1.2 : 0.9;
+  const base = level === 1 ? 1.8 : level === 2 ? 1.35 : level === 3 ? 1 : 0.85;
   switch (mode) {
     case 'air':
       return base * 0.8;
@@ -66,15 +66,15 @@ export function particleRadiusForMode(mode: TransportMode, level: RouteRenderLev
 export function particleSpeedForMode(mode: TransportMode): number {
   switch (mode) {
     case 'air':
-      return 1.35;
+      return 1.42;
     case 'sea':
-      return 0.72;
+      return 0.52;
     case 'rail':
-      return 1.05;
+      return 0.78;
     case 'road':
       return 1;
     default:
-      return 0.9;
+      return 0.88;
   }
 }
 

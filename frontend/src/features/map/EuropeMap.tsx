@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cities } from '@/data/cities';
 import { countries } from '@/data/countries';
-import { getHubRoutes } from '@/utils/mapRoutes';
 import { GlassPanel } from '@/components/GlassPanel';
 import { useMapViewport } from './hooks/useMapViewport';
 import { EuropeMapCanvas } from './components/EuropeMapCanvas';
@@ -37,7 +36,6 @@ export function EuropeMap({
   const { t } = useTranslation('map');
   const navigate = useNavigate();
   const { transform } = useMapViewport();
-  const routes = getHubRoutes(cities);
 
   const handleCityClick = (city: City) => {
     onCitySelect?.(city);
@@ -54,7 +52,6 @@ export function EuropeMap({
   const canvas = (
     <EuropeMapCanvas
       transform={transform}
-      routes={routes}
       cities={cities}
       countries={countries}
       hubLabel={t('hubLabel')}

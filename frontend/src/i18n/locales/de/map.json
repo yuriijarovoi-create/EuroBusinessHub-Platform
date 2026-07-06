@@ -17,6 +17,7 @@
   },
   "nav": {
     "europe": "Europa",
+    "backToEurope": "Zurück zu Europa",
     "selectCity": "Stadt auswählen"
   },
   "layers": {

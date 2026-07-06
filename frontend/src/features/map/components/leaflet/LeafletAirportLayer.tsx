@@ -3,36 +3,35 @@ import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { MapCityRecord } from '../../types/mapTypes';
 import {
-  createPortAnchorIcon,
-  PORT_CITY_IDS,
-  transportAnchorOpacityForZoom,
+  createAirportAnchorIcon,
+  AIRPORT_CITY_IDS,
+  airportAnchorVisibleAtZoom,
 } from '../../utils/routeVehicleIcons';
 import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
 
-interface LeafletPortLayerProps {
+interface LeafletAirportLayerProps {
   cityMap: Map<string, MapCityRecord>;
 }
 
-export const LeafletPortLayer = memo(function LeafletPortLayer({
+export const LeafletAirportLayer = memo(function LeafletAirportLayer({
   cityMap,
-}: LeafletPortLayerProps) {
+}: LeafletAirportLayerProps) {
   const map = useMap();
   const { zoom } = useLeafletMapViewport();
 
   useEffect(() => {
-    const opacity = transportAnchorOpacityForZoom(zoom);
-    if (opacity <= 0 || zoom < 4.5) return;
+    if (!airportAnchorVisibleAtZoom(zoom)) return;
 
     const group = L.layerGroup().addTo(map);
 
-    PORT_CITY_IDS.forEach((portId) => {
-      const city = cityMap.get(portId);
+    AIRPORT_CITY_IDS.forEach((airportId) => {
+      const city = cityMap.get(airportId);
       if (!city) return;
       L.marker([city.lat, city.lng], {
-        icon: createPortAnchorIcon(portId),
+        icon: createAirportAnchorIcon('#c084fc'),
         interactive: false,
-        zIndexOffset: 205,
-        opacity,
+        zIndexOffset: 210,
+        opacity: 1,
       }).addTo(group);
     });
 

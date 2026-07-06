@@ -1,6 +1,6 @@
 .page {
   max-width: 56rem;
-  animation: fade-in-up 0.4s ease-out;
+  animation: fade-in-up 225ms ease-out;
 }
 
 .breadcrumb {

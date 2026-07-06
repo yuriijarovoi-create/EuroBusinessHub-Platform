@@ -15,15 +15,20 @@ import {
   MAP_ZOOM_DELTA,
   MAP_WHEEL_PX_PER_ZOOM,
 } from '../../config/leafletConfig';
+import { flyToFullEuropeOverview } from '../../utils/mapCameraSnapshot';
+import { mapSessionStore } from '../../store/mapSessionStore';
 import { getResolvedMapTheme, useMapThemeRevision } from '../../utils/mapThemeUtils';
 import { LeafletMapProvider } from '../../context/LeafletMapContext';
 import { CountryLayer } from './CountryLayer';
 import { LeafletRouteLayer } from './LeafletRouteLayer';
-import { LeafletHubHaloLayer } from './LeafletHubHaloLayer';
 import { LeafletPortLayer } from './LeafletPortLayer';
+import { LeafletAirportLayer } from './LeafletAirportLayer';
+import { LeafletHubHaloLayer } from './LeafletHubHaloLayer';
 import { LeafletCityMarkers } from './LeafletCityMarkers';
 import { LeafletCityTooltipLayer } from './LeafletCityHoverTooltip';
-import { MapInstanceCapture, LeafletFitEurope, LeafletCountryFocus, LeafletCityFocus } from './LeafletMapBridge';
+import { LeafletCountryInfoCard } from './LeafletCountryInfoCard';
+import { MapInstanceCapture, LeafletFitEurope, LeafletCountryFocus, LeafletCityFocus, MapDestroyCleanup, MapCameraSync } from './LeafletMapBridge';
+import { CountryFocusExitBridge } from './CountryFocusExitBridge';
 import { GermanyBundeslandLayer } from './GermanyBundeslandLayer';
 import { GermanyCityLabels } from './GermanyCityLabels';
 import { LeafletGermanyInfrastructureLayer } from './LeafletGermanyInfrastructureLayer';
@@ -40,19 +45,23 @@ interface RealEuropeMapProps {
   selectedCountryCode?: string;
   selectedBundeslandId?: string;
   selectedCityId?: string;
-  activeTooltipId?: string | null;
+  hoveredCityId?: string | null;
+  infoCardCityId?: string | null;
+  infoCardCountryCode?: string | null;
   searchResultCityId?: string;
   countries: MapCountry[];
   onCountrySelect?: (country: MapCountry) => void;
   onBundeslandSelect?: (bundeslandId: string) => void;
   onCitySelect: (city: MapCityRecord) => void;
-  onTooltipEnter: (cityId: string) => void;
-  onTooltipLeave: () => void;
-  onClearTooltip: () => void;
+  onCityHover: (cityId: string) => void;
+  onCityHoverLeave: () => void;
+  onClearInfoCard: () => void;
   onMapBackgroundClick: () => void;
+  onExitCountryFocus?: () => void;
   onCountryHover?: (isoCode: string | null) => void;
   onRouteSelect?: (route: BusinessRouteDef) => void;
   selectedRouteId?: string;
+  onOpenWorkspace?: (city: MapCityRecord) => void;
   children?: React.ReactNode;
 }
 
@@ -65,25 +74,28 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   selectedCountryCode,
   selectedBundeslandId,
   selectedCityId,
-  activeTooltipId,
+  hoveredCityId,
+  infoCardCityId,
+  infoCardCountryCode,
   searchResultCityId,
   countries,
   onCountrySelect,
   onBundeslandSelect,
   onCitySelect,
-  onTooltipEnter,
-  onTooltipLeave,
-  onClearTooltip,
+  onCityHover,
+  onCityHoverLeave,
+  onClearInfoCard,
   onMapBackgroundClick,
+  onExitCountryFocus,
   onCountryHover,
   onRouteSelect,
   selectedRouteId,
+  onOpenWorkspace,
   children,
 }: RealEuropeMapProps) {
   const [leafletMap, setLeafletMap] = useState<LeafletMap | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
-  const [tooltipEligibleIds, setTooltipEligibleIds] = useState<Set<string>>(() => new Set());
   const themeRev = useMapThemeRevision();
   const tileUrl = useMemo(
     () => getTileUrlForTheme(getResolvedMapTheme()),
@@ -120,19 +132,28 @@ export const RealEuropeMap = memo(function RealEuropeMap({
     setLeafletMap(map);
   }, []);
 
-  const handleVisibleIndividualsChange = useCallback((ids: Set<string>) => {
-    setTooltipEligibleIds(ids);
-  }, []);
+  const returnToEuropeOverview = useCallback(() => {
+    if (leafletMap) {
+      leafletMap.stop();
+    }
+    mapSessionStore.requestHomeFullEuropeOverview();
+    if (onExitCountryFocus) {
+      onExitCountryFocus();
+      return;
+    }
+    if (leafletMap && mapSessionStore.consumeHomeFullEuropeOverview()) {
+      flyToFullEuropeOverview(leafletMap);
+    }
+  }, [leafletMap, onExitCountryFocus]);
 
   const controls = useMemo(
     () => ({
       map: leafletMap,
       zoomIn: () => leafletMap?.zoomIn(),
       zoomOut: () => leafletMap?.zoomOut(),
-      resetView: () =>
-        leafletMap?.fitBounds(EUROPE_BOUNDS, { padding: [24, 24], maxZoom: EUROPE_DEFAULT_ZOOM }),
+      resetView: returnToEuropeOverview,
     }),
-    [leafletMap],
+    [leafletMap, returnToEuropeOverview],
   );
 
   return (
@@ -162,6 +183,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
             hoveredCountryCode={hoveredCountry ?? undefined}
             onCountrySelect={handleGeoCountry}
             onCountryHover={handleCountryHover}
+            onExitCountryFocus={selectedCountryCode ? onExitCountryFocus : undefined}
           />
           {selectedCountryCode === 'DE' && (
             <GermanyBundeslandLayer
@@ -174,7 +196,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
             <>
               <LeafletHubHaloLayer
                 cityMap={routeCityMap}
-                hoveredCityId={activeTooltipId}
+                hoveredCityId={hoveredCityId}
                 selectedCityId={selectedCityId}
               />
               <LeafletRouteLayer
@@ -182,10 +204,13 @@ export const RealEuropeMap = memo(function RealEuropeMap({
                 cityMap={routeCityMap}
                 selectedCountryCode={selectedCountryCode}
                 selectedCityId={selectedCityId}
+                hoveredCityId={hoveredCityId ?? undefined}
+                hoveredCountryCode={hoveredCountry ?? undefined}
                 selectedRouteId={selectedRouteId}
                 onRouteSelect={onRouteSelect}
               />
               <LeafletPortLayer cityMap={routeCityMap} />
+              <LeafletAirportLayer cityMap={routeCityMap} />
             </>
           )}
           {selectedCountryCode === 'DE' && (
@@ -198,27 +223,31 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           <LeafletCityMarkers
             cities={cities}
             selectedCityId={selectedCityId}
-            activeTooltipId={activeTooltipId}
+            hoveredCityId={hoveredCityId}
             searchResultCityId={searchResultCityId}
             onSelect={onCitySelect}
-            onTooltipEnter={onTooltipEnter}
-            onTooltipLeave={onTooltipLeave}
-            onClearTooltip={onClearTooltip}
+            onCityHover={onCityHover}
+            onCityHoverLeave={onCityHoverLeave}
+            onClearInfoCard={onClearInfoCard}
             onMapBackgroundClick={onMapBackgroundClick}
-            onVisibleIndividualsChange={handleVisibleIndividualsChange}
+            countryFocusActive={!!selectedCountryCode}
           />
           <LeafletCityTooltipLayer
-            activeTooltipId={activeTooltipId ?? null}
+            infoCardCityId={infoCardCityId ?? null}
             cityMap={cityMap}
             layers={layers}
-            tooltipEligibleIds={tooltipEligibleIds}
+            onOpenWorkspace={onOpenWorkspace}
+          />
+          <LeafletCountryInfoCard
+            infoCardCountryCode={infoCardCountryCode ?? null}
+            countries={countries}
           />
           {selectedCountryCode === 'DE' && (
             <GermanyCityLabels
               active
               cities={cities}
               selectedCityId={selectedCityId}
-              hoveredCityId={activeTooltipId ?? undefined}
+              hoveredCityId={hoveredCityId ?? undefined}
               searchResultCityId={searchResultCityId}
             />
           )}
@@ -229,7 +258,15 @@ export const RealEuropeMap = memo(function RealEuropeMap({
             bundeslandId={selectedBundeslandId}
             cities={cities}
           />
+          {onExitCountryFocus && (
+            <CountryFocusExitBridge
+              active={!!selectedCountryCode}
+              onExit={onExitCountryFocus}
+            />
+          )}
           <MapInstanceCapture onReady={handleMapReady} />
+          <MapCameraSync />
+          <MapDestroyCleanup />
         </MapContainer>
       ) : (
         <div className={styles.map} aria-hidden />

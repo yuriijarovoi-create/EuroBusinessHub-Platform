@@ -13,12 +13,25 @@ import {
 import {
   animationSpeedForRoute,
   getRouteLineOpacity,
+  isRouteHoverHighlighted,
   type RouteVisualContext,
 } from '../../utils/routeVisualState';
 import { getCachedRoutePath, routePathCacheKey } from '../../utils/routePathCache';
 import { zoomRevealMultiplier } from '../../utils/routeZoomReveal';
 import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
 import { getResolvedMapTheme, useMapThemeRevision } from '../../utils/mapThemeUtils';
+import {
+  acquireRouteCanvasRenderer,
+  isMapAlive,
+  purgeOrphanedRouteDom,
+  releaseRouteCanvasRenderer,
+  safeClearGroup,
+} from '../../utils/mapLayerLifecycle';
+import {
+  canRenderAirRoute,
+  canRenderSeaRoute,
+  routeMotionVisibleAtZoom,
+} from '../../utils/routeVehicleIcons';
 import {
   applyRouteHover,
   applyRouteSelected,
@@ -27,17 +40,36 @@ import {
   addRouteParticles,
   startParticleAnimation,
   stopParticleAnimation,
+  stopAllParticleAnimation,
   setParticleRouteFocus,
   particleCountForRoute,
-  renderPremiumRoute,
-  type RouteGlowBundle,
 } from '../../routes';
+import {
+  renderPremiumRoute,
+  refineVisibleRoutePath,
+  resolveVisibleRouteColor,
+  type RouteGlowBundle,
+} from '../../routes/RouteRenderer';
+
+function dedupeVisibleRoutes(routes: BusinessRouteDef[]): BusinessRouteDef[] {
+  const seen = new Set<string>();
+  const out: BusinessRouteDef[] = [];
+  for (const route of routes) {
+    const key = `${route.fromCityId}|${route.toCityId}|${route.mode}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(route);
+  }
+  return out;
+}
 
 interface LeafletRouteLayerProps {
   routes: BusinessRouteDef[];
   cityMap: Map<string, MapCityRecord>;
   selectedCountryCode?: string;
   selectedCityId?: string;
+  hoveredCityId?: string;
+  hoveredCountryCode?: string;
   selectedRouteId?: string;
   onRouteSelect?: (route: BusinessRouteDef) => void;
 }
@@ -50,11 +82,34 @@ function cityCoordLookup(
   return lookup;
 }
 
+function isRenderableCorridor(route: BusinessRouteDef): boolean {
+  if (route.mode === 'sea') {
+    return canRenderSeaRoute(route.fromCityId, route.toCityId);
+  }
+  if (route.mode === 'air') {
+    return canRenderAirRoute(route.fromCityId, route.toCityId);
+  }
+  return true;
+}
+
+function detachRouteBundles(bundles: Iterable<RouteGlowBundle>): void {
+  for (const bundle of bundles) {
+    try {
+      bundle.mainLine.off();
+      bundle.mainLine.unbindTooltip();
+    } catch {
+      // layer already removed
+    }
+  }
+}
+
 export const LeafletRouteLayer = memo(function LeafletRouteLayer({
   routes,
   cityMap,
   selectedCountryCode,
   selectedCityId,
+  hoveredCityId,
+  hoveredCountryCode,
   selectedRouteId,
   onRouteSelect,
 }: LeafletRouteLayerProps) {
@@ -67,18 +122,45 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
   const hoveredRef = useRef<string | null>(null);
 
   useEffect(() => {
-    const isLight = getResolvedMapTheme() === 'light';
+    if (!isMapAlive(map)) return;
+
+    let effectActive = true;
+    purgeOrphanedRouteDom(map);
+
+    if (groupRef.current) {
+      safeClearGroup(map, groupRef.current);
+      groupRef.current = null;
+    }
+
+    const canvasRenderer = acquireRouteCanvasRenderer(map);
+    if (!canvasRenderer) return;
+
     const group = L.layerGroup().addTo(map);
     groupRef.current = group;
+
+    const isLight = getResolvedMapTheme() === 'light';
     const coordLookup = cityCoordLookup(cityMap);
     const particleEngine = createParticleEngine();
-    setParticleRouteFocus(particleEngine, { selectedRouteId: selectedRouteId ?? null, hoveredRouteId: null });
+    setParticleRouteFocus(particleEngine, {
+      selectedRouteId: selectedRouteId ?? null,
+      hoveredRouteId: null,
+    });
 
-    const visualCtx: RouteVisualContext = { selectedCountryCode, selectedCityId, selectedRouteId };
+    const visualCtx: RouteVisualContext = {
+      selectedCountryCode,
+      selectedCityId,
+      selectedRouteId,
+      hoveredCityId,
+      hoveredCountryCode,
+    };
     const bundleByRoute = new Map<string, RouteGlowBundle>();
     let particleGlobal = 0;
+    const showMotion = routeMotionVisibleAtZoom(zoom);
 
-    let visible = filterRoutesByZoom(routes, cityMap, zoom, selectedCountryCode, selectedCityId);
+    const corridorRoutes = routes.filter(isRenderableCorridor);
+    let visible = dedupeVisibleRoutes(
+      filterRoutesByZoom(corridorRoutes, cityMap, zoom, selectedCountryCode, selectedCityId),
+    );
     const densityScale = routeDensityOpacity(visible.length);
 
     visible = [...visible].sort((a, b) => {
@@ -88,6 +170,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
     });
 
     const applyHover = (routeId: string | null) => {
+      if (!effectActive) return;
       hoveredRef.current = routeId;
       setParticleRouteFocus(particleEngine, { hoveredRouteId: routeId });
       bundleByRoute.forEach((bundle, id) => {
@@ -95,36 +178,42 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
       });
     };
 
-    visible.forEach((route, idx) => {
-      const from = cityMap.get(route.fromCityId)!;
-      const to = cityMap.get(route.toCityId)!;
+    for (const [idx, route] of visible.entries()) {
+      if (!effectActive || !isMapAlive(map)) break;
+
+      const from = cityMap.get(route.fromCityId);
+      const to = cityMap.get(route.toCityId);
+      if (!from || !to) continue;
+
       const scope = getRouteScope(route);
       const isSelected = route.id === selectedRouteId;
-      const highlighted =
-        isSelected ||
-        (!!selectedCityId &&
-          (route.fromCityId === selectedCityId || route.toCityId === selectedCityId));
+      const highlighted = isRouteHoverHighlighted(route, visualCtx);
 
       const focusOpacity = getRouteLineOpacity(route, visualCtx);
       const visual = getRouteVisualStyle(route.mode, route, highlighted, isLight);
-      const color = corridorStrokeColor(route.mode, route);
+      const baseColor = corridorStrokeColor(route.mode, route);
+      const color = resolveVisibleRouteColor(route.mode, route, isLight, baseColor);
       const reveal = zoomRevealMultiplier(route, zoom);
-      const lineOpacity = Math.min(
+      let lineOpacity = Math.min(
         0.98,
         visual.baseOpacity * densityScale * focusOpacity * reveal,
       );
+      if (isLight) {
+        lineOpacity = Math.max(0.74, Math.min(0.98, lineOpacity * 1.18));
+      }
 
-      const cacheKey = `${routePathCacheKey(route.id, zoom, route.mode)}|bezier`;
-      const latlngs = getCachedRoutePath(cacheKey, () =>
-        buildPremiumCorridorPath(
+      const cacheKey = `${routePathCacheKey(route.id, zoom, route.mode)}|corridor-v5`;
+      const latlngs = getCachedRoutePath(cacheKey, () => {
+        const corridor = buildPremiumCorridorPath(
           { id: route.fromCityId, lat: from.lat, lng: from.lng },
           { id: route.toCityId, lat: to.lat, lng: to.lng },
           coordLookup,
           route.mode,
           scope,
           zoom,
-        ),
-      );
+        );
+        return refineVisibleRoutePath(corridor, route, route.mode, scope, zoom);
+      });
 
       const bundle = renderPremiumRoute({
         group,
@@ -136,6 +225,8 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
         highlighted,
         selected: isSelected,
         mode: route.mode,
+        themeIsLight: isLight,
+        renderer: canvasRenderer,
       });
       bundleByRoute.set(route.id, bundle);
 
@@ -154,7 +245,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
         onSelectRef.current?.(route);
       });
 
-      const pCount = particleCountForRoute(route, zoom, particleGlobal);
+      const pCount = showMotion ? particleCountForRoute(route, zoom, particleGlobal) : 0;
       if (pCount > 0) {
         const baseSpeed = animationSpeedForRoute(route, from, to);
         addRouteParticles(
@@ -167,21 +258,52 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
           baseSpeed,
           bundle.level,
           route.id,
-          (idx * 0.07 + 0.1) % 1,
+          (idx * 0.09 + 0.12) % 1,
           !!route.aiRecommended,
         );
         particleGlobal += pCount;
       }
-    });
+    }
 
-    startParticleAnimation(particleEngine);
+    if (effectActive && isMapAlive(map)) {
+      startParticleAnimation(particleEngine);
+    } else {
+      stopParticleAnimation(particleEngine);
+    }
 
     return () => {
+      effectActive = false;
       stopParticleAnimation(particleEngine);
-      map.removeLayer(group);
-      groupRef.current = null;
+      detachRouteBundles(bundleByRoute.values());
+      safeClearGroup(map, group);
+      if (groupRef.current === group) {
+        groupRef.current = null;
+      }
     };
-  }, [map, routes, cityMap, themeRev, zoom, selectedCountryCode, selectedCityId, selectedRouteId]);
+  }, [
+    map,
+    routes,
+    cityMap,
+    themeRev,
+    zoom,
+    selectedCountryCode,
+    selectedCityId,
+    hoveredCityId,
+    hoveredCountryCode,
+    selectedRouteId,
+  ]);
+
+  useEffect(() => {
+    return () => {
+      stopAllParticleAnimation();
+      if (groupRef.current) {
+        safeClearGroup(map, groupRef.current);
+        groupRef.current = null;
+      }
+      releaseRouteCanvasRenderer(map);
+      purgeOrphanedRouteDom(map);
+    };
+  }, [map]);
 
   return null;
 });

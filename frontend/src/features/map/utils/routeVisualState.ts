@@ -1,106 +1,30 @@
 import type { BusinessRouteDef, RoutePriorityLevel } from '../types/mapTypes';
 import { getRouteScope } from '../data/routeCityIndex';
+import { routeTouchesCountry } from './routeFilterEngine';
 import { getRouteVisualTier } from './routeVisualStyles';
 import { isPortCity } from './routeVehicleIcons';
 import { routeDistanceKm } from './routeGeometry';
 import { baseSpeedPerFrame, tierMotionMultiplier } from './routeAnimation';
+import { ALL_LOGISTICS_HUBS, BACKBONE_PAIR_KEYS, backbonePairKey } from '../data/logisticsHubNetwork';
 
 export interface RouteVisualContext {
   selectedCountryCode?: string;
   selectedCityId?: string;
   selectedRouteId?: string;
   hoveredRouteId?: string;
+  hoveredCityId?: string;
+  hoveredCountryCode?: string;
 }
 
-const BUSY_PAIRS = new Set([
-  'berlin|hamburg',
-  'hamburg|berlin',
-  'berlin|frankfurt',
-  'frankfurt|berlin',
-  'cologne|rotterdam',
-  'rotterdam|cologne',
-  'munich|vienna',
-  'vienna|munich',
-  'berlin|warsaw',
-  'warsaw|berlin',
-  'rotterdam|hamburg',
-  'hamburg|rotterdam',
-  'paris|brussels',
-  'brussels|paris',
-  'paris|rotterdam',
-  'rotterdam|paris',
-  'paris|london',
-  'london|paris',
-  'paris|lyon',
-  'lyon|paris',
-  'lyon|marseille',
-  'marseille|lyon',
-  'lille|brussels',
-  'lille|rotterdam',
-  'kyiv|warsaw',
-  'warsaw|kyiv',
-  'istanbul|sofia',
-  'sofia|istanbul',
-  'rotterdam|munich',
-  'frankfurt|izium',
-  'odesa|istanbul',
-  'izium|frankfurt',
-  'izium|kyiv',
-  'kyiv|izium',
-]);
+const BUSY_PAIRS = BACKBONE_PAIR_KEYS;
 
-export const MAJOR_HUB_IDS = new Set([
-  'berlin',
-  'hamburg',
-  'frankfurt',
-  'munich',
-  'cologne',
-  'rotterdam',
-  'warsaw',
-  'vienna',
-  'paris',
-  'lyon',
-  'marseille',
-  'lille',
-  'strasbourg',
-  'toulouse',
-  'bordeaux',
-  'nantes',
-  'lehavre',
-  'amsterdam',
-  'brussels',
-  'milan',
-  'zurich',
-  'budapest',
-  'istanbul',
-  'ankara',
-  'stockholm',
-  'copenhagen',
-  'helsinki',
-  'london',
-  'rome',
-  'madrid',
-  'lisbon',
-  'barcelona',
-  'prague',
-  'bucharest',
-  'sofia',
-  'athens',
-  'kyiv',
-  'kharkiv',
-  'dnipro',
-  'lviv',
-  'odesa',
-  'izium',
-  'izmir',
-  'bursa',
-]);
+export const MAJOR_HUB_IDS = ALL_LOGISTICS_HUBS;
 
 export function getRoutePriority(route: BusinessRouteDef): RoutePriorityLevel {
   if (route.routePriority) return route.routePriority;
-  const scope = getRouteScope(route);
-  if (scope === 'europe' || route.priorityTier === 1) return 'primary';
-  if (scope === 'country' || route.priorityTier === 2) return 'secondary';
+  const tier = route.priorityTier ?? 2;
+  if (tier === 1) return 'primary';
+  if (tier === 2 || tier === 3) return 'secondary';
   return 'local';
 }
 
@@ -110,18 +34,11 @@ export function routeConnectsCity(route: BusinessRouteDef, cityId?: string): boo
 }
 
 export function isBusyCorridor(route: BusinessRouteDef): boolean {
-  const key = `${route.fromCityId}|${route.toCityId}`;
-  return BUSY_PAIRS.has(key);
+  return BUSY_PAIRS.has(backbonePairKey(route.fromCityId, route.toCityId));
 }
 
-export function getRouteLineOpacity(route: BusinessRouteDef, ctx: RouteVisualContext): number {
-  const connected = routeConnectsCity(route, ctx.selectedCityId);
-  const selected = route.id === ctx.selectedRouteId;
-  const hovered = route.id === ctx.hoveredRouteId;
+function baseRouteLineOpacity(route: BusinessRouteDef, ctx: RouteVisualContext): number {
   const tier = getRouteVisualTier(route);
-
-  if (selected || hovered) return 1;
-  if (ctx.selectedCityId) return connected ? 0.96 : 0.1;
 
   if (ctx.selectedCountryCode) {
     switch (tier) {
@@ -146,6 +63,33 @@ export function getRouteLineOpacity(route: BusinessRouteDef, ctx: RouteVisualCon
     default:
       return 0.3;
   }
+}
+
+export function getRouteLineOpacity(route: BusinessRouteDef, ctx: RouteVisualContext): number {
+  const connected = routeConnectsCity(route, ctx.selectedCityId);
+  const hoverCityConnected = routeConnectsCity(route, ctx.hoveredCityId);
+  const hoverCountryConnected =
+    !!ctx.hoveredCountryCode && routeTouchesCountry(route, ctx.hoveredCountryCode);
+  const selected = route.id === ctx.selectedRouteId;
+  const hovered = route.id === ctx.hoveredRouteId;
+
+  if (selected || hovered) return 1;
+  if (ctx.selectedCityId) return connected ? 0.96 : 0.1;
+
+  const base = baseRouteLineOpacity(route, ctx);
+  if (hoverCityConnected || hoverCountryConnected) {
+    return Math.min(0.96, base * 1.28 + 0.1);
+  }
+
+  return base;
+}
+
+export function isRouteHoverHighlighted(route: BusinessRouteDef, ctx: RouteVisualContext): boolean {
+  if (route.id === ctx.selectedRouteId) return true;
+  if (ctx.selectedCityId && routeConnectsCity(route, ctx.selectedCityId)) return true;
+  if (ctx.hoveredCityId && routeConnectsCity(route, ctx.hoveredCityId)) return true;
+  if (ctx.hoveredCountryCode && routeTouchesCountry(route, ctx.hoveredCountryCode)) return true;
+  return false;
 }
 
 const MAX_ROUTE_VEHICLES = 16;

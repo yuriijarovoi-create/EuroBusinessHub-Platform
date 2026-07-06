@@ -19,6 +19,7 @@
   "ecosystemMetrics": "Business ecosystem",
   "activeModules": "Active modules in this city",
   "backToMap": "Back to map",
+  "backToEuropeMap": "Back to Europe Map",
   "quickActions": "Quick actions",
   "actions": {
     "search": "Search in city",

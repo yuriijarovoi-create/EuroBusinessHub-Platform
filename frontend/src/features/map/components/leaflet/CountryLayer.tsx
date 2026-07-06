@@ -1,16 +1,15 @@
 import { memo, useMemo, useRef, useState } from 'react';
 import { GeoJSON } from 'react-leaflet';
 import type { Layer } from 'leaflet';
+import L from 'leaflet';
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import type { MapCountry } from '@shared/types';
 import { europeCountriesGeoJson } from '../data/europeCountriesGeoJson';
-import { getCountryBusinessStats } from '../data/countryStats';
 import {
   getEuropeCountryGeoStyles,
   useMapThemeRevision,
 } from '../utils/mapThemeUtils';
 import {
-  buildCountryTooltipHtml,
   resolveCountryIso,
   resolveCountryLayerState,
   styleForCountryState,
@@ -22,6 +21,7 @@ export interface CountryLayerProps {
   hoveredCountryCode?: string;
   onCountrySelect?: (isoCode: string) => void;
   onCountryHover?: (isoCode: string | null) => void;
+  onExitCountryFocus?: () => void;
 }
 
 function filterGeoJsonForRegistry(
@@ -43,6 +43,7 @@ export const CountryLayer = memo(function CountryLayer({
   hoveredCountryCode,
   onCountrySelect,
   onCountryHover,
+  onExitCountryFocus,
 }: CountryLayerProps) {
   const [hovered, setHovered] = useState<string | null>(null);
   const activeHover = hoveredCountryCode ?? hovered;
@@ -84,18 +85,7 @@ export const CountryLayer = memo(function CountryLayer({
     if (!iso) return;
 
     const country = countryByCode.get(iso);
-    const displayName = country?.name ?? (feature.properties?.NAME as string) ?? iso;
-    const stats = getCountryBusinessStats(iso);
-    const tooltipHtml = country
-      ? buildCountryTooltipHtml(country, stats)
-      : `<div class="ebh-country-tooltip-card"><div class="ebh-country-tooltip-title">${displayName}</div></div>`;
-
-    layer.bindTooltip(tooltipHtml, {
-      sticky: true,
-      className: 'ebh-country-leaflet-tooltip',
-      direction: 'top',
-      opacity: 1,
-    });
+    if (!country) return;
 
     const path = layer as Layer & {
       setStyle: (s: ReturnType<typeof style>) => void;
@@ -125,8 +115,18 @@ export const CountryLayer = memo(function CountryLayer({
           className: `ebh-country-polygon ebh-country-${state}`,
         });
       },
-      click: () => {
-        if (country) onCountrySelect?.(iso);
+      click: (e) => {
+        L.DomEvent.stopPropagation(e);
+        if (selectedCountryCode && iso !== selectedCountryCode) {
+          onExitCountryFocus?.();
+          return;
+        }
+        onCountrySelect?.(iso);
+      },
+      dblclick: (e) => {
+        L.DomEvent.stopPropagation(e);
+        if (selectedCountryCode && iso === selectedCountryCode) return;
+        onExitCountryFocus?.();
       },
     });
   };

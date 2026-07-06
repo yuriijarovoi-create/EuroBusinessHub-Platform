@@ -12,7 +12,6 @@ import { cities } from '@/data/cities';
 import {
   getAllCountries,
   getCountryViewportForCode,
-  getBusinessRoutes,
   getCitiesByCountry,
 } from '../services/mapService';
 import { useMapViewport } from '../hooks/useMapViewport';
@@ -56,10 +55,7 @@ export function MapProvider({ children }: { children: ReactNode }) {
     return cities;
   }, [navigation]);
 
-  const routes = useMemo(
-    () => getBusinessRoutes(navigation.selectedCountryCode ?? undefined),
-    [navigation.selectedCountryCode],
-  );
+  const routes = useMemo(() => [], []);
 
   const selectCountry = useCallback(
     (country: MapCountry) => {
@@ -111,4 +107,8 @@ export function useMapContext(): MapContextValue {
   const ctx = useContext(MapCtx);
   if (!ctx) throw new Error('useMapContext must be used within MapProvider');
   return ctx;
+}
+
+export function useOptionalMapContext(): MapContextValue | null {
+  return useContext(MapCtx);
 }

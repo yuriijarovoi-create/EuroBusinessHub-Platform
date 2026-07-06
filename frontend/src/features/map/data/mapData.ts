@@ -28,6 +28,7 @@ import {
 } from './germany/germanyRegionalClusters';
 import { applyCityHubProfile, getCityHubProfile } from './cityHubEnrichment';
 import { applyFranceHubMetrics, FRANCE_HUB_CATEGORIES, isFranceHubCity } from './franceHubData';
+import { isLogisticsHub } from './logisticsHubNetwork';
 
 export function enrichCity(city: (typeof cities)[number]): MapCityRecord {
   const { mapX, mapY } = latLngToMapXY(city.lat, city.lng);
@@ -44,6 +45,9 @@ export function enrichCity(city: (typeof cities)[number]): MapCityRecord {
   }
   const hubProfile = getCityHubProfile(city.id);
   if (hubProfile && city.isMajorHub !== false) {
+    record.isMajorHub = true;
+  }
+  if (isLogisticsHub(city.id)) {
     record.isMajorHub = true;
   }
   if (city.countryCode === 'DE') {

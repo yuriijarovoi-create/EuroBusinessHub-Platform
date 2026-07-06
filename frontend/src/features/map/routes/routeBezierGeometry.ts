@@ -24,16 +24,16 @@ function curveMagnitude(
   span: number,
   scope: RouteScope,
 ): number {
-  if (mode === 'road' || mode === 'rail') {
-    if (dist < 80) return span * 0.0015;
-    if (dist < 220) return span * 0.014;
-    if (dist < 500) return span * 0.024;
-    return span * 0.034;
+  const maxDev = span * 0.08;
+  let ratio: number;
+  if (mode === 'air') {
+    ratio = scope === 'europe' && dist > 400 ? 0.14 : 0.1;
+  } else if (mode === 'sea') {
+    ratio = dist > 300 ? 0.06 : 0.04;
+  } else {
+    ratio = dist < 120 ? 0.03 : dist < 350 ? 0.05 : 0.07;
   }
-  if (mode === 'river') return dist < 100 ? span * 0.003 : span * 0.012;
-  if (mode === 'sea') return dist > 180 ? span * 0.03 : span * 0.016;
-  if (mode === 'air') return scope === 'europe' && dist > 350 ? span * 0.044 : span * 0.022;
-  return 0;
+  return Math.min(maxDev, span * ratio);
 }
 
 /** Cubic Bézier sample — smooth elegant arcs */
@@ -117,16 +117,16 @@ function buildBezierSegment(
   let bulge = curveMagnitude(mode, dist, span, scope);
   if (zoom >= 11) bulge *= 0.35;
 
-  const off = perpendicularOffset(lat1, lng1, lat2, lng2, bulge + laneMag * span * 0.0038);
+  const off = perpendicularOffset(lat1, lng1, lat2, lng2, bulge + laneMag * span * 0.0012);
   const p0: LatLngTuple = [lat1, lng1];
   const p3: LatLngTuple = [lat2, lng2];
   const p1: LatLngTuple = [
-    lat1 + (lat2 - lat1) * 0.33 + off.lat * 0.85,
-    lng1 + (lng2 - lng1) * 0.33 + off.lng * 0.85,
+    lat1 + (lat2 - lat1) * 0.33 + off.lat * 0.55,
+    lng1 + (lng2 - lng1) * 0.33 + off.lng * 0.55,
   ];
   const p2: LatLngTuple = [
-    lat1 + (lat2 - lat1) * 0.67 + off.lat * 0.85,
-    lng1 + (lng2 - lng1) * 0.67 + off.lng * 0.85,
+    lat1 + (lat2 - lat1) * 0.67 + off.lat * 0.55,
+    lng1 + (lng2 - lng1) * 0.67 + off.lng * 0.55,
   ];
 
   const steps =
@@ -156,9 +156,22 @@ export function buildSmoothCorridorPath(
     return buildBezierSegment(nodes[0].lat, nodes[0].lng, nodes[1].lat, nodes[1].lng, mode, scope, zoom, laneMag);
   }
 
-  const anchors: LatLngTuple[] = nodes.map((n) => [n.lat, n.lng]);
-  const samples = scope === 'europe' ? 20 : 16;
-  return catmullRomSpline(anchors, samples);
+  const merged: LatLngTuple[] = [];
+  for (let i = 0; i < nodes.length - 1; i++) {
+    const seg = buildBezierSegment(
+      nodes[i].lat,
+      nodes[i].lng,
+      nodes[i + 1].lat,
+      nodes[i + 1].lng,
+      mode,
+      scope,
+      zoom,
+      laneMag,
+    );
+    if (i > 0) seg.shift();
+    merged.push(...seg);
+  }
+  return merged.length >= 2 ? merged : [];
 }
 
 export function buildPremiumCorridorPath(

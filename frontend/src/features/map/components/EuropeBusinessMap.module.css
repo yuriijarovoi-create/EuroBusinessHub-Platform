@@ -1468,7 +1468,71 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.62;
+  opacity: 0.88;
+  filter: drop-shadow(0 0 4px rgb(245 158 11 / 0.65)) drop-shadow(0 0 8px rgb(234 88 12 / 0.35));
+  animation: ebh-port-anchor-pulse 4s ease-in-out infinite;
+}
+
+:global(.ebh-airport-anchor-wrap) {
+  background: transparent !important;
+  border: none !important;
+}
+
+:global(.ebh-airport-anchor) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 4px rgb(168 85 247 / 0.6)) drop-shadow(0 0 8px rgb(124 58 237 / 0.3));
+  animation: ebh-airport-anchor-pulse 3.6s ease-in-out infinite;
+}
+
+@keyframes ebh-port-anchor-pulse {
+  0%, 100% { opacity: 0.72; transform: scale(0.94); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes ebh-airport-anchor-pulse {
+  0%, 100% { opacity: 0.68; transform: scale(0.92); }
+  50% { opacity: 0.95; transform: scale(1.05); }
+}
+
+:global(.ebh-transport-anchor) {
+  pointer-events: none;
+}
+
+:global(.ebh-vehicle-icon) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s linear;
+  filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 1px 2px rgb(15 23 42 / 0.45));
+  will-change: transform;
+}
+
+:global(.ebh-vehicle-truck .ebh-vehicle-icon) {
+  filter: drop-shadow(0 0 4px rgb(0 200 255 / 0.7)) drop-shadow(0 1px 2px rgb(15 23 42 / 0.4));
+}
+
+:global(.ebh-vehicle-train .ebh-vehicle-icon) {
+  filter: drop-shadow(0 0 4px rgb(34 197 94 / 0.65)) drop-shadow(0 1px 2px rgb(15 23 42 / 0.4));
+}
+
+:global(.ebh-vehicle-plane .ebh-vehicle-icon) {
+  filter: drop-shadow(0 0 5px rgb(168 85 247 / 0.75)) drop-shadow(0 1px 2px rgb(15 23 42 / 0.35));
+}
+
+:global(.ebh-vehicle-ship .ebh-vehicle-icon) {
+  filter: drop-shadow(0 0 4px rgb(245 158 11 / 0.7)) drop-shadow(0 1px 2px rgb(15 23 42 / 0.4));
+}
+
+:global(.ebh-route-level-1.ebh-route-glow-atmo),
+:global(.ebh-route-level-1.ebh-route-glow-outer) {
+  mix-blend-mode: plus-lighter;
+}
+
+:global(.ebh-route-level-1.ebh-route-core) {
+  mix-blend-mode: screen;
 }
 
 :global(.ebh-vehicle-icon) {
@@ -1656,4 +1720,101 @@
 
 :global(.ebh-route-leaflet-tooltip) {
   transition: opacity 0.2s ease;
+}
+
+/* ── Dark theme — elegant bright routes, soft glow ── */
+:root[data-theme='dark'] :global(.ebh-route-theme-dark.ebh-route-glow-atmo),
+:root:not([data-theme='light']) :global(.ebh-route-theme-dark.ebh-route-glow-atmo) {
+  filter: blur(1.2px);
+}
+
+:root[data-theme='dark'] :global(.ebh-route-theme-dark.ebh-route-glow-outer),
+:root:not([data-theme='light']) :global(.ebh-route-theme-dark.ebh-route-glow-outer) {
+  filter: blur(0.6px);
+}
+
+:root[data-theme='dark'] :global(.ebh-route-theme-dark.ebh-route-level-1.ebh-route-core),
+:root:not([data-theme='light']) :global(.ebh-route-theme-dark.ebh-route-level-1.ebh-route-core) {
+  filter: drop-shadow(0 0 2px rgb(120 190 255 / 0.45));
+}
+
+/* ── Light theme — saturated cores, dark under-shadow, crisp particles ── */
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-core),
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-rail-track) {
+  filter: drop-shadow(0 1.5px 2px rgb(15 23 42 / 0.38)) drop-shadow(0 0 0.5px rgb(15 23 42 / 0.22));
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-level-1.ebh-route-road.ebh-route-core) {
+  filter: drop-shadow(0 1.5px 2.5px rgb(15 23 42 / 0.42)) drop-shadow(0 0 1px rgb(2 132 199 / 0.65));
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-level-1.ebh-route-rail.ebh-route-core),
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-level-1.ebh-route-rail-track) {
+  filter: drop-shadow(0 1.5px 2.5px rgb(15 23 42 / 0.4)) drop-shadow(0 0 1px rgb(22 163 74 / 0.62));
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-level-1.ebh-route-sea.ebh-route-core) {
+  filter: drop-shadow(0 1.5px 2.5px rgb(15 23 42 / 0.4)) drop-shadow(0 0 1px rgb(234 88 12 / 0.6));
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-level-1.ebh-route-air.ebh-route-core) {
+  filter: drop-shadow(0 1.5px 2.5px rgb(15 23 42 / 0.4)) drop-shadow(0 0 1px rgb(124 58 237 / 0.62));
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-level-1.ebh-route-ai.ebh-route-core) {
+  filter: drop-shadow(0 1.5px 2.5px rgb(15 23 42 / 0.4)) drop-shadow(0 0 1px rgb(8 145 178 / 0.65));
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-level-1.ebh-route-partnership.ebh-route-core) {
+  filter: drop-shadow(0 1.5px 2.5px rgb(15 23 42 / 0.45)) drop-shadow(0 0 0.5px rgb(51 65 85 / 0.55));
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-level-2.ebh-route-core) {
+  filter: drop-shadow(0 1px 1.5px rgb(15 23 42 / 0.32));
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-glow-atmo),
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-glow-outer) {
+  filter: none;
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-hovered.ebh-route-core) {
+  filter: drop-shadow(0 2px 3px rgb(15 23 42 / 0.45)) drop-shadow(0 0 1.5px rgb(2 132 199 / 0.55)) !important;
+}
+
+:root[data-theme='light'] :global(.ebh-route-theme-light.ebh-route-selected.ebh-route-core) {
+  filter: drop-shadow(0 2px 3.5px rgb(15 23 42 / 0.5)) drop-shadow(0 0 2px rgb(2 132 199 / 0.6)) !important;
+}
+
+:root[data-theme='light'] :global(.ebh-particle-road.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 1px rgb(15 23 42 / 0.55)) drop-shadow(0 0 3px rgb(2 132 199 / 0.75));
+}
+
+:root[data-theme='light'] :global(.ebh-particle-rail.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 1px rgb(15 23 42 / 0.5)) drop-shadow(0 0 3px rgb(22 163 74 / 0.72));
+}
+
+:root[data-theme='light'] :global(.ebh-particle-air.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 1px rgb(15 23 42 / 0.5)) drop-shadow(0 0 3px rgb(124 58 237 / 0.75));
+}
+
+:root[data-theme='light'] :global(.ebh-particle-sea.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 1px rgb(15 23 42 / 0.5)) drop-shadow(0 0 3px rgb(234 88 12 / 0.72));
+}
+
+:root[data-theme='light'] :global(.ebh-particle-ai.ebh-route-particle-head) {
+  filter: drop-shadow(0 0 1px rgb(15 23 42 / 0.55)) drop-shadow(0 0 3px rgb(8 145 178 / 0.78));
+}
+
+:root[data-theme='light'] :global(.ebh-route-particle-head) {
+  opacity: 1;
+}
+
+@keyframes ebh-ai-particle-pulse-light {
+  0%, 100% { opacity: 0.88; }
+  50% { opacity: 1; }
+}
+
+:root[data-theme='light'] :global(.ebh-particle-ai.ebh-route-particle-head) {
+  animation: ebh-ai-particle-pulse-light 2.8s ease-in-out infinite;
 }

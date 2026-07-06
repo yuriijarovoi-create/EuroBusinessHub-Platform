@@ -11,52 +11,58 @@ export interface RouteFilterContext {
 }
 
 const ZOOM_ROUTE_CAPS: Array<{ min: number; max: number; cap: number }> = [
-  { min: 0, max: 5.99, cap: 18 },
-  { min: 6, max: 7.99, cap: 26 },
-  { min: 8, max: 10.99, cap: 24 },
-  { min: 11, max: 12.99, cap: 16 },
-  { min: 13, max: 24, cap: 6 },
+  { min: 0, max: 5.99, cap: 58 },
+  { min: 6, max: 8.99, cap: 42 },
+  { min: 9, max: 10.99, cap: 32 },
+  { min: 11, max: 14, cap: 18 },
+  { min: 15, max: 24, cap: 8 },
 ];
 
 const LOCAL_MAX_KM = 40;
 
 function routeCapForZoom(zoom: number): number {
   const band = ZOOM_ROUTE_CAPS.find((b) => zoom >= b.min && zoom <= b.max);
-  return band?.cap ?? 22;
+  return band?.cap ?? 28;
+}
+
+function maxTierForZoom(zoom: number): number {
+  if (zoom < 6) return 1;
+  if (zoom < 9) return 2;
+  if (zoom < 11) return 3;
+  return 4;
 }
 
 function prioritiesForZoom(zoom: number, countryCode?: string, cityId?: string): Set<RoutePriorityLevel> {
-  if (cityId && zoom >= 10) return new Set(['secondary', 'local']);
+  if (zoom >= 11) return new Set(['local']);
+  if (cityId && zoom >= 9) return new Set(['secondary', 'local']);
   if (zoom < 6) return new Set(['primary']);
-  if (zoom < 8) {
-    const s = new Set<RoutePriorityLevel>(['primary']);
-    if (countryCode) s.add('secondary');
+  if (zoom < 9) {
+    const s = new Set<RoutePriorityLevel>(['primary', 'secondary']);
+    if (countryCode) s.add('local');
     return s;
   }
   if (zoom < 11) {
-    if (countryCode || cityId) return new Set(['primary', 'secondary']);
-    return new Set(['secondary']);
+    if (countryCode || cityId) return new Set(['primary', 'secondary', 'local']);
+    return new Set(['secondary', 'local']);
   }
-  if (zoom < 13) return new Set(['secondary', 'local']);
   return new Set(['local']);
 }
 
 function scopesForZoom(zoom: number, countryCode?: string): Set<RouteScope> {
   if (zoom < 6) return new Set(['europe']);
-  if (zoom < 8) {
-    const s = new Set<RouteScope>(['europe']);
-    if (countryCode) s.add('country');
+  if (zoom < 9) {
+    const s = new Set<RouteScope>(['europe', 'country']);
+    if (countryCode) s.add('regional');
     return s;
   }
   if (zoom < 11) {
-    if (countryCode) return new Set(['country', 'regional']);
-    return new Set(['country']);
+    if (countryCode) return new Set(['country', 'regional', 'local']);
+    return new Set(['country', 'regional']);
   }
-  if (zoom < 13) return new Set(['regional']);
   return new Set(['local']);
 }
 
-function routeTouchesCountry(route: BusinessRouteDef, countryCode: string): boolean {
+export function routeTouchesCountry(route: BusinessRouteDef, countryCode: string): boolean {
   const countries = route.relatedCountries ?? route.countryScope ?? [];
   return countries.includes(countryCode);
 }
@@ -98,7 +104,7 @@ function passesDistanceGate(
   const dist = routeDistanceKm(from, to);
   const scope = getRouteScope(route);
 
-  if (cityId && zoom >= 10) {
+  if (cityId && zoom >= 9) {
     return route.fromCityId === cityId || route.toCityId === cityId;
   }
   if (zoom >= 13) return scope === 'local' && dist <= LOCAL_MAX_KM;
@@ -135,23 +141,29 @@ export function filterCorridorRoutes(
 ): BusinessRouteDef[] {
   const { zoom, selectedCountryCode, selectedCityId, cityMap } = ctx;
   const cap = routeCapForZoom(zoom);
+  const maxTier = maxTierForZoom(zoom);
 
   const pool = routes.filter((route) => {
     if (!route.active) return false;
     if (!cityMap.has(route.fromCityId) || !cityMap.has(route.toCityId)) return false;
+
+    const tier = route.priorityTier ?? 2;
+    if (tier > maxTier) return false;
+
     if (!isRouteInZoomBand(route, zoom, selectedCountryCode)) return false;
     if (!passesDistanceGate(route, cityMap, zoom, selectedCityId)) return false;
 
     if (selectedCountryCode) return routeTouchesCountry(route, selectedCountryCode);
-    return getRouteScope(route) === 'europe';
+    if (zoom < 6) return getRouteScope(route) === 'europe';
+    return true;
   });
 
   return sortRoutes(pool, ctx).slice(0, cap);
 }
 
 export function routeDensityOpacity(routeCount: number): number {
-  if (routeCount <= 8) return 1;
-  if (routeCount <= 14) return 0.92;
-  if (routeCount <= 22) return 0.86;
-  return 0.8;
+  if (routeCount <= 12) return 1;
+  if (routeCount <= 24) return 0.94;
+  if (routeCount <= 40) return 0.88;
+  return 0.82;
 }
