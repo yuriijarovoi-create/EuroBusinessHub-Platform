@@ -87,4 +87,26 @@ export const germanyCitiesDense: Seed[] = [
   de('trier', 'Trier', 49.749, 6.637, 180, 3, ['marketplace', 'transport', 'partner']),
   de('koblenz', 'Koblenz', 50.356, 7.594, 175, 3, ['marketplace', 'logistik', 'transport']),
   de('kaiserslautern', 'Kaiserslautern', 49.444, 7.769, 170, 3, ['marketplace', 'akademie', 'transport']),
+
+  // Saarland cluster — regional business towns (Tier 3)
+  de('neunkirchen', 'Neunkirchen', 49.344, 7.175, 165, 3, ['marketplace', 'transport', 'logistik']),
+  de('homburg', 'Homburg', 49.326, 7.339, 155, 3, ['marketplace', 'transport', 'jobs']),
+  de('voelklingen', 'Völklingen', 49.252, 6.859, 150, 3, ['marketplace', 'logistik', 'transport']),
+  de('saarlouis', 'Saarlouis', 49.314, 6.752, 140, 3, ['marketplace', 'transport', 'logistik']),
+  de('sankt_ingbert', 'Sankt Ingbert', 49.277, 7.117, 145, 3, ['marketplace', 'transport', 'unternehmen']),
+  de('merzig', 'Merzig', 49.443, 6.638, 125, 3, ['marketplace', 'transport', 'logistik']),
+  de('st_wendel', 'St. Wendel', 49.467, 7.169, 115, 3, ['marketplace', 'transport', 'jobs']),
+  de('dillingen_saar', 'Dillingen/Saar', 49.355, 6.728, 110, 3, ['marketplace', 'logistik', 'transport']),
+  de('lebach', 'Lebach', 49.411, 6.910, 105, 3, ['marketplace', 'transport', 'jobs']),
+  de('ottweiler', 'Ottweiler', 49.404, 7.163, 95, 3, ['marketplace', 'transport', 'jobs']),
+  de('blieskastel', 'Blieskastel', 49.237, 7.257, 100, 3, ['marketplace', 'logistik', 'transport']),
+
+  // Sachsen-Anhalt — missing from Bundesland list
+  de('stendal', 'Stendal', 52.606, 11.858, 120, 3, ['marketplace', 'transport', 'logistik']),
+
+  // Rheinland-Pfalz — regional business cities (Tier 3)
+  de('frankenthal', 'Frankenthal', 49.534, 8.354, 155, 3, ['marketplace', 'transport', 'logistik']),
+  de('ingelheim', 'Ingelheim am Rhein', 49.97, 8.058, 145, 3, ['marketplace', 'unternehmen', 'transport']),
+  de('lahnstein', 'Lahnstein', 50.301, 7.608, 115, 3, ['marketplace', 'transport', 'partner']),
+  de('germersheim', 'Germersheim', 49.215, 8.364, 125, 3, ['marketplace', 'logistik', 'transport']),
 ];

@@ -1,5 +1,7 @@
 import type { MapCityMetrics } from '@shared/types';
 import type { GermanyInfrastructure } from '../../types/germanyTypes';
+import { GERMANY_BUNDESLAENDER_ENRICHMENT } from './germanyBundeslandEnrichment';
+import { GERMANY_RHEINLAND_PFALZ_ENRICHMENT } from './germanyRheinlandPfalzEnrichment';
 
 type MetricsSlice = Pick<
   MapCityMetrics,
@@ -12,7 +14,12 @@ export interface GermanyCityEnrichment {
   techScore?: number;
   financeScore?: number;
   innovationScore?: number;
+  sustainabilityScore?: number;
   gdpEstimateBillionEur?: number;
+  /** Composite 0–100 business ecosystem score */
+  businessIndex?: number;
+  /** 0–100 tourism / hospitality score */
+  tourismScore?: number;
   infra?: Partial<GermanyInfrastructure>;
 }
 
@@ -285,12 +292,16 @@ export const GERMANY_CITY_ENRICHMENT: Record<string, GermanyCityEnrichment> = {
     },
   },
   saarbruecken: {
-    metrics: biz(450, 170, 16, 125, 340, 70),
+    metrics: biz(520, 195, 18, 135, 380, 74),
+    logisticsScore: 78,
+    innovationScore: 72,
+    businessIndex: 75,
     infra: {
       airports: ['Saarbrücken Airport (SCN)'],
       railwayCargoTerminal: 'Saarbrücken Hbf Freight',
-      motorwayConnections: ['A1', 'A6', 'A620'],
-      logisticsHubs: ['Saar-Logistik', 'Automotive Zulieferer Hub'],
+      motorwayConnections: ['A1', 'A6', 'A620', 'A8'],
+      industrialZones: ['Saarstahl Industrie', 'Europaviertel Gewerbepark'],
+      logisticsHubs: ['Saar-Logistik', 'Automotive Zulieferer Hub', 'SCN Cargo'],
     },
   },
   braunschweig: {
@@ -526,6 +537,7 @@ export const GERMANY_CITY_ENRICHMENT: Record<string, GermanyCityEnrichment> = {
     metrics: biz(1180, 450, 46, 290, 920, 82),
     logisticsScore: 89,
     gdpEstimateBillionEur: 48,
+    businessIndex: 84,
     infra: {
       airports: ['Köln/Bonn Airport Cargo (CGN)'],
       railwayCargoTerminal: 'Köln Eifeltor Freight Terminal',
@@ -534,6 +546,401 @@ export const GERMANY_CITY_ENRICHMENT: Record<string, GermanyCityEnrichment> = {
       logisticsHubs: ['CGN Air Cargo', 'Rhine Logistics Cologne', 'Köln/Bonn Cargo Airport'],
     },
   },
+
+  // ── Tier 1 national hubs (enrichment only — seeds unchanged) ──
+  berlin: {
+    metrics: biz(2400, 820, 95, 410, 1920, 91),
+    techScore: 91,
+    innovationScore: 96,
+    logisticsScore: 86,
+    businessIndex: 91,
+    gdpEstimateBillionEur: 68,
+    infra: {
+      airports: ['Berlin Brandenburg (BER)'],
+      railwayCargoTerminal: 'Südkreuz / Westhafen Cargo',
+      inlandPort: 'Westhafen Inland Port',
+      motorwayConnections: ['A10', 'A100', 'A113', 'A115'],
+      industrialZones: ['Adlershof Science Park', 'TXL Innovation Hub'],
+      logisticsHubs: ['Berlin Hub — EuroBusinessHub HQ', 'Spree Logistics Belt'],
+    },
+  },
+  munich: {
+    metrics: biz(1980, 680, 78, 340, 1580, 89),
+    techScore: 94,
+    logisticsScore: 85,
+    innovationScore: 88,
+    businessIndex: 89,
+    gdpEstimateBillionEur: 71,
+    infra: {
+      airports: ['Munich Airport (MUC)'],
+      railwayCargoTerminal: 'Munich East Freight Yard',
+      motorwayConnections: ['A8', 'A9', 'A99'],
+      industrialZones: ['Freimann Industrial', 'Automotive Cluster'],
+      logisticsHubs: ['MUC Cargo City', 'Bavaria Tech Logistics'],
+    },
+  },
+  stuttgart: {
+    metrics: biz(1420, 520, 52, 280, 1120, 85),
+    techScore: 88,
+    logisticsScore: 82,
+    innovationScore: 84,
+    businessIndex: 85,
+    gdpEstimateBillionEur: 52,
+    infra: {
+      airports: ['Stuttgart Airport (STR)'],
+      railwayCargoTerminal: 'Kornwestheim Freight',
+      motorwayConnections: ['A8', 'A81', 'A831'],
+      industrialZones: ['Automotive Valley', 'Neckar Industrial'],
+      logisticsHubs: ['Mercedes-Benz Logistics', 'Porsche Supply Chain'],
+    },
+  },
+  duesseldorf: {
+    metrics: biz(1280, 480, 44, 265, 980, 83),
+    financeScore: 85,
+    logisticsScore: 86,
+    businessIndex: 84,
+    gdpEstimateBillionEur: 44,
+    infra: {
+      airports: ['Düsseldorf Airport (DUS)'],
+      railwayCargoTerminal: 'Düsseldorf Hafen Cargo',
+      inlandPort: 'Rhein Hafen Düsseldorf',
+      motorwayConnections: ['A3', 'A44', 'A46', 'A57'],
+      logisticsHubs: ['NRW Wirtschaftszentrum', 'Rhein-Ruhr Air Cargo'],
+    },
+  },
+  hanover: {
+    metrics: biz(1050, 420, 40, 245, 860, 80),
+    logisticsScore: 84,
+    businessIndex: 81,
+    gdpEstimateBillionEur: 22,
+    infra: {
+      airports: ['Hannover Airport (HAJ)'],
+      railwayCargoTerminal: 'Hannover Messe Cargo Terminal',
+      motorwayConnections: ['A2', 'A7', 'A37'],
+      logisticsHubs: ['Mitte-Deutschland Verteilung', 'Hannover Messe Logistik'],
+    },
+  },
+
+  // ── Stage 2 regional cities (enrichment only) ──
+  heilbronn: {
+    metrics: biz(520, 195, 20, 128, 400, 72),
+    logisticsScore: 76,
+    businessIndex: 74,
+    infra: {
+      airports: ['Stuttgart Airport (STR) — 50 km'],
+      railwayCargoTerminal: 'Heilbronn Cargo Terminal',
+      motorwayConnections: ['A6', 'A81'],
+      logisticsHubs: ['Neckar Distribution', 'Heilbronn Logistikpark'],
+    },
+  },
+  wuerzburg: {
+    metrics: biz(480, 180, 18, 118, 370, 71),
+    logisticsScore: 75,
+    businessIndex: 73,
+    infra: {
+      airports: ['Nuremberg Airport (NUE) — 90 km'],
+      railwayCargoTerminal: 'Würzburg Hafen Cargo',
+      inlandPort: 'Main Hafen Würzburg',
+      motorwayConnections: ['A3', 'A7', 'A70'],
+      logisticsHubs: ['Main-Fracht Würzburg', 'Wein & Logistik'],
+    },
+  },
+  erlangen: {
+    metrics: biz(510, 200, 18, 115, 390, 78),
+    techScore: 87,
+    innovationScore: 86,
+    businessIndex: 82,
+    infra: {
+      airports: ['Nuremberg Airport (NUE) — 15 km'],
+      railwayCargoTerminal: 'Erlangen Güterverkehr',
+      motorwayConnections: ['A3', 'A73'],
+      logisticsHubs: ['Siemens-Cluster Logistik', 'MedTech Distribution Erlangen'],
+    },
+  },
+  fuerth: {
+    metrics: biz(460, 175, 16, 108, 350, 70),
+    businessIndex: 71,
+    infra: {
+      airports: ['Nuremberg Airport (NUE) — 10 km'],
+      railwayCargoTerminal: 'Fürth Güterbahnhof',
+      motorwayConnections: ['A73', 'A3'],
+      logisticsHubs: ['Nürnberg Metro Logistik', 'Metall & Elektronik Hub'],
+    },
+  },
+  reutlingen: {
+    metrics: biz(540, 210, 20, 125, 410, 74),
+    techScore: 80,
+    businessIndex: 76,
+    infra: {
+      airports: ['Stuttgart Airport (STR) — 35 km'],
+      railwayCargoTerminal: 'Reutlingen Güterverkehr',
+      motorwayConnections: ['A8', 'A81'],
+      logisticsHubs: ['Neckar-Alb Logistik', 'Textil & Tech Distribution'],
+    },
+  },
+  offenbach: {
+    metrics: biz(490, 190, 18, 120, 380, 73),
+    financeScore: 72,
+    businessIndex: 74,
+    infra: {
+      airports: ['Frankfurt Airport (FRA) — 15 km'],
+      railwayCargoTerminal: 'Offenbach Hafen Cargo',
+      motorwayConnections: ['A3', 'A661'],
+      logisticsHubs: ['Frankfurt Metro Logistik', 'Design & Handel Distribution'],
+    },
+  },
+  pforzheim: {
+    metrics: biz(450, 170, 16, 110, 340, 71),
+    businessIndex: 72,
+    infra: {
+      airports: ['Karlsruhe/Baden-Baden (FKB) — 40 km'],
+      railwayCargoTerminal: 'Pforzheim Güterbahnhof',
+      motorwayConnections: ['A8', 'A65'],
+      logisticsHubs: ['Schwarzwald Korridor', 'Schmuck & Tech Logistik'],
+    },
+  },
+  hildesheim: {
+    metrics: biz(470, 180, 18, 125, 360, 72),
+    logisticsScore: 76,
+    businessIndex: 74,
+    infra: {
+      airports: ['Hannover Airport (HAJ) — 30 km'],
+      railwayCargoTerminal: 'Hildesheim Güterverkehr',
+      motorwayConnections: ['A7', 'A2'],
+      logisticsHubs: ['A7 Industrie Logistik', 'Automotive Zulieferer Hub'],
+    },
+  },
+  cottbus: {
+    metrics: biz(440, 165, 16, 105, 330, 71),
+    logisticsScore: 74,
+    businessIndex: 72,
+    infra: {
+      airports: ['Berlin Brandenburg (BER) — 110 km'],
+      railwayCargoTerminal: 'Cottbus Güterbahnhof',
+      motorwayConnections: ['A15', 'A13'],
+      logisticsHubs: ['Lausitz Logistik', 'Energie & Tech Distribution'],
+    },
+  },
+  schwerin: {
+    metrics: biz(400, 150, 14, 95, 300, 69),
+    logisticsScore: 73,
+    businessIndex: 70,
+    infra: {
+      airports: ['Rostock-Laage (RLG) — 60 km'],
+      railwayCargoTerminal: 'Schwerin Güterverkehr',
+      motorwayConnections: ['A14', 'A24'],
+      logisticsHubs: ['Mecklenburg Distribution', 'Schweriner See Logistik'],
+    },
+  },
+  zwickau: {
+    metrics: biz(430, 165, 16, 108, 320, 70),
+    businessIndex: 71,
+    infra: {
+      airports: ['Leipzig Halle Airport (LEJ) — 100 km'],
+      railwayCargoTerminal: 'Zwickau Güterbahnhof',
+      motorwayConnections: ['A4', 'A72'],
+      logisticsHubs: ['Sachsen Auto-Korridor', 'Automotive Zulieferer Logistik'],
+    },
+  },
+  siegen: {
+    metrics: biz(420, 160, 14, 100, 310, 70),
+    businessIndex: 71,
+    infra: {
+      airports: ['Cologne Bonn Airport (CGN) — 80 km'],
+      railwayCargoTerminal: 'Siegen Güterverkehr',
+      motorwayConnections: ['A45', 'A4'],
+      logisticsHubs: ['Siegerland Logistik', 'Metall & Universität Services'],
+    },
+  },
+  kaiserslautern: {
+    metrics: biz(410, 155, 14, 98, 305, 72),
+    techScore: 78,
+    businessIndex: 73,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 70 km'],
+      railwayCargoTerminal: 'Kaiserslautern Güterbahnhof',
+      motorwayConnections: ['A6', 'A62'],
+      logisticsHubs: ['Pfalz Tech-Logistik', 'IT & Forschung Distribution'],
+    },
+  },
+  gera: {
+    metrics: biz(380, 140, 12, 88, 280, 68),
+    businessIndex: 69,
+    infra: {
+      airports: ['Leipzig Halle Airport (LEJ) — 70 km'],
+      railwayCargoTerminal: 'Gera Güterverkehr',
+      motorwayConnections: ['A4', 'A9'],
+      logisticsHubs: ['Ostthüringen Logistik', 'Textil & Industrie Services'],
+    },
+  },
+  bayreuth: {
+    metrics: biz(370, 135, 12, 85, 270, 69),
+    businessIndex: 69,
+    infra: {
+      airports: ['Nuremberg Airport (NUE) — 90 km'],
+      railwayCargoTerminal: 'Bayreuth Güterverkehr',
+      motorwayConnections: ['A9', 'A70'],
+      logisticsHubs: ['Franken Nord Logistik', 'Kultur & Handwerk Services'],
+    },
+  },
+  bamberg: {
+    metrics: biz(390, 145, 12, 90, 285, 70),
+    businessIndex: 70,
+    infra: {
+      airports: ['Nuremberg Airport (NUE) — 60 km'],
+      railwayCargoTerminal: 'Bamberg Güterverkehr',
+      motorwayConnections: ['A70', 'A73'],
+      logisticsHubs: ['Oberfranken Logistik', 'Brau & Handwerk Distribution'],
+    },
+  },
+  flensburg: {
+    metrics: biz(400, 150, 14, 120, 295, 71),
+    logisticsScore: 78,
+    businessIndex: 73,
+    infra: {
+      airports: ['Sonderborg (SGD) — 50 km'],
+      railwayCargoTerminal: 'Flensburg Hafen Cargo',
+      inlandPort: 'Flensburg Förde Hafen',
+      motorwayConnections: ['A7', 'B200'],
+      logisticsHubs: ['Ostsee Nord Logistik', 'Grenzhandel Dänemark'],
+    },
+  },
+  neubrandenburg: {
+    metrics: biz(360, 130, 12, 82, 265, 68),
+    businessIndex: 68,
+    infra: {
+      airports: ['Rostock-Laage (RLG) — 50 km'],
+      railwayCargoTerminal: 'Neubrandenburg Güterverkehr',
+      motorwayConnections: ['A20', 'B96'],
+      logisticsHubs: ['Mecklenburg Seenplatte Logistik', 'Landwirtschaft Distribution'],
+    },
+  },
+
+  // ── Saarland regional towns (new) ──
+  neunkirchen: {
+    metrics: biz(420, 165, 14, 118, 330, 71),
+    logisticsScore: 76,
+    businessIndex: 73,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 25 km'],
+      railwayCargoTerminal: 'Neunkirchen-Wiebelskirchen Güterbahnhof',
+      motorwayConnections: ['A8', 'B41'],
+      industrialZones: ['Neunkirchen Stahlwerk', 'Saar-Nahe Gewerbepark'],
+      logisticsHubs: ['Saar-Nahe Logistik', 'Neunkirchen Industrie'],
+    },
+  },
+  homburg: {
+    metrics: biz(390, 150, 12, 105, 310, 70),
+    innovationScore: 74,
+    businessIndex: 72,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 20 km'],
+      railwayCargoTerminal: 'Homburg Hbf Güterverkehr',
+      motorwayConnections: ['A6', 'A8', 'B40'],
+      logisticsHubs: ['Westpfalz Distribution', 'Universität Services'],
+    },
+  },
+  voelklingen: {
+    metrics: biz(380, 145, 14, 112, 300, 69),
+    logisticsScore: 75,
+    businessIndex: 71,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 15 km'],
+      railwayCargoTerminal: 'Völklingen Güterbahnhof',
+      motorwayConnections: ['A620', 'B51'],
+      industrialZones: ['Völklinger Hütte UNESCO', 'Saarstahl Industrie'],
+      logisticsHubs: ['Saar-Industriekorridor', 'Stahl Logistik Völklingen'],
+    },
+  },
+  saarlouis: {
+    metrics: biz(400, 155, 14, 125, 320, 72),
+    logisticsScore: 77,
+    businessIndex: 74,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 35 km'],
+      railwayCargoTerminal: 'Saarlouis Dillingen Cargo',
+      motorwayConnections: ['A8', 'A620', 'B26'],
+      industrialZones: ['Ford Saarlouis Werk', 'Roden Saar Gewerbepark'],
+      logisticsHubs: ['Ford Supply Chain Saarlouis', 'Grenzhandel Frankreich'],
+    },
+  },
+  sankt_ingbert: {
+    metrics: biz(370, 140, 12, 98, 295, 71),
+    techScore: 76,
+    businessIndex: 73,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 10 km'],
+      railwayCargoTerminal: 'St. Ingbert Güterverkehr',
+      motorwayConnections: ['A8', 'A620'],
+      logisticsHubs: ['Saar Mitte Fracht', 'IT & Business Services'],
+    },
+  },
+  merzig: {
+    metrics: biz(340, 130, 10, 92, 275, 68),
+    businessIndex: 70,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 40 km'],
+      railwayCargoTerminal: 'Merzig Güterbahnhof',
+      motorwayConnections: ['A8', 'B51'],
+      logisticsHubs: ['Saargau Verteilung', 'Wein & Logistik Merzig'],
+    },
+  },
+  st_wendel: {
+    metrics: biz(320, 125, 10, 88, 260, 67),
+    businessIndex: 69,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 45 km'],
+      railwayCargoTerminal: 'St. Wendel Güterverkehr',
+      motorwayConnections: ['A62', 'B41'],
+      logisticsHubs: ['Nord-Saar Logistik', 'Handwerk Cluster'],
+    },
+  },
+  dillingen_saar: {
+    metrics: biz(310, 120, 10, 95, 250, 68),
+    logisticsScore: 74,
+    businessIndex: 70,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 30 km'],
+      railwayCargoTerminal: 'Dillingen Saarhütten Cargo',
+      motorwayConnections: ['A8', 'B26'],
+      industrialZones: ['Saarhütten Stahlwerk', 'Dillingen Industrie'],
+      logisticsHubs: ['Saarlouis Industrie', 'Stahl Logistik'],
+    },
+  },
+  lebach: {
+    metrics: biz(290, 115, 8, 82, 240, 66),
+    businessIndex: 68,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 35 km'],
+      railwayCargoTerminal: 'Lebach Güterverkehr',
+      motorwayConnections: ['A62', 'B420'],
+      logisticsHubs: ['Saar-Ost Distribution', 'Landwirtschaft Logistik'],
+    },
+  },
+  ottweiler: {
+    metrics: biz(270, 105, 8, 78, 225, 65),
+    businessIndex: 67,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 20 km'],
+      railwayCargoTerminal: 'Ottweiler Güterbahnhof',
+      motorwayConnections: ['A8', 'B41'],
+      logisticsHubs: ['Neunkirchen Umland Logistik', 'Handwerk Services'],
+    },
+  },
+  blieskastel: {
+    metrics: biz(285, 110, 8, 85, 235, 66),
+    businessIndex: 68,
+    infra: {
+      airports: ['Saarbrücken Airport (SCN) — 30 km'],
+      railwayCargoTerminal: 'Blieskastel Güterverkehr',
+      motorwayConnections: ['A6', 'A8', 'B423'],
+      logisticsHubs: ['Bliesgau Fracht', 'Grenzregion Logistik'],
+    },
+  },
+
+  ...GERMANY_BUNDESLAENDER_ENRICHMENT,
+
+  ...GERMANY_RHEINLAND_PFALZ_ENRICHMENT,
 };
 
 export function getGermanyCityEnrichment(cityId: string): GermanyCityEnrichment | undefined {

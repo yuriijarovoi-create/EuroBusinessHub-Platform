@@ -88,6 +88,13 @@ export function enrichCity(city: (typeof cities)[number]): MapCityRecord {
           population: localNode.population,
         };
       }
+      if (enrich?.tourismScore != null || enrich?.logisticsScore != null) {
+        record.localServiceNode = {
+          ...record.localServiceNode,
+          tourismScore: enrich.tourismScore ?? record.localServiceNode.tourismScore,
+          logisticsScore: enrich.logisticsScore ?? record.localServiceNode.logisticsScore,
+        };
+      }
     }
     record.metrics = { ...record.metrics, population: meta.population };
     if (enrich) {

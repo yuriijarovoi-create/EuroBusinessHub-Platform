@@ -76,6 +76,7 @@
     "tech": "Tech",
     "logistics": "Logistik",
     "innovation": "Innovation",
+    "businessIndex": "Business-Index",
     "sustainability": "Nachhaltigkeit",
     "gdpShort": "{{value}} Mrd. € BIP",
     "gdpEstimate": "Geschätztes BIP: {{value}} Mrd. €",

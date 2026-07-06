@@ -119,6 +119,24 @@ export const GERMANY_CITY_META: Record<string, GermanyCityMeta> = {
   iserlohn: T3(92000, 'Metall & Handel', 'Sauerland Fracht'),
   schwerin: T3(96000, 'Verwaltung & Hafen', 'Mecklenburg Distribution'),
   zwickau: T3(87000, 'Automotive', 'Sachsen Auto-Korridor'),
+
+  // Saarland — regional towns
+  neunkirchen: T3(46000, 'Stahl & Industrie', 'Saar-Nahe Logistik'),
+  homburg: T3(41000, 'Universität & Garnison', 'Westpfalz Distribution'),
+  voelklingen: T3(39000, 'Stahl & UNESCO-Welterbe', 'Saar-Industriekorridor'),
+  saarlouis: T3(34000, 'Automotive & Grenzhandel', 'Saarlouis Ford Logistik'),
+  sankt_ingbert: T3(35000, 'IT & Dienstleistung', 'Saar Mitte Fracht'),
+  merzig: T3(30000, 'Wein & Logistik', 'Saargau Verteilung'),
+  st_wendel: T3(26000, 'Handwerk & Handel', 'Nord-Saar Logistik'),
+  dillingen_saar: T3(21000, 'Stahl & Hüttenwerk', 'Saarlouis Industrie'),
+  lebach: T3(19000, 'Landwirtschaft & Handel', 'Saar-Ost Distribution'),
+  ottweiler: T3(14000, 'Handwerk & Kultur', 'Neunkirchen Umland'),
+  blieskastel: T3(20000, 'Grenzregion & Logistik', 'Bliesgau Fracht'),
+  stendal: T3(40000, 'Altmark & Logistik', 'Stendal Verteilung'),
+  frankenthal: T3(48000, 'Industrie & Chemie', 'Pfalz Logistik'),
+  ingelheim: T3(35000, 'Pharma & Forschung', 'Boehringer Cluster'),
+  lahnstein: T3(18000, 'Tourismus & Rhein', 'Lahn-Mosel Logistik'),
+  germersheim: T3(21000, 'Rhein-Logistik', 'Binnenhafen Germersheim'),
 };
 
 export function getGermanyCityMeta(cityId: string): GermanyCityMeta {

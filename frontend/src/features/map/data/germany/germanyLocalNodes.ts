@@ -9,8 +9,13 @@ import {
   GERMANY_LOCAL_NODE_RURAL_DEFS,
   GERMANY_LOCAL_NODE_RURAL_ENRICH,
 } from './germanyLocalNodesRural.generated';
+import { GERMANY_RP_NODE_DEFS } from './germanyRheinlandPfalzNodes.generated';
 
-const GERMANY_LOCAL_NODE_SEED_DEFS = [...GERMANY_LOCAL_NODE_DEFS, ...GERMANY_LOCAL_NODE_RURAL_DEFS];
+const GERMANY_LOCAL_NODE_SEED_DEFS = [
+  ...GERMANY_LOCAL_NODE_DEFS,
+  ...GERMANY_LOCAL_NODE_RURAL_DEFS,
+  ...GERMANY_RP_NODE_DEFS,
+];
 
 type Seed = Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: number; mapTier?: 4 };
 
@@ -70,9 +75,14 @@ function buildProfile(def: RawLocalNodeDef): GermanyLocalServiceNode {
   const m = scaleMetrics(def.population);
   const useCases: GermanyLocalUseCase[] = [...DEFAULT_USE_CASES];
   if (def.tourism) useCases.push('tourism_services');
-  if (def.region.match(/Eifel|Mosel|Harz|Allgäu|Alpen|Ostsee|Vorpommern/i)) {
+  if (def.region.match(/Eifel|Mosel|Harz|Allgäu|Alpen|Ostsee|Vorpommern|Ahr|Maifeld/i)) {
     useCases.push('agricultural_services');
   }
+
+  const logisticsScore = Math.min(72, 38 + Math.round(def.population / 6000));
+  const tourismScore = def.tourism
+    ? Math.min(88, 55 + Math.round(def.population / 2500))
+    : undefined;
 
   const services = defaultServices(def.name, def.region, def.tourism);
   services.nearbyHubs = [
@@ -93,6 +103,8 @@ function buildProfile(def: RawLocalNodeDef): GermanyLocalServiceNode {
     nearestMajorCity: def.nearestMajorCity,
     nearestMajorCityId: def.nearestMajorCityId,
     aiScore: m.aiScore,
+    logisticsScore,
+    tourismScore,
     mainUseCases: useCases,
     recommendedHubRoute: `${def.name} → ${def.nearestMajorCity} (Bahn / A-Route)`,
   };

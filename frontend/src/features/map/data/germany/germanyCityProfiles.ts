@@ -160,6 +160,14 @@ export function getGermanyCityProfile(cityId: string, cityName: string, business
   const traits = CITY_TRAITS[cityId] ?? {};
   const base = businesses * 0.08;
 
+  const logistics = enrich?.logisticsScore ?? traits.logisticsScore ?? Math.min(90, 38 + (businesses % 48));
+  const tech = enrich?.techScore ?? traits.techScore ?? Math.min(92, 35 + (businesses % 45));
+  const finance = enrich?.financeScore ?? traits.financeScore ?? Math.min(95, 40 + (businesses % 50));
+  const innovation = enrich?.innovationScore ?? traits.innovationScore ?? Math.min(94, 30 + (businesses % 55));
+  const businessIndex =
+    enrich?.businessIndex ??
+    Math.round((logistics + tech + finance + innovation) / 4);
+
   return {
     bundeslandId,
     bundeslandName: bl.name,
@@ -169,12 +177,12 @@ export function getGermanyCityProfile(cityId: string, cityName: string, business
     transportRole: meta.transportRole,
     gdpEstimateBillionEur:
       enrich?.gdpEstimateBillionEur ?? traits.gdpEstimateBillionEur ?? Math.round(base * 10) / 10,
-    financeScore: enrich?.financeScore ?? traits.financeScore ?? Math.min(95, 40 + (businesses % 50)),
-    techScore: enrich?.techScore ?? traits.techScore ?? Math.min(92, 35 + (businesses % 45)),
-    logisticsScore:
-      enrich?.logisticsScore ?? traits.logisticsScore ?? Math.min(90, 38 + (businesses % 48)),
-    innovationScore:
-      enrich?.innovationScore ?? traits.innovationScore ?? Math.min(94, 30 + (businesses % 55)),
+    financeScore: finance,
+    techScore: tech,
+    logisticsScore: logistics,
+    innovationScore: innovation,
+    businessIndex,
+    tourismScore: enrich?.tourismScore,
     infrastructure: { ...defaultInfra(cityName), ...traits.infra, ...enrich?.infra },
     topTradePartners: DEFAULT_PARTNERS.map((p, i) => ({
       ...p,

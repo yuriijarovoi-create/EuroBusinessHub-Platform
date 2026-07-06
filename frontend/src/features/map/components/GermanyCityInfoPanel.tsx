@@ -419,9 +419,21 @@ export function GermanyCityInfoPanel({
           {tab === 'analytics' && profile && (
             <div className={styles.germanyAnalytics}>
               <div className={styles.germanyAnalyticsBar}>
+                <span>{t('germany.businessIndex')}</span>
+                <div className={styles.countryAiBar}>
+                  <div className={styles.countryAiFill} style={{ width: `${profile.businessIndex ?? 50}%` }} />
+                </div>
+              </div>
+              <div className={styles.germanyAnalyticsBar}>
                 <span>{t('germany.logistics')}</span>
                 <div className={styles.countryAiBar}>
                   <div className={styles.countryAiFill} style={{ width: `${profile.logisticsScore ?? 50}%` }} />
+                </div>
+              </div>
+              <div className={styles.germanyAnalyticsBar}>
+                <span>{t('germany.innovation')}</span>
+                <div className={styles.countryAiBar}>
+                  <div className={styles.countryAiFill} style={{ width: `${profile.innovationScore ?? 50}%` }} />
                 </div>
               </div>
               <div className={styles.germanyAnalyticsBar}>

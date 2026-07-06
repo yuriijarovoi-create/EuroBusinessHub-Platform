@@ -62,6 +62,8 @@ export interface GermanyLocalServiceNode {
   nearestMajorCity: string;
   nearestMajorCityId: string;
   aiScore: number;
+  logisticsScore?: number;
+  tourismScore?: number;
   mainUseCases: GermanyLocalUseCase[];
   recommendedHubRoute: string;
 }
@@ -79,6 +81,10 @@ export interface GermanyCityProfile {
   logisticsScore?: number;
   innovationScore?: number;
   sustainabilityScore?: number;
+  /** Composite business ecosystem score 0–100 */
+  businessIndex?: number;
+  /** 0–100 tourism / hospitality activity */
+  tourismScore?: number;
   infrastructure: GermanyInfrastructure;
   topTradePartners: GermanyTradePartner[];
   recentActivity: GermanyActivityItem[];
