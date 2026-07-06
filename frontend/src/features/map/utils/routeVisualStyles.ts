@@ -22,25 +22,26 @@ export const CORRIDOR_PALETTE: Record<
   TransportMode,
   { stroke: string; weight: number; dash?: string }
 > = {
-  road: { stroke: INDUSTRY_ROUTE_COLORS.road, weight: 2.4 },
-  rail: { stroke: INDUSTRY_ROUTE_COLORS.rail, weight: 1.4 },
+  road: { stroke: INDUSTRY_ROUTE_COLORS.road, weight: 2.2 },
+  rail: { stroke: INDUSTRY_ROUTE_COLORS.rail, weight: 1.6 },
   sea: { stroke: INDUSTRY_ROUTE_COLORS.sea, weight: 1.8, dash: '10 8' },
-  air: { stroke: INDUSTRY_ROUTE_COLORS.air, weight: 1.1, dash: '14 10' },
+  air: { stroke: INDUSTRY_ROUTE_COLORS.air, weight: 1.2, dash: '14 10' },
   river: { stroke: INDUSTRY_ROUTE_COLORS.river, weight: 1.0, dash: '6 8' },
 };
 
+/** Core line weights — capped at 3px major / 2px national / 1px regional */
 const TIER_WEIGHT: Record<RouteVisualTier, Record<TransportMode, number>> = {
-  trunk: { road: 5.2, rail: 4.6, sea: 5.0, air: 4.4, river: 4.2 },
-  international: { road: 3.0, rail: 2.8, sea: 2.9, air: 2.6, river: 2.5 },
-  national: { road: 2.0, rail: 1.8, sea: 1.9, air: 1.6, river: 1.5 },
-  local: { road: 1.1, rail: 1.0, sea: 1.0, air: 0.9, river: 0.9 },
+  trunk: { road: 3, rail: 2.6, sea: 2.8, air: 2.4, river: 2.2 },
+  international: { road: 2.8, rail: 2.4, sea: 2.6, air: 2.2, river: 2 },
+  national: { road: 2, rail: 1.8, sea: 1.9, air: 1.6, river: 1.5 },
+  local: { road: 1.1, rail: 1, sea: 1, air: 0.9, river: 0.9 },
 };
 
 const TIER_OPACITY: Record<RouteVisualTier, { light: number; dark: number }> = {
-  trunk: { light: 0.95, dark: 0.92 },
-  international: { light: 0.8, dark: 0.76 },
-  national: { light: 0.55, dark: 0.5 },
-  local: { light: 0.28, dark: 0.24 },
+  trunk: { light: 0.78, dark: 0.74 },
+  international: { light: 0.62, dark: 0.58 },
+  national: { light: 0.42, dark: 0.38 },
+  local: { light: 0.22, dark: 0.18 },
 };
 
 function dashForTier(mode: TransportMode, tier: RouteVisualTier): string | undefined {
@@ -82,7 +83,7 @@ export function getRouteVisualStyle(
   if (highlighted) baseOpacity = Math.min(0.98, baseOpacity + 0.06);
 
   let weight = TIER_WEIGHT[tier][mode];
-  if (highlighted) weight += 0.3;
+  if (highlighted) weight += 0.15;
 
   const railDoubleTrack = mode === 'rail';
   const railTrackOffset = tier === 'trunk' ? 0.006 : tier === 'international' ? 0.0045 : 0.003;

@@ -2,7 +2,8 @@
 
 export { EuropeMap } from './EuropeMap';
 export { RealEuropeMap } from './components/leaflet/RealEuropeMap';
-export { EuropeGeoJsonLayer } from './components/leaflet/EuropeGeoJsonLayer';
+export { CountryLayer } from './components/leaflet/CountryLayer';
+export { EuropeGeoJsonLayer } from './components/leaflet/CountryLayer';
 export { LeafletRouteLayer } from './components/leaflet/LeafletRouteLayer';
 export { LeafletCityMarkers } from './components/leaflet/LeafletCityMarkers';
 export { LeafletMapProvider, useLeafletMap } from './context/LeafletMapContext';

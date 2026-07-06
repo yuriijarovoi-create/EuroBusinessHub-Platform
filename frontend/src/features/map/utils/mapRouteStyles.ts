@@ -1,20 +1,39 @@
 import type { TransportMode } from '../types/mapTypes';
 import type { RouteRenderLevel } from '../routes/routeLevels';
 
-/** Brighter inner core tint per transport mode */
+/** Brighter inner core — electric highlight per mode */
 export function innerCoreColor(mode: TransportMode, baseColor: string, isAi: boolean): string {
-  if (isAi) return '#67e8f9';
+  if (isAi) return '#a5f3fc';
   switch (mode) {
     case 'road':
-      return '#7ec8ff';
+      return '#b8ecff';
     case 'rail':
-      return '#6ee7a0';
+      return '#86efac';
     case 'air':
-      return '#c4b5fd';
+      return '#ddd6fe';
     case 'sea':
-      return '#ffb380';
+      return '#fde68a';
     case 'river':
-      return '#5eead4';
+      return '#99f6e4';
+    default:
+      return baseColor;
+  }
+}
+
+/** Soft bloom tint for outer glow layers */
+export function glowBloomColor(mode: TransportMode, baseColor: string, isAi: boolean): string {
+  if (isAi) return '#06b6d4';
+  switch (mode) {
+    case 'road':
+      return '#00c8ff';
+    case 'rail':
+      return '#22c55e';
+    case 'air':
+      return '#a855f7';
+    case 'sea':
+      return '#f59e0b';
+    case 'river':
+      return '#06b6d4';
     default:
       return baseColor;
   }
@@ -31,14 +50,14 @@ export function particleClassForMode(mode: TransportMode, isAi: boolean): string
 }
 
 export function particleRadiusForMode(mode: TransportMode, level: RouteRenderLevel): number {
-  const base = level === 1 ? 2.6 : level === 2 ? 2 : 1.4;
+  const base = level === 1 ? 1.6 : level === 2 ? 1.2 : 0.9;
   switch (mode) {
     case 'air':
-      return base * 0.85;
+      return base * 0.8;
     case 'sea':
-      return base * 1.1;
-    case 'rail':
       return base * 0.95;
+    case 'rail':
+      return base * 0.88;
     default:
       return base;
   }
@@ -60,5 +79,5 @@ export function particleSpeedForMode(mode: TransportMode): number {
 }
 
 export function directionMarkerCount(level: RouteRenderLevel): number {
-  return level === 1 ? 3 : level === 2 ? 2 : 0;
+  return level === 1 ? 2 : level === 2 ? 1 : 0;
 }

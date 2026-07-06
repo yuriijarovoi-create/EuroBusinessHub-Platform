@@ -3,6 +3,7 @@ import { buildRouteBatch } from './routeBuilder';
 import { GERMANY_EXTENDED_CORRIDORS } from './germanyCorridors';
 import { EASTERN_EUROPE_CORRIDORS } from './easternEuropeCorridors';
 import { FRANCE_CORRIDORS } from './franceCorridors';
+import { PREMIUM_REFERENCE_CORRIDORS } from './premiumReferenceCorridors';
 
 /**
  * Curated European Business Corridor registry.
@@ -31,7 +32,7 @@ export const BUSINESS_CORRIDORS: BusinessRouteDef[] = [
       ['lyon', 'milan', 'rail', 'europe', ['FR', 'IT'], 1, 4],
       ['paris', 'milan', 'air', 'europe', ['FR', 'IT'], 1, 4],
       ['marseille', 'barcelona', 'sea', 'europe', ['FR', 'ES'], 1, 4],
-      ['barcelona', 'paris', 'rail', 'europe', ['ES', 'FR'], 2, 3],
+      ['barcelona', 'paris', 'rail', 'europe', ['ES', 'FR'], 1, 5],
       ['london', 'paris', 'rail', 'europe', ['GB', 'FR'], 2, 4],
       ['zurich', 'milan', 'rail', 'europe', ['CH', 'IT'], 1, 4],
       ['prague', 'berlin', 'rail', 'europe', ['CZ', 'DE'], 2, 4],
@@ -112,7 +113,7 @@ export const BUSINESS_CORRIDORS: BusinessRouteDef[] = [
 
       // ── Italy ──
       ['milan', 'zurich', 'rail', 'europe', ['IT', 'CH'], 1, 4],
-      ['milan', 'munich', 'rail', 'europe', ['IT', 'DE'], 2, 4],
+      ['milan', 'munich', 'rail', 'europe', ['IT', 'DE'], 1, 5],
       ['milan', 'rome', 'rail', 'country', ['IT'], 1, 5],
       ['milan', 'turin', 'road', 'country', ['IT'], 2, 4],
       ['rome', 'naples', 'road', 'country', ['IT'], 2, 4],
@@ -133,4 +134,5 @@ export const BUSINESS_CORRIDORS: BusinessRouteDef[] = [
   ...GERMANY_EXTENDED_CORRIDORS,
   ...EASTERN_EUROPE_CORRIDORS,
   ...FRANCE_CORRIDORS,
+  ...PREMIUM_REFERENCE_CORRIDORS,
 ];

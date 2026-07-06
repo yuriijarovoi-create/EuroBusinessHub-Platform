@@ -18,6 +18,8 @@ export function getAllCountries(): MapCountry[] {
     mapPath: def.mapPath,
     centerX: def.centerX,
     centerY: def.centerY,
+    lat: def.lat,
+    lng: def.lng,
     zoomLevel: def.zoomLevel,
     hubCityId: def.hubCityId,
     isHub: def.isHub,

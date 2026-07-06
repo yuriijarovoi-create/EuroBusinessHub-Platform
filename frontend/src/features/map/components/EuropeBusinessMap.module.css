@@ -1273,11 +1273,11 @@
 }
 
 :global(.ebh-route-highlighted) {
-  filter: drop-shadow(0 0 2px rgb(29 111 216 / 0.25));
+  filter: drop-shadow(0 0 1px rgb(56 189 248 / 0.18));
 }
 
 :global(.ebh-route-selected) {
-  filter: drop-shadow(0 0 3px rgb(29 111 216 / 0.35));
+  filter: drop-shadow(0 0 1.5px rgb(56 189 248 / 0.28));
 }
 
 :global(.ebh-route-tooltip-type) {
@@ -1421,25 +1421,42 @@
 }
 
 :global(.ebh-hub-halo-hover) {
-  filter: drop-shadow(0 0 8px rgb(61 184 232 / 0.55));
+  filter: drop-shadow(0 0 6px rgb(0 200 255 / 0.45));
+}
+
+:global(.ebh-hub-halo-premium) {
+  animation: ebh-hub-halo-breathe 4.5s ease-in-out infinite;
+}
+
+:global(.ebh-hub-halo-selected) {
+  filter: drop-shadow(0 0 10px rgb(0 200 255 / 0.55)) drop-shadow(0 0 18px rgb(34 211 238 / 0.28));
+}
+
+:global(.ebh-hub-energy-premium) {
+  animation-duration: 3.8s;
+}
+
+@keyframes ebh-hub-halo-breathe {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.82; }
 }
 
 @keyframes ebh-route-breathe {
   0%, 100% {
-    opacity: 0.72;
+    opacity: 0.55;
   }
   50% {
-    opacity: 1;
+    opacity: 0.78;
   }
 }
 
 :global(.ebh-route-glow-atmo) {
-  animation: ebh-route-breathe 4.8s ease-in-out infinite;
+  animation: ebh-route-breathe 5.6s ease-in-out infinite;
 }
 
 :global(.ebh-route-level-1.ebh-route-glow-outer) {
-  animation: ebh-route-breathe 3.6s ease-in-out infinite;
-  animation-delay: 0.4s;
+  animation: ebh-route-breathe 4.2s ease-in-out infinite;
+  animation-delay: 0.35s;
 }
 
 :global(.ebh-port-anchor-wrap) {
@@ -1467,43 +1484,44 @@
 }
 
 :global(.ebh-route) {
-  transition: opacity 0.28s ease, stroke-width 0.22s ease, filter 0.28s ease;
+  transition: opacity 0.26s ease, stroke-width 0.22s ease;
 }
 
 :global(.ebh-route-glow-atmo),
-:global(.ebh-route-glow-outer) {
+:global(.ebh-route-glow-outer),
+:global(.ebh-route-base) {
   pointer-events: none;
 }
 
-/* Level 1 — major European corridors */
+/* Level 1 — major corridors: thin bright core, mode-colored whisper glow */
 :global(.ebh-route-level-1.ebh-route-road.ebh-route-core) {
-  filter: drop-shadow(0 0 4px rgb(45 156 255 / 0.65)) drop-shadow(0 0 14px rgb(45 156 255 / 0.28));
+  filter: drop-shadow(0 0 1.5px rgb(0 200 255 / 0.55));
 }
 
 :global(.ebh-route-level-1.ebh-route-rail.ebh-route-core),
 :global(.ebh-route-level-1.ebh-route-rail-track) {
-  filter: drop-shadow(0 0 3px rgb(52 199 89 / 0.6)) drop-shadow(0 0 12px rgb(52 199 89 / 0.22));
+  filter: drop-shadow(0 0 1.5px rgb(34 197 94 / 0.48));
 }
 
 :global(.ebh-route-level-1.ebh-route-sea.ebh-route-core) {
-  filter: drop-shadow(0 0 3px rgb(255 140 66 / 0.55)) drop-shadow(0 0 12px rgb(255 140 66 / 0.2));
+  filter: drop-shadow(0 0 1.5px rgb(245 158 11 / 0.45));
 }
 
 :global(.ebh-route-level-1.ebh-route-air.ebh-route-core) {
-  filter: drop-shadow(0 0 3px rgb(155 109 255 / 0.55)) drop-shadow(0 0 10px rgb(155 109 255 / 0.2));
+  filter: drop-shadow(0 0 1.5px rgb(168 85 247 / 0.48));
 }
 
 :global(.ebh-route-level-1.ebh-route-ai.ebh-route-core) {
-  filter: drop-shadow(0 0 4px rgb(34 211 238 / 0.6)) drop-shadow(0 0 12px rgb(34 211 238 / 0.24));
+  filter: drop-shadow(0 0 1.5px rgb(6 182 212 / 0.5));
 }
 
 :global(.ebh-route-level-1.ebh-route-partnership.ebh-route-core) {
-  filter: drop-shadow(0 0 3px rgb(232 238 244 / 0.45)) drop-shadow(0 0 10px rgb(232 238 244 / 0.15));
+  filter: drop-shadow(0 0 1px rgb(255 255 255 / 0.28));
 }
 
 /* Level 2 — national */
 :global(.ebh-route-level-2.ebh-route-core) {
-  filter: drop-shadow(0 0 2px rgb(100 160 220 / 0.35));
+  filter: drop-shadow(0 0 0.5px rgb(100 160 220 / 0.22));
 }
 
 /* Level 3 — regional */
@@ -1511,40 +1529,40 @@
   filter: none;
 }
 
-/* Hover — brighten + strengthen glow */
+/* Hover — slight brighten */
 :global(.ebh-route-hovered.ebh-route-core) {
-  filter: drop-shadow(0 0 6px rgb(120 190 255 / 0.75)) drop-shadow(0 0 18px rgb(80 160 255 / 0.35)) !important;
+  filter: drop-shadow(0 0 2px rgb(120 190 255 / 0.5)) !important;
 }
 
 :global(.ebh-route-particle-head) {
   pointer-events: none;
-  filter: drop-shadow(0 0 4px currentColor);
+  filter: drop-shadow(0 0 1.5px currentColor);
 }
 
 :global(.ebh-particle-road.ebh-route-particle-head) {
-  filter: drop-shadow(0 0 5px rgb(45 156 255 / 0.85));
+  filter: drop-shadow(0 0 2px rgb(56 189 248 / 0.55));
 }
 
 :global(.ebh-particle-rail.ebh-route-particle-head) {
-  filter: drop-shadow(0 0 4px rgb(52 199 89 / 0.8));
+  filter: drop-shadow(0 0 1.5px rgb(34 197 94 / 0.5));
 }
 
 :global(.ebh-particle-air.ebh-route-particle-head) {
-  filter: drop-shadow(0 0 6px rgb(155 109 255 / 0.9));
+  filter: drop-shadow(0 0 2px rgb(168 85 247 / 0.55));
 }
 
 :global(.ebh-particle-sea.ebh-route-particle-head) {
-  filter: drop-shadow(0 0 5px rgb(255 140 66 / 0.85));
+  filter: drop-shadow(0 0 2px rgb(245 158 11 / 0.5));
 }
 
 :global(.ebh-particle-ai.ebh-route-particle-head) {
-  animation: ebh-ai-particle-pulse 2.2s ease-in-out infinite;
-  filter: drop-shadow(0 0 7px rgb(34 211 238 / 0.95));
+  animation: ebh-ai-particle-pulse 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 2px rgb(6 182 212 / 0.6));
 }
 
 @keyframes ebh-ai-particle-pulse {
-  0%, 100% { opacity: 0.82; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 0.82; }
 }
 
 :global(.ebh-route-inner-core) {
@@ -1561,12 +1579,12 @@
 }
 
 @keyframes ebh-direction-pulse {
-  0%, 100% { opacity: 0.45; }
-  50% { opacity: 0.75; }
+  0%, 100% { opacity: 0.28; }
+  50% { opacity: 0.48; }
 }
 
 :global(.ebh-route-selected.ebh-route-core) {
-  filter: drop-shadow(0 0 8px rgb(140 210 255 / 0.9)) drop-shadow(0 0 22px rgb(80 170 255 / 0.45)) !important;
+  filter: drop-shadow(0 0 2.5px rgb(140 210 255 / 0.55)) !important;
 }
 
 :global(.ebh-route-selected.ebh-route-inner-core) {
@@ -1587,36 +1605,36 @@
   border-radius: 999px;
   font-size: 10px;
   font-weight: 600;
-  background: rgb(34 211 238 / 0.18);
+  background: rgb(6 182 212 / 0.16);
   color: #67e8f9;
-  border: 1px solid rgb(34 211 238 / 0.35);
+  border: 1px solid rgb(6 182 212 / 0.3);
 }
 
 :global(.ebh-route-tooltip-score) {
   color: #67e8f9 !important;
 }
 
-/* Legacy tier glow — fallback */
+/* Legacy tier glow — subtle fallback */
 :global(.ebh-route-tier-trunk.ebh-route-road) {
-  filter: drop-shadow(0 0 3px rgb(42 126 200 / 0.6)) drop-shadow(0 0 10px rgb(42 126 200 / 0.22));
+  filter: drop-shadow(0 0 1px rgb(56 189 248 / 0.4));
 }
 
 :global(.ebh-route-tier-trunk.ebh-route-rail),
 :global(.ebh-route-tier-trunk.ebh-route-rail-track) {
-  filter: drop-shadow(0 0 2px rgb(74 143 196 / 0.55)) drop-shadow(0 0 8px rgb(74 143 196 / 0.18));
+  filter: drop-shadow(0 0 1px rgb(34 197 94 / 0.35));
 }
 
 :global(.ebh-route-tier-trunk.ebh-route-sea) {
-  filter: drop-shadow(0 0 2px rgb(58 158 184 / 0.5)) drop-shadow(0 0 8px rgb(58 158 184 / 0.16));
+  filter: drop-shadow(0 0 1px rgb(245 158 11 / 0.32));
 }
 
 :global(.ebh-route-tier-trunk.ebh-route-air) {
-  filter: drop-shadow(0 0 1px rgb(107 168 212 / 0.4));
+  filter: drop-shadow(0 0 0.5px rgb(168 85 247 / 0.3));
 }
 
 :global(.ebh-route-tier-international.ebh-route-road),
 :global(.ebh-route-tier-international.ebh-route-rail) {
-  filter: drop-shadow(0 0 1px rgb(42 126 200 / 0.28));
+  filter: drop-shadow(0 0 0.5px rgb(56 189 248 / 0.2));
 }
 
 :global(.ebh-route-tier-national),

@@ -1,6 +1,9 @@
 import type { MapCountry } from '@shared/types';
 import { cities } from '@/data/cities';
 import { createCityMetrics } from '@/data/cityMetrics';
+import { applyFranceHubMetrics } from './franceHubData';
+import { applyCityHubProfile } from './cityHubEnrichment';
+import { baselineCountryMetrics, economySeedForCountry } from './countryEconomySeeds';
 
 export interface CountryBusinessStats {
   code: string;
@@ -15,12 +18,13 @@ export interface CountryBusinessStats {
   activeRoutes: number;
 }
 
-/** Aggregate mock country statistics from city seeds — ready for API swap */
-export function getCountryBusinessStats(countryCode: string): CountryBusinessStats {
+function aggregateCityMetrics(countryCode: string) {
   const countryCities = cities.filter((c) => c.countryCode === countryCode);
-  const totals = countryCities.reduce(
+  return countryCities.reduce(
     (acc, city) => {
-      const m = createCityMetrics(city.businesses);
+      let m = createCityMetrics(city.businesses);
+      m = applyCityHubProfile(city.id, m);
+      if (countryCode === 'FR') m = applyFranceHubMetrics(city.id, m);
       return {
         companies: acc.companies + m.companies,
         jobs: acc.jobs + m.jobs,
@@ -29,18 +33,42 @@ export function getCountryBusinessStats(countryCode: string): CountryBusinessSta
         marketplace: acc.marketplace + m.marketplace,
         partners: acc.partners + m.partners,
         aiScore: acc.aiScore + m.aiScore,
+        count: acc.count + 1,
       };
     },
-    { companies: 0, jobs: 0, warehouses: 0, transport: 0, marketplace: 0, partners: 0, aiScore: 0 },
+    { companies: 0, jobs: 0, warehouses: 0, transport: 0, marketplace: 0, partners: 0, aiScore: 0, count: 0 },
   );
+}
 
-  const cityCount = countryCities.length;
+/** Data-driven country statistics — baseline economy seed + city aggregates */
+export function getCountryBusinessStats(countryCode: string): CountryBusinessStats {
+  const seed = economySeedForCountry(countryCode);
+  const baseline = baselineCountryMetrics(seed);
+  const cityAgg = aggregateCityMetrics(countryCode);
+
+  const companies = Math.max(baseline.companies, cityAgg.companies);
+  const jobs = Math.max(baseline.jobs, cityAgg.jobs);
+  const warehouses = Math.max(baseline.warehouses, cityAgg.warehouses);
+  const transport = Math.max(baseline.transport, cityAgg.transport);
+  const marketplace = Math.max(baseline.marketplace, cityAgg.marketplace);
+  const partners = Math.max(baseline.partners, cityAgg.partners);
+  const aiScore = cityAgg.count
+    ? Math.round((cityAgg.aiScore / cityAgg.count + baseline.aiScore) / 2)
+    : baseline.aiScore;
+
+  const cityCount = cityAgg.count;
+
   return {
     code: countryCode,
-    ...totals,
-    aiScore: cityCount ? Math.round(totals.aiScore / cityCount) : 0,
+    companies,
+    jobs,
+    warehouses,
+    transport,
+    marketplace,
+    partners,
+    aiScore: Math.min(99, aiScore),
     cityCount,
-    activeRoutes: Math.max(cityCount * 3, 6),
+    activeRoutes: Math.max(cityCount * 3, Math.round(12 * seed + 6)),
   };
 }
 

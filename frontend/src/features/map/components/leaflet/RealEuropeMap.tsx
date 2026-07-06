@@ -17,7 +17,7 @@ import {
 } from '../../config/leafletConfig';
 import { getResolvedMapTheme, useMapThemeRevision } from '../../utils/mapThemeUtils';
 import { LeafletMapProvider } from '../../context/LeafletMapContext';
-import { EuropeGeoJsonLayer } from './EuropeGeoJsonLayer';
+import { CountryLayer } from './CountryLayer';
 import { LeafletRouteLayer } from './LeafletRouteLayer';
 import { LeafletHubHaloLayer } from './LeafletHubHaloLayer';
 import { LeafletPortLayer } from './LeafletPortLayer';
@@ -156,7 +156,8 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           attributionControl
         >
           <TileLayer key={tileUrl} url={tileUrl} attribution={TILE_ATTRIBUTION} />
-          <EuropeGeoJsonLayer
+          <CountryLayer
+            countries={countries}
             selectedCountryCode={selectedCountryCode}
             hoveredCountryCode={hoveredCountry ?? undefined}
             onCountrySelect={handleGeoCountry}
@@ -171,7 +172,11 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           )}
           {layers.routes && (
             <>
-              <LeafletHubHaloLayer cityMap={routeCityMap} hoveredCityId={activeTooltipId} />
+              <LeafletHubHaloLayer
+                cityMap={routeCityMap}
+                hoveredCityId={activeTooltipId}
+                selectedCityId={selectedCityId}
+              />
               <LeafletRouteLayer
                 routes={routes}
                 cityMap={routeCityMap}

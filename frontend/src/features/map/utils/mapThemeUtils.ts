@@ -38,7 +38,6 @@ export interface EuropeGeoStyles {
   coast: PathOptions;
   hover: PathOptions;
   selected: PathOptions;
-  selectedDe: PathOptions;
   dim: PathOptions;
 }
 
@@ -60,23 +59,16 @@ export function getEuropeCountryGeoStyles(): EuropeGeoStyles {
     },
     hover: {
       fillColor: cssVar('--map-country-hover-fill', '#243f62'),
-      fillOpacity: cssNum('--map-country-hover-fill-opacity', 0.72),
+      fillOpacity: cssNum('--map-country-hover-fill-opacity', 0.78),
       color: cssVar('--map-country-hover-stroke', '#8dd8fc'),
-      weight: 1.5,
-      opacity: cssNum('--map-country-hover-stroke-opacity', 0.95),
-    },
-    selected: {
-      fillColor: cssVar('--map-country-selected-fill', '#3d4f63'),
-      fillOpacity: cssNum('--map-country-selected-fill-opacity', 0.82),
       weight: 2,
-      color: cssVar('--map-country-selected-stroke', '#fbbf24'),
       opacity: 1,
     },
-    selectedDe: {
-      fillColor: cssVar('--map-country-selected-fill', '#3d4f63'),
-      fillOpacity: cssNum('--map-country-selected-de-opacity', 0.68),
-      weight: 2.6,
-      color: cssVar('--map-country-selected-stroke', '#fbbf24'),
+    selected: {
+      fillColor: cssVar('--map-country-selected-fill', '#2a4a6e'),
+      fillOpacity: cssNum('--map-country-selected-fill-opacity', 0.86),
+      weight: 2.4,
+      color: cssVar('--map-country-hover-stroke', '#8dd8fc'),
       opacity: 1,
     },
     dim: {

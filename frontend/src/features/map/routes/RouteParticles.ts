@@ -10,7 +10,7 @@ import {
 import type { RouteRenderLevel } from './routeLevels';
 
 const TRAIL_LENGTH = 5;
-const MAX_GLOBAL_PARTICLES = 48;
+const MAX_GLOBAL_PARTICLES = 40;
 
 export interface RouteFocusRef {
   hoveredRouteId: string | null;
@@ -74,12 +74,13 @@ export function addRouteParticles(
 
     const pos = interpolateAlongPath(points, progress);
 
+    const speedJitter = 0.78 + ((p * 17 + startOffset * 31) % 50) / 100;
     const trail: L.CircleMarker[] = [];
     for (let t = 0; t < TRAIL_LENGTH; t++) {
       const trailMarker = L.circleMarker(pos, {
-        radius: headRadius * (1 - t * 0.16),
+        radius: Math.max(0.45, headRadius * (1 - t * 0.18)),
         fillColor: color,
-        fillOpacity: 0.1 * (TRAIL_LENGTH - t),
+        fillOpacity: 0.045 * (TRAIL_LENGTH - t),
         color: 'transparent',
         weight: 0,
         className: `ebh-route-particle-trail ${particleClass}`,
@@ -91,10 +92,10 @@ export function addRouteParticles(
     const head = L.circleMarker(pos, {
       radius: headRadius,
       fillColor: color,
-      fillOpacity: level === 1 ? 0.88 : 0.68,
-      color: '#ffffff',
-      weight: 0.4,
-      opacity: 0.25,
+      fillOpacity: level === 1 ? 0.78 : 0.55,
+      color: 'rgba(255,255,255,0.55)',
+      weight: 0.2,
+      opacity: 0.22,
       className: `ebh-route-particle-head ${particleClass}`,
       interactive: false,
     }).addTo(group);
@@ -103,7 +104,7 @@ export function addRouteParticles(
       head,
       trail,
       progress,
-      speed: speed * modeSpeed * (0.86 + p * 0.05),
+      speed: speed * modeSpeed * speedJitter * (0.9 + p * 0.04),
       direction,
       points,
       mode,
@@ -124,13 +125,13 @@ export function startParticleAnimation(engine: ParticleEngine): void {
         slot.direction === 1 ? slot.progress : 1 - slot.progress,
       );
       let focusMult = 1;
-      if (slot.routeId === selectedRouteId) focusMult = 1.55;
-      else if (slot.routeId === hoveredRouteId) focusMult = 1.32;
+      if (slot.routeId === selectedRouteId) focusMult = 1.42;
+      else if (slot.routeId === hoveredRouteId) focusMult = 1.22;
 
       const delta = slot.speed * hubMult * focusMult * slot.direction;
       slot.progress = ((slot.progress + delta) % 1 + 1) % 1;
 
-      const trailLag = 0.0048;
+      const trailLag = 0.0032;
       for (let t = TRAIL_LENGTH - 1; t > 0; t--) {
         const lag = t * trailLag * slot.direction;
         const trailPos = interpolateAlongPath(slot.points, ((slot.progress - lag) % 1 + 1) % 1);

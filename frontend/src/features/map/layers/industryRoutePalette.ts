@@ -1,15 +1,15 @@
 import type { TransportMode } from '../types/mapTypes';
 import type { BusinessRouteDef } from '../types/mapTypes';
 
-/** Industry / mode color system — enterprise logistics GIS */
+/** Industry / mode color system — premium logistics streams (reference palette) */
 export const INDUSTRY_ROUTE_COLORS = {
-  road: '#2d9cff',
-  rail: '#34c759',
-  sea: '#ff8c42',
-  air: '#9b6dff',
-  aiOptimized: '#22d3ee',
-  partnership: '#e8eef4',
-  river: '#22d3ee',
+  road: '#00c8ff',
+  rail: '#22c55e',
+  sea: '#f59e0b',
+  air: '#a855f7',
+  aiOptimized: '#06b6d4',
+  partnership: 'rgba(255,255,255,0.65)',
+  river: '#06b6d4',
 } as const;
 
 export function routeColorForCorridor(route: BusinessRouteDef, mode: TransportMode): string {

@@ -13,6 +13,8 @@ export interface CountryPathDef {
   mapPath: string;
   centerX: number;
   centerY: number;
+  lat: number;
+  lng: number;
   zoomLevel: number;
   isHub?: boolean;
   hubCityId?: string;
@@ -27,7 +29,7 @@ function def(
 ): CountryPathDef {
   const { lat, lng, ...rest } = base;
   const { mapX, mapY } = cc(lat, lng);
-  return { ...rest, centerX: mapX, centerY: mapY };
+  return { ...rest, centerX: mapX, centerY: mapY, lat, lng };
 }
 
 export const EUROPE_COUNTRY_PATHS: CountryPathDef[] = [
@@ -59,6 +61,14 @@ export const EUROPE_COUNTRY_PATHS: CountryPathDef[] = [
   def({ id: 'lv', code: 'LV', name: 'Lettland', nameEn: 'Latvia', lat: 56.9, lng: 24.6, zoomLevel: 3.8, mapPath: 'M 60 30 Q 68 28 70 34 L 66 36 Q 60 34 60 30 Z' }),
   def({ id: 'lt', code: 'LT', name: 'Litauen', nameEn: 'Lithuania', lat: 55.2, lng: 24.0, zoomLevel: 3.6, mapPath: 'M 60 34 Q 68 32 70 38 L 66 40 Q 60 38 60 34 Z' }),
   def({ id: 'gr', code: 'GR', name: 'Griechenland', nameEn: 'Greece', lat: 39.0, lng: 22.0, zoomLevel: 2.6, mapPath: 'M 58 58 Q 66 56 68 62 L 64 66 Q 58 64 58 58 Z' }),
+  def({ id: 'ua', code: 'UA', name: 'Ukraine', nameEn: 'Ukraine', lat: 49.0, lng: 31.5, zoomLevel: 2.2, mapPath: 'M 68 38 Q 78 36 80 46 L 76 52 Q 68 50 68 38 Z' }),
+  def({ id: 'tr', code: 'TR', name: 'Türkei', nameEn: 'Turkey', lat: 39.0, lng: 35.0, zoomLevel: 2.2, mapPath: 'M 72 48 Q 82 46 84 54 L 78 58 Q 70 56 72 48 Z' }),
+  def({ id: 'rs', code: 'RS', name: 'Serbien', nameEn: 'Serbia', lat: 44.0, lng: 21.0, zoomLevel: 3, mapPath: 'M 58 52 Q 64 50 66 56 L 62 58 Q 58 56 58 52 Z' }),
+  def({ id: 'ba', code: 'BA', name: 'Bosnien und Herzegowina', nameEn: 'Bosnia and Herzegovina', lat: 44.0, lng: 17.8, zoomLevel: 3.4, mapPath: 'M 54 52 Q 58 50 60 54 L 56 56 Q 54 54 54 52 Z' }),
+  def({ id: 'mk', code: 'MK', name: 'Nordmazedonien', nameEn: 'North Macedonia', lat: 41.6, lng: 21.7, zoomLevel: 3.6, mapPath: 'M 60 56 Q 64 54 66 58 L 62 60 Q 60 58 60 56 Z' }),
+  def({ id: 'al', code: 'AL', name: 'Albanien', nameEn: 'Albania', lat: 41.2, lng: 20.0, zoomLevel: 3.6, mapPath: 'M 58 58 Q 62 56 64 60 L 60 62 Q 58 60 58 58 Z' }),
+  def({ id: 'me', code: 'ME', name: 'Montenegro', nameEn: 'Montenegro', lat: 42.7, lng: 19.3, zoomLevel: 4, mapPath: 'M 56 56 Q 60 54 62 58 L 58 60 Q 56 58 56 56 Z' }),
+  def({ id: 'md', code: 'MD', name: 'Moldau', nameEn: 'Moldova', lat: 47.0, lng: 28.5, zoomLevel: 3.2, mapPath: 'M 66 48 Q 72 46 74 52 L 70 54 Q 66 52 66 48 Z' }),
 ];
 
 export function getCountryPathByCode(code: string): CountryPathDef | undefined {

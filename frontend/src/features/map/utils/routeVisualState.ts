@@ -41,6 +41,10 @@ const BUSY_PAIRS = new Set([
   'warsaw|kyiv',
   'istanbul|sofia',
   'sofia|istanbul',
+  'rotterdam|munich',
+  'frankfurt|izium',
+  'odesa|istanbul',
+  'izium|frankfurt',
   'izium|kyiv',
   'kyiv|izium',
 ]);

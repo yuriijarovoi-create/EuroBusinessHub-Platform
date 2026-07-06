@@ -1,5 +1,6 @@
 import type { BusinessRouteDef } from '../types/mapTypes';
 import { getRouteVisualTier, type RouteVisualTier } from '../utils/routeVisualStyles';
+import { isEuropeanBackbone } from '../utils/routeBackbone';
 
 /** Three-level route hierarchy for rendering */
 export type RouteRenderLevel = 1 | 2 | 3;
@@ -20,16 +21,16 @@ export interface LevelStyleConfig {
 }
 
 export const LEVEL_STYLE: Record<RouteRenderLevel, LevelStyleConfig> = {
-  1: { weightScale: 1, opacityScale: 1, glowOuter: 3.2, glowAtmo: 6.5, particleCount: 4 },
-  2: { weightScale: 0.72, opacityScale: 0.78, glowOuter: 1.8, glowAtmo: 3.6, particleCount: 2 },
-  3: { weightScale: 0.48, opacityScale: 0.52, glowOuter: 0.9, glowAtmo: 1.8, particleCount: 1 },
+  1: { weightScale: 1, opacityScale: 0.9, glowOuter: 1.6, glowAtmo: 3.2, particleCount: 4 },
+  2: { weightScale: 0.68, opacityScale: 0.58, glowOuter: 1, glowAtmo: 1.8, particleCount: 2 },
+  3: { weightScale: 0.42, opacityScale: 0.34, glowOuter: 0.55, glowAtmo: 1, particleCount: 1 },
 };
 
 export function particleCountForRoute(
   route: BusinessRouteDef,
   zoom: number,
   globalCount: number,
-  maxGlobal = 36,
+  maxGlobal = 32,
 ): number {
   if (globalCount >= maxGlobal || zoom < 5.5) return 0;
   const level = getRouteRenderLevel(route);
@@ -37,7 +38,11 @@ export function particleCountForRoute(
   if (level === 3 && zoom < 10) return 0;
   if (level === 2 && zoom < 7.5) return 0;
   if (level === 1 && zoom < 5.5) return 0;
-  return cfg.particleCount;
+  let count = cfg.particleCount;
+  if (isEuropeanBackbone(route.fromCityId, route.toCityId) && level === 1) {
+    count = Math.min(5, count + 1);
+  }
+  return count;
 }
 
 export function tierToLevelClass(tier: RouteVisualTier): string {

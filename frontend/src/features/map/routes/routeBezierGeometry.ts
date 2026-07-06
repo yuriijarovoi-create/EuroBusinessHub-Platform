@@ -25,14 +25,14 @@ function curveMagnitude(
   scope: RouteScope,
 ): number {
   if (mode === 'road' || mode === 'rail') {
-    if (dist < 80) return span * 0.003;
-    if (dist < 220) return span * 0.016;
-    if (dist < 500) return span * 0.028;
-    return span * 0.038;
+    if (dist < 80) return span * 0.0015;
+    if (dist < 220) return span * 0.014;
+    if (dist < 500) return span * 0.024;
+    return span * 0.034;
   }
-  if (mode === 'river') return dist < 100 ? span * 0.005 : span * 0.018;
-  if (mode === 'sea') return dist > 180 ? span * 0.034 : span * 0.022;
-  if (mode === 'air') return scope === 'europe' && dist > 350 ? span * 0.048 : span * 0.026;
+  if (mode === 'river') return dist < 100 ? span * 0.003 : span * 0.012;
+  if (mode === 'sea') return dist > 180 ? span * 0.03 : span * 0.016;
+  if (mode === 'air') return scope === 'europe' && dist > 350 ? span * 0.044 : span * 0.022;
   return 0;
 }
 
@@ -157,7 +157,7 @@ export function buildSmoothCorridorPath(
   }
 
   const anchors: LatLngTuple[] = nodes.map((n) => [n.lat, n.lng]);
-  const samples = scope === 'europe' ? 16 : 12;
+  const samples = scope === 'europe' ? 20 : 16;
   return catmullRomSpline(anchors, samples);
 }
 
