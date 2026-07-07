@@ -1,6 +1,7 @@
 /** Shared domain types — source of truth for frontend & backend contracts */
 
 export type ModuleId =
+  | 'dashboard'
   | 'marketplace'
   | 'transport'
   | 'logistik'
@@ -8,15 +9,41 @@ export type ModuleId =
   | 'jobs'
   | 'lager'
   | 'partner'
+  | 'services'
   | 'digitale-produkte'
   | 'akademie'
-  | 'ki';
+  | 'ki'
+  | 'analytics'
+  | 'payments'
+  | 'admin';
 
 export interface BusinessModule {
   id: ModuleId;
   icon: string;
   route: string;
   status: 'active' | 'coming-soon' | 'beta';
+}
+
+export interface PlatformModule extends BusinessModule {
+  showOnHomepage?: boolean;
+  sidebarOrder: number;
+}
+
+export interface PlatformStat {
+  id: string;
+  labelKey: string;
+  value: number;
+  trend?: number;
+}
+
+export interface DashboardMetric {
+  id: string;
+  labelKey: string;
+  value: string | number;
+  change: number;
+  icon: string;
+  route: string;
+  module: ModuleId;
 }
 
 export interface City {
@@ -30,14 +57,31 @@ export interface City {
   mapY: number;
   businesses: number;
   activeModules: ModuleId[];
+  /** Strategic map visibility tier — 1 = major hub … 4 = local node */
+  mapTier?: 1 | 2 | 3 | 4;
+  isMajorHub?: boolean;
+  population?: number;
 }
 
 export interface SearchResult {
   id: string;
-  type: 'city' | 'module' | 'business' | 'product' | 'job';
+  type:
+    | 'city'
+    | 'module'
+    | 'business'
+    | 'product'
+    | 'job'
+    | 'transport'
+    | 'warehouse'
+    | 'service'
+    | 'ai';
   title: string;
   subtitle: string;
   route: string;
+  /** Module id when type is 'module' */
+  module?: ModuleId;
+  /** Relevance score 0–1 for ranked search results */
+  score?: number;
 }
 
 export interface WorkspaceStats {
@@ -45,3 +89,8 @@ export interface WorkspaceStats {
   openOrders: number;
   listings: number;
 }
+
+export * from './map';
+export * from './ai';
+export * from './payments';
+export * from './commissions';

@@ -12,6 +12,9 @@ export interface MapCountry {
   centerY: number;
   /** Target scale when country is selected */
   zoomLevel: number;
+  /** Geographic center — used for map flyTo when no cities are registered */
+  lat?: number;
+  lng?: number;
   hubCityId?: string;
   cityIds: string[];
   isHub?: boolean;
