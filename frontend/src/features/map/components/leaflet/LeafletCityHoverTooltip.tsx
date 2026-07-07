@@ -4,6 +4,7 @@ import L from 'leaflet';
 import { useTranslation } from 'react-i18next';
 import type { MapCityRecord, MapLayerState } from '../../types/mapTypes';
 import { getCityDisplayTier } from '../../utils/cityVisibilityUtils';
+import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
 import { countCityNetworkConnections, computeBusinessScore } from '../../utils/cityNetworkUtils';
 import { getCityHubProfile } from '../../data/cityHubEnrichment';
 import {
@@ -24,6 +25,7 @@ interface LeafletCityInfoCardProps {
   infoCardCityId: string | null;
   cityMap: Map<string, MapCityRecord>;
   layers: MapLayerState;
+  isMobile: boolean;
   onOpenWorkspace?: (city: MapCityRecord) => void;
 }
 
@@ -31,6 +33,7 @@ export const LeafletCityInfoCard = memo(function LeafletCityInfoCard({
   infoCardCityId,
   cityMap,
   layers,
+  isMobile,
   onOpenWorkspace,
 }: LeafletCityInfoCardProps) {
   const { t } = useTranslation('map');
@@ -103,7 +106,7 @@ export const LeafletCityInfoCard = memo(function LeafletCityInfoCard({
     };
   }, [map, city?.lat, city?.lng, city]);
 
-  if (!city) return null;
+  if (!city || isMobile) return null;
 
   const displayTier = getCityDisplayTier(city);
   const businessScore = computeBusinessScore(city.metrics);
@@ -213,11 +216,13 @@ export function LeafletCityTooltipLayer({
   layers: MapLayerState;
   onOpenWorkspace?: (city: MapCityRecord) => void;
 }) {
+  const { isMobile } = useLeafletMapViewport();
   return (
     <LeafletCityInfoCard
       infoCardCityId={infoCardCityId}
       cityMap={cityMap}
       layers={layers}
+      isMobile={isMobile}
       onOpenWorkspace={onOpenWorkspace}
     />
   );
