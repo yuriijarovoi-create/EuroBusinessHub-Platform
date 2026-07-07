@@ -190,13 +190,27 @@
   color: rgb(148 163 184);
   font-size: 11px;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  touch-action: manipulation;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
 }
 
 .filterChipOn {
-  border-color: color-mix(in srgb, var(--chip-accent, #3b8ede) 55%, transparent);
-  background: color-mix(in srgb, var(--chip-accent, #3b8ede) 14%, rgb(15 23 42));
-  color: rgb(226 232 240);
+  border-color: color-mix(in srgb, var(--chip-accent, #3b8ede) 78%, rgb(226 232 240));
+  background: color-mix(in srgb, var(--chip-accent, #3b8ede) 22%, rgb(15 23 42));
+  color: rgb(241 245 249);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--chip-accent, #3b8ede) 35%, transparent),
+    0 0 12px color-mix(in srgb, var(--chip-accent, #3b8ede) 42%, transparent);
+}
+
+.filterChipOn .filterDot {
+  box-shadow:
+    0 0 4px color-mix(in srgb, var(--chip-accent, #3b8ede) 80%, transparent),
+    0 0 10px color-mix(in srgb, var(--chip-accent, #3b8ede) 65%, transparent);
 }
 
 .filterDot {
