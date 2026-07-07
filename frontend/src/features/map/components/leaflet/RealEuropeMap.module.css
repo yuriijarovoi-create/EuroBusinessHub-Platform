@@ -713,6 +713,45 @@
   border-radius: var(--radius-sm);
 }
 
+/* Stage 2.3/2.4 — safe visual mode emphasis via CSS variables (no filtering) */
+:global(.leaflet-container.ebh-map-has-visual-mode:not(.ebh-map-mobile-interacting) .ebh-marker-core) {
+  filter: brightness(var(--ebh-mode-marker-brightness, 1))
+    saturate(var(--ebh-mode-marker-saturate, 1));
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 6px color-mix(in srgb, var(--map-marker-core) calc(var(--map-marker-glow) * 100%), transparent),
+    0 0 calc(12px * var(--ebh-mode-glow-strength, 0)) var(--ebh-mode-glow-color, transparent);
+  transition: filter 150ms ease, box-shadow 150ms ease;
+}
+
+:global(.leaflet-container.ebh-map-has-visual-mode:not(.ebh-map-mobile-interacting) .ebh-marker-pulse) {
+  opacity: calc(0.85 + var(--ebh-mode-glow-strength, 0) * 0.2);
+  transition: opacity 150ms ease;
+}
+
+:global(.leaflet-container.ebh-map-has-visual-mode:not(.ebh-map-mobile-interacting) .ebh-marker-hub .ebh-marker-core),
+:global(.leaflet-container.ebh-map-has-visual-mode:not(.ebh-map-mobile-interacting) .ebh-marker-primary-hub .ebh-marker-core) {
+  filter: brightness(calc(var(--ebh-mode-marker-brightness, 1) * var(--ebh-mode-hub-brightness, 1)))
+    saturate(var(--ebh-mode-marker-saturate, 1));
+}
+
+:global(.leaflet-container.ebh-map-mode-companies:not(.ebh-map-mobile-interacting) .ebh-marker-hub .ebh-marker-core),
+:global(.leaflet-container.ebh-map-mode-companies:not(.ebh-map-mobile-interacting) .ebh-marker-primary-hub .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 14px rgb(34 211 238 / 0.55),
+    0 0 calc(18px * var(--ebh-mode-glow-strength, 0.5)) var(--ebh-mode-glow-color, transparent);
+}
+
+:global(.leaflet-container.ebh-map-mode-marketplace:not(.ebh-map-mobile-interacting) .ebh-marker-core) {
+  filter: brightness(var(--ebh-mode-marker-brightness, 1.16))
+    saturate(var(--ebh-mode-marker-saturate, 1.22));
+}
+
+:global(.leaflet-container.ebh-map-mode-ai:not(.ebh-map-mobile-interacting) .ebh-marker-pulse) {
+  animation-duration: 1.6s;
+}
+
 /* ── Mobile interaction mode: lighter city marker shadows while panning/zooming ── */
 :global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-core) {
   box-shadow:

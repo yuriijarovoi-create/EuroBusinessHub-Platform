@@ -56,6 +56,11 @@ import {
   resolveVisibleRouteColor,
   type RouteGlowBundle,
 } from '../../routes/RouteRenderer';
+import {
+  DEFAULT_ACTIVE_MAP_CONTEXT,
+  type ActiveMapContext,
+} from '../../utils/mapLayerContext';
+import { resolveRouteEmphasis } from '../../utils/mapVisualModes';
 
 function dedupeVisibleRoutes(routes: BusinessRouteDef[]): BusinessRouteDef[] {
   const seen = new Set<string>();
@@ -78,6 +83,7 @@ interface LeafletRouteLayerProps {
   hoveredCountryCode?: string;
   selectedRouteId?: string;
   onRouteSelect?: (route: BusinessRouteDef) => void;
+  activeMapContext?: ActiveMapContext;
 }
 
 function cityCoordLookup(
@@ -118,6 +124,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
   hoveredCountryCode,
   selectedRouteId,
   onRouteSelect,
+  activeMapContext = DEFAULT_ACTIVE_MAP_CONTEXT,
 }: LeafletRouteLayerProps) {
   const map = useMap();
   const { zoom } = useLeafletMapViewport();
@@ -217,6 +224,10 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
         0.98,
         visual.baseOpacity * densityScale * focusOpacity * reveal,
       );
+      lineOpacity = Math.min(
+        0.98,
+        lineOpacity * resolveRouteEmphasis(route, activeMapContext, visible),
+      );
       if (isLight) {
         lineOpacity = Math.max(0.74, Math.min(0.98, lineOpacity * 1.18));
       }
@@ -313,6 +324,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
     hoveredCityId,
     hoveredCountryCode,
     selectedRouteId,
+    activeMapContext,
   ]);
 
   useEffect(() => {

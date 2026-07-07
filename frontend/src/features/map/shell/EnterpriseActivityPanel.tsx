@@ -1,17 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { futureMapAPI } from '../engine/FutureAPIAdapter';
+import type { ActiveMapContext } from '../utils/mapLayerContext';
+import { DEFAULT_ACTIVE_MAP_CONTEXT } from '../utils/mapLayerContext';
+import { resolvePrimaryVisualMode } from '../utils/mapVisualModes';
 import styles from './BusinessOperatingMap.module.css';
 
-export function EnterpriseActivityPanel() {
+interface EnterpriseActivityPanelProps {
+  activeMapContext?: ActiveMapContext;
+}
+
+export function EnterpriseActivityPanel({
+  activeMapContext = DEFAULT_ACTIVE_MAP_CONTEXT,
+}: EnterpriseActivityPanelProps) {
   const { t } = useTranslation('map');
   const [trending, setTrending] = useState<Array<{ id: string; name: string; growth: number }>>([]);
-  const [aiTips, setAiTips] = useState<string[]>([]);
+
+  const visualMode = useMemo(
+    () => resolvePrimaryVisualMode(activeMapContext),
+    [activeMapContext],
+  );
 
   useEffect(() => {
     futureMapAPI.fetchTrendingCities().then(setTrending);
-    futureMapAPI.fetchAiRecommendations().then(setAiTips);
   }, []);
 
   return (
@@ -29,9 +41,9 @@ export function EnterpriseActivityPanel() {
       </div>
 
       <div className={styles.activitySection}>
-        <span className={styles.activityEyebrow}>{t('operating.ai', { defaultValue: 'AI recommendations' })}</span>
+        <span className={styles.activityEyebrow}>{visualMode.tickerEyebrow}</span>
         <div className={styles.activityRow}>
-          {aiTips.map((tip) => (
+          {visualMode.tickerMessages.map((tip) => (
             <span key={tip} className={styles.activityTip}>
               {tip}
             </span>

@@ -4,6 +4,13 @@ import type { MapCountry } from '@shared/types';
 import type { BusinessRouteDef, MapCityRecord } from '../types/mapTypes';
 import { getCityHubProfile } from '../data/cityHubEnrichment';
 import { getMapCityById } from '../data/mapData';
+import {
+  getBusinessLayerLabel,
+  getLogisticsLayerLabel,
+  isEuropeOverview,
+  type ActiveMapContext,
+} from '../utils/mapLayerContext';
+import { resolvePrimaryVisualMode } from '../utils/mapVisualModes';
 import styles from './BusinessOperatingMap.module.css';
 
 interface StatisticsPanelProps {
@@ -17,6 +24,7 @@ interface StatisticsPanelProps {
     transportOffers: number;
     warehouses: number;
   };
+  activeMapContext: ActiveMapContext;
   collapsed?: boolean;
   onToggle?: () => void;
 }
@@ -26,12 +34,15 @@ export function StatisticsPanel({
   city,
   route,
   stats,
+  activeMapContext,
   collapsed = false,
   onToggle,
 }: StatisticsPanelProps) {
   const { t } = useTranslation('map');
   const m = city?.metrics;
   const hubProfile = city ? getCityHubProfile(city.id) : undefined;
+  const showEuropeOverview = isEuropeOverview(activeMapContext);
+  const visualMode = resolvePrimaryVisualMode(activeMapContext);
 
   return (
     <aside
@@ -44,6 +55,30 @@ export function StatisticsPanel({
           <button type="button" className={styles.sidebarToggle} onClick={onToggle} aria-label="Toggle panel">
             ›
           </button>
+        )}
+      </div>
+
+      <div className={styles.statBlock}>
+        <span className={styles.statEyebrow}>
+          {t('operating.activeMapMode', { defaultValue: 'Active map mode' })}
+        </span>
+        <h3 className={styles.statTitle}>{visualMode.panelTitle}</h3>
+        <p className={styles.statMeta}>{visualMode.recommendation}</p>
+        {!showEuropeOverview && (
+          <>
+            {activeMapContext.logisticsLayer && (
+              <p className={styles.statMeta}>
+                {t('operating.logisticsLayer', { defaultValue: 'Logistics' })}:{' '}
+                {getLogisticsLayerLabel(activeMapContext.logisticsLayer)}
+              </p>
+            )}
+            {activeMapContext.businessLayer && (
+              <p className={styles.statMeta}>
+                {t('operating.businessLayer', { defaultValue: 'Business' })}:{' '}
+                {getBusinessLayerLabel(activeMapContext.businessLayer)}
+              </p>
+            )}
+          </>
         )}
       </div>
 

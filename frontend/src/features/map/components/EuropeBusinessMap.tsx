@@ -27,6 +27,8 @@ import { RouteInfoPanel } from './RouteInfoPanel';
 import { LayerControlPanel } from './LayerControlPanel';
 import { ActivityBottomPanel } from './ActivityBottomPanel';
 import { mapSessionStore, useMapSessionStore } from '../store/mapSessionStore';
+import type { ActiveMapContext } from '../utils/mapLayerContext';
+import { DEFAULT_ACTIVE_MAP_CONTEXT } from '../utils/mapLayerContext';
 import styles from './EuropeBusinessMap.module.css';
 
 interface EuropeBusinessMapProps {
@@ -44,6 +46,7 @@ interface EuropeBusinessMapProps {
   onCityActivate?: (city: MapCityRecord) => void;
   onRouteSelect?: (route: BusinessRouteDef) => void;
   externalLayers?: MapLayerState;
+  activeMapContext?: ActiveMapContext;
 }
 
 export function EuropeBusinessMap({
@@ -58,6 +61,7 @@ export function EuropeBusinessMap({
   onCityActivate,
   onRouteSelect: onRouteSelectExternal,
   externalLayers,
+  activeMapContext = DEFAULT_ACTIVE_MAP_CONTEXT,
 }: EuropeBusinessMapProps) {
   const session = useMapSessionStore();
   const [layers, setLayers] = useState<MapLayerState>(externalLayers ?? session.layers);
@@ -302,6 +306,7 @@ export function EuropeBusinessMap({
           onRouteSelect={handleRouteSelect}
           selectedRouteId={selectedRoute?.id}
           onOpenWorkspace={onOpenWorkspace}
+          activeMapContext={activeMapContext}
         >
           <div className={styles.mapControlsSlot}>
             <MapControls

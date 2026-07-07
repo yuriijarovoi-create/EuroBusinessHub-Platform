@@ -42,6 +42,11 @@ import { GermanyBundeslandLayer } from './GermanyBundeslandLayer';
 import { GermanyCityLabels } from './GermanyCityLabels';
 import { LeafletGermanyInfrastructureLayer } from './LeafletGermanyInfrastructureLayer';
 import type { BusinessRouteDef, MapCityRecord, MapLayerState } from '../../types/mapTypes';
+import {
+  resolveMapVisualPresentation,
+} from '../../utils/mapVisualModes';
+import { DEFAULT_ACTIVE_MAP_CONTEXT } from '../../utils/mapLayerContext';
+import type { ActiveMapContext } from '../../utils/mapLayerContext';
 import styles from './RealEuropeMap.module.css';
 
 interface RealEuropeMapProps {
@@ -71,6 +76,7 @@ interface RealEuropeMapProps {
   onRouteSelect?: (route: BusinessRouteDef) => void;
   selectedRouteId?: string;
   onOpenWorkspace?: (city: MapCityRecord) => void;
+  activeMapContext?: ActiveMapContext;
   children?: React.ReactNode;
 }
 
@@ -100,6 +106,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   onRouteSelect,
   selectedRouteId,
   onOpenWorkspace,
+  activeMapContext = DEFAULT_ACTIVE_MAP_CONTEXT,
   children,
 }: RealEuropeMapProps) {
   const [leafletMap, setLeafletMap] = useState<LeafletMap | null>(null);
@@ -165,13 +172,27 @@ export const RealEuropeMap = memo(function RealEuropeMap({
     [leafletMap, returnToEuropeOverview],
   );
 
+  const mapVisualPresentation = useMemo(
+    () => resolveMapVisualPresentation(activeMapContext),
+    [activeMapContext],
+  );
+
+  const mapContainerClassName = useMemo(() => {
+    const classes = [styles.map];
+    if (mapVisualPresentation.className) {
+      classes.push(mapVisualPresentation.className);
+    }
+    return classes.join(' ');
+  }, [mapVisualPresentation.className]);
+
   return (
     <LeafletMapProvider value={controls}>
       {children}
       {mapReady ? (
         <MapContainer
           key="europe-leaflet-map"
-          className={styles.map}
+          className={mapContainerClassName}
+          style={mapVisualPresentation.style}
           center={EUROPE_CENTER}
           zoom={EUROPE_DEFAULT_ZOOM}
           minZoom={EUROPE_MIN_ZOOM}
@@ -220,6 +241,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
                 hoveredCountryCode={hoveredCountry ?? undefined}
                 selectedRouteId={selectedRouteId}
                 onRouteSelect={onRouteSelect}
+                activeMapContext={activeMapContext}
               />
               <LeafletPortLayer cityMap={routeCityMap} />
               <LeafletAirportLayer cityMap={routeCityMap} />

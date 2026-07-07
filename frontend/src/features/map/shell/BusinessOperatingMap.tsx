@@ -11,6 +11,7 @@ import { StatisticsPanel } from './StatisticsPanel';
 import { EnterpriseActivityPanel } from './EnterpriseActivityPanel';
 import { mapSessionStore, useMapSessionSelector, useMapSessionStore } from '../store/mapSessionStore';
 import { getRoutesForMapView } from '../data/routeData';
+import { DEFAULT_ACTIVE_MAP_CONTEXT, type ActiveMapContext } from '../utils/mapLayerContext';
 import styles from './BusinessOperatingMap.module.css';
 
 export type BusinessOperatingMapMode = 'full' | 'hero' | 'embed';
@@ -33,11 +34,12 @@ export function BusinessOperatingMapInner({
   const session = useMapSessionStore();
   const pendingReturnRestore = useMapSessionSelector((s) => s.pendingReturnRestore);
   const returnRestoreMode = useMapSessionSelector((s) => s.returnRestoreMode);
-  const { state, setLayers, setBusinessFilters, selectCity, selectRoute, selectCountry, resetToEurope, loadMapData } =
+  const { state, setLayers, selectCity, selectRoute, selectCountry, resetToEurope, loadMapData } =
     useMapEngine();
 
   const [leftOpen, setLeftOpen] = useState(mode === 'full');
   const [rightOpen, setRightOpen] = useState(mode === 'full');
+  const [activeMapContext, setActiveMapContext] = useState<ActiveMapContext>(DEFAULT_ACTIVE_MAP_CONTEXT);
   const selectedCountryCode = session.selectedCountryCode;
 
   const mapCountries = useMemo(() => countries as MapCountry[], []);
@@ -165,13 +167,8 @@ export function BusinessOperatingMapInner({
 
         {showSidebars && (
           <MapSidebar
-            layers={state.layers}
-            businessFilters={state.businessFilters}
-            onLayersChange={(layers) => {
-              mapSessionStore.patch({ layers });
-              setLayers(layers);
-            }}
-            onBusinessFiltersChange={setBusinessFilters}
+            activeMapContext={activeMapContext}
+            onActiveMapContextChange={setActiveMapContext}
             collapsed={!leftOpen}
             onToggle={() => setLeftOpen((o) => !o)}
           />
@@ -189,6 +186,7 @@ export function BusinessOperatingMapInner({
             enterpriseShell
             onRouteSelect={handleRouteSelect}
             externalLayers={state.layers}
+            activeMapContext={activeMapContext}
           />
         </div>
 
@@ -198,12 +196,13 @@ export function BusinessOperatingMapInner({
             city={state.selectedCity}
             route={state.selectedRoute}
             stats={state.liveStats}
+            activeMapContext={activeMapContext}
             collapsed={!rightOpen}
             onToggle={() => setRightOpen((o) => !o)}
           />
         )}
 
-        {showActivity && <EnterpriseActivityPanel />}
+        {showActivity && <EnterpriseActivityPanel activeMapContext={activeMapContext} />}
       </div>
     </div>
   );
