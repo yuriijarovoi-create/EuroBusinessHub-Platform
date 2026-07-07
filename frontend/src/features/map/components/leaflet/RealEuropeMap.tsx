@@ -35,6 +35,7 @@ import {
   MapDestroyCleanup,
   MapCameraSync,
   LeafletWorkspaceReturnRestore,
+  MapMobileInteractionBridge,
 } from './LeafletMapBridge';
 import { CountryFocusExitBridge } from './CountryFocusExitBridge';
 import { GermanyBundeslandLayer } from './GermanyBundeslandLayer';
@@ -278,6 +279,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           )}
           <MapInstanceCapture onReady={handleMapReady} />
           <MapCameraSync />
+          <MapMobileInteractionBridge />
           <LeafletWorkspaceReturnRestore />
           <MapDestroyCleanup />
         </MapContainer>

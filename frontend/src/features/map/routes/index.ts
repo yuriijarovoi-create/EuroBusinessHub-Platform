@@ -14,6 +14,8 @@ export {
   addRouteParticles,
   startParticleAnimation,
   stopParticleAnimation,
+  pauseParticleAnimation,
+  resumeParticleAnimation,
   stopAllParticleAnimation,
   setParticleRouteFocus,
   createVehicleEngine,

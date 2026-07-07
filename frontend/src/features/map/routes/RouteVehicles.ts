@@ -178,6 +178,69 @@ export function stopParticleAnimation(engine: ParticleEngine): void {
   }
 }
 
+/** Pause RAF loop without destroying particle slots — for mobile interaction mode. */
+export function pauseParticleAnimation(engine: ParticleEngine): void {
+  if (!engine.active) return;
+  engine.active = false;
+  if (engine.animId) {
+    cancelAnimationFrame(engine.animId);
+    engine.animId = 0;
+  }
+}
+
+function runParticleTickLoop(engine: ParticleEngine): void {
+  if (!engine.active || activeParticleEngine !== engine) return;
+
+  const { hoveredRouteId, selectedRouteId } = engine.focus;
+  const trailLag = 0.0036;
+
+  for (const slot of engine.slots) {
+    if (!engine.active) break;
+
+    const hubMult = particleSpeedMultiplierAt(
+      slot.direction === 1 ? slot.progress : 1 - slot.progress,
+    );
+    let focusMult = 1;
+    if (slot.routeId === selectedRouteId) focusMult = 1.42;
+    else if (slot.routeId === hoveredRouteId) focusMult = 1.22;
+
+    const delta = slot.speed * hubMult * focusMult * slot.direction;
+    slot.progress = ((slot.progress + delta) % 1 + 1) % 1;
+
+    for (let t = TRAIL_LENGTH - 1; t > 0; t--) {
+      const lag = t * trailLag * slot.direction;
+      safeSetLatLng(
+        slot.trail[t],
+        interpolateAlongPath(slot.points, ((slot.progress - lag) % 1 + 1) % 1),
+      );
+    }
+
+    const headPos = interpolateAlongPath(slot.points, slot.progress);
+    safeSetLatLng(slot.head, headPos);
+    safeSetLatLng(
+      slot.trail[0],
+      interpolateAlongPath(slot.points, ((slot.progress - trailLag * slot.direction) % 1 + 1) % 1),
+    );
+  }
+
+  if (engine.active && activeParticleEngine === engine) {
+    engine.animId = requestAnimationFrame(() => runParticleTickLoop(engine));
+  }
+}
+
+/** Resume RAF loop after pause — slots must still exist. */
+export function resumeParticleAnimation(engine: ParticleEngine): void {
+  if (engine.active || engine.slots.length === 0) return;
+
+  if (activeParticleEngine && activeParticleEngine !== engine) {
+    stopParticleAnimation(activeParticleEngine);
+  }
+
+  activeParticleEngine = engine;
+  engine.active = true;
+  runParticleTickLoop(engine);
+}
+
 /** Stops any orphaned route particle loop (e.g. after map destroy). */
 export function stopAllParticleAnimation(): void {
   if (activeParticleEngine) {
@@ -197,48 +260,7 @@ export function startParticleAnimation(engine: ParticleEngine): void {
 
   activeParticleEngine = engine;
   engine.active = true;
-
-  const tick = () => {
-    if (!engine.active || activeParticleEngine !== engine) return;
-
-    const { hoveredRouteId, selectedRouteId } = engine.focus;
-    const trailLag = 0.0036;
-
-    for (const slot of engine.slots) {
-      if (!engine.active) break;
-
-      const hubMult = particleSpeedMultiplierAt(
-        slot.direction === 1 ? slot.progress : 1 - slot.progress,
-      );
-      let focusMult = 1;
-      if (slot.routeId === selectedRouteId) focusMult = 1.42;
-      else if (slot.routeId === hoveredRouteId) focusMult = 1.22;
-
-      const delta = slot.speed * hubMult * focusMult * slot.direction;
-      slot.progress = ((slot.progress + delta) % 1 + 1) % 1;
-
-      for (let t = TRAIL_LENGTH - 1; t > 0; t--) {
-        const lag = t * trailLag * slot.direction;
-        safeSetLatLng(
-          slot.trail[t],
-          interpolateAlongPath(slot.points, ((slot.progress - lag) % 1 + 1) % 1),
-        );
-      }
-
-      const headPos = interpolateAlongPath(slot.points, slot.progress);
-      safeSetLatLng(slot.head, headPos);
-      safeSetLatLng(
-        slot.trail[0],
-        interpolateAlongPath(slot.points, ((slot.progress - trailLag * slot.direction) % 1 + 1) % 1),
-      );
-    }
-
-    if (engine.active && activeParticleEngine === engine) {
-      engine.animId = requestAnimationFrame(tick);
-    }
-  };
-
-  engine.animId = requestAnimationFrame(tick);
+  runParticleTickLoop(engine);
 }
 
 /** Aliases for vehicle-based imports */

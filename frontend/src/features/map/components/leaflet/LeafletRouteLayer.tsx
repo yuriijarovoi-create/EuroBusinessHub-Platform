@@ -19,6 +19,10 @@ import {
 import { getCachedRoutePath, routePathCacheKey } from '../../utils/routePathCache';
 import { zoomRevealMultiplier } from '../../utils/routeZoomReveal';
 import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
+import { isMobileViewport } from '../../utils/cityVisibilityUtils';
+import {
+  useMapMobileInteractionSelector,
+} from '../../store/mapMobileInteractionStore';
 import { getResolvedMapTheme, useMapThemeRevision } from '../../utils/mapThemeUtils';
 import {
   acquireRouteCanvasRenderer,
@@ -40,6 +44,8 @@ import {
   addRouteParticles,
   startParticleAnimation,
   stopParticleAnimation,
+  pauseParticleAnimation,
+  resumeParticleAnimation,
   stopAllParticleAnimation,
   setParticleRouteFocus,
   particleCountForRoute,
@@ -120,6 +126,18 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
   const onSelectRef = useRef(onRouteSelect);
   onSelectRef.current = onRouteSelect;
   const hoveredRef = useRef<string | null>(null);
+  const particleEngineRef = useRef<ReturnType<typeof createParticleEngine> | null>(null);
+  const mobileInteracting = useMapMobileInteractionSelector((s) => s.interacting);
+
+  useEffect(() => {
+    const engine = particleEngineRef.current;
+    if (!engine || !isMobileViewport()) return;
+    if (mobileInteracting) {
+      pauseParticleAnimation(engine);
+    } else {
+      resumeParticleAnimation(engine);
+    }
+  }, [mobileInteracting]);
 
   useEffect(() => {
     if (!isMapAlive(map)) return;
@@ -141,6 +159,7 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
     const isLight = getResolvedMapTheme() === 'light';
     const coordLookup = cityCoordLookup(cityMap);
     const particleEngine = createParticleEngine();
+    particleEngineRef.current = particleEngine;
     setParticleRouteFocus(particleEngine, {
       selectedRouteId: selectedRouteId ?? null,
       hoveredRouteId: null,
@@ -273,6 +292,9 @@ export const LeafletRouteLayer = memo(function LeafletRouteLayer({
 
     return () => {
       effectActive = false;
+      if (particleEngineRef.current === particleEngine) {
+        particleEngineRef.current = null;
+      }
       stopParticleAnimation(particleEngine);
       detachRouteBundles(bundleByRoute.values());
       safeClearGroup(map, group);

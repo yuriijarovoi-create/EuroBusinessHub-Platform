@@ -1818,3 +1818,39 @@
 :root[data-theme='light'] :global(.ebh-particle-ai.ebh-route-particle-head) {
   animation: ebh-ai-particle-pulse-light 2.8s ease-in-out infinite;
 }
+
+/* ── Mobile interaction mode: temporary perf trim while panning/zooming ── */
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-glow-atmo),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-glow-outer) {
+  animation-play-state: paused !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-level-2.ebh-route-glow-atmo),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-level-2.ebh-route-glow-outer),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-level-3.ebh-route-glow-atmo),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-level-3.ebh-route-glow-outer),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-level-4.ebh-route-glow-atmo),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-level-4.ebh-route-glow-outer) {
+  opacity: 0 !important;
+}
+
+:root[data-theme='dark'] :global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-theme-dark.ebh-route-glow-atmo),
+:root:not([data-theme='light']) :global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-theme-dark.ebh-route-glow-atmo) {
+  filter: blur(0.35px) !important;
+}
+
+:root[data-theme='dark'] :global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-theme-dark.ebh-route-glow-outer),
+:root:not([data-theme='light']) :global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-theme-dark.ebh-route-glow-outer) {
+  filter: blur(0.2px) !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-particle-head),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-route-particle-trail) {
+  opacity: 0 !important;
+  animation-play-state: paused !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-hub-halo),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-hub-energy) {
+  animation-play-state: paused !important;
+}

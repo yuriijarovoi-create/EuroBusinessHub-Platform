@@ -19,7 +19,13 @@ import {
   releaseRouteCanvasRenderer,
 } from '../../utils/mapLayerLifecycle';
 import { mapSessionStore, useMapSessionSelector } from '../../store/mapSessionStore';
+import {
+  mapMobileInteractionStore,
+} from '../../store/mapMobileInteractionStore';
+import { isMobileViewport } from '../../utils/cityVisibilityUtils';
 import type { MapCityRecord } from '../../types/mapTypes';
+
+const MOBILE_INTERACTION_CLASS = 'ebh-map-mobile-interacting';
 
 export function MapDestroyCleanup() {
   const map = useMap();
@@ -177,6 +183,78 @@ export function LeafletWorkspaceReturnRestore() {
 
     return () => cancelAnimationFrame(frame);
   }, [map, pendingReturnRestore, returnRestoreMode, camera]);
+
+  return null;
+}
+
+/**
+ * Mobile-only: temporarily reduce heavy map effects while panning/zooming.
+ * Restores full visuals 300ms after dragend/zoomend.
+ */
+export function MapMobileInteractionBridge() {
+  const map = useMap();
+  const restoreTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!isMapAlive(map)) return;
+
+    const container = map.getContainer();
+
+    const setInteracting = (interacting: boolean) => {
+      mapMobileInteractionStore.setInteracting(interacting);
+      container.classList.toggle(MOBILE_INTERACTION_CLASS, interacting);
+    };
+
+    const beginInteraction = () => {
+      if (!isMobileViewport()) return;
+      if (restoreTimerRef.current) {
+        clearTimeout(restoreTimerRef.current);
+        restoreTimerRef.current = null;
+      }
+      setInteracting(true);
+    };
+
+    const scheduleRestore = () => {
+      if (!isMobileViewport()) return;
+      if (restoreTimerRef.current) {
+        clearTimeout(restoreTimerRef.current);
+      }
+      restoreTimerRef.current = setTimeout(() => {
+        setInteracting(false);
+        restoreTimerRef.current = null;
+      }, mapMobileInteractionStore.restoreDelayMs);
+    };
+
+    const onResize = () => {
+      if (!isMobileViewport()) {
+        if (restoreTimerRef.current) {
+          clearTimeout(restoreTimerRef.current);
+          restoreTimerRef.current = null;
+        }
+        setInteracting(false);
+      }
+    };
+
+    map.on('dragstart', beginInteraction);
+    map.on('zoomstart', beginInteraction);
+    map.on('moveend', scheduleRestore);
+    map.on('zoomend', scheduleRestore);
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      if (restoreTimerRef.current) {
+        clearTimeout(restoreTimerRef.current);
+        restoreTimerRef.current = null;
+      }
+      setInteracting(false);
+      if (!isMapAlive(map)) return;
+      map.off('dragstart', beginInteraction);
+      map.off('zoomstart', beginInteraction);
+      map.off('moveend', scheduleRestore);
+      map.off('zoomend', scheduleRestore);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [map]);
 
   return null;
 }

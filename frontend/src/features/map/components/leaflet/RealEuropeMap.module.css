@@ -712,3 +712,49 @@
   transform: none;
   border-radius: var(--radius-sm);
 }
+
+/* ── Mobile interaction mode: lighter city marker shadows while panning/zooming ── */
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 3px color-mix(in srgb, var(--map-marker-core) calc(var(--map-marker-glow) * 55%), transparent) !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-major .ebh-marker-core),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-tier1 .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 4px var(--map-marker-tier1-glow) !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-tier2 .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 3px var(--map-marker-tier2-glow) !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-tier3 .ebh-marker-core),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-tier4 .ebh-marker-core),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-tier5 .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 2px var(--map-marker-tier3-glow) !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-hub .ebh-marker-core),
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-primary-hub .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 6px rgb(0 200 255 / 0.35) !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-selected .ebh-marker-core) {
+  box-shadow:
+    0 0 0 1px var(--map-marker-border-ring, transparent),
+    0 0 7px var(--map-marker-selected-glow) !important;
+}
+
+:global(.leaflet-container.ebh-map-mobile-interacting .ebh-marker-pulse) {
+  animation-play-state: paused !important;
+  opacity: 0.35 !important;
+}

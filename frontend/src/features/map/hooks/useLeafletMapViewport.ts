@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
 import { isMobileViewport } from '../utils/cityVisibilityUtils';
 import { isMapAlive } from '../utils/mapLayerLifecycle';
+import { mapMobileInteractionStore } from '../store/mapMobileInteractionStore';
 
 /** Track Leaflet zoom + mobile breakpoint for visibility filtering */
 export function useLeafletMapViewport() {
@@ -15,15 +16,26 @@ export function useLeafletMapViewport() {
       setZoom(map.getZoom());
       setCenter(map.getCenter());
     };
+    const syncZoomIfAllowed = () => {
+      if (isMobileViewport() && mapMobileInteractionStore.getState().interacting) return;
+      setZoom(map.getZoom());
+    };
     const onResize = () => setIsMobile(isMobileViewport());
     syncViewport();
-    map.on('zoom', syncViewport);
+    map.on('zoom', syncZoomIfAllowed);
     map.on('zoomend', syncViewport);
     map.on('moveend', syncViewport);
     window.addEventListener('resize', onResize);
+    const unsubInteraction = mapMobileInteractionStore.subscribe(() => {
+      const { interacting } = mapMobileInteractionStore.getState();
+      if (!interacting && isMobileViewport()) {
+        syncViewport();
+      }
+    });
     return () => {
+      unsubInteraction();
       if (!isMapAlive(map)) return;
-      map.off('zoom', syncViewport);
+      map.off('zoom', syncZoomIfAllowed);
       map.off('zoomend', syncViewport);
       map.off('moveend', syncViewport);
       window.removeEventListener('resize', onResize);
