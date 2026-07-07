@@ -18,7 +18,7 @@ import {
   purgeOrphanedRouteDom,
   releaseRouteCanvasRenderer,
 } from '../../utils/mapLayerLifecycle';
-import { mapSessionStore } from '../../store/mapSessionStore';
+import { mapSessionStore, useMapSessionSelector } from '../../store/mapSessionStore';
 import type { MapCityRecord } from '../../types/mapTypes';
 
 export function MapDestroyCleanup() {
@@ -142,6 +142,41 @@ export function MapCameraSync() {
       map.off('zoomend', sync);
     };
   }, [map]);
+
+  return null;
+}
+
+/** Restore saved map view after leaving workspace — snapshot or Europe overview fallback */
+export function LeafletWorkspaceReturnRestore() {
+  const map = useMap();
+  const pendingReturnRestore = useMapSessionSelector((s) => s.pendingReturnRestore);
+  const returnRestoreMode = useMapSessionSelector((s) => s.returnRestoreMode);
+  const camera = useMapSessionSelector((s) => s.camera);
+
+  useEffect(() => {
+    if (!pendingReturnRestore || !returnRestoreMode || !isMapAlive(map)) return;
+
+    const frame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (!isMapAlive(map)) return;
+        map.invalidateSize({ animate: false });
+
+        const mode = mapSessionStore.consumePendingReturnRestore();
+        if (!mode) return;
+
+        map.stop();
+        if (mode === 'snapshot' && camera) {
+          restoreMapCamera(map, camera);
+          return;
+        }
+        if (mode === 'fallback' && mapSessionStore.consumeHomeFullEuropeOverview()) {
+          flyToFullEuropeOverview(map);
+        }
+      });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [map, pendingReturnRestore, returnRestoreMode, camera]);
 
   return null;
 }

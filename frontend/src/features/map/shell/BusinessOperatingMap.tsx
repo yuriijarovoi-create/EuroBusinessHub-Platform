@@ -9,7 +9,8 @@ import { MapNavigationBar } from '../components/MapNavigationBar';
 import { MapSidebar } from './MapSidebar';
 import { StatisticsPanel } from './StatisticsPanel';
 import { EnterpriseActivityPanel } from './EnterpriseActivityPanel';
-import { mapSessionStore, useMapSessionStore } from '../store/mapSessionStore';
+import { mapSessionStore, useMapSessionSelector, useMapSessionStore } from '../store/mapSessionStore';
+import { getRoutesForMapView } from '../data/routeData';
 import styles from './BusinessOperatingMap.module.css';
 
 export type BusinessOperatingMapMode = 'full' | 'hero' | 'embed';
@@ -30,6 +31,8 @@ export function BusinessOperatingMapInner({
 }: Omit<BusinessOperatingMapProps, 'useExternalProvider' | 'className'>) {
   const { t } = useTranslation('map');
   const session = useMapSessionStore();
+  const pendingReturnRestore = useMapSessionSelector((s) => s.pendingReturnRestore);
+  const returnRestoreMode = useMapSessionSelector((s) => s.returnRestoreMode);
   const { state, setLayers, setBusinessFilters, selectCity, selectRoute, selectCountry, resetToEurope, loadMapData } =
     useMapEngine();
 
@@ -61,6 +64,51 @@ export function BusinessOperatingMapInner({
   useEffect(() => {
     loadMapData(selectedCountryCode);
   }, [loadMapData, selectedCountryCode]);
+
+  useEffect(() => {
+    if (!pendingReturnRestore || !returnRestoreMode) return;
+
+    if (returnRestoreMode === 'fallback') {
+      selectCountry(null, null);
+      selectCity(null, { fly: false, openWorkspace: false });
+      selectRoute(null);
+      resetToEurope(null);
+      return;
+    }
+
+    setLayers(session.layers);
+
+    const country = session.selectedCountryCode
+      ? mapCountries.find((c) => c.code === session.selectedCountryCode) ?? null
+      : null;
+    selectCountry(country, null);
+
+    const cityId = session.infoCardCityId ?? session.selectedCityId;
+    const city = cityId ? getMapCityById(cityId) ?? null : null;
+    selectCity(city, { fly: false, openWorkspace: false });
+
+    if (session.selectedRouteId) {
+      const route =
+        getRoutesForMapView(session.selectedCountryCode).find((r) => r.id === session.selectedRouteId) ?? null;
+      selectRoute(route);
+    } else {
+      selectRoute(null);
+    }
+  }, [
+    pendingReturnRestore,
+    returnRestoreMode,
+    session.layers,
+    session.selectedCountryCode,
+    session.infoCardCityId,
+    session.selectedCityId,
+    session.selectedRouteId,
+    mapCountries,
+    selectCountry,
+    selectCity,
+    selectRoute,
+    setLayers,
+    resetToEurope,
+  ]);
 
   const handleCountrySelect = useCallback((country: MapCountry) => {
     mapSessionStore.patch({ selectedCountryCode: country.code });

@@ -27,7 +27,15 @@ import { LeafletHubHaloLayer } from './LeafletHubHaloLayer';
 import { LeafletCityMarkers } from './LeafletCityMarkers';
 import { LeafletCityTooltipLayer } from './LeafletCityHoverTooltip';
 import { LeafletCountryInfoCard } from './LeafletCountryInfoCard';
-import { MapInstanceCapture, LeafletFitEurope, LeafletCountryFocus, LeafletCityFocus, MapDestroyCleanup, MapCameraSync } from './LeafletMapBridge';
+import {
+  MapInstanceCapture,
+  LeafletFitEurope,
+  LeafletCountryFocus,
+  LeafletCityFocus,
+  MapDestroyCleanup,
+  MapCameraSync,
+  LeafletWorkspaceReturnRestore,
+} from './LeafletMapBridge';
 import { CountryFocusExitBridge } from './CountryFocusExitBridge';
 import { GermanyBundeslandLayer } from './GermanyBundeslandLayer';
 import { GermanyCityLabels } from './GermanyCityLabels';
@@ -270,6 +278,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           )}
           <MapInstanceCapture onReady={handleMapReady} />
           <MapCameraSync />
+          <LeafletWorkspaceReturnRestore />
           <MapDestroyCleanup />
         </MapContainer>
       ) : (

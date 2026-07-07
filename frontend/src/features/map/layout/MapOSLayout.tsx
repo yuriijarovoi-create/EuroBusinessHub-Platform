@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { MapEngineProvider } from '../engine/MapEngine';
 import { mapSessionStore, useMapSessionStore } from '../store/mapSessionStore';
 import type { MapCityRecord } from '../types/mapTypes';
+import { saveLastMapContext } from '../utils/lastMapContext';
 import styles from './MapOSLayout.module.css';
 import mapStyles from '../shell/BusinessOperatingMap.module.css';
 
@@ -27,6 +28,12 @@ export function MapOSLayout() {
 
   const handleOpenWorkspace = useCallback(
     (city: MapCityRecord) => {
+      const session = mapSessionStore.getState();
+      const stored = saveLastMapContext(city, session);
+      mapSessionStore.setCamera({
+        center: { lat: stored.center.lat, lng: stored.center.lng },
+        zoom: stored.zoom,
+      });
       mapSessionStore.enterWorkspace(city.id);
       navigate(`/workspace/${city.id}`);
     },

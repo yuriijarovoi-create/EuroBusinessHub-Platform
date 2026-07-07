@@ -12,6 +12,8 @@ import {
   tooltipOffsetForDirection,
   type TooltipDirection,
 } from '../../utils/mapInfoCardUtils';
+import { saveLastMapContext } from '../../utils/lastMapContext';
+import { mapSessionStore } from '../../store/mapSessionStore';
 
 const CARD_ANCHOR_ICON = L.divIcon({
   className: 'ebh-tooltip-anchor',
@@ -193,6 +195,12 @@ export const LeafletCityInfoCard = memo(function LeafletCityInfoCard({
               className="ebh-info-card-cta"
               onClick={(event) => {
                 event.stopPropagation();
+                const session = mapSessionStore.getState();
+                const stored = saveLastMapContext(city, session, map);
+                mapSessionStore.setCamera({
+                  center: { lat: stored.center.lat, lng: stored.center.lng },
+                  zoom: stored.zoom,
+                });
                 onOpenWorkspace(city);
               }}
             >
