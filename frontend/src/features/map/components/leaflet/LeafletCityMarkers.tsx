@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { MapCityRecord } from '../../types/mapTypes';
@@ -18,6 +18,11 @@ import {
   shouldShowUkraineFlagMarker,
   UKRAINE_FLAG_MARKER_CITY_ID,
 } from '../../utils/ukraineMarkerVisibility';
+import {
+  registerCityMarkerTap,
+  shouldSuppressMapBackgroundAction,
+  stopLeafletEvent,
+} from '../../utils/mapMarkerTouchGuard';
 
 interface LeafletCityMarkersProps {
   cities: MapCityRecord[];
@@ -119,8 +124,29 @@ const LeafletCityMarker = memo(
       [city, isHighlighted, isHub, displayTier, zoom, isHovered && !isSelected],
     );
 
+    const markerRef = useRef<L.Marker>(null);
+
+    useEffect(() => {
+      const marker = markerRef.current;
+      if (!marker) return;
+      const el = marker.getElement();
+      if (!el) return;
+      L.DomEvent.disableClickPropagation(el);
+      L.DomEvent.disableScrollPropagation(el);
+    }, [icon, city.id]);
+
+    const handleActivate = useCallback(
+      (e: L.LeafletEvent) => {
+        stopLeafletEvent(e);
+        if (!registerCityMarkerTap(city.id)) return;
+        onSelect(city);
+      },
+      [city, onSelect],
+    );
+
     return (
       <Marker
+        ref={markerRef}
         position={[city.lat, city.lng]}
         icon={icon}
         interactive
@@ -129,19 +155,21 @@ const LeafletCityMarker = memo(
           isHub ? 1000 : isHighlighted ? 700 : displayTier === 1 ? 250 : displayTier === 2 ? 120 : 200
         }
         eventHandlers={{
-          click: (e) => {
-            L.DomEvent.stop(e);
-            onSelect(city);
+          click: handleActivate,
+          dblclick: (e: L.LeafletEvent) => {
+            stopLeafletEvent(e);
           },
-          dblclick: (e) => {
-            L.DomEvent.stop(e);
-          },
-          ...(!isMobile
+          ...(isMobile
             ? {
+                touchstart: (e: L.LeafletEvent) => {
+                  stopLeafletEvent(e);
+                },
+                touchend: handleActivate,
+              }
+            : {
                 mouseover: () => onCityHover(city.id),
                 mouseout: () => onCityHoverLeave(),
-              }
-            : {}),
+              }),
         }}
       />
     );
@@ -179,6 +207,7 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   }, [selectedCityId, hoveredCityId, searchResultCityId]);
 
   const handleMapBackgroundClick = useCallback(() => {
+    if (shouldSuppressMapBackgroundAction()) return;
     onMapBackgroundClick();
   }, [onMapBackgroundClick]);
 
