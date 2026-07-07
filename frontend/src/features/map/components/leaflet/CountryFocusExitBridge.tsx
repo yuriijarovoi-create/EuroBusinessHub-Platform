@@ -3,6 +3,7 @@ import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { LeafletMouseEvent } from 'leaflet';
 import { isMapAlive } from '../../utils/mapLayerLifecycle';
+import { isCityMarkerTouchGuardActive } from '../../utils/cityMarkerTouchGuard';
 
 interface CountryFocusExitBridgeProps {
   active: boolean;
@@ -48,11 +49,13 @@ export function CountryFocusExitBridge({ active, onExit }: CountryFocusExitBridg
     if (!active) return;
 
     const onMapClick = (e: LeafletMouseEvent) => {
+      if (isCityMarkerTouchGuardActive()) return;
       if (!isBackgroundMapClick(e)) return;
       onExit();
     };
 
     const onDblClick = (e: LeafletMouseEvent) => {
+      if (isCityMarkerTouchGuardActive()) return;
       if (!isBackgroundMapClick(e)) return;
       onExit();
     };

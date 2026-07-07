@@ -18,6 +18,11 @@ import {
   shouldShowUkraineFlagMarker,
   UKRAINE_FLAG_MARKER_CITY_ID,
 } from '../../utils/ukraineMarkerVisibility';
+import {
+  isCityMarkerTouchGuardActive,
+  markCityMarkerTouchHandled,
+  stopLeafletPropagation,
+} from '../../utils/cityMarkerTouchGuard';
 
 interface LeafletCityMarkersProps {
   cities: MapCityRecord[];
@@ -119,6 +124,10 @@ const LeafletCityMarker = memo(
       [city, isHighlighted, isHub, displayTier, zoom, isHovered && !isSelected],
     );
 
+    const activateCity = () => {
+      onSelect(city);
+    };
+
     return (
       <Marker
         position={[city.lat, city.lng]}
@@ -131,17 +140,24 @@ const LeafletCityMarker = memo(
         eventHandlers={{
           click: (e) => {
             L.DomEvent.stop(e);
-            onSelect(city);
+            if (isCityMarkerTouchGuardActive()) return;
+            activateCity();
           },
           dblclick: (e) => {
             L.DomEvent.stop(e);
           },
-          ...(!isMobile
+          ...(isMobile
             ? {
+                touchend: (e: L.LeafletEvent) => {
+                  stopLeafletPropagation(e);
+                  markCityMarkerTouchHandled();
+                  activateCity();
+                },
+              }
+            : {
                 mouseover: () => onCityHover(city.id),
                 mouseout: () => onCityHoverLeave(),
-              }
-            : {}),
+              }),
         }}
       />
     );
@@ -179,6 +195,7 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   }, [selectedCityId, hoveredCityId, searchResultCityId]);
 
   const handleMapBackgroundClick = useCallback(() => {
+    if (isCityMarkerTouchGuardActive()) return;
     onMapBackgroundClick();
   }, [onMapBackgroundClick]);
 
