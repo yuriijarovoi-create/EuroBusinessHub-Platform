@@ -27,7 +27,7 @@ import {
   getGermanyRegionalClusterMeta,
 } from './germany/germanyRegionalClusters';
 import { applyCityHubProfile, getCityHubProfile } from './cityHubEnrichment';
-import { applyFranceHubMetrics, FRANCE_HUB_CATEGORIES, isFranceHubCity } from './franceHubData';
+import { applyFranceHubMetrics, isFranceHubCity } from './franceHubData';
 import { isLogisticsHub } from './logisticsHubNetwork';
 
 export function enrichCity(city: (typeof cities)[number]): MapCityRecord {

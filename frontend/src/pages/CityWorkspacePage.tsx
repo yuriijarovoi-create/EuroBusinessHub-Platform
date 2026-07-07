@@ -5,6 +5,7 @@ import { CityProvider, useCityContext } from '@/features/map/context/CityContext
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { GlassPanel } from '@/components/GlassPanel';
 import { routes } from '@/config';
+import type { WorkspaceModuleAccess } from '@shared/types';
 import { BackToEuropeMapLink } from '@/features/map/components/BackToEuropeMapLink';
 import styles from './CityWorkspacePage.module.css';
 
@@ -72,8 +73,8 @@ function CityWorkspaceContent() {
         <h2>{t('workspace:activeModules')}</h2>
         <div className={styles.moduleGrid}>
           {workspace.modules
-            .filter((mod) => mod.enabled)
-            .map((mod) => (
+            .filter((mod: WorkspaceModuleAccess) => mod.enabled)
+            .map((mod: WorkspaceModuleAccess) => (
               <Link key={mod.moduleId} to={mod.route} className={styles.moduleLink}>
                 <GlassPanel padding="md" className={styles.moduleCard}>
                   <span className={styles.moduleName}>

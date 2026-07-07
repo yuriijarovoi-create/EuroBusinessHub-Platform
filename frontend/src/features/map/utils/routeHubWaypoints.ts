@@ -13,7 +13,7 @@ const HUB_CHAINS: Record<string, string[]> = {};
 export function resolveHubWaypointIds(
   fromCityId: string,
   toCityId: string,
-  scope: string,
+  _scope: string,
   distanceKm: number,
 ): string[] {
   const corridorWaypoints = corridorWaypointChain(fromCityId, toCityId);

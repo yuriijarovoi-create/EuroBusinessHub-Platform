@@ -6,6 +6,7 @@ import { getCountryBusinessStats } from '../../data/countryStats';
 import {
   resolveSmartTooltipDirection,
   tooltipOffsetForDirection,
+  type TooltipDirection,
 } from '../../utils/mapInfoCardUtils';
 
 const CARD_ANCHOR_ICON = L.divIcon({
@@ -29,7 +30,7 @@ export const LeafletCountryInfoCard = memo(function LeafletCountryInfoCard({
   const [displayCode, setDisplayCode] = useState<string | null>(null);
   const [exiting, setExiting] = useState(false);
   const [entering, setEntering] = useState(false);
-  const [direction, setDirection] = useState<L.TooltipDirection>('top');
+  const [direction, setDirection] = useState<TooltipDirection>('top');
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const enterTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const displayCodeRef = useRef<string | null>(null);

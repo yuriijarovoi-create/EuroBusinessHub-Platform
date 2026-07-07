@@ -43,9 +43,13 @@ function hashSeed(input: string): number {
   return h;
 }
 
+function isMarkerOnMap(marker: L.CircleMarker): boolean {
+  return !!(marker as unknown as { _map?: L.Map })._map;
+}
+
 function safeSetLatLng(marker: L.CircleMarker, latlng: L.LatLngExpression): void {
   try {
-    if (!marker.getMap?.()) return;
+    if (!isMarkerOnMap(marker)) return;
     marker.setLatLng(latlng);
   } catch {
     // Layer detached or map destroyed
@@ -56,10 +60,10 @@ function detachParticleSlots(engine: ParticleEngine): void {
   for (const slot of engine.slots) {
     try {
       slot.head.off();
-      if (slot.head.getMap?.()) slot.head.remove();
+      if (isMarkerOnMap(slot.head)) slot.head.remove();
       for (const trail of slot.trail) {
         trail.off();
-        if (trail.getMap?.()) trail.remove();
+        if (isMarkerOnMap(trail)) trail.remove();
       }
     } catch {
       // ignore destroyed layers

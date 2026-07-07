@@ -1,5 +1,4 @@
 import type { BusinessRouteDef, RoutePriorityLevel } from '../types/mapTypes';
-import { getRouteScope } from '../data/routeCityIndex';
 import { routeTouchesCountry } from './routeFilterEngine';
 import { getRouteVisualTier } from './routeVisualStyles';
 import { isPortCity } from './routeVehicleIcons';

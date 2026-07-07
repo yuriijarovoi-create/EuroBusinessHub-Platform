@@ -5,7 +5,7 @@ import { buildRoute, buildRouteBatch } from './routeBuilder';
 export const EUROPE_COUNTRY_ROUTES: BusinessRouteDef[] = [
   ...buildRouteBatch([
     // Poland
-    ['warsaw', 'berlin', 'rail', 'europe', ['PL', 'DE'], 5],
+    ['warsaw', 'berlin', 'rail', 'europe', ['PL', 'DE'], 1, 5],
     ['warsaw', 'krakow', 'rail', 'country', ['PL'], 4],
     ['warsaw', 'gdansk', 'rail', 'country', ['PL'], 4],
     ['warsaw', 'poznan', 'road', 'country', ['PL'], 3],
@@ -19,9 +19,9 @@ export const EUROPE_COUNTRY_ROUTES: BusinessRouteDef[] = [
     ['krakow', 'vienna', 'rail', 'europe', ['PL', 'AT'], 3],
     ['lodz', 'warsaw', 'road', 'regional', ['PL'], 3],
     // France
-    ['paris', 'berlin', 'rail', 'europe', ['FR', 'DE'], 5],
+    ['paris', 'berlin', 'rail', 'europe', ['FR', 'DE'], 1, 5],
     ['paris', 'frankfurt', 'air', 'europe', ['FR', 'DE'], 4],
-    ['paris', 'brussels', 'rail', 'europe', ['FR', 'BE'], 5],
+    ['paris', 'brussels', 'rail', 'europe', ['FR', 'BE'], 1, 5],
     ['paris', 'amsterdam', 'rail', 'europe', ['FR', 'NL'], 4],
     ['paris', 'lyon', 'rail', 'country', ['FR'], 4],
     ['paris', 'marseille', 'air', 'country', ['FR'], 4],
@@ -33,17 +33,17 @@ export const EUROPE_COUNTRY_ROUTES: BusinessRouteDef[] = [
     // Austria
     ['vienna', 'munich', 'rail', 'europe', ['AT', 'DE'], 4],
     ['vienna', 'prague', 'rail', 'europe', ['AT', 'CZ'], 4],
-    ['vienna', 'budapest', 'rail', 'europe', ['AT', 'HU'], 5],
+    ['vienna', 'budapest', 'rail', 'europe', ['AT', 'HU'], 1, 5],
     ['vienna', 'bratislava', 'road', 'europe', ['AT', 'SK'], 4],
     ['vienna', 'salzburg', 'road', 'country', ['AT'], 3],
     ['salzburg', 'munich', 'road', 'europe', ['AT', 'DE'], 4],
     ['graz', 'vienna', 'road', 'country', ['AT'], 3],
     ['linz', 'prague', 'road', 'europe', ['AT', 'CZ'], 3],
     // Netherlands
-    ['amsterdam', 'rotterdam', 'road', 'country', ['NL'], 5],
+    ['amsterdam', 'rotterdam', 'road', 'country', ['NL'], 1, 5],
     ['amsterdam', 'brussels', 'rail', 'europe', ['NL', 'BE'], 4],
     ['amsterdam', 'frankfurt', 'road', 'europe', ['NL', 'DE'], 4],
-    ['rotterdam', 'antwerp', 'sea', 'europe', ['NL', 'BE'], 5],
+    ['rotterdam', 'antwerp', 'sea', 'europe', ['NL', 'BE'], 1, 5],
     ['utrecht', 'amsterdam', 'road', 'regional', ['NL'], 3],
     // Belgium
     ['brussels', 'antwerp', 'road', 'country', ['BE'], 4],
@@ -64,7 +64,7 @@ export const EUROPE_COUNTRY_ROUTES: BusinessRouteDef[] = [
     ['geneva', 'lyon', 'road', 'europe', ['CH', 'FR'], 3],
     ['basel', 'frankfurt', 'rail', 'europe', ['CH', 'DE'], 4],
     // Italy
-    ['rome', 'milan', 'rail', 'country', ['IT'], 5],
+    ['rome', 'milan', 'rail', 'country', ['IT'], 1, 5],
     ['milan', 'turin', 'road', 'country', ['IT'], 4],
     ['milan', 'zurich', 'rail', 'europe', ['IT', 'CH'], 4],
     ['rome', 'naples', 'road', 'country', ['IT'], 4],
@@ -72,7 +72,7 @@ export const EUROPE_COUNTRY_ROUTES: BusinessRouteDef[] = [
     ['venice', 'milan', 'road', 'country', ['IT'], 3],
     ['genoa', 'milan', 'sea', 'country', ['IT'], 3],
     // Spain
-    ['madrid', 'barcelona', 'rail', 'country', ['ES'], 5],
+    ['madrid', 'barcelona', 'rail', 'country', ['ES'], 1, 5],
     ['madrid', 'valencia', 'rail', 'country', ['ES'], 4],
     ['madrid', 'lisbon', 'rail', 'europe', ['ES', 'PT'], 4],
     ['barcelona', 'marseille', 'sea', 'europe', ['ES', 'FR'], 4],
@@ -85,10 +85,10 @@ export const EUROPE_COUNTRY_ROUTES: BusinessRouteDef[] = [
     from: 'paris',
     to: 'madrid',
     mode: 'air',
-    level: 'europe',
-    countryScope: ['FR', 'ES'],
+    scope: 'europe',
+    relatedCountries: ['FR', 'ES'],
     intensity: 4,
     businessPurpose: 'hub-connection',
-    priority: 92,
+    priorityTier: 1,
   }),
 ];

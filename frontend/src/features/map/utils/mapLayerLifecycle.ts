@@ -34,7 +34,7 @@ export function safeClearGroup(map: L.Map, group: L.LayerGroup | null | undefine
 export function safeClearCanvasRenderer(renderer: L.Canvas | null | undefined, map: L.Map): void {
   if (!renderer) return;
   try {
-    renderer._clear?.();
+    (renderer as L.Canvas & { _clear?: () => void })._clear?.();
   } catch {
     // Canvas context may already be destroyed
   }

@@ -63,45 +63,6 @@ function sampleCubicBezier(
   return out;
 }
 
-/** Catmull-Rom spline — no sharp angles at hub waypoints */
-function catmullRomSpline(points: LatLngTuple[], samplesPerSeg = 14): LatLngTuple[] {
-  if (points.length < 2) return points;
-  if (points.length === 2) return points;
-
-  const result: LatLngTuple[] = [];
-  const extended = [points[0], ...points, points[points.length - 1]];
-
-  for (let i = 1; i < extended.length - 2; i++) {
-    const p0 = extended[i - 1];
-    const p1 = extended[i];
-    const p2 = extended[i + 1];
-    const p3 = extended[i + 2];
-
-    for (let s = 0; s < samplesPerSeg; s++) {
-      if (i > 1 && s === 0) continue;
-      const t = s / samplesPerSeg;
-      const t2 = t * t;
-      const t3 = t2 * t;
-
-      const lat =
-        0.5 *
-        (2 * p1[0] +
-          (-p0[0] + p2[0]) * t +
-          (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 +
-          (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3);
-      const lng =
-        0.5 *
-        (2 * p1[1] +
-          (-p0[1] + p2[1]) * t +
-          (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 +
-          (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3);
-      result.push([lat, lng]);
-    }
-  }
-  result.push(points[points.length - 1]);
-  return result;
-}
-
 function buildBezierSegment(
   lat1: number,
   lng1: number,

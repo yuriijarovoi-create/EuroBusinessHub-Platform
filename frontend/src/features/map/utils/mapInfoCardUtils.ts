@@ -1,5 +1,8 @@
-import type { TooltipDirection } from 'leaflet';
 import type { Map as LeafletMap } from 'leaflet';
+
+type TooltipDirection = 'auto' | 'top' | 'bottom' | 'left' | 'right' | 'center';
+
+export type { TooltipDirection };
 
 const EDGE_MARGIN = 130;
 const CARD_ESTIMATE = { w: 200, h: 160 };

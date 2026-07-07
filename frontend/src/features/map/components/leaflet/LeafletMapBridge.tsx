@@ -69,8 +69,8 @@ export function LeafletCountryFocus({
   bundeslandId?: string;
 }) {
   const map = useMap();
-  const prevCountryRef = useRef<string | undefined>();
-  const prevBundeslandRef = useRef<string | undefined>();
+  const prevCountryRef = useRef<string | undefined>(undefined);
+  const prevBundeslandRef = useRef<string | undefined>(undefined);
   const europeCameraRef = useRef<MapCameraSnapshot | null>(null);
 
   useEffect(() => {

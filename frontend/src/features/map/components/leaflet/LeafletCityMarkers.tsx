@@ -215,8 +215,8 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
       cities,
       zoom,
       selectedCityId,
-      hoveredCityId,
-      searchResultCityId,
+      hoveredCityId ?? undefined,
+      searchResultCityId ?? undefined,
       isMobile,
     );
     return buildCityMarkerDisplayItems(visible, zoom, forcedIds);

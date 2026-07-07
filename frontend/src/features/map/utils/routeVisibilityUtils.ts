@@ -1,7 +1,6 @@
 import type { BusinessRouteDef, MapCityRecord } from '../types/mapTypes';
 import {
   filterCorridorRoutes,
-  type RouteFilterContext,
 } from './routeFilterEngine';
 
 export { filterCorridorRoutes, routeDensityOpacity } from './routeFilterEngine';

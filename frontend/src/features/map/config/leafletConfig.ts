@@ -1,4 +1,4 @@
-import type { LatLngBoundsExpression, LatLngExpression } from 'leaflet';
+import type { LatLngBoundsExpression } from 'leaflet';
 
 /** CartoDB Dark Matter — enterprise dark basemap */
 export const DARK_TILE_URL =
@@ -15,7 +15,7 @@ export function getTileUrlForTheme(theme: 'light' | 'dark'): string {
 export const TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-export const EUROPE_CENTER: LatLngExpression = [54.0, 15.0];
+export const EUROPE_CENTER: [number, number] = [54.0, 15.0];
 
 export const EUROPE_DEFAULT_ZOOM = 4;
 

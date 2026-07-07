@@ -4,6 +4,7 @@ import { DashboardMetrics } from '@/components/DashboardMetrics';
 import { PlatformStats } from '@/components/PlatformStats';
 import { GlassPanel } from '@/components/GlassPanel';
 import { aiCapabilities } from '@/data/aiCapabilities';
+import type { AiCapability } from '@shared/types';
 import styles from './DashboardPage.module.css';
 
 export function DashboardPage() {
@@ -26,7 +27,7 @@ export function DashboardPage() {
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>{t('ai.title')}</h2>
         <div className={styles.aiGrid}>
-          {aiCapabilities.capabilities.map((cap) => (
+          {aiCapabilities.capabilities.map((cap: AiCapability) => (
             <GlassPanel key={cap.id} padding="md" className={styles.aiCard}>
               <span className={styles.aiStatus}>{cap.status}</span>
               <strong>{cap.name}</strong>

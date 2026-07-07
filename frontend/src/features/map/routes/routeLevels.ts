@@ -54,7 +54,7 @@ export function tierToLevelClass(tier: RouteVisualTier): string {
       ? 1
       : tier === 'national'
         ? 2
-        : tier === 'regional'
+        : tier === 'local'
           ? 3
           : 4;
   return `ebh-route-level-${level}`;

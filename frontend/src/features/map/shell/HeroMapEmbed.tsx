@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapProvider } from '../context/MapContext';
-import { getMapCityById } from '../data/mapData';
 import type { MapCityRecord } from '../types/mapTypes';
 import styles from './BusinessOperatingMap.module.css';
 

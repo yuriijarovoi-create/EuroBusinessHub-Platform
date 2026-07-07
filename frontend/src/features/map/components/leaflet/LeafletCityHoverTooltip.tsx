@@ -10,6 +10,7 @@ import { getCityHubProfile } from '../../data/cityHubEnrichment';
 import {
   resolveSmartTooltipDirection,
   tooltipOffsetForDirection,
+  type TooltipDirection,
 } from '../../utils/mapInfoCardUtils';
 
 const CARD_ANCHOR_ICON = L.divIcon({
@@ -40,7 +41,7 @@ export const LeafletCityInfoCard = memo(function LeafletCityInfoCard({
   const [displayId, setDisplayId] = useState<string | null>(null);
   const [exiting, setExiting] = useState(false);
   const [entering, setEntering] = useState(false);
-  const [direction, setDirection] = useState<L.TooltipDirection>('top');
+  const [direction, setDirection] = useState<TooltipDirection>('top');
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const enterTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const displayIdRef = useRef<string | null>(null);
@@ -191,7 +192,7 @@ export const LeafletCityInfoCard = memo(function LeafletCityInfoCard({
               type="button"
               className="ebh-info-card-cta"
               onClick={(event) => {
-                L.DomEvent.stopPropagation(event);
+                event.stopPropagation();
                 onOpenWorkspace(city);
               }}
             >
