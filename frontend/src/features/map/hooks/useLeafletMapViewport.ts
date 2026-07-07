@@ -7,21 +7,28 @@ import { isMapAlive } from '../utils/mapLayerLifecycle';
 export function useLeafletMapViewport() {
   const map = useMap();
   const [zoom, setZoom] = useState(() => map.getZoom());
+  const [center, setCenter] = useState(() => map.getCenter());
   const [isMobile, setIsMobile] = useState(isMobileViewport);
 
   useEffect(() => {
-    const onZoom = () => setZoom(map.getZoom());
+    const syncViewport = () => {
+      setZoom(map.getZoom());
+      setCenter(map.getCenter());
+    };
     const onResize = () => setIsMobile(isMobileViewport());
-    map.on('zoom', onZoom);
-    map.on('zoomend', onZoom);
+    syncViewport();
+    map.on('zoom', syncViewport);
+    map.on('zoomend', syncViewport);
+    map.on('moveend', syncViewport);
     window.addEventListener('resize', onResize);
     return () => {
       if (!isMapAlive(map)) return;
-      map.off('zoom', onZoom);
-      map.off('zoomend', onZoom);
+      map.off('zoom', syncViewport);
+      map.off('zoomend', syncViewport);
+      map.off('moveend', syncViewport);
       window.removeEventListener('resize', onResize);
     };
   }, [map]);
 
-  return { zoom, isMobile };
+  return { zoom, center, isMobile };
 }

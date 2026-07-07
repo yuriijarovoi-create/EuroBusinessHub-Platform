@@ -43,6 +43,48 @@
   opacity: 1 !important;
 }
 
+/* Basemap attribution — OSM/CARTO text only, premium dark UI */
+.map :global(.leaflet-control-attribution) {
+  right: 0;
+  bottom: 0;
+  margin: 0 10px 10px 0 !important;
+  padding: 4px 8px;
+  font-size: 10px;
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgb(196 206 218 / 0.88);
+  background: rgb(8 12 18 / 0.58) !important;
+  border: 1px solid rgb(255 255 255 / 0.07);
+  border-radius: 6px;
+  opacity: 0.6;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.22);
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+  pointer-events: auto;
+}
+
+.map :global(.leaflet-control-attribution:hover),
+.map :global(.leaflet-control-attribution:focus-within) {
+  opacity: 1;
+  background: rgb(8 12 18 / 0.78) !important;
+}
+
+.map :global(.leaflet-control-attribution a) {
+  color: rgb(176 196 214 / 0.92);
+  text-decoration: none;
+}
+
+.map :global(.leaflet-control-attribution a:hover) {
+  color: rgb(224 236 248);
+  text-decoration: underline;
+}
+
+.map :global(.leaflet-control-attribution img),
+.map :global(.leaflet-control-attribution svg) {
+  display: none !important;
+}
+
 /* City markers */
 :global(.ebh-marker-wrap) {
   background: none !important;

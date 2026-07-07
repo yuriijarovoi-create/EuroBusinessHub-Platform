@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet';
 import type { Map as LeafletMap } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { MapCountry } from '@shared/types';
@@ -174,8 +174,9 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           maxBoundsViscosity={0.85}
           scrollWheelZoom
           zoomControl={false}
-          attributionControl
+          attributionControl={false}
         >
+          <AttributionControl position="bottomright" prefix={false} />
           <TileLayer key={tileUrl} url={tileUrl} attribution={TILE_ATTRIBUTION} />
           <CountryLayer
             countries={countries}
@@ -198,6 +199,8 @@ export const RealEuropeMap = memo(function RealEuropeMap({
                 cityMap={routeCityMap}
                 hoveredCityId={hoveredCityId}
                 selectedCityId={selectedCityId}
+                selectedCountryCode={selectedCountryCode}
+                searchResultCityId={searchResultCityId}
               />
               <LeafletRouteLayer
                 routes={routes}
@@ -231,6 +234,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
             onClearInfoCard={onClearInfoCard}
             onMapBackgroundClick={onMapBackgroundClick}
             countryFocusActive={!!selectedCountryCode}
+            selectedCountryCode={selectedCountryCode}
           />
           <LeafletCityTooltipLayer
             infoCardCityId={infoCardCityId ?? null}

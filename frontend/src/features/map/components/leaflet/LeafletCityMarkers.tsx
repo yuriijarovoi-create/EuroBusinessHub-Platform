@@ -14,6 +14,10 @@ import {
 import {
   buildCityMarkerDisplayItems,
 } from '../../utils/cityClusterUtils';
+import {
+  shouldShowUkraineFlagMarker,
+  UKRAINE_FLAG_MARKER_CITY_ID,
+} from '../../utils/ukraineMarkerVisibility';
 
 interface LeafletCityMarkersProps {
   cities: MapCityRecord[];
@@ -26,6 +30,7 @@ interface LeafletCityMarkersProps {
   onClearInfoCard: () => void;
   onMapBackgroundClick: () => void;
   countryFocusActive?: boolean;
+  selectedCountryCode?: string;
 }
 
 function markerSizeForTier(
@@ -160,9 +165,10 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   onClearInfoCard,
   onMapBackgroundClick,
   countryFocusActive = false,
+  selectedCountryCode,
 }: LeafletCityMarkersProps) {
   const map = useMap();
-  const { zoom, isMobile } = useLeafletMapViewport();
+  const { zoom, center, isMobile } = useLeafletMapViewport();
 
   const forcedIds = useMemo(() => {
     const ids = new Set<string>();
@@ -219,8 +225,32 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
       searchResultCityId ?? undefined,
       isMobile,
     );
-    return buildCityMarkerDisplayItems(visible, zoom, forcedIds);
-  }, [cities, zoom, selectedCityId, hoveredCityId ?? undefined, searchResultCityId, isMobile, forcedIds]);
+    const items = buildCityMarkerDisplayItems(visible, zoom, forcedIds);
+    const showUkraineFlag = shouldShowUkraineFlagMarker({
+      zoom,
+      mapCenterLat: center.lat,
+      mapCenterLng: center.lng,
+      selectedCountryCode,
+      selectedCityId,
+      hoveredCityId,
+      searchResultCityId,
+    });
+    if (showUkraineFlag) return items;
+    return items.filter(
+      (item) => item.type !== 'city' || item.city.id !== UKRAINE_FLAG_MARKER_CITY_ID,
+    );
+  }, [
+    cities,
+    zoom,
+    center.lat,
+    center.lng,
+    selectedCountryCode,
+    selectedCityId,
+    hoveredCityId ?? undefined,
+    searchResultCityId,
+    isMobile,
+    forcedIds,
+  ]);
 
   return (
     <>

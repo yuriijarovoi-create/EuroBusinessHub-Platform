@@ -7,20 +7,28 @@ import { isPremiumReferenceHub, isSecondaryLogisticsHubNode } from '../../data/h
 import { isPrimaryLogisticsHub } from '../../data/logisticsHubNetwork';
 import { useLeafletMapViewport } from '../../hooks/useLeafletMapViewport';
 import { isMapAlive, safeClearGroup } from '../../utils/mapLayerLifecycle';
+import {
+  isUkraineStrategicHubId,
+  shouldShowUkraineFlagMarker,
+} from '../../utils/ukraineMarkerVisibility';
 
 interface LeafletHubHaloLayerProps {
   cityMap: Map<string, MapCityRecord>;
   hoveredCityId?: string | null;
   selectedCityId?: string | null;
+  selectedCountryCode?: string;
+  searchResultCityId?: string;
 }
 
 export const LeafletHubHaloLayer = memo(function LeafletHubHaloLayer({
   cityMap,
   hoveredCityId,
   selectedCityId,
+  selectedCountryCode,
+  searchResultCityId,
 }: LeafletHubHaloLayerProps) {
   const map = useMap();
-  const { zoom } = useLeafletMapViewport();
+  const { zoom, center } = useLeafletMapViewport();
 
   const hubIds = useMemo(() => {
     const ids = new Set(MAJOR_HUB_IDS);
@@ -34,9 +42,20 @@ export const LeafletHubHaloLayer = memo(function LeafletHubHaloLayer({
     if (!isMapAlive(map)) return;
     if (zoom < 4.5) return;
 
+    const showUkraineFlag = shouldShowUkraineFlagMarker({
+      zoom,
+      mapCenterLat: center.lat,
+      mapCenterLng: center.lng,
+      selectedCountryCode,
+      selectedCityId: selectedCityId ?? undefined,
+      hoveredCityId,
+      searchResultCityId,
+    });
+
     const group = L.layerGroup().addTo(map);
 
     hubIds.forEach((hubId) => {
+      if (isUkraineStrategicHubId(hubId) && !showUkraineFlag) return;
       const city = cityMap.get(hubId);
       if (!city) return;
 
@@ -89,7 +108,7 @@ export const LeafletHubHaloLayer = memo(function LeafletHubHaloLayer({
     return () => {
       safeClearGroup(map, group);
     };
-  }, [map, cityMap, zoom, hubIds, hoveredCityId, selectedCityId]);
+  }, [map, cityMap, zoom, center.lat, center.lng, hubIds, hoveredCityId, selectedCityId, selectedCountryCode, searchResultCityId]);
 
   return null;
 });
