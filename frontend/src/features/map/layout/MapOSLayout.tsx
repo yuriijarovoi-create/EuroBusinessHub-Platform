@@ -5,6 +5,7 @@ import { MapEngineProvider } from '../engine/MapEngine';
 import { mapSessionStore, useMapSessionStore } from '../store/mapSessionStore';
 import type { MapCityRecord } from '../types/mapTypes';
 import { saveLastMapContext } from '../utils/lastMapContext';
+import { MobileMapControlCenter } from '../mobile';
 import styles from './MapOSLayout.module.css';
 import mapStyles from '../shell/BusinessOperatingMap.module.css';
 
@@ -23,10 +24,9 @@ export function MapOSLayout() {
 
   const session = useMapSessionStore();
   const isWorkspace = location.pathname.startsWith('/workspace');
-  const normalizedPath = location.pathname.replace(/\/+$/, '') || '/';
-  const isMapRoute = normalizedPath === '/map';
+  const isMapRoute = location.pathname === '/map';
   const focusCityId =
-    isMapRoute ? searchParams.get('city') ?? undefined : session.focusCityId;
+    location.pathname === '/map' ? searchParams.get('city') ?? undefined : session.focusCityId;
 
   const handleOpenWorkspace = useCallback(
     (city: MapCityRecord) => {
@@ -76,6 +76,7 @@ export function MapOSLayout() {
           <Outlet />
         </div>
       </div>
+      <MobileMapControlCenter enabled={isMapRoute && !isWorkspace} />
     </MapEngineProvider>
   );
 }
