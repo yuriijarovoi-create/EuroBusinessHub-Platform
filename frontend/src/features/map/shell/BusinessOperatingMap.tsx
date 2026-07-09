@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { countries } from '@/data/countries';
 import type { MapCountry } from '@shared/types';
 import { MapEngineProvider, useMapEngine } from '../engine/MapEngine';
@@ -32,6 +33,8 @@ export function BusinessOperatingMapInner({
   onOpenWorkspace,
 }: Omit<BusinessOperatingMapProps, 'useExternalProvider' | 'className'>) {
   const { t } = useTranslation('map');
+  const location = useLocation();
+  const navigate = useNavigate();
   const session = useMapSessionStore();
   const pendingReturnRestore = useMapSessionSelector((s) => s.pendingReturnRestore);
   const returnRestoreMode = useMapSessionSelector((s) => s.returnRestoreMode);
@@ -148,6 +151,43 @@ export function BusinessOperatingMapInner({
     [selectRoute],
   );
 
+  const returnToMainEuropeMapView = useCallback(() => {
+    const needsNavigation = location.pathname !== '/map' || session.viewMode === 'workspace';
+
+    mapSessionStore.patch({
+      viewMode: 'map',
+      workspaceCityId: null,
+      returnSnapshot: null,
+      pendingReturnRestore: false,
+      returnRestoreMode: null,
+      selectedCountryCode: undefined,
+      selectedBundeslandId: undefined,
+      selectedCityId: null,
+      infoCardCityId: null,
+      infoCardCountryCode: null,
+      selectedRouteId: null,
+      focusCityId: undefined,
+      homeFullEuropeOverview: true,
+    });
+
+    selectCountry(null, null);
+    selectCity(null, { fly: false, openWorkspace: false });
+    selectRoute(null);
+    resetToEurope(null);
+
+    if (needsNavigation) {
+      navigate('/map', { replace: true });
+    }
+  }, [
+    location.pathname,
+    navigate,
+    resetToEurope,
+    selectCity,
+    selectCountry,
+    selectRoute,
+    session.viewMode,
+  ]);
+
   const showSidebars = mode === 'full';
   const showActivity = mode !== 'hero';
   const showNav = mode !== 'hero';
@@ -208,6 +248,7 @@ export function BusinessOperatingMapInner({
             <MapCommandWheel
               activeMapContext={activeMapContext}
               onActiveMapContextChange={setActiveMapContext}
+              onReturnToMainMap={returnToMainEuropeMapView}
             />
             <EnterpriseActivityPanel activeMapContext={activeMapContext} />
           </>

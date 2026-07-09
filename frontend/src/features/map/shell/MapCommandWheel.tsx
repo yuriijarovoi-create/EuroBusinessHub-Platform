@@ -22,6 +22,7 @@ import styles from './BusinessOperatingMap.module.css';
 interface MapCommandWheelProps {
   activeMapContext: ActiveMapContext;
   onActiveMapContextChange: (context: ActiveMapContext) => void;
+  onReturnToMainMap?: () => void;
 }
 
 interface DragOffset {
@@ -47,6 +48,7 @@ function clampDragOffset(offset: DragOffset, baseRect: DOMRect): DragOffset {
 export function MapCommandWheel({
   activeMapContext,
   onActiveMapContextChange,
+  onReturnToMainMap,
 }: MapCommandWheelProps) {
   const isMobileMapUi = useMobileMapUi();
   const [isCommandCenterOpen, setIsCommandCenterOpen] = useState(false);
@@ -235,19 +237,21 @@ export function MapCommandWheel({
 
   const activateLayer = useCallback(
     (layerId: BusinessLayerId, label: string) => {
+      onReturnToMainMap?.();
       onActiveMapContextChange(setMobileBusinessLayer(layerId));
       showStatus(`${label} layer active`);
       close();
     },
-    [close, onActiveMapContextChange, showStatus],
+    [close, onActiveMapContextChange, onReturnToMainMap, showStatus],
   );
 
   const handleMapFocus = useCallback(() => {
+    onReturnToMainMap?.();
     onActiveMapContextChange(DEFAULT_ACTIVE_MAP_CONTEXT);
     setIsMoreOpen(false);
     showStatus('Europe overview active');
     close();
-  }, [close, onActiveMapContextChange, showStatus]);
+  }, [close, onActiveMapContextChange, onReturnToMainMap, showStatus]);
 
   const handleRadialSelect = useCallback(
     (id: MobileRadialOrbitId) => {
@@ -258,6 +262,7 @@ export function MapCommandWheel({
       }
 
       if (id === 'ai') {
+        onReturnToMainMap?.();
         onActiveMapContextChange(setMobileBusinessLayer('ai'));
         showStatus('AI Map Assistant coming soon');
         close();
@@ -270,7 +275,7 @@ export function MapCommandWheel({
       setIsMoreOpen(false);
       activateLayer(action.layerId, action.label);
     },
-    [activateLayer, close, onActiveMapContextChange, showStatus],
+    [activateLayer, close, onActiveMapContextChange, onReturnToMainMap, showStatus],
   );
 
   const handleMoreCategory = useCallback(
