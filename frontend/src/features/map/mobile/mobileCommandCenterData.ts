@@ -1,5 +1,6 @@
+import type { BusinessLayerId } from '../utils/mapLayerContext';
+
 export type MobileRadialOrbitId =
-  | 'layers'
   | 'transport'
   | 'jobs'
   | 'companies'
@@ -27,57 +28,60 @@ export type MobileMoreCategoryId =
   | 'legal'
   | 'education';
 
-export type MobileLayerSelectionId = Exclude<MobileRadialActionId, 'more'> | MobileMoreCategoryId;
-
 export interface MobileRadialOrbitAction {
   id: MobileRadialOrbitId;
   icon: string;
   label: string;
   angle: number;
-  toast: string;
+  layerId: BusinessLayerId | null;
 }
 
 export interface MobileMoreCategory {
   id: MobileMoreCategoryId;
   icon: string;
   title: string;
+  layerId: BusinessLayerId;
 }
 
 export const MOBILE_RADIAL_CENTER = {
   id: 'map' as const,
   icon: '🌍',
   label: 'Map',
-  toast: 'Map view active',
 };
 
-const ORBIT_STEP = 360 / 7;
+const ORBIT_STEP = 360 / 6;
 
-/** Seven orbit buttons — equal spacing on a true circle, starting from top. */
+/** Six orbit buttons — equal spacing on a true circle, starting from top. */
 export const MOBILE_RADIAL_ORBIT: MobileRadialOrbitAction[] = [
-  { id: 'layers', icon: '🗺', label: 'Layers', angle: -90, toast: 'Layer manager coming soon' },
-  { id: 'transport', icon: '🚚', label: 'Transport', angle: -90 + ORBIT_STEP * 1, toast: 'Transport selected' },
-  { id: 'jobs', icon: '💼', label: 'Jobs', angle: -90 + ORBIT_STEP * 2, toast: 'Jobs selected' },
-  { id: 'companies', icon: '🏢', label: 'Companies', angle: -90 + ORBIT_STEP * 3, toast: 'Companies selected' },
-  { id: 'warehouses', icon: '📦', label: 'Warehouses', angle: -90 + ORBIT_STEP * 4, toast: 'Warehouses selected' },
-  { id: 'ai', icon: '🤖', label: 'AI', angle: -90 + ORBIT_STEP * 5, toast: 'AI Map Assistant coming soon' },
-  { id: 'more', icon: '⚙', label: 'More', angle: -90 + ORBIT_STEP * 6, toast: 'More layers' },
+  { id: 'transport', icon: '🚚', label: 'Transport', angle: -90, layerId: 'transport' },
+  { id: 'jobs', icon: '💼', label: 'Jobs', angle: -90 + ORBIT_STEP, layerId: 'jobs' },
+  { id: 'companies', icon: '🏢', label: 'Companies', angle: -90 + ORBIT_STEP * 2, layerId: 'companies' },
+  { id: 'warehouses', icon: '📦', label: 'Warehouses', angle: -90 + ORBIT_STEP * 3, layerId: 'warehouses' },
+  { id: 'ai', icon: '🤖', label: 'AI', angle: -90 + ORBIT_STEP * 4, layerId: null },
+  { id: 'more', icon: '⚙', label: 'More', angle: -90 + ORBIT_STEP * 5, layerId: null },
 ];
 
 export const MOBILE_MORE_CATEGORIES: MobileMoreCategory[] = [
-  { id: 'marketplace', icon: '🛒', title: 'Marketplace' },
-  { id: 'partners', icon: '🤝', title: 'Partners' },
-  { id: 'academy', icon: '🎓', title: 'Academy' },
-  { id: 'digital-products', icon: '💻', title: 'Digital Products' },
-  { id: 'events', icon: '📅', title: 'Events' },
-  { id: 'investments', icon: '💰', title: 'Investments' },
-  { id: 'startups', icon: '🚀', title: 'Startups' },
-  { id: 'manufacturing', icon: '🏭', title: 'Manufacturing' },
-  { id: 'agriculture', icon: '🌾', title: 'Agriculture' },
-  { id: 'construction', icon: '🏗', title: 'Construction' },
-  { id: 'medical', icon: '🏥', title: 'Medical' },
-  { id: 'tourism', icon: '🏖', title: 'Tourism' },
-  { id: 'technology', icon: '💻', title: 'Technology' },
-  { id: 'finance', icon: '💳', title: 'Finance' },
-  { id: 'legal', icon: '⚖', title: 'Legal' },
-  { id: 'education', icon: '🎓', title: 'Education' },
+  { id: 'marketplace', icon: '🛒', title: 'Marketplace', layerId: 'marketplace' },
+  { id: 'partners', icon: '🤝', title: 'Partners', layerId: 'partners' },
+  { id: 'academy', icon: '🎓', title: 'Academy', layerId: 'academy' },
+  { id: 'digital-products', icon: '💻', title: 'Digital Products', layerId: 'digitalProducts' },
+  { id: 'events', icon: '📅', title: 'Events', layerId: 'events' },
+  { id: 'investments', icon: '💰', title: 'Investments', layerId: 'investments' },
+  { id: 'startups', icon: '🚀', title: 'Startups', layerId: 'startups' },
+  { id: 'manufacturing', icon: '🏭', title: 'Manufacturing', layerId: 'manufacturing' },
+  { id: 'agriculture', icon: '🌾', title: 'Agriculture', layerId: 'agriculture' },
+  { id: 'construction', icon: '🏗', title: 'Construction', layerId: 'construction' },
+  { id: 'medical', icon: '🏥', title: 'Medical', layerId: 'medical' },
+  { id: 'tourism', icon: '🏖', title: 'Tourism', layerId: 'tourism' },
+  { id: 'technology', icon: '💻', title: 'Technology', layerId: 'technology' },
+  { id: 'finance', icon: '💳', title: 'Finance', layerId: 'finance' },
+  { id: 'legal', icon: '⚖', title: 'Legal', layerId: 'legal' },
+  { id: 'education', icon: '🎓', title: 'Education', layerId: 'education' },
 ];
+
+export const MOBILE_MORE_LAYER_IDS = new Set(
+  MOBILE_MORE_CATEGORIES.map((category) => category.layerId),
+);
+
+export type MobileLayerSelectionId = BusinessLayerId | 'map';

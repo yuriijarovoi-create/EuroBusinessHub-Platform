@@ -113,12 +113,12 @@ function MobileCommandCenterPanelInner({
   );
 
   const handleMoreSelect = useCallback(
-    (id: MobileMoreCategoryId, title: string) => {
-      flashPress(`more-${id}`);
-      setActiveMore(id);
+    (category: (typeof MOBILE_MORE_CATEGORIES)[number]) => {
+      flashPress(`more-${category.id}`);
+      setActiveMore(category.id);
       setActiveRadial('more');
-      showToast(title);
-      onLayerSelect?.(id);
+      showToast(`${category.title} layer active`);
+      onLayerSelect?.(category.layerId);
     },
     [flashPress, onLayerSelect, showToast],
   );
@@ -160,7 +160,7 @@ function MobileCommandCenterPanelInner({
             className={`${styles.radialBtn} ${styles.radialCenter} ${
               activeRadial === MOBILE_RADIAL_CENTER.id ? styles.radialBtnActive : ''
             } ${pressedId === `radial-${MOBILE_RADIAL_CENTER.id}` ? styles.radialBtnPressed : ''}`}
-            onClick={() => handleRadialSelect(MOBILE_RADIAL_CENTER.id, MOBILE_RADIAL_CENTER.toast)}
+            onClick={() => handleRadialSelect(MOBILE_RADIAL_CENTER.id, `${MOBILE_RADIAL_CENTER.label} view active`)}
             aria-pressed={activeRadial === MOBILE_RADIAL_CENTER.id}
             aria-label={MOBILE_RADIAL_CENTER.label}
           >
@@ -180,7 +180,12 @@ function MobileCommandCenterPanelInner({
                 pressedId === `radial-${action.id}` ? styles.radialBtnPressed : ''
               }`}
               style={orbitAngleStyle(action.angle)}
-              onClick={() => handleRadialSelect(action.id, action.toast)}
+              onClick={() =>
+                handleRadialSelect(
+                  action.id,
+                  action.layerId ? `${action.label} layer active` : `${action.label} selected`,
+                )
+              }
               aria-pressed={activeRadial === action.id}
               aria-expanded={action.id === 'more' ? moreOpen : undefined}
               aria-label={action.label}
@@ -231,7 +236,7 @@ function MobileCommandCenterPanelInner({
                 className={`${styles.moreChip} ${
                   activeMore === category.id ? styles.moreChipActive : ''
                 } ${pressedId === `more-${category.id}` ? styles.moreChipPressed : ''}`}
-                onClick={() => handleMoreSelect(category.id, category.title)}
+                onClick={() => handleMoreSelect(category)}
                 aria-pressed={activeMore === category.id}
               >
                 <span className={styles.moreChipIcon} aria-hidden>

@@ -5,7 +5,6 @@ import { futureMapAPI } from '../engine/FutureAPIAdapter';
 import type { ActiveMapContext } from '../utils/mapLayerContext';
 import { DEFAULT_ACTIVE_MAP_CONTEXT } from '../utils/mapLayerContext';
 import { resolvePrimaryVisualMode } from '../utils/mapVisualModes';
-import { MapCommandWheel } from './MapCommandWheel';
 import styles from './BusinessOperatingMap.module.css';
 
 interface EnterpriseActivityPanelProps {
@@ -29,8 +28,6 @@ export function EnterpriseActivityPanel({
 
   return (
     <footer className={styles.activityDock} aria-label={t('activity.liveActivity')}>
-      <MapCommandWheel />
-
       <div className={styles.activitySection}>
         <span className={styles.activityEyebrow}>{t('operating.trending', { defaultValue: 'Trending cities' })}</span>
         <div className={styles.activityRow}>

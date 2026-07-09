@@ -9,6 +9,7 @@ import { MapNavigationBar } from '../components/MapNavigationBar';
 import { MapSidebar } from './MapSidebar';
 import { StatisticsPanel } from './StatisticsPanel';
 import { EnterpriseActivityPanel } from './EnterpriseActivityPanel';
+import { MapCommandWheel } from './MapCommandWheel';
 import { mapSessionStore, useMapSessionSelector, useMapSessionStore } from '../store/mapSessionStore';
 import { getRoutesForMapView } from '../data/routeData';
 import { DEFAULT_ACTIVE_MAP_CONTEXT, type ActiveMapContext } from '../utils/mapLayerContext';
@@ -202,7 +203,15 @@ export function BusinessOperatingMapInner({
           />
         )}
 
-        {showActivity && <EnterpriseActivityPanel activeMapContext={activeMapContext} />}
+        {showActivity && (
+          <>
+            <MapCommandWheel
+              activeMapContext={activeMapContext}
+              onActiveMapContextChange={setActiveMapContext}
+            />
+            <EnterpriseActivityPanel activeMapContext={activeMapContext} />
+          </>
+        )}
       </div>
     </div>
   );

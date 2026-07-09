@@ -362,7 +362,7 @@
   color: rgb(241 245 249);
 }
 
-.mapCommandCenter {
+.mapCommandPortal {
   display: none;
 }
 
@@ -438,14 +438,122 @@
     gap: 12px;
   }
 
-  .mapCommandCenter {
+  .mapCommandPortal {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 10040;
+    pointer-events: none;
+  }
+
+  .commandWheelFab {
+    position: fixed;
+    right: max(12px, env(safe-area-inset-right, 0px));
+    bottom: max(148px, calc(132px + env(safe-area-inset-bottom, 0px)));
+    z-index: 10045;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 48px;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(96 165 250 / 0.42);
+    background: linear-gradient(145deg, rgb(18 32 58 / 0.88), rgb(10 20 40 / 0.82));
+    backdrop-filter: blur(20px) saturate(1.35);
+    -webkit-backdrop-filter: blur(20px) saturate(1.35);
+    color: rgb(241 245 249);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    touch-action: manipulation;
+    pointer-events: auto;
+    box-shadow:
+      0 4px 20px rgb(0 0 0 / 0.35),
+      0 0 0 1px rgb(255 255 255 / 0.06) inset,
+      0 0 24px rgb(59 130 246 / 0.22);
+    transition:
+      transform 280ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      box-shadow 280ms ease,
+      border-color 280ms ease;
+    will-change: transform;
+  }
+
+  .commandWheelFab:active {
+    transform: scale(0.96);
+  }
+
+  .commandWheelFabOpen {
+    border-color: rgb(147 197 253 / 0.68);
+    box-shadow:
+      0 6px 24px rgb(0 0 0 / 0.4),
+      0 0 0 1px rgb(191 219 254 / 0.12) inset,
+      0 0 32px rgb(59 130 246 / 0.36);
+  }
+
+  .commandWheelFabIcon {
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .commandWheelFabLabel {
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .commandWheelBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10040;
+    background: rgb(2 8 23 / 0.12);
+    backdrop-filter: blur(6px) saturate(1.1);
+    -webkit-backdrop-filter: blur(6px) saturate(1.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 280ms cubic-bezier(0.34, 1.45, 0.64, 1);
+    will-change: opacity;
+  }
+
+  .commandWheelBackdropOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .commandWheelPanel {
+    position: fixed;
+    left: 50%;
+    bottom: max(108px, calc(96px + env(safe-area-inset-bottom, 0px)));
+    z-index: 10050;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 8px;
-    width: 100%;
-    margin: 0;
-    padding: 0 0 10px;
-    border-bottom: 1px solid rgb(51 65 85 / 0.35);
+    width: min(100%, 320px);
+    padding: 10px 12px 14px;
+    border: 1px solid rgb(96 165 250 / 0.18);
+    border-radius: 24px;
+    background: rgb(8 16 32 / 0.22);
+    backdrop-filter: blur(22px) saturate(1.4);
+    -webkit-backdrop-filter: blur(22px) saturate(1.4);
+    box-shadow:
+      0 12px 40px rgb(0 0 0 / 0.28),
+      0 0 0 1px rgb(255 255 255 / 0.04) inset,
+      0 0 36px rgb(59 130 246 / 0.14);
+    transform: translateX(-50%) scale(0.88);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      opacity 280ms ease;
+    will-change: transform, opacity;
+  }
+
+  .commandWheelPanelOpen {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .mapCommandEyebrow {
@@ -454,7 +562,7 @@
     font-weight: 600;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: rgb(100 116 139);
+    color: rgb(148 163 184);
     line-height: 1.2;
   }
 
@@ -534,6 +642,14 @@
       0 0 16px rgb(59 130 246 / 0.3),
       0 6px 20px rgb(0 0 0 / 0.28),
       inset 0 1px 0 rgb(191 219 254 / 0.14);
+  }
+
+  .commandWheelBtnMoreOpen {
+    border-color: rgb(129 140 248 / 0.58);
+    box-shadow:
+      0 0 0 1px rgb(99 102 241 / 0.32),
+      0 0 18px rgb(99 102 241 / 0.26),
+      0 6px 20px rgb(0 0 0 / 0.28);
   }
 
   .commandWheelCenter {
@@ -627,5 +743,121 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .commandMoreSheet {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    z-index: 10048;
+    max-height: 38vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 22px 22px 18px 18px;
+    border: 1px solid rgb(96 165 250 / 0.16);
+    background: rgb(8 16 32 / 0.28);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    box-shadow:
+      0 -12px 40px rgb(0 0 0 / 0.32),
+      0 0 0 1px rgb(255 255 255 / 0.04) inset,
+      0 0 32px rgb(59 130 246 / 0.1);
+    transform: translateY(calc(100% + 16px));
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      transform 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      opacity 260ms ease,
+      visibility 0ms linear 300ms;
+    overflow: hidden;
+  }
+
+  .commandMoreSheetOpen {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      transform 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      opacity 260ms ease,
+      visibility 0ms linear 0ms;
+  }
+
+  .commandMoreHeader {
+    flex-shrink: 0;
+    padding: 12px 16px 8px;
+    border-bottom: 1px solid rgb(51 65 85 / 0.32);
+  }
+
+  .commandMoreTitle {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(148 163 184);
+  }
+
+  .commandMoreBody {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 10px 12px 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .commandMoreChipGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .commandMoreChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 9px 11px;
+    border: 1px solid rgb(71 100 150 / 0.28);
+    border-radius: 12px;
+    background: rgb(10 18 36 / 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgb(226 232 240);
+    text-align: left;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
+  }
+
+  .commandMoreChip:active {
+    transform: scale(0.97);
+  }
+
+  .commandMoreChipActive {
+    border-color: rgb(96 165 250 / 0.62);
+    background: rgb(30 58 95 / 0.62);
+    box-shadow:
+      0 0 0 1px rgb(59 130 246 / 0.28),
+      0 0 14px rgb(59 130 246 / 0.2);
+  }
+
+  .commandMoreChipIcon {
+    flex-shrink: 0;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .commandMoreChipLabel {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
   }
 }
