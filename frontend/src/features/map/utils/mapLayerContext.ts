@@ -103,6 +103,14 @@ export function setBusinessLayer(
   };
 }
 
+/** Mobile command center — one business layer at a time, logistics emphasis cleared. */
+export function setMobileBusinessLayer(layerId: BusinessLayerId | null): ActiveMapContext {
+  return {
+    logisticsLayer: null,
+    businessLayer: layerId,
+  };
+}
+
 export function getLogisticsLayerLabel(layerId: LogisticsLayerId): string {
   return LOGISTICS_LAYER_OPTIONS.find((entry) => entry.id === layerId)?.label ?? layerId;
 }

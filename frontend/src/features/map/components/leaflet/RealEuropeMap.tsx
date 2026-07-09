@@ -77,6 +77,7 @@ interface RealEuropeMapProps {
   selectedRouteId?: string;
   onOpenWorkspace?: (city: MapCityRecord) => void;
   activeMapContext?: ActiveMapContext;
+  showLogisticsOverlays?: boolean;
   children?: React.ReactNode;
 }
 
@@ -107,6 +108,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   selectedRouteId,
   onOpenWorkspace,
   activeMapContext = DEFAULT_ACTIVE_MAP_CONTEXT,
+  showLogisticsOverlays = true,
   children,
 }: RealEuropeMapProps) {
   const [leafletMap, setLeafletMap] = useState<LeafletMap | null>(null);
@@ -225,13 +227,15 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           )}
           {layers.routes && (
             <>
-              <LeafletHubHaloLayer
-                cityMap={routeCityMap}
-                hoveredCityId={hoveredCityId}
-                selectedCityId={selectedCityId}
-                selectedCountryCode={selectedCountryCode}
-                searchResultCityId={searchResultCityId}
-              />
+              {showLogisticsOverlays ? (
+                <LeafletHubHaloLayer
+                  cityMap={routeCityMap}
+                  hoveredCityId={hoveredCityId}
+                  selectedCityId={selectedCityId}
+                  selectedCountryCode={selectedCountryCode}
+                  searchResultCityId={searchResultCityId}
+                />
+              ) : null}
               <LeafletRouteLayer
                 routes={routes}
                 cityMap={routeCityMap}
@@ -243,11 +247,15 @@ export const RealEuropeMap = memo(function RealEuropeMap({
                 onRouteSelect={onRouteSelect}
                 activeMapContext={activeMapContext}
               />
-              <LeafletPortLayer cityMap={routeCityMap} />
-              <LeafletAirportLayer cityMap={routeCityMap} />
+              {showLogisticsOverlays ? (
+                <>
+                  <LeafletPortLayer cityMap={routeCityMap} />
+                  <LeafletAirportLayer cityMap={routeCityMap} />
+                </>
+              ) : null}
             </>
           )}
-          {selectedCountryCode === 'DE' && (
+          {selectedCountryCode === 'DE' && showLogisticsOverlays && (
             <LeafletGermanyInfrastructureLayer
               active
               layers={layers}

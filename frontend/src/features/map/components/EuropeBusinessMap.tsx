@@ -1,5 +1,11 @@
 import { useCallback, useMemo, useState, useEffect } from 'react';
 import { isMobileViewport } from '../utils/cityVisibilityUtils';
+import {
+  filterCitiesByBusinessLayer,
+  filterRoutesByBusinessLayer,
+  getMobileBusinessLayerFilter,
+  shouldShowMobileLogisticsOverlays,
+} from '../utils/mapBusinessLayerFilter';
 import type { MapCountry } from '@shared/types';
 import type { MapLayerState } from '../types/mapTypes';
 import type { MapCityRecord } from '../types/mapTypes';
@@ -106,11 +112,24 @@ export function EuropeBusinessMap({
   }, [selectedCountryCode]);
 
   const visibleCities = useMemo(() => {
+    let cities = allCountryCities;
     if (selectedCountryCode === 'DE' && selectedBundeslandId) {
-      return allCountryCities.filter((c) => CITY_BUNDESLAND_MAP[c.id] === selectedBundeslandId);
+      cities = allCountryCities.filter((c) => CITY_BUNDESLAND_MAP[c.id] === selectedBundeslandId);
     }
-    return allCountryCities;
-  }, [allCountryCities, selectedCountryCode, selectedBundeslandId]);
+
+    const mobileLayer = getMobileBusinessLayerFilter(activeMapContext);
+    if (mobileLayer) {
+      cities = filterCitiesByBusinessLayer(cities, mobileLayer, session.selectedCityId);
+    }
+
+    return cities;
+  }, [
+    allCountryCities,
+    selectedCountryCode,
+    selectedBundeslandId,
+    activeMapContext,
+    session.selectedCityId,
+  ]);
 
   const cityMap = useMemo(
     () => new Map(visibleCities.map((c) => [c.id, c])),
@@ -125,8 +144,18 @@ export function EuropeBusinessMap({
 
   const routes = useMemo(() => {
     const base = getRoutesForMapView(selectedCountryCode);
-    return filterRoutesByLayers(base, layers);
-  }, [selectedCountryCode, layers]);
+    let filtered = filterRoutesByLayers(base, layers);
+    const mobileLayer = getMobileBusinessLayerFilter(activeMapContext);
+    if (mobileLayer) {
+      filtered = filterRoutesByBusinessLayer(filtered, mobileLayer);
+    }
+    return filtered;
+  }, [selectedCountryCode, layers, activeMapContext]);
+
+  const showLogisticsOverlays = useMemo(
+    () => shouldShowMobileLogisticsOverlays(activeMapContext),
+    [activeMapContext],
+  );
 
   const selectedRoute = useMemo(() => {
     if (!session.selectedRouteId) return null;
@@ -307,6 +336,7 @@ export function EuropeBusinessMap({
           selectedRouteId={selectedRoute?.id}
           onOpenWorkspace={onOpenWorkspace}
           activeMapContext={activeMapContext}
+          showLogisticsOverlays={showLogisticsOverlays}
         >
           <div className={styles.mapControlsSlot}>
             <MapControls

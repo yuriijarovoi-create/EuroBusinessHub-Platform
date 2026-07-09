@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import {
   MOBILE_MORE_CATEGORIES,
@@ -11,8 +11,9 @@ import {
 import { useMobileMapUi } from '../mobile/useMobileMapUi';
 import {
   DEFAULT_ACTIVE_MAP_CONTEXT,
+  getBusinessLayerLabel,
   isEuropeOverview,
-  setBusinessLayer,
+  setMobileBusinessLayer,
   type ActiveMapContext,
   type BusinessLayerId,
 } from '../utils/mapLayerContext';
@@ -23,6 +24,26 @@ interface MapCommandWheelProps {
   onActiveMapContextChange: (context: ActiveMapContext) => void;
 }
 
+interface DragOffset {
+  x: number;
+  y: number;
+}
+
+const VIEWPORT_MARGIN = 10;
+const DRAG_THRESHOLD_PX = 8;
+
+function clampDragOffset(offset: DragOffset, baseRect: DOMRect): DragOffset {
+  const maxX = window.innerWidth - VIEWPORT_MARGIN - baseRect.right;
+  const minX = VIEWPORT_MARGIN - baseRect.left;
+  const maxY = window.innerHeight - VIEWPORT_MARGIN - baseRect.bottom;
+  const minY = VIEWPORT_MARGIN - baseRect.top;
+
+  return {
+    x: Math.min(maxX, Math.max(minX, offset.x)),
+    y: Math.min(maxY, Math.max(minY, offset.y)),
+  };
+}
+
 export function MapCommandWheel({
   activeMapContext,
   onActiveMapContextChange,
@@ -31,7 +52,22 @@ export function MapCommandWheel({
   const [isCommandCenterOpen, setIsCommandCenterOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [portalReady, setPortalReady] = useState(false);
-  const [toast, setToast] = useState<string | null>(null);
+  const [statusToast, setStatusToast] = useState<string | null>(null);
+  const [dragOffset, setDragOffset] = useState<DragOffset>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+
+  const panelRef = useRef<HTMLElement | null>(null);
+  const baseRectRef = useRef<DOMRect | null>(null);
+  const dragSessionRef = useRef({
+    active: false,
+    moved: false,
+    pointerId: -1,
+    startX: 0,
+    startY: 0,
+    originX: 0,
+    originY: 0,
+  });
+  const suppressClickRef = useRef(false);
 
   useEffect(() => {
     setPortalReady(true);
@@ -40,14 +76,31 @@ export function MapCommandWheel({
   useEffect(() => {
     if (!isCommandCenterOpen) {
       setIsMoreOpen(false);
+      setDragOffset({ x: 0, y: 0 });
+      setIsDragging(false);
+      baseRectRef.current = null;
     }
   }, [isCommandCenterOpen]);
 
+  useLayoutEffect(() => {
+    if (!isCommandCenterOpen || !panelRef.current) return undefined;
+
+    const captureBaseRect = () => {
+      if (!panelRef.current) return;
+      setDragOffset({ x: 0, y: 0 });
+      baseRectRef.current = panelRef.current.getBoundingClientRect();
+    };
+
+    captureBaseRect();
+    const frame = window.requestAnimationFrame(captureBaseRect);
+    return () => window.cancelAnimationFrame(frame);
+  }, [isCommandCenterOpen]);
+
   useEffect(() => {
-    if (!toast) return undefined;
-    const timer = window.setTimeout(() => setToast(null), 2400);
+    if (!statusToast) return undefined;
+    const timer = window.setTimeout(() => setStatusToast(null), 2400);
     return () => window.clearTimeout(timer);
-  }, [toast]);
+  }, [statusToast]);
 
   useEffect(() => {
     if (!isCommandCenterOpen || typeof document === 'undefined') return;
@@ -70,6 +123,20 @@ export function MapCommandWheel({
     return 'map';
   }, [activeMapContext]);
 
+  const activeLayerLabel = useMemo(() => {
+    if (!activeMapContext.businessLayer) return null;
+    return getBusinessLayerLabel(activeMapContext.businessLayer);
+  }, [activeMapContext.businessLayer]);
+
+  const panelDragStyle = useMemo(
+    () =>
+      ({
+        '--panel-drag-x': `${dragOffset.x}px`,
+        '--panel-drag-y': `${dragOffset.y}px`,
+      }) as CSSProperties,
+    [dragOffset],
+  );
+
   const toggle = useCallback(() => {
     setIsCommandCenterOpen((current) => !current);
   }, []);
@@ -80,22 +147,107 @@ export function MapCommandWheel({
   }, []);
 
   const showStatus = useCallback((message: string) => {
-    setToast(message);
+    setStatusToast(message);
+  }, []);
+
+  const isDragTarget = useCallback((target: EventTarget | null) => {
+    if (!(target instanceof HTMLElement)) return false;
+    if (target.closest(`.${styles.commandWheelBtn}`)) return false;
+    return Boolean(
+      target.closest(`.${styles.commandWheelDragHandle}`) ||
+        target.closest(`.${styles.commandWheelPanel}`),
+    );
+  }, []);
+
+  const handlePanelPointerDown = useCallback(
+    (event: React.PointerEvent<HTMLElement>) => {
+      if (!isDragTarget(event.target)) return;
+
+      const panel = panelRef.current;
+      if (!panel) return;
+
+      if (!baseRectRef.current) {
+        baseRectRef.current = panel.getBoundingClientRect();
+      }
+
+      dragSessionRef.current = {
+        active: true,
+        moved: false,
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        originX: dragOffset.x,
+        originY: dragOffset.y,
+      };
+
+      panel.setPointerCapture(event.pointerId);
+    },
+    [dragOffset.x, dragOffset.y, isDragTarget],
+  );
+
+  const handlePanelPointerMove = useCallback((event: React.PointerEvent<HTMLElement>) => {
+    const session = dragSessionRef.current;
+    if (!session.active || session.pointerId !== event.pointerId) return;
+
+    const deltaX = event.clientX - session.startX;
+    const deltaY = event.clientY - session.startY;
+
+    if (!session.moved && Math.hypot(deltaX, deltaY) < DRAG_THRESHOLD_PX) return;
+
+    session.moved = true;
+    setIsDragging(true);
+
+    const baseRect = baseRectRef.current;
+    if (!baseRect) return;
+
+    const nextOffset = clampDragOffset(
+      { x: session.originX + deltaX, y: session.originY + deltaY },
+      baseRect,
+    );
+    setDragOffset(nextOffset);
+  }, []);
+
+  const endPanelDrag = useCallback((event: React.PointerEvent<HTMLElement>) => {
+    const session = dragSessionRef.current;
+    if (!session.active || session.pointerId !== event.pointerId) return;
+
+    if (session.moved) {
+      suppressClickRef.current = true;
+      window.setTimeout(() => {
+        suppressClickRef.current = false;
+      }, 0);
+    }
+
+    session.active = false;
+    setIsDragging(false);
+
+    if (panelRef.current?.hasPointerCapture(event.pointerId)) {
+      panelRef.current.releasePointerCapture(event.pointerId);
+    }
+  }, []);
+
+  const guardDragClick = useCallback((event: React.MouseEvent) => {
+    if (!suppressClickRef.current) return;
+    event.preventDefault();
+    event.stopPropagation();
+    suppressClickRef.current = false;
   }, []);
 
   const activateLayer = useCallback(
     (layerId: BusinessLayerId, label: string) => {
-      onActiveMapContextChange(setBusinessLayer(activeMapContext, layerId));
+      onActiveMapContextChange(setMobileBusinessLayer(layerId));
       showStatus(`${label} layer active`);
+      close();
     },
-    [activeMapContext, onActiveMapContextChange, showStatus],
+    [close, onActiveMapContextChange, showStatus],
   );
 
   const handleMapFocus = useCallback(() => {
     onActiveMapContextChange(DEFAULT_ACTIVE_MAP_CONTEXT);
     setIsMoreOpen(false);
+    showStatus('Europe overview active');
     close();
-  }, [close, onActiveMapContextChange]);
+  }, [close, onActiveMapContextChange, showStatus]);
 
   const handleRadialSelect = useCallback(
     (id: MobileRadialOrbitId) => {
@@ -106,7 +258,9 @@ export function MapCommandWheel({
       }
 
       if (id === 'ai') {
+        onActiveMapContextChange(setMobileBusinessLayer('ai'));
         showStatus('AI Map Assistant coming soon');
+        close();
         return;
       }
 
@@ -116,13 +270,12 @@ export function MapCommandWheel({
       setIsMoreOpen(false);
       activateLayer(action.layerId, action.label);
     },
-    [activateLayer, showStatus],
+    [activateLayer, close, onActiveMapContextChange, showStatus],
   );
 
   const handleMoreCategory = useCallback(
     (layerId: BusinessLayerId, title: string) => {
       activateLayer(layerId, title);
-      setIsMoreOpen(true);
     },
     [activateLayer],
   );
@@ -136,6 +289,19 @@ export function MapCommandWheel({
 
   return createPortal(
     <div className={styles.mapCommandPortal} aria-hidden={false}>
+      {activeLayerLabel ? (
+        <div className={styles.mobileActiveLayerBadge} role="status" aria-live="polite">
+          <span className={styles.mobileActiveLayerBadgeLabel}>Active layer:</span>
+          <span className={styles.mobileActiveLayerBadgeValue}>{activeLayerLabel}</span>
+        </div>
+      ) : null}
+
+      {statusToast ? (
+        <p className={styles.mobileLayerStatusToast} role="status" aria-live="polite">
+          {statusToast}
+        </p>
+      ) : null}
+
       <button
         type="button"
         className={`${styles.commandWheelFab} ${isCommandCenterOpen ? styles.commandWheelFabOpen : ''}`}
@@ -158,10 +324,24 @@ export function MapCommandWheel({
           />
 
           <section
-            className={`${styles.commandWheelPanel} ${styles.commandWheelPanelOpen}`}
+            ref={panelRef}
+            className={`${styles.commandWheelPanel} ${styles.commandWheelPanelOpen} ${
+              isDragging ? styles.commandWheelPanelDragging : ''
+            }`}
+            style={panelDragStyle}
             aria-label="Map control center"
             onClick={(event) => event.stopPropagation()}
+            onClickCapture={guardDragClick}
+            onPointerDown={handlePanelPointerDown}
+            onPointerMove={handlePanelPointerMove}
+            onPointerUp={endPanelDrag}
+            onPointerCancel={endPanelDrag}
           >
+            <div className={styles.commandWheelDragHandle} aria-hidden="true">
+              <span className={styles.commandWheelDragHandleBar} />
+              <span className={styles.commandWheelDragHandleDots}>⋮⋮</span>
+            </div>
+
             <span className={styles.mapCommandEyebrow}>Map control center</span>
 
             <div className={styles.commandWheelWrap}>
@@ -203,12 +383,6 @@ export function MapCommandWheel({
                   </button>
                 ))}
               </div>
-
-              {toast ? (
-                <p className={styles.commandWheelToast} role="status" aria-live="polite">
-                  {toast}
-                </p>
-              ) : null}
             </div>
           </section>
 
