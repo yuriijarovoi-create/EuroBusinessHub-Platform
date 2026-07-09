@@ -1,19 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { MobileAiPlaceholderModal } from './MobileAiPlaceholderModal';
-import { MobileLayersBottomSheet } from './MobileLayersBottomSheet';
+import { MobileCommandCenterPanel } from './MobileCommandCenterPanel';
+import type { MobileLayerSelectionId } from './mobileCommandCenterData';
 import { useMobileMapUi } from './useMobileMapUi';
 import styles from './mobileMapControls.module.css';
 
 interface MobileMapControlCenterProps {
   /** When false the control center is not mounted (e.g. workspace view). */
   enabled?: boolean;
+  /** Future hook for map layer activation — no backend wiring yet. */
+  onLayerSelect?: (layerId: MobileLayerSelectionId) => void;
 }
 
-export function MobileMapControlCenter({ enabled = true }: MobileMapControlCenterProps) {
+export function MobileMapControlCenter({
+  enabled = true,
+  onLayerSelect,
+}: MobileMapControlCenterProps) {
   const isMobileMapUi = useMobileMapUi();
-  const [layersOpen, setLayersOpen] = useState(false);
-  const [aiOpen, setAiOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [portalReady, setPortalReady] = useState(false);
 
   useEffect(() => {
@@ -24,51 +28,41 @@ export function MobileMapControlCenter({ enabled = true }: MobileMapControlCente
     event.stopPropagation();
   }, []);
 
+  const toggle = useCallback(() => {
+    setOpen((current) => !current);
+  }, []);
+
+  const close = useCallback(() => {
+    setOpen(false);
+  }, []);
+
   if (!enabled || !isMobileMapUi || !portalReady || typeof document === 'undefined') {
     return null;
   }
 
   return createPortal(
     <div className={styles.root} aria-hidden={false}>
-      <div className={styles.fabStack}>
-        <button
-          type="button"
-          className={`${styles.fab} ${styles.fabAi}`}
-          onClick={(event) => {
-            stopMapPropagation(event);
-            setAiOpen(true);
-          }}
-          onTouchStart={stopMapPropagation}
-          onMouseDown={stopMapPropagation}
-          aria-label="AI Map Assistant"
-        >
-          <span className={styles.fabIcon} aria-hidden>
-            🤖
-          </span>
-          <span>AI</span>
-        </button>
+      <button
+        type="button"
+        className={`${styles.fabMain} ${open ? styles.fabMainOpen : ''}`}
+        onClick={(event) => {
+          stopMapPropagation(event);
+          toggle();
+        }}
+        onTouchStart={stopMapPropagation}
+        onMouseDown={stopMapPropagation}
+        aria-label="Map control center"
+        aria-expanded={open}
+      >
+        <span className={styles.fabMainIcon} aria-hidden>
+          🗺
+        </span>
+        <span className={styles.fabMainLabel}>Map</span>
+      </button>
 
-        <button
-          type="button"
-          className={styles.fab}
-          onClick={(event) => {
-            stopMapPropagation(event);
-            setLayersOpen(true);
-          }}
-          onTouchStart={stopMapPropagation}
-          onMouseDown={stopMapPropagation}
-          aria-label="Open map layers"
-          aria-expanded={layersOpen}
-        >
-          <span className={styles.fabIcon} aria-hidden>
-            🗺
-          </span>
-          <span>Layers</span>
-        </button>
-      </div>
-
-      <MobileLayersBottomSheet open={layersOpen} onClose={() => setLayersOpen(false)} />
-      <MobileAiPlaceholderModal open={aiOpen} onClose={() => setAiOpen(false)} />
+      {open ? (
+        <MobileCommandCenterPanel open={open} onClose={close} onLayerSelect={onLayerSelect} />
+      ) : null}
     </div>,
     document.body,
   );

@@ -13,315 +13,477 @@
     pointer-events: none;
   }
 
-  .fabStack {
-    position: fixed;
-    left: max(12px, env(safe-area-inset-left, 0px));
-    bottom: max(108px, calc(92px + env(safe-area-inset-bottom, 0px)));
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    pointer-events: auto;
-    z-index: 10051;
-  }
+  /* ── Blue map control button (header, beside hamburger) ── */
+  .fabMain {
+    --fab-size: 56px;
+    --fab-top: max(
+      4px,
+      calc((var(--header-height, 4rem) - var(--fab-size)) / 2 + env(safe-area-inset-top, 0px))
+    );
+    --fab-left: calc(
+      max(var(--space-md, 16px), env(safe-area-inset-left, 0px)) + 2.5rem + 10px
+    );
 
-  .fab {
+    position: fixed;
+    top: var(--fab-top);
+    left: var(--fab-left);
+    bottom: auto;
+    z-index: 10100;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    min-width: 52px;
-    height: 52px;
-    padding: 0 14px;
+    gap: 7px;
+    min-width: var(--fab-size);
+    min-height: var(--fab-size);
+    padding: 0 16px;
     border-radius: 999px;
-    border: 1px solid rgb(148 163 184 / 0.28);
-    background: rgb(15 23 42 / 0.62);
-    backdrop-filter: blur(18px) saturate(1.35);
-    -webkit-backdrop-filter: blur(18px) saturate(1.35);
+    border: 1px solid rgb(96 165 250 / 0.48);
+    background: linear-gradient(145deg, rgb(20 36 64 / 0.92) 0%, rgb(12 24 48 / 0.86) 100%);
+    backdrop-filter: blur(22px) saturate(1.45);
+    -webkit-backdrop-filter: blur(22px) saturate(1.45);
     color: rgb(241 245 249);
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     cursor: pointer;
     touch-action: manipulation;
+    pointer-events: auto;
     box-shadow:
-      0 4px 20px rgb(0 0 0 / 0.35),
-      0 0 0 1px rgb(255 255 255 / 0.06) inset,
-      0 0 24px rgb(59 130 246 / 0.12);
+      0 6px 28px rgb(0 0 0 / 0.38),
+      0 0 0 1px rgb(255 255 255 / 0.08) inset,
+      0 0 32px rgb(59 130 246 / 0.28);
     transition:
-      transform 200ms cubic-bezier(0.32, 0.72, 0, 1),
-      box-shadow 200ms ease,
-      border-color 200ms ease;
+      transform 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      box-shadow 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      border-color 300ms ease;
+    will-change: transform;
   }
 
-  .fab:active {
-    transform: scale(0.96);
+  .fabMain:active {
+    transform: scale(0.95);
   }
 
-  .fabIcon {
-    font-size: 16px;
+  .fabMainOpen {
+    border-color: rgb(147 197 253 / 0.72);
+    box-shadow:
+      0 8px 32px rgb(0 0 0 / 0.45),
+      0 0 0 1px rgb(191 219 254 / 0.14) inset,
+      0 0 44px rgb(59 130 246 / 0.42);
+  }
+
+  .fabMainIcon {
+    font-size: 18px;
     line-height: 1;
   }
 
-  .fabAi {
-    border-color: rgb(167 139 250 / 0.35);
-    box-shadow:
-      0 4px 20px rgb(0 0 0 / 0.35),
-      0 0 0 1px rgb(255 255 255 / 0.06) inset,
-      0 0 28px rgb(139 92 246 / 0.18);
+  .fabMainLabel {
+    font-size: 12px;
+    font-weight: 700;
   }
 
-  /* Bottom sheet */
-  .backdrop {
+  /* ── Radial backdrop ── */
+  .radialBackdrop {
     position: fixed;
     inset: 0;
     z-index: 10060;
-    background: rgb(2 6 23 / 0.45);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgb(2 8 23 / 0.2);
+    backdrop-filter: blur(8px) saturate(1.15);
+    -webkit-backdrop-filter: blur(8px) saturate(1.15);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 280ms cubic-bezier(0.32, 0.72, 0, 1);
+    transition: opacity 300ms cubic-bezier(0.34, 1.45, 0.64, 1);
+    will-change: opacity;
   }
 
-  .backdropOpen {
+  .radialBackdropOpen {
     opacity: 1;
     pointer-events: auto;
   }
 
-  .sheet {
+  /* ── Radial hub — expands from blue button center ── */
+  .radialAnchor {
+    --fab-size: 56px;
+    --fab-top: max(
+      4px,
+      calc((var(--header-height, 4rem) - var(--fab-size)) / 2 + env(safe-area-inset-top, 0px))
+    );
+    --fab-left: calc(
+      max(var(--space-md, 16px), env(safe-area-inset-left, 0px)) + 2.5rem + 10px
+    );
+
     position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10070;
-    max-height: min(72vh, 620px);
+    top: calc(var(--fab-top) + var(--fab-size) / 2);
+    left: calc(var(--fab-left) + var(--fab-size) / 2);
+    z-index: 10075;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      transform 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      opacity 280ms ease,
+      visibility 0ms linear 300ms;
+    will-change: transform, opacity;
+  }
+
+  .radialAnchorOpen {
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+    transition:
+      transform 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      opacity 280ms ease,
+      visibility 0ms linear 0ms;
+  }
+
+  .radialGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 240px;
+    height: 240px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgb(59 130 246 / 0.24) 0%,
+      rgb(59 130 246 / 0.08) 45%,
+      transparent 72%
+    );
+    filter: blur(4px);
+    pointer-events: none;
+  }
+
+  .radialHub {
+    --orbit-radius: 104px;
+    --orbit-btn-size: 56px;
+    --center-btn-size: 72px;
+
+    position: relative;
+    width: 280px;
+    height: 280px;
+  }
+
+  .radialHubOpen {
+    animation: radial-hub-in 300ms cubic-bezier(0.34, 1.45, 0.64, 1);
+  }
+
+  @keyframes radial-hub-in {
+    from {
+      opacity: 0.6;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .radialBtn {
     display: flex;
     flex-direction: column;
-    border-radius: 22px 22px 0 0;
-    border: 1px solid rgb(148 163 184 / 0.22);
-    border-bottom: none;
-    background: rgb(10 18 36 / 0.88);
-    backdrop-filter: blur(24px) saturate(1.4);
-    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px 4px;
+    border: 1px solid rgb(96 165 250 / 0.22);
+    border-radius: 50%;
+    background: linear-gradient(155deg, rgb(16 28 52 / 0.9), rgb(10 20 40 / 0.84));
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    color: rgb(226 232 240);
+    cursor: pointer;
+    touch-action: manipulation;
     box-shadow:
-      0 -12px 48px rgb(0 0 0 / 0.45),
-      0 0 0 1px rgb(255 255 255 / 0.04) inset;
-    transform: translateY(105%);
-    transition: transform 380ms cubic-bezier(0.32, 0.72, 0, 1);
-    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
-    pointer-events: auto;
-    touch-action: pan-y;
+      0 8px 24px rgb(0 0 0 / 0.32),
+      0 0 0 1px rgb(255 255 255 / 0.05) inset,
+      0 0 20px rgb(59 130 246 / 0.14);
+    transition:
+      transform 240ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      border-color 240ms ease,
+      box-shadow 240ms ease,
+      background 240ms ease;
+    will-change: transform;
   }
 
-  .sheetOpen {
+  .radialBtn:active,
+  .radialBtnPressed {
+    transform: scale(0.9);
+  }
+
+  .radialBtnActive {
+    border-color: rgb(147 197 253 / 0.68);
+    background: linear-gradient(155deg, rgb(32 64 110 / 0.94), rgb(20 44 82 / 0.88));
+    color: rgb(248 250 252);
+    box-shadow:
+      0 0 0 1px rgb(59 130 246 / 0.4),
+      0 0 28px rgb(59 130 246 / 0.36),
+      0 10px 28px rgb(0 0 0 / 0.34),
+      inset 0 1px 0 rgb(191 219 254 / 0.16);
+  }
+
+  .radialBtnMoreOpen {
+    border-color: rgb(129 140 248 / 0.58);
+    box-shadow:
+      0 0 0 1px rgb(99 102 241 / 0.34),
+      0 0 24px rgb(99 102 241 / 0.3),
+      0 8px 24px rgb(0 0 0 / 0.3);
+  }
+
+  .radialCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: var(--center-btn-size);
+    height: var(--center-btn-size);
+    min-width: 48px;
+    min-height: 48px;
+    transform: translate(-50%, -50%);
+  }
+
+  .radialCenter:active,
+  .radialCenter.radialBtnPressed {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  .radialCenter.radialBtnActive {
+    transform: translate(-50%, -50%);
+  }
+
+  .radialOrbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: var(--orbit-btn-size);
+    height: var(--orbit-btn-size);
+    min-width: 48px;
+    min-height: 48px;
+    transform: translate(-50%, -50%) rotate(var(--orbit-angle))
+      translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--orbit-angle)));
+  }
+
+  .radialOrbit:active,
+  .radialOrbit.radialBtnPressed {
+    transform: translate(-50%, -50%) rotate(var(--orbit-angle))
+      translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--orbit-angle))) scale(0.9);
+  }
+
+  .radialOrbit.radialBtnActive,
+  .radialOrbit.radialBtnMoreOpen {
+    transform: translate(-50%, -50%) rotate(var(--orbit-angle))
+      translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--orbit-angle)));
+  }
+
+  .radialIcon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .radialCenter .radialIcon {
+    font-size: 24px;
+  }
+
+  .radialLabel {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    max-width: 54px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.1;
+  }
+
+  .radialCenter .radialLabel {
+    font-size: 9px;
+  }
+
+  .radialToast {
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    z-index: 4;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgb(59 130 246 / 0.32);
+    background: rgb(12 22 42 / 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 11px;
+    font-weight: 600;
+    color: rgb(191 219 254);
+    white-space: nowrap;
+    box-shadow: 0 0 18px rgb(59 130 246 / 0.22);
+    pointer-events: none;
+    animation: radial-toast-in 220ms cubic-bezier(0.34, 1.45, 0.64, 1);
+  }
+
+  @keyframes radial-toast-in {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(6px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /* ── Second-level More panel ── */
+  .moreSheet {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    z-index: 10070;
+    max-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 28px 28px 22px 22px;
+    border: 1px solid rgb(148 163 184 / 0.18);
+    background: linear-gradient(
+      168deg,
+      rgb(14 26 50 / 0.9) 0%,
+      rgb(8 16 34 / 0.86) 55%,
+      rgb(6 12 28 / 0.88) 100%
+    );
+    backdrop-filter: blur(28px) saturate(1.5);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    box-shadow:
+      0 -16px 48px rgb(0 0 0 / 0.45),
+      0 0 0 1px rgb(255 255 255 / 0.04) inset,
+      0 0 40px rgb(59 130 246 / 0.12);
+    transform: translateY(calc(100% + 20px));
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      transform 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      opacity 260ms ease,
+      visibility 0ms linear 300ms;
+    will-change: transform, opacity;
+    overflow: hidden;
+  }
+
+  .moreSheetOpen {
     transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      transform 300ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      opacity 260ms ease,
+      visibility 0ms linear 0ms;
   }
 
-  .sheetHandle {
+  .moreHandle {
     flex-shrink: 0;
     display: flex;
     justify-content: center;
     padding: 10px 0 4px;
-    cursor: grab;
     touch-action: none;
   }
 
-  .sheetHandleBar {
+  .moreHandleBar {
     width: 40px;
     height: 4px;
     border-radius: 999px;
-    background: rgb(148 163 184 / 0.45);
+    background: linear-gradient(90deg, rgb(100 116 139 / 0.3), rgb(148 163 184 / 0.6), rgb(100 116 139 / 0.3));
   }
 
-  .sheetHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 4px 18px 12px;
-    border-bottom: 1px solid rgb(51 65 85 / 0.45);
+  .moreHeader {
+    flex-shrink: 0;
+    padding: 2px 18px 10px;
+    border-bottom: 1px solid rgb(51 65 85 / 0.35);
   }
 
-  .sheetTitle {
+  .moreTitle {
     margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: rgb(241 245 249);
-    letter-spacing: 0.01em;
-  }
-
-  .sheetClose {
-    width: 32px;
-    height: 32px;
-    border: 1px solid rgb(71 100 150 / 0.35);
-    border-radius: 10px;
-    background: rgb(15 25 48 / 0.65);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: rgb(203 213 225);
-    font-size: 18px;
-    line-height: 1;
-    cursor: pointer;
-    touch-action: manipulation;
   }
 
-  .sheetBody {
+  .moreSubtitle {
+    margin: 4px 0 0;
+    font-size: 11px;
+    color: rgb(100 116 139);
+  }
+
+  .moreBody {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: 8px 14px 16px;
+    padding: 12px 14px 16px;
     -webkit-overflow-scrolling: touch;
   }
 
-  .group {
-    border: 1px solid rgb(51 65 85 / 0.4);
-    border-radius: 14px;
-    background: rgb(15 23 42 / 0.45);
-    margin-bottom: 10px;
-    overflow: hidden;
+  .moreChipGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
-  .groupHeader {
-    width: 100%;
-    display: flex;
+  .moreChip {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
     gap: 8px;
-    padding: 12px 14px;
-    border: none;
-    background: transparent;
+    min-height: 48px;
+    padding: 10px 12px;
+    border: 1px solid rgb(71 100 150 / 0.28);
+    border-radius: 14px;
+    background: rgb(12 22 42 / 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: rgb(226 232 240);
-    font-size: 13px;
-    font-weight: 600;
     text-align: left;
     cursor: pointer;
     touch-action: manipulation;
-  }
-
-  .groupChevron {
-    font-size: 12px;
-    color: rgb(100 116 139);
-    transition: transform 200ms cubic-bezier(0.32, 0.72, 0, 1);
-  }
-
-  .groupChevronOpen {
-    transform: rotate(180deg);
-  }
-
-  .groupBody {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 280ms cubic-bezier(0.32, 0.72, 0, 1);
-  }
-
-  .groupBodyOpen {
-    grid-template-rows: 1fr;
-  }
-
-  .groupBodyInner {
-    overflow: hidden;
-  }
-
-  .chipGrid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 0 14px 14px;
-  }
-
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 12px;
-    border-radius: 999px;
-    border: 1px solid rgb(71 100 150 / 0.4);
-    background: rgb(30 58 95 / 0.35);
-    color: rgb(203 213 225);
-    font-size: 11px;
-    font-weight: 500;
-    cursor: pointer;
-    touch-action: manipulation;
-    transition:
-      background 150ms ease,
-      border-color 150ms ease,
-      transform 150ms ease;
-  }
-
-  .chip:active {
-    transform: scale(0.97);
-    border-color: rgb(59 130 246 / 0.45);
-    background: rgb(30 58 95 / 0.55);
-  }
-
-  /* AI placeholder modal */
-  .modalBackdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 10080;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
-    background: rgb(2 6 23 / 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 220ms ease;
-  }
-
-  .modalBackdropOpen {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .modalCard {
-    width: min(100%, 320px);
-    padding: 22px 20px;
-    border-radius: 18px;
-    border: 1px solid rgb(167 139 250 / 0.35);
-    background: rgb(12 20 38 / 0.92);
-    backdrop-filter: blur(20px) saturate(1.3);
-    -webkit-backdrop-filter: blur(20px) saturate(1.3);
     box-shadow:
-      0 20px 50px rgb(0 0 0 / 0.45),
-      0 0 40px rgb(139 92 246 / 0.15);
-    text-align: center;
-    transform: scale(0.92) translateY(8px);
-    transition: transform 300ms cubic-bezier(0.32, 0.72, 0, 1);
+      0 4px 12px rgb(0 0 0 / 0.2),
+      inset 0 1px 0 rgb(255 255 255 / 0.04);
+    transition:
+      transform 220ms cubic-bezier(0.34, 1.45, 0.64, 1),
+      border-color 220ms ease,
+      box-shadow 220ms ease,
+      background 220ms ease;
+    will-change: transform;
   }
 
-  .modalBackdropOpen .modalCard {
-    transform: scale(1) translateY(0);
+  .moreChip:active,
+  .moreChipPressed {
+    transform: scale(0.97);
   }
 
-  .modalIcon {
-    font-size: 28px;
-    margin-bottom: 10px;
+  .moreChipActive {
+    border-color: rgb(96 165 250 / 0.62);
+    background: linear-gradient(145deg, rgb(28 56 96 / 0.78), rgb(16 36 68 / 0.72));
+    box-shadow:
+      0 0 0 1px rgb(59 130 246 / 0.28),
+      0 0 18px rgb(59 130 246 / 0.2),
+      0 6px 14px rgb(0 0 0 / 0.26);
   }
 
-  .modalTitle {
-    margin: 0 0 6px;
+  .moreChipIcon {
+    flex-shrink: 0;
     font-size: 17px;
-    font-weight: 600;
-    color: rgb(241 245 249);
+    line-height: 1;
   }
 
-  .modalSubtitle {
-    margin: 0 0 18px;
-    font-size: 13px;
-    color: rgb(148 163 184);
-  }
-
-  .modalClose {
-    width: 100%;
-    padding: 10px 16px;
-    border-radius: 12px;
-    border: 1px solid rgb(139 92 246 / 0.4);
-    background: rgb(139 92 246 / 0.15);
-    color: rgb(226 232 240);
-    font-size: 13px;
+  .moreChipLabel {
+    font-size: 11px;
     font-weight: 600;
-    cursor: pointer;
-    touch-action: manipulation;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
   }
 }

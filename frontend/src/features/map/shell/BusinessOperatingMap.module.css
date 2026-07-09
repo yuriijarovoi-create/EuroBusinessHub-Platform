@@ -362,6 +362,10 @@
   color: rgb(241 245 249);
 }
 
+.mapCommandCenter {
+  display: none;
+}
+
 .liveBadge {
   display: inline-flex;
   align-items: center;
@@ -432,5 +436,196 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+
+  .mapCommandCenter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 10px;
+    border-bottom: 1px solid rgb(51 65 85 / 0.35);
+  }
+
+  .mapCommandEyebrow {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgb(100 116 139);
+    line-height: 1.2;
+  }
+
+  .commandWheelWrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2px 0 4px;
+  }
+
+  .commandWheelGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(220px, 68vw);
+    height: min(220px, 68vw);
+    transform: translate(-50%, -54%);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgb(59 130 246 / 0.18) 0%,
+      rgb(59 130 246 / 0.06) 42%,
+      transparent 72%
+    );
+    pointer-events: none;
+    filter: blur(2px);
+  }
+
+  .commandWheel {
+    --orbit-radius: min(88px, 27vw);
+    --orbit-btn-size: 54px;
+    --center-btn-size: 64px;
+
+    position: relative;
+    width: min(252px, 78vw);
+    height: min(252px, 78vw);
+    margin: 0 auto;
+  }
+
+  .commandWheelBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 5px 3px;
+    border-radius: 50%;
+    border: 1px solid rgb(71 100 150 / 0.38);
+    background: rgb(10 18 36 / 0.78);
+    backdrop-filter: blur(18px) saturate(1.15);
+    color: rgb(203 213 225);
+    cursor: pointer;
+    touch-action: manipulation;
+    box-shadow:
+      0 0 0 1px rgb(15 23 42 / 0.45),
+      0 6px 20px rgb(0 0 0 / 0.26),
+      inset 0 1px 0 rgb(148 163 184 / 0.1);
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease,
+      background 180ms ease;
+  }
+
+  .commandWheelBtn:active {
+    transform: scale(0.94);
+  }
+
+  .commandWheelBtnActive {
+    border-color: rgb(96 165 250 / 0.72);
+    background: rgb(30 58 95 / 0.62);
+    color: rgb(241 245 249);
+    box-shadow:
+      0 0 0 1px rgb(59 130 246 / 0.35),
+      0 0 16px rgb(59 130 246 / 0.3),
+      0 6px 20px rgb(0 0 0 / 0.28),
+      inset 0 1px 0 rgb(191 219 254 / 0.14);
+  }
+
+  .commandWheelCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: var(--center-btn-size);
+    height: var(--center-btn-size);
+    min-width: 48px;
+    min-height: 48px;
+    transform: translate(-50%, -50%);
+  }
+
+  .commandWheelCenter:active {
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+
+  .commandWheelCenter.commandWheelBtnActive {
+    transform: translate(-50%, -50%);
+  }
+
+  .commandWheelOrbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: var(--orbit-btn-size);
+    height: var(--orbit-btn-size);
+    min-width: 48px;
+    min-height: 48px;
+    transform: translate(-50%, -50%) rotate(var(--orbit-angle))
+      translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--orbit-angle)));
+  }
+
+  .commandWheelOrbit:active {
+    transform: translate(-50%, -50%) rotate(var(--orbit-angle))
+      translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--orbit-angle))) scale(0.94);
+  }
+
+  .commandWheelOrbit.commandWheelBtnActive {
+    transform: translate(-50%, -50%) rotate(var(--orbit-angle))
+      translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--orbit-angle)));
+  }
+
+  .commandWheelIcon {
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  .commandWheelCenter .commandWheelIcon {
+    font-size: 21px;
+  }
+
+  .commandWheelLabel {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+    text-align: center;
+    max-width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .commandWheelCenter .commandWheelLabel {
+    font-size: 9px;
+  }
+
+  .commandWheelToast {
+    margin: 8px 0 0;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgb(15 23 42 / 0.88);
+    border: 1px solid rgb(59 130 246 / 0.28);
+    font-size: 10px;
+    color: rgb(191 219 254);
+    text-align: center;
+    box-shadow: 0 0 12px rgb(59 130 246 / 0.18);
+    animation: bos-wheel-toast-in 200ms ease;
+  }
+
+  @keyframes bos-wheel-toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
