@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react';
 
-/** Phase 1 mobile map UI — active below desktop breakpoint (desktop is >=1024px). */
-export const MOBILE_MAP_UI_MAX_WIDTH = 1023;
+/** Mobile map control UI — phones only (desktop is >=769px). */
+export const MOBILE_MAP_UI_MAX_WIDTH = 768;
 
 function subscribe(listener: () => void): () => void {
   window.addEventListener('resize', listener);
@@ -18,4 +18,9 @@ function getServerSnapshot(): boolean {
 
 export function useMobileMapUi(): boolean {
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
+export function isMobileMapUiViewport(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth <= MOBILE_MAP_UI_MAX_WIDTH;
 }

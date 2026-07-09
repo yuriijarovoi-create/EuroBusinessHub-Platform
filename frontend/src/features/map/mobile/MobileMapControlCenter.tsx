@@ -1,23 +1,34 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { MobileAiPlaceholderModal } from './MobileAiPlaceholderModal';
 import { MobileLayersBottomSheet } from './MobileLayersBottomSheet';
 import { useMobileMapUi } from './useMobileMapUi';
 import styles from './mobileMapControls.module.css';
 
-export function MobileMapControlCenter() {
+interface MobileMapControlCenterProps {
+  /** When false the control center is not mounted (e.g. workspace view). */
+  enabled?: boolean;
+}
+
+export function MobileMapControlCenter({ enabled = true }: MobileMapControlCenterProps) {
   const isMobileMapUi = useMobileMapUi();
   const [layersOpen, setLayersOpen] = useState(false);
   const [aiOpen, setAiOpen] = useState(false);
+  const [portalReady, setPortalReady] = useState(false);
+
+  useEffect(() => {
+    setPortalReady(true);
+  }, []);
 
   const stopMapPropagation = useCallback((event: React.SyntheticEvent) => {
     event.stopPropagation();
   }, []);
 
-  if (!isMobileMapUi) {
+  if (!enabled || !isMobileMapUi || !portalReady || typeof document === 'undefined') {
     return null;
   }
 
-  return (
+  return createPortal(
     <div className={styles.root} aria-hidden={false}>
       <div className={styles.fabStack}>
         <button
@@ -58,6 +69,7 @@ export function MobileMapControlCenter() {
 
       <MobileLayersBottomSheet open={layersOpen} onClose={() => setLayersOpen(false)} />
       <MobileAiPlaceholderModal open={aiOpen} onClose={() => setAiOpen(false)} />
-    </div>
+    </div>,
+    document.body,
   );
 }

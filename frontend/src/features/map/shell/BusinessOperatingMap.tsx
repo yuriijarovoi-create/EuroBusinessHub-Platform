@@ -12,7 +12,6 @@ import { EnterpriseActivityPanel } from './EnterpriseActivityPanel';
 import { mapSessionStore, useMapSessionSelector, useMapSessionStore } from '../store/mapSessionStore';
 import { getRoutesForMapView } from '../data/routeData';
 import { DEFAULT_ACTIVE_MAP_CONTEXT, type ActiveMapContext } from '../utils/mapLayerContext';
-import { MobileMapControlCenter } from '../mobile';
 import styles from './BusinessOperatingMap.module.css';
 
 export type BusinessOperatingMapMode = 'full' | 'hero' | 'embed';
@@ -189,7 +188,6 @@ export function BusinessOperatingMapInner({
             externalLayers={state.layers}
             activeMapContext={activeMapContext}
           />
-          {showSidebars && <MobileMapControlCenter />}
         </div>
 
         {showSidebars && (

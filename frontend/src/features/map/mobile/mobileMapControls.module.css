@@ -1,26 +1,27 @@
-/* Mobile Map Control Center — only active below desktop (max-width: 1023px) */
+/* Mobile Map Control Center — phones only (max-width: 768px) */
 
 .root {
   display: none;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 768px) {
   .root {
     display: block;
-    position: absolute;
+    position: fixed;
     inset: 0;
-    z-index: 1100;
+    z-index: 10050;
     pointer-events: none;
   }
 
   .fabStack {
-    position: absolute;
+    position: fixed;
     left: max(12px, env(safe-area-inset-left, 0px));
-    bottom: max(16px, env(safe-area-inset-bottom, 0px));
+    bottom: max(108px, calc(92px + env(safe-area-inset-bottom, 0px)));
     display: flex;
     flex-direction: column;
     gap: 10px;
     pointer-events: auto;
+    z-index: 10051;
   }
 
   .fab {
@@ -73,7 +74,7 @@
   .backdrop {
     position: fixed;
     inset: 0;
-    z-index: 1200;
+    z-index: 10060;
     background: rgb(2 6 23 / 0.45);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -92,7 +93,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1210;
+    z-index: 10070;
     max-height: min(72vh, 620px);
     display: flex;
     flex-direction: column;
@@ -254,7 +255,7 @@
   .modalBackdrop {
     position: fixed;
     inset: 0;
-    z-index: 1300;
+    z-index: 10080;
     display: flex;
     align-items: center;
     justify-content: center;
