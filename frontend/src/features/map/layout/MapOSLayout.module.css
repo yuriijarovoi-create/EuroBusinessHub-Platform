@@ -5,6 +5,7 @@
   isolation: isolate;
 }
 
+/* Default (mobile ≤768px): preserve existing stacked layout behaviour */
 .mapPane {
   position: absolute;
   inset: 0;
@@ -29,4 +30,53 @@
   opacity: 1;
   pointer-events: auto;
   background: var(--color-bg, rgb(8 14 28));
+}
+
+/**
+ * Desktop (≥769px): keep the visible view in normal document flow so osRoot
+ * height is derived from the active pane. Prevents the map grid from retaining
+ * a stale height after leaving workspace (footer/activity dock shifting up).
+ */
+@media (min-width: 769px) {
+  .mapPane {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .mapPaneHidden {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .workspacePane {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    min-height: 0;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 225ms ease;
+  }
+
+  .workspacePaneActive {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    min-height: inherit;
+    opacity: 1;
+    pointer-events: auto;
+    background: var(--color-bg, rgb(8 14 28));
+  }
 }

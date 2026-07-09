@@ -396,6 +396,12 @@
   }
 }
 
+@media (min-width: 769px) {
+  .operatingLayout {
+    grid-template-rows: auto auto;
+  }
+}
+
 @media (max-width: 1100px) {
   .operatingLayout {
     grid-template-columns: minmax(0, 1fr);

@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback } from 'react';
+import { Suspense, lazy, useCallback, useLayoutEffect, useRef } from 'react';
 import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MapEngineProvider } from '../engine/MapEngine';
@@ -39,6 +39,19 @@ export function MapOSLayout() {
     },
     [navigate],
   );
+
+  const wasWorkspaceRef = useRef(isWorkspace);
+  useLayoutEffect(() => {
+    const returnedToMap = wasWorkspaceRef.current && !isWorkspace;
+    wasWorkspaceRef.current = isWorkspace;
+
+    if (!returnedToMap || typeof window === 'undefined') return;
+
+    // Desktop: after workspace pane leaves flow, remeasure map shell + Leaflet canvas.
+    if (window.matchMedia('(min-width: 769px)').matches) {
+      window.dispatchEvent(new Event('resize'));
+    }
+  }, [isWorkspace]);
 
   return (
     <MapEngineProvider onOpenWorkspace={handleOpenWorkspace}>
