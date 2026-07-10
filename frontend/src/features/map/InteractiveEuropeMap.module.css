@@ -89,17 +89,20 @@
   position: absolute;
   top: var(--space-md);
   left: var(--space-md);
-  z-index: 20;
+  z-index: 1000;
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  flex-wrap: wrap;
-  padding: var(--space-xs) var(--space-md);
+  flex-wrap: nowrap;
+  padding: var(--space-xs) var(--space-sm) var(--space-xs) var(--space-md);
   background: var(--map-surface);
   backdrop-filter: blur(12px);
   border: 1px solid var(--map-panel-border);
   border-radius: var(--radius-full);
   font-size: var(--font-size-xs);
+  min-height: 44px;
+  max-width: calc(100% - var(--space-md) * 2);
+  box-sizing: border-box;
 }
 
 .navCrumb {
@@ -236,6 +239,8 @@
     top: var(--space-sm);
     left: var(--space-sm);
     right: var(--space-sm);
+    max-width: none;
+    width: auto;
     font-size: 0.625rem;
   }
 

@@ -20,6 +20,14 @@
     "backToEurope": "Back to Europe",
     "selectCity": "Select city"
   },
+  "search": {
+    "placeholder": "Search city",
+    "open": "Search city",
+    "close": "Close search",
+    "results": "City search results",
+    "noResults": "No matching cities",
+    "noLayerData": "No data is available for this location in the current layer yet."
+  },
   "layers": {
     "title": "Layers",
     "routes": "All Routes",

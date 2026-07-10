@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import type { MapSearchTarget } from '../engine/types';
-import { getAllMapCities } from '../data/mapData';
+import { getMapCityById } from '../data/mapData';
+import { normalizeSearchText, filterCitiesForSearch } from '../utils/citySearchUtils';
 
 /**
  * Search → map fly controller. Wire GlobalSearch results here.
@@ -8,15 +9,10 @@ import { getAllMapCities } from '../data/mapData';
 export function useMapSearchController(flyTo?: (target: MapSearchTarget) => void) {
   return useCallback(
     (query: string) => {
-      const normalized = query.trim().toLowerCase();
+      const normalized = normalizeSearchText(query);
       if (!normalized || !flyTo) return false;
 
-      const match = getAllMapCities().find(
-        (c) =>
-          c.id === normalized ||
-          c.name.toLowerCase() === normalized ||
-          c.name.toLowerCase().startsWith(normalized),
-      );
+      const match = filterCitiesForSearch(query)[0]?.city ?? getMapCityById(normalized);
 
       if (!match) return false;
 

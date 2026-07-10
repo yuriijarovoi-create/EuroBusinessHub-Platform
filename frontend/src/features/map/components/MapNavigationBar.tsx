@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import type { MapCountry } from '@shared/types';
 import { useOptionalMapContext } from '../context/MapContext';
+import type { MapCityRecord } from '../types/mapTypes';
+import type { ActiveMapContext } from '../utils/mapLayerContext';
+import { MapCitySearch } from './MapCitySearch';
 import styles from '../InteractiveEuropeMap.module.css';
 
 export interface MapNavigationBarProps {
@@ -8,12 +11,21 @@ export interface MapNavigationBarProps {
   countryFocusActive?: boolean;
   selectedCountry?: MapCountry | null;
   onExitCountryFocus?: () => void;
+  /** Geographic city focus (search / selection) */
+  selectedCityId?: string | null;
+  activeMapContext?: ActiveMapContext;
+  onCitySearchSelect?: (city: MapCityRecord) => void;
+  onResetGeographicFocus?: () => void;
 }
 
 export function MapNavigationBar({
   countryFocusActive: controlledFocus,
   selectedCountry: controlledCountry,
   onExitCountryFocus,
+  selectedCityId = null,
+  activeMapContext,
+  onCitySearchSelect,
+  onResetGeographicFocus,
 }: MapNavigationBarProps = {}) {
   const { t } = useTranslation('map');
   const legacy = useOptionalMapContext();
@@ -24,20 +36,36 @@ export function MapNavigationBar({
     : Boolean(legacy && legacy.navigation.phase !== 'europe');
   const selectedCountry = isControlled ? (controlledCountry ?? null) : (legacy?.selectedCountry ?? null);
 
-  const handleEuropeClick = () => {
+  const handleResetFocus = () => {
     if (countryFocusActive) {
       if (onExitCountryFocus) onExitCountryFocus();
       else legacy?.resetToEurope();
       return;
     }
+    if (onResetGeographicFocus) {
+      onResetGeographicFocus();
+      return;
+    }
     legacy?.resetToEurope();
   };
 
+  const showEnterpriseSearch = Boolean(activeMapContext && onCitySearchSelect && onResetGeographicFocus);
+
   return (
     <div className={styles.navBar} role="navigation" aria-label={t('nav.europe')}>
-      <button type="button" className={styles.navCrumb} onClick={handleEuropeClick}>
-        {t('nav.europe')}
-      </button>
+      {showEnterpriseSearch ? (
+        <MapCitySearch
+          selectedCityId={selectedCityId}
+          activeMapContext={activeMapContext!}
+          onSelectCity={(city) => onCitySearchSelect!(city)}
+          onResetFocus={handleResetFocus}
+          countryFocusActive={countryFocusActive}
+        />
+      ) : (
+        <button type="button" className={styles.navCrumb} onClick={handleResetFocus}>
+          {t('nav.europe')}
+        </button>
+      )}
       {selectedCountry && countryFocusActive && (
         <>
           <span className={styles.navSep} aria-hidden>

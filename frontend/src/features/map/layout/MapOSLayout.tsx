@@ -24,7 +24,9 @@ export function MapOSLayout() {
   const session = useMapSessionStore();
   const isWorkspace = location.pathname.startsWith('/workspace');
   const focusCityId =
-    location.pathname === '/map' ? searchParams.get('city') ?? undefined : session.focusCityId;
+    location.pathname === '/map'
+      ? session.focusCityId ?? searchParams.get('city') ?? undefined
+      : session.focusCityId;
 
   const handleOpenWorkspace = useCallback(
     (city: MapCityRecord) => {

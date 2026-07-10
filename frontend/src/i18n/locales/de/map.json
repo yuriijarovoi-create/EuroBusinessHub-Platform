@@ -20,6 +20,14 @@
     "backToEurope": "Zurück zu Europa",
     "selectCity": "Stadt auswählen"
   },
+  "search": {
+    "placeholder": "Stadt suchen",
+    "open": "Stadt suchen",
+    "close": "Suche schließen",
+    "results": "Stadt-Suchergebnisse",
+    "noResults": "Keine passenden Städte",
+    "noLayerData": "Für diesen Ort sind in dieser Ebene noch keine Daten verfügbar."
+  },
   "layers": {
     "title": "Ebenen",
     "routes": "Alle Routen",

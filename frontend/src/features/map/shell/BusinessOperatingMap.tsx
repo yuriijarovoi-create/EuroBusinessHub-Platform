@@ -53,6 +53,9 @@ export function BusinessOperatingMapInner({
     [mapCountries, selectedCountryCode],
   );
 
+  const sessionFocusCityId = useMapSessionSelector((s) => s.focusCityId);
+  const effectiveFocusCityId = focusCityId ?? sessionFocusCityId;
+
   useEffect(() => {
     if (focusCityId) {
       mapSessionStore.patch({ focusCityId });
@@ -143,6 +146,41 @@ export function BusinessOperatingMapInner({
     [selectCity],
   );
 
+  const handleCitySearchSelect = useCallback(
+    (city: import('../types/mapTypes').MapCityRecord) => {
+      mapSessionStore.patch({
+        focusCityId: city.id,
+        selectedCityId: city.id,
+        infoCardCityId: city.id,
+        infoCardCountryCode: null,
+        selectedCountryCode: undefined,
+        selectedBundeslandId: undefined,
+        selectedRouteId: null,
+      });
+      selectCountry(null, null);
+      selectCity(city, { fly: false, openWorkspace: false });
+      selectRoute(null);
+    },
+    [selectCity, selectCountry, selectRoute],
+  );
+
+  const resetGeographicFocus = useCallback(() => {
+    mapSessionStore.patch({
+      selectedCountryCode: undefined,
+      selectedBundeslandId: undefined,
+      selectedCityId: null,
+      infoCardCityId: null,
+      infoCardCountryCode: null,
+      selectedRouteId: null,
+      focusCityId: undefined,
+      homeFullEuropeOverview: true,
+    });
+    selectCountry(null, null);
+    selectCity(null, { fly: false, openWorkspace: false });
+    selectRoute(null);
+    resetToEurope(null);
+  }, [resetToEurope, selectCity, selectCountry, selectRoute]);
+
   const handleRouteSelect = useCallback(
     (route: import('../types/mapTypes').BusinessRouteDef) => {
       mapSessionStore.patch({ selectedRouteId: route.id });
@@ -198,14 +236,6 @@ export function BusinessOperatingMapInner({
       aria-label={t('title')}
     >
       <div className={`${styles.operatingLayout} ${!showSidebars ? styles.operatingLayoutNoSidebars : ''}`}>
-        {showNav && (
-          <MapNavigationBar
-            countryFocusActive={!!selectedCountryCode}
-            selectedCountry={selectedCountry}
-            onExitCountryFocus={exitCountryFocus}
-          />
-        )}
-
         {showSidebars && (
           <MapSidebar
             activeMapContext={activeMapContext}
@@ -216,10 +246,21 @@ export function BusinessOperatingMapInner({
         )}
 
         <div className={`${styles.mapStage} ${!showSidebars ? styles.mapStageFull : ''}`}>
+          {showNav && (
+            <MapNavigationBar
+              countryFocusActive={!!selectedCountryCode}
+              selectedCountry={selectedCountry}
+              onExitCountryFocus={exitCountryFocus}
+              selectedCityId={session.selectedCityId}
+              activeMapContext={activeMapContext}
+              onCitySearchSelect={handleCitySearchSelect}
+              onResetGeographicFocus={resetGeographicFocus}
+            />
+          )}
           <EuropeBusinessMap
             countries={mapCountries}
             selectedCountryCode={selectedCountryCode}
-            focusCityId={focusCityId}
+            focusCityId={effectiveFocusCityId}
             onCountrySelect={handleCountrySelect}
             onExitCountryFocus={exitCountryFocus}
             onOpenWorkspace={onOpenWorkspace ?? (() => {})}
