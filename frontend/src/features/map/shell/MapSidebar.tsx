@@ -15,7 +15,8 @@ interface MapSidebarProps {
   activeMapContext: ActiveMapContext;
   onActiveMapContextChange: (context: ActiveMapContext) => void;
   collapsed?: boolean;
-  onToggle?: () => void;
+  panelId?: string;
+  panelClassName?: string;
 }
 
 function stopChipPointerEvent(event: MouseEvent | TouchEvent): void {
@@ -26,7 +27,8 @@ export function MapSidebar({
   activeMapContext,
   onActiveMapContextChange,
   collapsed = false,
-  onToggle,
+  panelId,
+  panelClassName,
 }: MapSidebarProps) {
   const { t } = useTranslation('map');
 
@@ -40,18 +42,14 @@ export function MapSidebar({
 
   return (
     <aside
-      className={`${styles.sidebar} ${styles.sidebarLeft} ${collapsed ? styles.sidebarCollapsed : ''}`}
+      id={panelId}
+      className={`${styles.sidebar} ${styles.sidebarLeft} ${styles.commandPanel} ${panelClassName ?? ''} ${collapsed ? styles.sidebarCollapsed : ''}`}
       aria-label={t('layers.title')}
       onMouseDown={stopChipPointerEvent}
       onTouchStart={stopChipPointerEvent}
     >
       <div className={styles.sidebarHeader}>
         <span className={styles.sidebarTitle}>{t('operating.filters', { defaultValue: 'Filters' })}</span>
-        {onToggle && (
-          <button type="button" className={styles.sidebarToggle} onClick={onToggle} aria-label="Toggle filters">
-            ‹
-          </button>
-        )}
       </div>
 
       <div className={styles.sidebarSection}>

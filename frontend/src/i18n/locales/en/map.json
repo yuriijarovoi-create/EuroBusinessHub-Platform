@@ -26,7 +26,9 @@
     "close": "Close search",
     "results": "City search results",
     "noResults": "No matching cities",
-    "noLayerData": "No data is available for this location in the current layer yet."
+    "noLayerData": "No data is available for this location in the current layer yet.",
+    "voice": "Voice search",
+    "voiceComingSoon": "Voice search coming soon"
   },
   "layers": {
     "title": "Layers",

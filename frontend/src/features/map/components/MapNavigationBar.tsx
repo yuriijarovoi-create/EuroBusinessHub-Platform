@@ -16,6 +16,8 @@ export interface MapNavigationBarProps {
   activeMapContext?: ActiveMapContext;
   onCitySearchSelect?: (city: MapCityRecord) => void;
   onResetGeographicFocus?: () => void;
+  /** Optional layout class merged onto the nav root (desktop offset wrapper) */
+  layoutClassName?: string;
 }
 
 export function MapNavigationBar({
@@ -26,6 +28,7 @@ export function MapNavigationBar({
   activeMapContext,
   onCitySearchSelect,
   onResetGeographicFocus,
+  layoutClassName,
 }: MapNavigationBarProps = {}) {
   const { t } = useTranslation('map');
   const legacy = useOptionalMapContext();
@@ -52,7 +55,11 @@ export function MapNavigationBar({
   const showEnterpriseSearch = Boolean(activeMapContext && onCitySearchSelect && onResetGeographicFocus);
 
   return (
-    <div className={styles.navBar} role="navigation" aria-label={t('nav.europe')}>
+    <div
+      className={`${styles.navBar} ${layoutClassName ?? ''}`}
+      role="navigation"
+      aria-label={t('nav.europe')}
+    >
       {showEnterpriseSearch ? (
         <MapCitySearch
           selectedCityId={selectedCityId}

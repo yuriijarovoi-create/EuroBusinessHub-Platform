@@ -4,7 +4,12 @@ import type { Map as LeafletMap } from 'leaflet';
 import L from 'leaflet';
 import { EUROPE_BOUNDS, EUROPE_DEFAULT_ZOOM } from '../../config/leafletConfig';
 import { getBundeslandById } from '../../data/germany/bundeslandData';
-import { getFocusZoomForCity } from '../../utils/cityVisibilityUtils';
+import { getMapCityById } from '../../data/mapData';
+import { flyToCity } from '../../engine/ViewportManager';
+import { hasActiveCityFocus } from '../../utils/mapCityNavigation';
+import {
+  logMapNavigation,
+} from '../../utils/mapNavigationDiagnostics';
 import {
   captureMapCamera,
   COUNTRY_FOCUS_TRANSITION_S,
@@ -57,7 +62,14 @@ export function LeafletFitEurope({ active }: { active: boolean }) {
 
   useEffect(() => {
     if (!active || didFit.current) return;
+    if (hasActiveCityFocus()) {
+      logMapNavigation('skipped-europe-fit', {
+        reason: 'selectedCityId exists',
+      });
+      return;
+    }
     didFit.current = true;
+    logMapNavigation('europe-fit', { zoom: EUROPE_DEFAULT_ZOOM });
     map.fitBounds(EUROPE_BOUNDS, { padding: [24, 24], maxZoom: EUROPE_DEFAULT_ZOOM });
   }, [map, active]);
 
@@ -85,11 +97,28 @@ export function LeafletCountryFocus({
     const flyDuration = COUNTRY_FOCUS_TRANSITION_S;
 
     if (prevCountry && !countryCode) {
+      if (hasActiveCityFocus()) {
+        logMapNavigation('skipped-country-exit', {
+          country: prevCountry,
+          reason: 'selectedCityId exists',
+        });
+        prevCountryRef.current = undefined;
+        prevBundeslandRef.current = undefined;
+        europeCameraRef.current = null;
+        return;
+      }
+
       map.stop();
       if (mapSessionStore.consumeHomeFullEuropeOverview()) {
+        logMapNavigation('europe-home', { reason: 'country-exit-home-flag' });
         flyToFullEuropeOverview(map);
         europeCameraRef.current = null;
       } else if (europeCameraRef.current) {
+        logMapNavigation('country-exit-restore', {
+          country: prevCountry,
+          center: europeCameraRef.current.center,
+          zoom: europeCameraRef.current.zoom,
+        });
         restoreMapCamera(map, europeCameraRef.current);
         europeCameraRef.current = null;
       }
@@ -99,9 +128,20 @@ export function LeafletCountryFocus({
     }
 
     if (bundeslandId && countryCode && bundeslandId !== prevBundesland) {
+      if (hasActiveCityFocus()) {
+        logMapNavigation('skipped-country-fit', {
+          country: countryCode,
+          reason: 'selectedCityId exists-bundesland',
+        });
+        prevBundeslandRef.current = bundeslandId;
+        prevCountryRef.current = countryCode;
+        return;
+      }
+
       const bl = getBundeslandById(bundeslandId);
       if (bl) {
         const bounds = L.latLngBounds(bl.ring.map(([lat, lng]) => [lat, lng] as [number, number]));
+        logMapNavigation('bundesland-fit', { country: countryCode, zoom: 10 });
         map.flyToBounds(bounds, { padding: [40, 40], maxZoom: 10, duration: flyDuration });
       }
       prevBundeslandRef.current = bundeslandId;
@@ -110,6 +150,16 @@ export function LeafletCountryFocus({
     }
 
     if (countryCode && countryCode !== prevCountry) {
+      if (hasActiveCityFocus()) {
+        logMapNavigation('skipped-country-fit', {
+          country: countryCode,
+          reason: 'selectedCityId exists',
+        });
+        prevCountryRef.current = countryCode;
+        prevBundeslandRef.current = bundeslandId;
+        return;
+      }
+
       if (!prevCountry) {
         europeCameraRef.current = captureMapCamera(map);
       }
@@ -118,6 +168,7 @@ export function LeafletCountryFocus({
       if (countryCities.length > 0) {
         const bounds = L.latLngBounds(countryCities.map((c) => [c.lat, c.lng] as [number, number]));
         const maxZoom = countryCode === 'DE' ? 7 : 7.5;
+        logMapNavigation('country-fit', { country: countryCode, zoom: maxZoom });
         map.flyToBounds(bounds, { padding: [48, 48], maxZoom, duration: flyDuration });
       }
 
@@ -172,6 +223,10 @@ export function LeafletWorkspaceReturnRestore() {
 
         map.stop();
         if (mode === 'snapshot' && camera) {
+          logMapNavigation('workspace-restore', {
+            center: camera.center,
+            zoom: camera.zoom,
+          });
           restoreMapCamera(map, camera);
           return;
         }
@@ -259,7 +314,7 @@ export function MapMobileInteractionBridge() {
   return null;
 }
 
-/** Fly to a searched or focused city — centers map and ensures visibility */
+/** Fly to a searched or focused city — authoritative city-level zoom for every layer */
 export function LeafletCityFocus({
   cityId,
   cityMap,
@@ -274,20 +329,25 @@ export function LeafletCityFocus({
 
   useEffect(() => {
     if (!cityId) {
+      if (prevId.current && isMapAlive(map)) {
+        map.stop();
+        if (mapSessionStore.consumeHomeFullEuropeOverview()) {
+          logMapNavigation('europe-home', { reason: 'city-focus-cleared' });
+          flyToFullEuropeOverview(map);
+        }
+      }
       prevId.current = '';
       return;
     }
     if (cityId === prevId.current) return;
 
-    const city = cityMap.get(cityId);
+    const city = cityMap.get(cityId) ?? getMapCityById(cityId) ?? null;
     if (!city) return;
     if (countryCode && city.countryCode !== countryCode) return;
 
     prevId.current = cityId;
-
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-    const zoom = getFocusZoomForCity(city, isMobile);
-    map.flyTo([city.lat, city.lng], zoom, { duration: 1.1 });
+    map.stop();
+    flyToCity(map, city.lat, city.lng, city);
   }, [map, cityId, cityMap, countryCode]);
 
   return null;

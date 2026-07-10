@@ -4,6 +4,10 @@ import type { MapCityRecord } from '../types/mapTypes';
 import type { MapReturnSnapshot } from '../store/mapSessionStore';
 import { captureMapCamera } from './mapCameraSnapshot';
 import { EUROPE_DEFAULT_ZOOM } from '../config/leafletConfig';
+import {
+  DEFAULT_ACTIVE_MAP_CONTEXT,
+  type ActiveMapContext,
+} from './mapLayerContext';
 
 export const LAST_MAP_CONTEXT_KEY = 'eurobusinesshub:lastMapContext';
 
@@ -20,6 +24,7 @@ export interface StoredLastMapContext {
   selectedBundeslandId: string | undefined;
   focusCityId: string | undefined;
   layers: MapLayerState;
+  activeMapContext: ActiveMapContext;
 }
 
 export interface LastMapContextSessionSlice {
@@ -32,6 +37,7 @@ export interface LastMapContextSessionSlice {
   selectedCountryCode: string | undefined;
   layers: MapLayerState;
   camera: { center: { lat: number; lng: number }; zoom: number } | null;
+  activeMapContext: ActiveMapContext;
 }
 
 function cloneLayers(layers: MapLayerState): MapLayerState {
@@ -60,6 +66,7 @@ export function saveLastMapContext(
     selectedBundeslandId: session.selectedBundeslandId,
     focusCityId: session.focusCityId,
     layers: cloneLayers(session.layers),
+    activeMapContext: { ...session.activeMapContext },
   };
 
   if (typeof window !== 'undefined') {
@@ -101,6 +108,7 @@ export function storedContextToReturnSnapshot(
       center: { lat: context.center.lat, lng: context.center.lng },
       zoom: context.zoom,
     },
+    activeMapContext: context.activeMapContext ?? { ...DEFAULT_ACTIVE_MAP_CONTEXT },
   };
 }
 
@@ -124,6 +132,7 @@ function mergeReturnSnapshots(
     focusCityId: primary.focusCityId ?? secondary.focusCityId,
     layers: primary.layers,
     camera: primary.camera ?? secondary.camera,
+    activeMapContext: primary.activeMapContext ?? secondary.activeMapContext,
   };
 }
 

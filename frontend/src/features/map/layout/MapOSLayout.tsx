@@ -5,6 +5,7 @@ import { MapEngineProvider } from '../engine/MapEngine';
 import { mapSessionStore, useMapSessionStore } from '../store/mapSessionStore';
 import type { MapCityRecord } from '../types/mapTypes';
 import { saveLastMapContext } from '../utils/lastMapContext';
+import { getCityWorkspacePath } from '@/features/workspace/utils/getCityWorkspacePath';
 import styles from './MapOSLayout.module.css';
 import mapStyles from '../shell/BusinessOperatingMap.module.css';
 
@@ -37,7 +38,11 @@ export function MapOSLayout() {
         zoom: stored.zoom,
       });
       mapSessionStore.enterWorkspace(city.id);
-      navigate(`/workspace/${city.id}`);
+      const destination = getCityWorkspacePath({
+        citySlug: city.id,
+        activeLayer: session.activeMapContext.businessLayer,
+      });
+      navigate(destination);
     },
     [navigate],
   );

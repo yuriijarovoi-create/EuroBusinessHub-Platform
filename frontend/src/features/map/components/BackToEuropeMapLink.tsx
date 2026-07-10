@@ -11,7 +11,7 @@ export function BackToEuropeMapLink({ className }: { className?: string }) {
   const handleBack = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
-      mapSessionStore.exitWorkspace();
+      mapSessionStore.returnToEuropeOverviewFromWorkspace();
       navigate(routes.map);
     },
     [navigate],

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AppShell } from '@/layouts/AppShell';
 import { MapOSLayout } from '@/features/map/layout/MapOSLayout';
-import { HomePage, ModulesPage, ModulePage, CityWorkspacePage, DashboardPage, MapPage } from '@/pages';
+import { HomePage, ModulesPage, ModulePage, CityWorkspacePage, CityCompaniesPage, DashboardPage, MapPage } from '@/pages';
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +14,7 @@ export const router = createBrowserRouter([
         children: [
           { path: 'map', element: <MapPage /> },
           { path: 'workspace/:cityId', element: <CityWorkspacePage /> },
+          { path: 'workspace/:cityId/companies', element: <CityCompaniesPage /> },
         ],
       },
       { path: 'modules', element: <ModulesPage /> },

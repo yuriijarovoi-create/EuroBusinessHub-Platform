@@ -37,6 +37,32 @@ function SearchIcon() {
   );
 }
 
+function MicrophoneIcon() {
+  return (
+    <svg
+      className={styles.searchIcon}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+      aria-hidden
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 18.75a6 6 0 0 0 6-6v-4.5a6 6 0 1 0-12 0v4.5a6 6 0 0 0 6 6Z"
+      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 19.5v2.25" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8.25 21.75h7.5"
+      />
+    </svg>
+  );
+}
+
 function CloseIcon() {
   return (
     <svg
@@ -77,6 +103,7 @@ export function MapCitySearch({
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(-1);
   const [layerEmptyMessage, setLayerEmptyMessage] = useState<string | null>(null);
+  const [voicePlaceholderMessage, setVoicePlaceholderMessage] = useState<string | null>(null);
 
   const selectedCity = useMemo(
     () => (selectedCityId ? getMapCityById(selectedCityId) ?? null : null),
@@ -124,6 +151,12 @@ export function MapCitySearch({
   }, [layerEmptyMessage]);
 
   useEffect(() => {
+    if (!voicePlaceholderMessage) return undefined;
+    const timer = window.setTimeout(() => setVoicePlaceholderMessage(null), 2400);
+    return () => window.clearTimeout(timer);
+  }, [voicePlaceholderMessage]);
+
+  useEffect(() => {
     if (!isOpen) return undefined;
 
     const handlePointerDown = (event: PointerEvent) => {
@@ -158,6 +191,15 @@ export function MapCitySearch({
     onResetFocus();
   }, [onResetFocus]);
 
+  const handleVoicePlaceholder = useCallback(() => {
+    const message = t('search.voiceComingSoon', { defaultValue: 'Voice search coming soon' });
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
+      console.info('Voice search coming soon');
+    }
+    setVoicePlaceholderMessage(message);
+  }, [t]);
+
   const handleInputKeyDown = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Escape') {
@@ -191,7 +233,11 @@ export function MapCitySearch({
   );
 
   return (
-    <div className={styles.searchRoot} ref={rootRef}>
+    <div
+      className={`${styles.searchRoot} ${isOpen ? styles.searchRootOpen : styles.searchRootCollapsed}`}
+      data-search-open={isOpen ? 'true' : 'false'}
+      ref={rootRef}
+    >
       {isOpen ? (
         <div className={styles.searchInputWrap} role="combobox" aria-expanded aria-controls={listboxId}>
           <SearchIcon />
@@ -233,17 +279,33 @@ export function MapCitySearch({
         </div>
       ) : (
         <div className={styles.searchField}>
-          <button type="button" className={styles.searchDisplayBtn} onClick={handleDisplayClick}>
-            {displayLabel}
-          </button>
           <button
             type="button"
-            className={styles.searchOpenBtn}
-            onClick={openSearch}
-            aria-label={t('search.open', { defaultValue: 'Search city' })}
+            className={`${styles.searchDisplayBtn} ${styles.citySearchLabel} ${
+              selectedCity && !countryFocusActive ? styles.searchDisplayBtnCity : ''
+            }`}
+            onClick={handleDisplayClick}
           >
-            <SearchIcon />
+            {displayLabel}
           </button>
+          <div className={styles.searchIconGroup}>
+            <button
+              type="button"
+              className={styles.searchIconBtn}
+              onClick={openSearch}
+              aria-label={t('search.open', { defaultValue: 'Search city' })}
+            >
+              <SearchIcon />
+            </button>
+            <button
+              type="button"
+              className={styles.searchIconBtn}
+              onClick={handleVoicePlaceholder}
+              aria-label={t('search.voice', { defaultValue: 'Voice search' })}
+            >
+              <MicrophoneIcon />
+            </button>
+          </div>
         </div>
       )}
 
@@ -291,6 +353,12 @@ export function MapCitySearch({
       {!isOpen && layerEmptyMessage ? (
         <p className={styles.searchEmptyLayer} role="status" aria-live="polite">
           {layerEmptyMessage}
+        </p>
+      ) : null}
+
+      {!isOpen && voicePlaceholderMessage ? (
+        <p className={styles.searchVoicePlaceholder} role="status" aria-live="polite">
+          {voicePlaceholderMessage}
         </p>
       ) : null}
     </div>

@@ -25,5 +25,93 @@
     "search": "In Stadt suchen",
     "marketplace": "Marketplace öffnen",
     "ki": "KI-Assistent starten"
+  },
+  "companies": {
+    "title": "Unternehmen in {{city}}",
+    "backToCity": "Zurück zum Stadt-Arbeitsbereich",
+    "demoNotice": "Demo-Daten — keine Live-Verbindung zum Unternehmensregister",
+    "notFoundCity": "Stadt nicht gefunden",
+    "loadMoreFoundation": "Paginierung und Load-more-Architektur für künftige API-Datensätze vorbereitet.",
+    "stats": {
+      "label": "Stadt-Unternehmensstatistik",
+      "totalCompanies": "Unternehmen gesamt",
+      "verifiedProfiles": "Verifizierte Profile",
+      "industries": "Branchen",
+      "openOpportunities": "Offene Chancen"
+    },
+    "search": {
+      "label": "Unternehmen suchen",
+      "placeholder": "Nach Name, Branche, Tags suchen…",
+      "clear": "Suche löschen"
+    },
+    "filters": {
+      "toggle": "Filter",
+      "active": "aktiv",
+      "industry": "Branche",
+      "size": "Unternehmensgröße",
+      "status": "Status",
+      "sort": "Sortieren nach",
+      "verifiedOnly": "Nur verifiziert",
+      "all": "Alle",
+      "clear": "Filter zurücksetzen"
+    },
+    "sort": {
+      "relevance": "Relevanz",
+      "name": "Unternehmensname",
+      "size": "Unternehmensgröße"
+    },
+    "results": {
+      "label": "Unternehmensergebnisse",
+      "showing": "{{count}} von {{total}} Demo-Unternehmen angezeigt"
+    },
+    "card": {
+      "verified": "Verifiziert",
+      "demo": "Demo",
+      "tags": "Tags",
+      "view": "Unternehmen ansehen"
+    },
+    "details": {
+      "close": "Details schließen",
+      "size": "Unternehmensgröße",
+      "status": "Status",
+      "verification": "Verifizierung",
+      "employees": "Mitarbeitende",
+      "description": "Beschreibung",
+      "tags": "Tags",
+      "opportunities": "Chancen",
+      "location": "Standort",
+      "website": "Website"
+    },
+    "industries": {
+      "manufacturing": "Produktion",
+      "logistics": "Logistik",
+      "technology": "Technologie",
+      "construction": "Bau",
+      "agriculture": "Landwirtschaft",
+      "medical": "Medizin",
+      "finance": "Finanzen",
+      "tourism": "Tourismus",
+      "retail": "Einzelhandel",
+      "professional-services": "Professionelle Dienstleistungen"
+    },
+    "sizes": {
+      "micro": "Mikro",
+      "small": "Klein",
+      "medium": "Mittel",
+      "large": "Groß"
+    },
+    "statuses": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "pending": "Ausstehend"
+    },
+    "emptyCity": {
+      "title": "Noch keine Unternehmensdaten für {{city}}",
+      "body": "Diese Stadt wird auf der Plattform unterstützt, aber der Demo-Katalog enthält hier noch keine Einträge."
+    },
+    "emptyFilters": {
+      "title": "Keine Unternehmen entsprechen den Filtern",
+      "body": "Passen Sie Suche oder Filterkriterien an."
+    }
   }
 }

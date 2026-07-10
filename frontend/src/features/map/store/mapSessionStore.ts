@@ -2,6 +2,10 @@ import { useSyncExternalStore } from 'react';
 import { DEFAULT_LAYER_STATE, type MapLayerState } from '../types/mapTypes';
 import type { MapCameraSnapshot } from '../utils/mapCameraSnapshot';
 import { resolveExitReturnSnapshot, resolveReturnSnapshot } from '../utils/lastMapContext';
+import {
+  DEFAULT_ACTIVE_MAP_CONTEXT,
+  type ActiveMapContext,
+} from '../utils/mapLayerContext';
 
 export type MapSessionViewMode = 'map' | 'workspace';
 
@@ -16,6 +20,7 @@ export interface MapReturnSnapshot {
   focusCityId: string | undefined;
   layers: MapLayerState;
   camera: MapCameraSnapshot | null;
+  activeMapContext: ActiveMapContext;
 }
 
 export type MapReturnRestoreMode = 'snapshot' | 'fallback';
@@ -40,6 +45,7 @@ export interface MapSessionState {
   /** One-shot flag for map + shell to apply return navigation */
   pendingReturnRestore: boolean;
   returnRestoreMode: MapReturnRestoreMode | null;
+  activeMapContext: ActiveMapContext;
 }
 
 function createInitialMapSessionState(): MapSessionState {
@@ -60,6 +66,7 @@ function createInitialMapSessionState(): MapSessionState {
     returnSnapshot: null,
     pendingReturnRestore: false,
     returnRestoreMode: null,
+    activeMapContext: { ...DEFAULT_ACTIVE_MAP_CONTEXT },
   };
 }
 
@@ -82,6 +89,7 @@ function captureReturnSnapshot(session: MapSessionState): MapReturnSnapshot {
     focusCityId: session.focusCityId,
     layers: { ...session.layers },
     camera: cloneCamera(session.camera),
+    activeMapContext: { ...session.activeMapContext },
   };
 }
 
@@ -158,6 +166,7 @@ export const mapSessionStore = {
         focusCityId: snapshot.focusCityId,
         layers: { ...snapshot.layers },
         camera: cloneCamera(snapshot.camera),
+        activeMapContext: { ...snapshot.activeMapContext },
       };
     } else {
       state = {
@@ -177,6 +186,27 @@ export const mapSessionStore = {
         homeFullEuropeOverview: true,
       };
     }
+    emit();
+  },
+
+  /** Leave workspace and restore main Europe map view (no Leipzig/city snapshot restore). */
+  returnToEuropeOverviewFromWorkspace(): void {
+    state = {
+      ...state,
+      viewMode: 'map',
+      workspaceCityId: null,
+      returnSnapshot: null,
+      pendingReturnRestore: false,
+      returnRestoreMode: null,
+      selectedCountryCode: undefined,
+      selectedBundeslandId: undefined,
+      selectedCityId: null,
+      infoCardCityId: null,
+      infoCardCountryCode: null,
+      selectedRouteId: null,
+      focusCityId: undefined,
+      homeFullEuropeOverview: true,
+    };
     emit();
   },
 

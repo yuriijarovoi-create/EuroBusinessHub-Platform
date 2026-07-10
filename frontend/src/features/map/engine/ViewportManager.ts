@@ -1,12 +1,13 @@
 import L from 'leaflet';
 import { EUROPE_BOUNDS, EUROPE_DEFAULT_ZOOM } from '../config/leafletConfig';
-import { getFocusZoomForCity } from '../utils/cityVisibilityUtils';
+import { flyMapToCityFocus, logMapNavigation } from '../utils/mapNavigationDiagnostics';
 import { getCountryByCode } from '../services/mapService';
 import type { MapCityRecord } from '../types/mapTypes';
 
 export type FlyableMap = L.Map;
 
 export function flyToEurope(map: FlyableMap): void {
+  logMapNavigation('europe-fit', { zoom: EUROPE_DEFAULT_ZOOM });
   map.flyToBounds(EUROPE_BOUNDS, {
     padding: [24, 24],
     maxZoom: EUROPE_DEFAULT_ZOOM,
@@ -32,7 +33,5 @@ export function flyToCountry(
 }
 
 export function flyToCity(map: FlyableMap, lat: number, lng: number, city?: MapCityRecord): void {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-  const zoom = city ? getFocusZoomForCity(city, isMobile) : isMobile ? 9 : 10;
-  map.flyTo([lat, lng], zoom, { duration: 1.1 });
+  flyMapToCityFocus(map, lat, lng, 'city-focus', city?.name ?? city?.id);
 }

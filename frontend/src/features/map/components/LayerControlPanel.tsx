@@ -7,6 +7,7 @@ interface LayerControlPanelProps {
   onChange: (next: MapLayerState) => void;
   open?: boolean;
   onClose?: () => void;
+  panelClassName?: string;
 }
 
 const TOGGLES: { key: keyof MapLayerState; labelKey: string }[] = [
@@ -21,7 +22,13 @@ const TOGGLES: { key: keyof MapLayerState; labelKey: string }[] = [
   { key: 'warehouses', labelKey: 'layers.warehouses' },
 ];
 
-export function LayerControlPanel({ layers, onChange, open = true, onClose }: LayerControlPanelProps) {
+export function LayerControlPanel({
+  layers,
+  onChange,
+  open = true,
+  onClose,
+  panelClassName,
+}: LayerControlPanelProps) {
   const { t } = useTranslation('map');
 
   const toggle = (key: keyof MapLayerState) => {
@@ -37,7 +44,7 @@ export function LayerControlPanel({ layers, onChange, open = true, onClose }: La
   };
 
   return (
-    <div className={`${styles.layerPanel} ${open ? styles.layerPanelOpen : ''}`}>
+    <div className={`${styles.layerPanel} ${open ? styles.layerPanelOpen : ''} ${panelClassName ?? ''}`}>
       <div className={styles.layerPanelHeader}>
         <span className={styles.layerTitle}>{t('layers.title')}</span>
         {onClose && (

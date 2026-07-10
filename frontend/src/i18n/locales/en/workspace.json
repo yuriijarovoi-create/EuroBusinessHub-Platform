@@ -25,5 +25,93 @@
     "search": "Search in city",
     "marketplace": "Open marketplace",
     "ki": "Start AI assistant"
+  },
+  "companies": {
+    "title": "Companies in {{city}}",
+    "backToCity": "Back to city workspace",
+    "demoNotice": "Demo data — no live company registry connection",
+    "notFoundCity": "City not found",
+    "loadMoreFoundation": "Pagination and load-more architecture ready for future API datasets.",
+    "stats": {
+      "label": "City company statistics",
+      "totalCompanies": "Total companies",
+      "verifiedProfiles": "Verified profiles",
+      "industries": "Industries",
+      "openOpportunities": "Open opportunities"
+    },
+    "search": {
+      "label": "Search companies",
+      "placeholder": "Search by name, industry, tags…",
+      "clear": "Clear search"
+    },
+    "filters": {
+      "toggle": "Filters",
+      "active": "active",
+      "industry": "Industry",
+      "size": "Company size",
+      "status": "Status",
+      "sort": "Sort by",
+      "verifiedOnly": "Verified only",
+      "all": "All",
+      "clear": "Clear filters"
+    },
+    "sort": {
+      "relevance": "Relevance",
+      "name": "Company name",
+      "size": "Company size"
+    },
+    "results": {
+      "label": "Company results",
+      "showing": "Showing {{count}} of {{total}} demo companies"
+    },
+    "card": {
+      "verified": "Verified",
+      "demo": "Demo",
+      "tags": "Tags",
+      "view": "View company"
+    },
+    "details": {
+      "close": "Close details",
+      "size": "Company size",
+      "status": "Status",
+      "verification": "Verification",
+      "employees": "Employees",
+      "description": "Description",
+      "tags": "Tags",
+      "opportunities": "Opportunities",
+      "location": "Location",
+      "website": "Website"
+    },
+    "industries": {
+      "manufacturing": "Manufacturing",
+      "logistics": "Logistics",
+      "technology": "Technology",
+      "construction": "Construction",
+      "agriculture": "Agriculture",
+      "medical": "Medical",
+      "finance": "Finance",
+      "tourism": "Tourism",
+      "retail": "Retail",
+      "professional-services": "Professional Services"
+    },
+    "sizes": {
+      "micro": "Micro",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large"
+    },
+    "statuses": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "pending": "Pending"
+    },
+    "emptyCity": {
+      "title": "No company data for {{city}} yet",
+      "body": "This city is supported on the platform, but the demo company catalog has no entries here yet."
+    },
+    "emptyFilters": {
+      "title": "No companies match the selected filters",
+      "body": "Try adjusting your search or filter criteria."
+    }
   }
 }

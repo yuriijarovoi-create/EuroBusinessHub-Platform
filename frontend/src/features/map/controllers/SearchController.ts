@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import type { MapSearchTarget } from '../engine/types';
-import { getMapCityById } from '../data/mapData';
-import { normalizeSearchText, filterCitiesForSearch } from '../utils/citySearchUtils';
+import { focusMapOnCity } from '../utils/mapCityNavigation';
+import { filterCitiesForSearch, normalizeSearchText } from '../utils/citySearchUtils';
 
 /**
  * Search → map fly controller. Wire GlobalSearch results here.
@@ -12,9 +12,10 @@ export function useMapSearchController(flyTo?: (target: MapSearchTarget) => void
       const normalized = normalizeSearchText(query);
       if (!normalized || !flyTo) return false;
 
-      const match = filterCitiesForSearch(query)[0]?.city ?? getMapCityById(normalized);
-
+      const match = filterCitiesForSearch(query)[0]?.city;
       if (!match) return false;
+
+      focusMapOnCity(match, { clearCountryFocus: true, source: 'search' });
 
       flyTo({
         kind: 'city',

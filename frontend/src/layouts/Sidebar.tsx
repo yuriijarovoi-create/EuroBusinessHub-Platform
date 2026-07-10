@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getSidebarModules } from '@/data/modules';
 import styles from './Sidebar.module.css';
@@ -10,7 +10,9 @@ interface SidebarProps {
 
 export function Sidebar({ open, onClose }: SidebarProps) {
   const { t } = useTranslation(['common', 'modules']);
+  const location = useLocation();
   const modules = getSidebarModules();
+  const cityCompaniesPath = /^\/workspace\/[^/]+\/companies$/;
 
   return (
     <>
@@ -30,9 +32,11 @@ export function Sidebar({ open, onClose }: SidebarProps) {
                 <NavLink
                   to={mod.route}
                   onClick={onClose}
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.active : ''}`
-                  }
+                  className={({ isActive }) => {
+                    const activeInCityCompanies =
+                      mod.id === 'unternehmen' && cityCompaniesPath.test(location.pathname);
+                    return `${styles.link} ${isActive || activeInCityCompanies ? styles.active : ''}`;
+                  }}
                   end={mod.id === 'dashboard'}
                 >
                   <span className={styles.icon} aria-hidden>{mod.icon}</span>

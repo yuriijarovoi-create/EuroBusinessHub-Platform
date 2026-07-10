@@ -74,8 +74,14 @@ function CityWorkspaceContent() {
         <div className={styles.moduleGrid}>
           {workspace.modules
             .filter((mod: WorkspaceModuleAccess) => mod.enabled)
-            .map((mod: WorkspaceModuleAccess) => (
-              <Link key={mod.moduleId} to={mod.route} className={styles.moduleLink}>
+            .map((mod: WorkspaceModuleAccess) => {
+              const moduleRoute =
+                mod.moduleId === 'unternehmen' && cityId
+                  ? routes.workspaceCompanies(cityId)
+                  : mod.route;
+
+              return (
+              <Link key={mod.moduleId} to={moduleRoute} className={styles.moduleLink}>
                 <GlassPanel padding="md" className={styles.moduleCard}>
                   <span className={styles.moduleName}>
                     {t(`modules:${mod.moduleId}.name`)}
@@ -85,7 +91,8 @@ function CityWorkspaceContent() {
                   </span>
                 </GlassPanel>
               </Link>
-            ))}
+              );
+            })}
         </div>
       </section>
 

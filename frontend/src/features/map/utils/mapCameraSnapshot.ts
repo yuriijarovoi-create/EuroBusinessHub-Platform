@@ -3,6 +3,7 @@ import {
   EUROPE_BOUNDS,
   EUROPE_DEFAULT_ZOOM,
 } from '../config/leafletConfig';
+import { logMapNavigation } from './mapNavigationDiagnostics';
 
 export interface MapCameraSnapshot {
   center: { lat: number; lng: number };
@@ -32,6 +33,7 @@ export function restoreMapCamera(map: LeafletMap, snapshot: MapCameraSnapshot): 
 
 /** Fixed full-Europe overview — used by Home (⌂), never saved-camera restore */
 export function flyToFullEuropeOverview(map: LeafletMap): void {
+  logMapNavigation('europe-home', {});
   map.fitBounds(EUROPE_BOUNDS, {
     padding: EUROPE_OVERVIEW_FIT_PADDING,
     maxZoom: EUROPE_DEFAULT_ZOOM,

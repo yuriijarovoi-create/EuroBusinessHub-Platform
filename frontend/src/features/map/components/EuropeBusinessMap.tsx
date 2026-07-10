@@ -33,6 +33,7 @@ import { RouteInfoPanel } from './RouteInfoPanel';
 import { LayerControlPanel } from './LayerControlPanel';
 import { ActivityBottomPanel } from './ActivityBottomPanel';
 import { mapSessionStore, useMapSessionStore } from '../store/mapSessionStore';
+import { focusMapOnCity } from '../utils/mapCityNavigation';
 import type { ActiveMapContext } from '../utils/mapLayerContext';
 import { DEFAULT_ACTIVE_MAP_CONTEXT } from '../utils/mapLayerContext';
 import styles from './EuropeBusinessMap.module.css';
@@ -223,12 +224,7 @@ export function EuropeBusinessMap({
 
   const handleSelect = useCallback(
     (city: MapCityRecord) => {
-      mapSessionStore.patch({
-        infoCardCityId: city.id,
-        infoCardCountryCode: null,
-        selectedCityId: city.id,
-        selectedRouteId: null,
-      });
+      focusMapOnCity(city, { clearCountryFocus: false, source: 'marker' });
       if (enterpriseShell) {
         (onCitySelect ?? onCityActivate)?.(city);
         return;
