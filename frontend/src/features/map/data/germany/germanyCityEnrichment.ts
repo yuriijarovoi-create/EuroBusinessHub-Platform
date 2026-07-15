@@ -7,6 +7,7 @@ import { GERMANY_HESSEN_ENRICHMENT } from './germanyHessenEnrichment';
 import { GERMANY_BW_ENRICHMENT } from './germanyBadenWuerttembergEnrichment';
 import { GERMANY_BY_ENRICHMENT } from './germanyBayernEnrichment';
 import { GERMANY_NRW_ENRICHMENT } from './germanyNordrheinWestfalenEnrichment';
+import { GERMANY_NI_ENRICHMENT } from './germanyNiedersachsenEnrichment';
 
 type MetricsSlice = Pick<
   MapCityMetrics,
@@ -956,6 +957,8 @@ export const GERMANY_CITY_ENRICHMENT: Record<string, GermanyCityEnrichment> = {
   ...GERMANY_BY_ENRICHMENT,
 
   ...GERMANY_NRW_ENRICHMENT,
+
+  ...GERMANY_NI_ENRICHMENT,
 };
 
 export function getGermanyCityEnrichment(cityId: string): GermanyCityEnrichment | undefined {
