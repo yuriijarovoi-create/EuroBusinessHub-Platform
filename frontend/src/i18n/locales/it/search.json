@@ -1,0 +1,17 @@
+{
+  "placeholder": "Aziende, trasporti, lavoro, magazzini, IA…",
+  "aiLabel": "Ricerca globale con IA",
+  "noResults": "Nessun risultato per \"{{query}}\"",
+  "recent": "Suggerimenti",
+  "types": {
+    "city": "Città",
+    "module": "Modulo",
+    "business": "Azienda",
+    "product": "Prodotto",
+    "job": "Offerta di lavoro",
+    "transport": "Trasporto",
+    "warehouse": "Magazzino",
+    "service": "Servizio",
+    "ai": "IA"
+  }
+}

@@ -1,0 +1,665 @@
+{
+  "title": "Gyvas Europos verslo tinklas",
+  "eyebrow": "Tiesioginis žemėlapis",
+  "subtitle": "Berlin kaip centrinis hub — interaktyvus Europos verslo tinklas",
+  "legend": "Interaktyvus Europos žemėlapis su verslo mazgais",
+  "hubLabel": "Berlin Hub",
+  "liveNetwork": "Tiesioginis tinklas aktyvus",
+  "businesses": "{{count}} įmonių",
+  "zoomHint": "Pasirinkite miestą ar šalį · Kiekvienas miestas atveria savo darbo erdvę",
+  "interactionHint": "Slinkite, kad priartintumėte · Vilkite, kad perstumtumėte · Spustelėkite miestą dėl detalių",
+  "loading": "Kraunamas žemėlapis…",
+  "controls": {
+    "zoomIn": "Priartinti",
+    "zoomOut": "Nutolinti",
+    "reset": "Atstatyti vaizdą",
+    "backEurope": "Europa"
+  },
+  "nav": {
+    "europe": "Europa",
+    "backToEurope": "Atgal į Europą",
+    "selectCity": "Pasirinkti miestą"
+  },
+  "search": {
+    "placeholder": "Ieškoti miesto",
+    "open": "Ieškoti miesto",
+    "close": "Uždaryti paiešką",
+    "results": "Miestų paieškos rezultatai",
+    "noResults": "Nėra atitinkančių miestų",
+    "noLayerData": "Šiai vietai dabartiniame sluoksnyje duomenų dar nėra.",
+    "voice": "Balso paieška",
+    "voiceComingSoon": "Balso paieška netrukus"
+  },
+  "layers": {
+    "title": "Sluoksniai",
+    "routes": "Visi maršrutai",
+    "road": "Kelių kroviniai",
+    "rail": "Geležinkelių kroviniai",
+    "air": "Oro kroviniai",
+    "sea": "Jūrų maršrutai",
+    "river": "Upių / vidaus vandens",
+    "companies": "Įmonės",
+    "jobs": "Darbo vietos",
+    "warehouses": "Sandėliai"
+  },
+  "activity": {
+    "liveActivity": "Tiesioginė veikla",
+    "freightVolume": "Krovinių apimtis 24 val.",
+    "transportOffers": "Atviri transporto pasiūlymai",
+    "deliveryTime": "Vid. pristatymo laikas",
+    "co2Saving": "CO₂ taupymas"
+  },
+  "live": {
+    "title": "Tiesioginė platforma",
+    "companies": "Įmonės",
+    "jobs": "Darbo vietos",
+    "transport": "Transportas",
+    "marketplace": "Prekyvietė",
+    "warehouses": "Sandėliai",
+    "partners": "Partneriai",
+    "digitalProducts": "Skaitmeniniai produktai",
+    "subscriptions": "Prenumeratos",
+    "aiRequests": "AI užklausos"
+  },
+  "tooltip": {
+    "companies": "{{count}} įmonių",
+    "jobs": "{{count}} darbo vietų",
+    "warehouses": "{{count}} sandėlių",
+    "transport": "{{count}} transporto pasiūlymų",
+    "businessScore": "Verslo balas {{score}}",
+    "networkConnections": "{{count}} tinklo ryšių",
+    "aiScore": "AI balas {{score}}"
+  },
+  "country": {
+    "title": "Šalis {{country}}",
+    "cities": "{{count}} verslo miestų",
+    "aiScore": "AI infrastruktūros balas",
+    "selectCity": "Pasirinkite miestą žemėlapyje dėl detalių"
+  },
+  "germany": {
+    "bundeslandPicker": "Pasirinkti federalinę žemę",
+    "bundeslandTitle": "Žemė {{name}}",
+    "bundeslandSubtitle": "Regioninis ekonominis profilis",
+    "selectCityInState": "Pasirinkite miestą šioje žemėje",
+    "population": "Gyventojai",
+    "federalState": "Federalinė žemė",
+    "mainIndustry": "Pagrindinė pramonės šaka",
+    "transportRole": "Transporto vaidmuo",
+    "finance": "Finansai",
+    "tech": "Technologijos",
+    "logistics": "Logistika",
+    "innovation": "Inovacijos",
+    "businessIndex": "Verslo indeksas",
+    "sustainability": "Tvarumas",
+    "gdpShort": "{{value}} mlrd. € BVP",
+    "gdpEstimate": "Numatomas BVP: {{value}} mlrd. €",
+    "marketplaceDesc": "Aktyvūs prekyvietės pasiūlymai regione",
+    "stats": {
+      "cities": "Miestai",
+      "gdp": "BVP (numat.)",
+      "logistics": "Logistikos balas",
+      "businesses": "Įmonės"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Netoliese esanti infrastruktūra",
+      "seaports": "Jūrų uostai",
+      "inlandPorts": "Vidaus uostai",
+      "airCargo": "Oro krovinių centrai",
+      "industrialZones": "Pramonės zonos",
+      "logisticsHubs": "Logistikos centrai",
+      "importance": "Svarba {{score}}/100",
+      "types": {
+        "seaport": "Jūrų uostas",
+        "inland_port": "Vidaus uostas",
+        "air_cargo": "Oro krovinių centras",
+        "industrial_zone": "Pramonės zona"
+      }
+    },
+    "localNode": {
+      "title": "Vietinės paslaugos ir regioninis hub",
+      "nearestHub": "Artimiausias pagrindinis hub",
+      "hubRoute": "Rekomenduojamas maršrutas",
+      "useCases": "Pagrindiniai naudojimo atvejai",
+      "transport": "Vietinis transportas",
+      "warehouses": "Sandėliai netoliese",
+      "services": "Vietinės paslaugos",
+      "craft": "Amatininkai",
+      "nearbyHubs": "Netoliese esantys hub",
+      "marketplaceDesc": "Vietiniai prekyvietės pasiūlymai jūsų regione",
+      "jobsDesc": "Darbo vietos mieste ir per regioninį hub",
+      "jobsViaHub": "Pendlarų ir logistikos darbo vietos per {{hub}}",
+      "useCase": {
+        "local_transport": "Vietinis transportas",
+        "moving_service": "Perkraustymo paslauga",
+        "warehouse_near_me": "Sandėlis netoliese",
+        "jobs_near_me": "Darbo vietos netoliese",
+        "craftsmen": "Amatininkai",
+        "business_services": "Verslo paslaugos",
+        "local_marketplace": "Vietinė prekyvietė",
+        "regional_logistics": "Regioninė logistika",
+        "agricultural_services": "Žemės ūkio paslaugos",
+        "tourism_services": "Turizmo paslaugos"
+      }
+    }
+  },
+  "panel": {
+    "title": "Miestas {{city}}",
+    "close": "Uždaryti",
+    "openWorkspace": "Atidaryti darbo erdvę",
+    "allRoutes": "Rodyti visus maršrutus",
+    "companies": "Įmonės",
+    "jobs": "Darbo vietos",
+    "warehouses": "Sandėliai",
+    "transport": "Transportas",
+    "marketplace": "Prekyvietė",
+    "partners": "Partneriai",
+    "aiScore": "AI balas",
+    "digitalProducts": "Skaitmeniniai produktai",
+    "transportOffers": "Transporto pasiūlymai",
+    "companiesDesc": "Registruotos įmonės šiame mieste",
+    "jobsDesc": "Aktyvūs darbo skelbimai",
+    "warehousesDesc": "Prieinama sandėlių talpa",
+    "tabs": {
+      "overview": "Apžvalga",
+      "companies": "Įmonės",
+      "jobs": "Darbo vietos",
+      "warehouses": "Sandėliai",
+      "routes": "Maršrutai",
+      "transport": "Transportas",
+      "marketplace": "Prekyvietė",
+      "services": "Paslaugos",
+      "analytics": "Analitika",
+      "partners": "Partneriai",
+      "activity": "Veikla"
+    }
+  },
+  "routePanel": {
+    "title": "Maršrutas {{route}}",
+    "from": "Iš",
+    "to": "Į",
+    "hours": "val.",
+    "industries": "Pagrindinės pramonės šakos",
+    "delivery": "Vidutinis pristatymo laikas: {{time}}",
+    "lastActivity": "Paskutinė veikla: {{time}}",
+    "warehousesHint": "Sandėliai ir logistikos centrai prieinami šiuo koridoriumi.",
+    "status": {
+      "active": "Aktyvus",
+      "congested": "Sustojimai",
+      "maintenance": "Priežiūra",
+      "seasonal": "Sezoninis"
+    },
+    "modes": {
+      "road": "Kelių kroviniai",
+      "rail": "Geležinkelių kroviniai",
+      "air": "Oro kroviniai",
+      "sea": "Jūrų kroviniai",
+      "river": "Upių / vidaus vandens"
+    },
+    "stats": {
+      "distance": "Atstumas",
+      "time": "Num. laikas (val.)",
+      "volume": "Mėnesio apimtis (t)",
+      "offers": "Transporto pasiūlymai",
+      "orders": "Aktyvūs užsakymai",
+      "companies": "Įmonės",
+      "price": "Kainų indeksas",
+      "reliability": "Patikimumas",
+      "co2": "CO₂ num."
+    },
+    "actions": {
+      "open": "Atidaryti maršrutą",
+      "search": "Rasti transportą",
+      "create": "Sukurti pasiūlymą"
+    }
+  },
+  "operating": {
+    "context": "Kontekstas",
+    "insights": "Tiesioginė informacija",
+    "activeMapMode": "Aktyvus žemėlapio režimas",
+    "logisticsLayer": "Logistika",
+    "businessLayer": "Verslas",
+    "country": "Šalis",
+    "city": "Miestas",
+    "corridor": "Koridorius",
+    "platform": "Platformos veikla",
+    "activeUsers": "Aktyvūs naudotojai",
+    "marketplace": "Prekyvietė",
+    "filters": "Filtrai",
+    "logistics": "Logistika",
+    "business": "Verslo moduliai",
+    "mapControls": "Žemėlapio valdikliai",
+    "trending": "Populiarūs miestai"
+  },
+  "a11y": {
+    "togglePanel": "Perjungti skydelį",
+    "mapViewport": "Europos verslo žemėlapis",
+    "showCommandPanel": "Rodyti valdymo skydelį",
+    "hideCommandPanel": "Slėpti valdymo skydelį"
+  },
+  "businessLayers": {
+    "marketplace": "Prekyvietė",
+    "transport": "Transportas",
+    "companies": "Įmonės",
+    "jobs": "Darbo vietos",
+    "warehouses": "Sandėliai",
+    "businessServices": "Verslo paslaugos",
+    "partners": "Partneriai",
+    "academy": "Akademija",
+    "digitalProducts": "Skaitmeniniai produktai",
+    "ai": "AI",
+    "events": "Renginiai",
+    "investments": "Investicijos",
+    "startups": "Startuoliai",
+    "manufacturing": "Gamyba",
+    "agriculture": "Žemės ūkis",
+    "construction": "Statyba",
+    "medical": "Medicina",
+    "tourism": "Turizmas",
+    "technology": "Technologijos",
+    "finance": "Finansai",
+    "legal": "Teisė",
+    "education": "Švietimas"
+  },
+  "mobile": {
+    "map": "Žemėlapis",
+    "transport": "Transportas",
+    "jobs": "Darbo vietos",
+    "companies": "Įmonės",
+    "warehouses": "Sandėliai",
+    "ai": "AI",
+    "more": "Daugiau",
+    "mapControl": "Žemėlapio valdymas",
+    "commandCenter": "Žemėlapio valdymo centras",
+    "mapControls": "Žemėlapio valdikliai",
+    "commandWheel": "Žemėlapio valdymo ratas",
+    "moreBusinessLayers": "Daugiau verslo sluoksnių",
+    "businessLayers": "Verslo sluoksniai",
+    "activeLayer": "Aktyvus sluoksnis:",
+    "layerActive": "{{layer}} sluoksnis aktyvus",
+    "europeOverviewActive": "Europos apžvalga aktyvi",
+    "aiComingSoon": "AI žemėlapio asistentas netrukus",
+    "exploreEcosystem": "Naršykite EuroBusinessHub ekosistemą",
+    "aiAssistantTitle": "AI žemėlapio asistentas",
+    "comingSoon": "Netrukus",
+    "close": "Uždaryti",
+    "closeLayersPanel": "Uždaryti sluoksnių skydelį",
+    "layerGroups": {
+      "transport": {
+        "title": "Transporto sluoksniai",
+        "road": "Kelių transportas",
+        "rail": "Geležinkelis",
+        "air": "Oro kroviniai",
+        "sea": "Jūrų kroviniai",
+        "river": "Upė"
+      },
+      "business": {
+        "title": "Verslo moduliai",
+        "marketplace": "Prekyvietė",
+        "companies": "Įmonės",
+        "jobs": "Darbo vietos",
+        "warehouses": "Sandėliai",
+        "partners": "Partneriai"
+      },
+      "services": {
+        "title": "Paslaugos",
+        "legal": "Teisė",
+        "finance": "Finansai",
+        "medical": "Medicina",
+        "education": "Švietimas",
+        "technology": "Technologijos"
+      },
+      "industries": {
+        "title": "Pramonės šakos",
+        "agriculture": "Žemės ūkis",
+        "manufacturing": "Gamyba",
+        "construction": "Statyba",
+        "tourism": "Turizmas"
+      },
+      "innovation": {
+        "title": "Inovacijos",
+        "ai": "AI",
+        "startups": "Startuoliai",
+        "digitalProducts": "Skaitmeniniai produktai",
+        "academy": "Akademija",
+        "investments": "Investicijos"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Prekyvietė",
+      "partners": "Partneriai",
+      "academy": "Akademija",
+      "digital-products": "Skaitmeniniai produktai",
+      "events": "Renginiai",
+      "investments": "Investicijos",
+      "startups": "Startuoliai",
+      "manufacturing": "Gamyba",
+      "agriculture": "Žemės ūkis",
+      "construction": "Statyba",
+      "medical": "Medicina",
+      "tourism": "Turizmas",
+      "technology": "Technologijos",
+      "finance": "Finansai",
+      "legal": "Teisė",
+      "education": "Švietimas"
+    }
+  },
+  "tooltips": {
+    "companies": "Įmonės",
+    "jobs": "Darbo vietos",
+    "warehouses": "Sandėliai",
+    "transport": "Transportas",
+    "aiScore": "AI balas",
+    "origin": "Kilmė",
+    "destination": "Paskirties vieta",
+    "routeType": "Maršruto tipas",
+    "distance": "Atstumas",
+    "activeOffers": "Aktyvūs pasiūlymai",
+    "estTime": "Num. laikas",
+    "aiOptimized": "AI optimizuota"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Europos apžvalga",
+      "recommendation": "Naršykite visą Europos verslo operacinį žemėlapį — visi koridoriai ir hub matomi.",
+      "tickerEyebrow": "AI rekomendacijos",
+      "tickerMessages": [
+        "Didelė paklausa: Berlin → Izium atkūrimo logistika",
+        "Plėsti koridorių: Warsaw → Kyiv → Izium",
+        "Partnerių atitikimas: Istanbul → Odesa jūrų logistika",
+        "Nauja galimybė: Ukraine atkūrimo tiekimo grandinė"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Prekyvietės režimas",
+      "recommendation": "Ryškesnis miestų švytėjimas paryškina prekybos centrus — atraskite B2B prekyvietės galimybes visoje Europoje.",
+      "tickerEyebrow": "Prekyvietės signalai",
+      "tickerMessages": [
+        "Rotterdam → Warsaw didmenos koridorius populiarus",
+        "Berlin MVĮ skelbimai +14 % šią savaitę",
+        "Tarptautinis prekyvietės atitikimas: Vienna ↔ Prague",
+        "Didelis pirkimo ketinimas Munich pramonės tiekime"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Transporto režimas",
+      "recommendation": "Transporto koridoriai subtiliai paryškinti — sekite krovinių srautus ir logistikos biržos veiklą.",
+      "tickerEyebrow": "Logistikos rekomendacijos",
+      "tickerMessages": [
+        "Laisva geležinkelio vieta: Hamburg → Warsaw koridorius",
+        "Jūrų krovinių paklausa auga Rotterdam → Gdańsk",
+        "Atidaroma kelių talpa: Lyon → Milan juosta",
+        "Oro krovinių langas: Frankfurt → Bucharest ekspresas"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Įmonių režimas",
+      "recommendation": "Įmonių hub švytėjimas sustiprina pagrindinius verslo centrus — idealu įmonių atradimui.",
+      "tickerEyebrow": "Įmonių hub signalai",
+      "tickerMessages": [
+        "Frankfurt įmonių klasterio veikla +11 %",
+        "Paris HQ perkėlimai link Lyon",
+        "Warsaw technologijų kampuso plėtra pastebėta",
+        "Milan mados namai ieško ES partnerių"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Darbo vietų režimas",
+      "recommendation": "Darbo vietų centrų švytėjimas rodo įdarbinimo paklausą — naršykite laisvas pozicijas pagal miestus.",
+      "tickerEyebrow": "Įdarbinimo rekomendacijos",
+      "tickerMessages": [
+        "Berlin logistikos pozicijos +18 % savaitė į savaitę",
+        "Warsaw inžinerijos įdarbinimas tęsiasi",
+        "Nuotolinio darbo pozicijos telkiasi Dublin",
+        "Izium atkūrimo projektai skelbia kvalifikuotus amatininkus"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Sandėlių režimas",
+      "recommendation": "Sandėlių tinklo pojūtis — distribucijos mazgai pulsuoja logistikos centruose.",
+      "tickerEyebrow": "Sandėlių tinklo signalai",
+      "tickerMessages": [
+        "Rotterdam muitinės sandėlis 92 % užimtumas",
+        "Warsaw šaltos grandinės plėtros koridorius aktyvus",
+        "Hamburg ↔ Berlin įvykdymo koridorius optimizuotas",
+        "Prague regioninis hub talpa atidaroma Q3"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Verslo paslaugų režimas",
+      "recommendation": "Paslaugų tinklo švytėjimas sujungia profesionalių paslaugų klasterius visoje Europoje.",
+      "tickerEyebrow": "Paslaugų tinklo signalai",
+      "tickerMessages": [
+        "Brussels atitikties konsultavimo paklausa auga",
+        "Zurich patikėtinių paslaugų atitikimas Prague",
+        "Barcelona kūrybinių paslaugų eksporto augimas",
+        "Vienna konsultacijų koridorius plečiasi į rytus"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Partnerių režimas",
+      "recommendation": "Bendradarbiavimo tinklo pojūtis — partnerystei pasiruošę miestai šviečia tarptautinėms aljansams.",
+      "tickerEyebrow": "Partnerystės signalai",
+      "tickerMessages": [
+        "Nordic ↔ Baltic partnerių atitikimo balas aukštas",
+        "Istanbul vartai ieško ES platintojų",
+        "Lyon gamybos partnerių paieška aktyvi",
+        "Tallinn skaitmeniniai partneriai atviri DACH rinkai"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Akademijos režimas",
+      "recommendation": "Švietimo ekosistemos pojūtis — mokymosi centrai ir mokymo koridoriai paryškinti.",
+      "tickerEyebrow": "Akademijos signalai",
+      "tickerMessages": [
+        "Heidelberg tyrimų mainų programos atviros",
+        "Barcelona bootcamp partnerystės populiarios",
+        "Warsaw STEM akademijos grupė greitai pildoma",
+        "Vienna vadovų rengimo tarptautinis priėmimas"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Skaitmeninių produktų režimas",
+      "recommendation": "Technologijų ekosistemos pojūtis — skaitmeninių produktų hub šviečia inovacijų miestuose.",
+      "tickerEyebrow": "Skaitmeninių produktų signalai",
+      "tickerMessages": [
+        "SaaS skelbimų augimas Tallinn ir Dublin",
+        "Berlin produktų studijos ieško ES platintojų",
+        "Amsterdam fintech API atviri integracijai",
+        "Prague kūrimo įrankių prekyvietės veikla +9 %"
+      ]
+    },
+    "ai": {
+      "panelTitle": "AI režimas",
+      "recommendation": "AI tinklo pojūtis — intelektualūs koridoriai ir AI pasiruošę verslo mazgai paryškinti.",
+      "tickerEyebrow": "AI tinklo signalai",
+      "tickerMessages": [
+        "Frankfurt AI logistikos maršrutizavimo pilotas veikia",
+        "Warsaw ML talentų baseino atitikimo balas 94 %",
+        "Paris generatyvūs prekybos įrankiai populiarūs",
+        "Helsinki AI atitikties smėlio dėžė priima partnerius"
+      ]
+    },
+    "events": {
+      "panelTitle": "Renginių režimas",
+      "recommendation": "Renginių centrų pojūtis — konferencijų ir parodų miestai pulsuoja žemėlapyje.",
+      "tickerEyebrow": "Renginių centrų signalai",
+      "tickerMessages": [
+        "Hanover Messe koridoriaus rezervacijos auga",
+        "Barcelona mobile congress papildoma paklausa",
+        "Vienna aukščiausio lygio susitikimų savaitė — apgyvendinimas ribotas",
+        "Milan dizaino savaitės tiekėjų derinimas atviras"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Investicijų režimas",
+      "recommendation": "Investicijų kapitalo pojūtis — kapitalo srautai ir finansavimo centrai subtiliai paryškinti.",
+      "tickerEyebrow": "Investicijų signalai",
+      "tickerMessages": [
+        "Frankfurt VC susidomėjimas Warsaw deeptech",
+        "Luxembourg fondo maršrutizavimas per Amsterdam hub",
+        "Berlin pradinio finansavimo veikla +12 %",
+        "Atkūrimo kapitalas nukreiptas į Izium koridorių"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Startuolių režimas",
+      "recommendation": "Startuolių inovacijų pojūtis — steigėjų ekosistemos ir plėtros koridoriai šviečia.",
+      "tickerEyebrow": "Startuolių inovacijų signalai",
+      "tickerMessages": [
+        "Berlin ↔ Tallinn steigėjų mainai aktyvūs",
+        "Barcelona healthtech spinout ieško pilotų",
+        "Warsaw accelerator demo day įdomumas",
+        "Lisbon nuotolinio startuolio įdarbinimas auga"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Gamybos režimas",
+      "recommendation": "Pramonės tinklo pojūtis — gamybos centrai ir tiekimo koridoriai paryškinti.",
+      "tickerEyebrow": "Pramonės tinklo signalai",
+      "tickerMessages": [
+        "Stuttgart automobilių tiekėjai ieško partnerių",
+        "Turin komponentų koridoriaus talpa laisva",
+        "Wrocław elektronikos surinkimo plėtra",
+        "Lyon aviacijos subrangos atitikimas atviras"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Žemės ūkio režimas",
+      "recommendation": "Žemės ūkio ekosistemos pojūtis — agrifood koridoriai ir kaimo prekybos mazgai šviečia.",
+      "tickerEyebrow": "Žemės ūkio ekosistemos signalai",
+      "tickerMessages": [
+        "Danube grūdų koridoriaus sandėliavimo paklausa didelė",
+        "Netherlands šaltos grandinės į Poland aktyvi",
+        "Valencia citrusinių eksporto sezonas intensyvėja",
+        "Kraków ekologinis platintojas ieško partnerių"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Statybos režimas",
+      "recommendation": "Infrastruktūros pojūtis — atkūrimo ir statybos tiekimo koridoriai paryškinti.",
+      "tickerEyebrow": "Infrastruktūros signalai",
+      "tickerMessages": [
+        "Izium atkūrimo medžiagų koridorius prioritetinis",
+        "Berlin būsto projekto subrangovų paieška",
+        "Warsaw infrastruktūros konkursų veikla auga",
+        "Prague geležinkelių modernizacijos tiekėjų atitikimas"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Medicinos režimas",
+      "recommendation": "Sveikatos ekosistemos pojūtis — medicinos centrai ir sveikatos logistikos mazgai paryškinti.",
+      "tickerEyebrow": "Sveikatos ekosistemos signalai",
+      "tickerMessages": [
+        "Basel farmacijos distribucijos koridorius stabilus",
+        "Warsaw medtech prietaisų skelbimai +10 %",
+        "Munich ligoninių pirkimų langas atviras",
+        "Strasbourg tarptautinės priežiūros partnerystės"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Turizmo režimas",
+      "recommendation": "Turistinių destinacijų pojūtis — lankytojų ekonomikos centrai šviečia visoje Europoje.",
+      "tickerEyebrow": "Turistinių destinacijų signalai",
+      "tickerMessages": [
+        "Barcelona vasaros svetingumo rezervacijos auga",
+        "Vienna kultūrinio turizmo partneriai ieškomi",
+        "Athens kruizų pervežimo koridorius aktyvus",
+        "Prague miesto kelionių paketai populiarūs DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Technologijų režimas",
+      "recommendation": "Technologijų centrų pojūtis — inovacijų klasteriai ir tech koridoriai subtiliai paryškinti.",
+      "tickerEyebrow": "Technologijų centrų signalai",
+      "tickerMessages": [
+        "Munich deep-tech spinout susidomėjimas auga",
+        "Eindhoven puslaidininkių partneriai ieškomi",
+        "Tallinn kibernetinio saugumo talentų atitikimo balas aukštas",
+        "Cambridge ↔ Berlin tyrimų mainai atviri"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Finansų režimas",
+      "recommendation": "Finansų tinklo pojūtis — kapitalo centrai ir bankininkystės koridoriai paryškinti.",
+      "tickerEyebrow": "Finansų tinklo signalai",
+      "tickerMessages": [
+        "Frankfurt kliringo veikla stabili",
+        "Luxembourg fondų administravimo atitikimas atviras",
+        "Dublin fintech API partneriai populiarūs",
+        "Zurich turto valdymo tarptautinis priėmimas"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Teisės režimas",
+      "recommendation": "Teisinių paslaugų pojūtis — reguliavimo ir teisinių konsultacijų klasteriai paryškinti.",
+      "tickerEyebrow": "Teisinių paslaugų signalai",
+      "tickerMessages": [
+        "Brussels reguliavimo konsultavimo paklausa didelė",
+        "London ↔ Frankfurt atitikties koridorius",
+        "Warsaw ES teisės boutique plėtra pastebėta",
+        "Vienna arbitražo hub partnerių paieška"
+      ]
+    },
+    "education": {
+      "panelTitle": "Švietimo režimas",
+      "recommendation": "Švietimo tinklo pojūtis — universitetai ir mokymo koridoriai švelniai šviečia.",
+      "tickerEyebrow": "Švietimo tinklo signalai",
+      "tickerMessages": [
+        "Erasmus koridoriaus veikla: Barcelona ↔ Bologna",
+        "Warsaw kalbų mokyklų partnerystės atviros",
+        "Heidelberg tyrimų tarptautinis priėmimas",
+        "Dublin edtech kvalifikacijų mainai populiarūs"
+      ]
+    },
+    "road": {
+      "panelTitle": "Kelių transporto režimas",
+      "recommendation": "Kelių koridoriai subtiliai paryškinti — sausumos krovinių juostos šviečia tinkle.",
+      "tickerEyebrow": "Kelių transporto signalai",
+      "tickerMessages": [
+        "Antwerp → Warsaw sunkvežimių talpa laisva",
+        "Milan → Munich juostos užimtumas 78 %",
+        "Barcelona → Lyon ekspresinė vieta laisva"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Geležinkelio režimas",
+      "recommendation": "Geležinkelio koridoriai paryškinti — intermodalūs ir krovinių geležinkelių maršrutai pažymėti.",
+      "tickerEyebrow": "Geležinkelio koridorių signalai",
+      "tickerMessages": [
+        "Hamburg → Warsaw geležinkelio vieta populiari",
+        "Rotterdam intermodalinis perdavimas stabilus",
+        "Basel → Milan geležinkelių krovinių paklausa auga"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Jūrų krovinių režimas",
+      "recommendation": "Jūrų koridoriai paryškinti — uostas į uostą jūrų maršrutai šviečia žemėlapyje.",
+      "tickerEyebrow": "Jūrų krovinių signalai",
+      "tickerMessages": [
+        "Rotterdam → Gdańsk konteinerių koridorius aktyvus",
+        "Hamburg → Odesa jūrų susidomėjimas auga",
+        "Barcelona Viduržemio maršrutizavimas stabilus"
+      ]
+    },
+    "air": {
+      "panelTitle": "Oro krovinių režimas",
+      "recommendation": "Oro krovinių koridoriai paryškinti — ekspresiniai aviacijos maršrutai pažymėti.",
+      "tickerEyebrow": "Oro krovinių signalai",
+      "tickerMessages": [
+        "Frankfurt → Bucharest ekspresinis pakėlimas laisvas",
+        "Paris CDG ↔ Warsaw krovinių langas",
+        "Amsterdam oro hub perpakavimas aktyvus"
+      ]
+    },
+    "river": {
+      "panelTitle": "Upių režimas",
+      "recommendation": "Upių koridoriai paryškinti — vidaus vandens kelių krovinių maršrutai pažymėti.",
+      "tickerEyebrow": "Upių krovinių signalai",
+      "tickerMessages": [
+        "Danube koridoriaus grūdų judėjimas aktyvus",
+        "Rhine baržų talpa laisva",
+        "Elbe vidaus uostų perdavimai stabilūs"
+      ]
+    }
+  }
+}

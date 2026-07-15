@@ -1,0 +1,665 @@
+{
+  "title": "Rețea europeană de afaceri vie",
+  "eyebrow": "Hartă live",
+  "subtitle": "Berlin ca hub central — Rețea europeană de afaceri interactivă",
+  "legend": "Hartă interactivă a Europei cu noduri de afaceri",
+  "hubLabel": "Hub Berlin",
+  "liveNetwork": "Rețea live activă",
+  "businesses": "{{count}} companii",
+  "zoomHint": "Selectează un oraș sau o țară · Fiecare oraș deschide propriul workspace",
+  "interactionHint": "Derulează pentru zoom · Trage pentru deplasare · Clic pe un oraș pentru detalii",
+  "loading": "Se încarcă harta…",
+  "controls": {
+    "zoomIn": "Mărește",
+    "zoomOut": "Micșorează",
+    "reset": "Resetează vizualizarea",
+    "backEurope": "Europa"
+  },
+  "nav": {
+    "europe": "Europa",
+    "backToEurope": "Înapoi la Europa",
+    "selectCity": "Selectează oraș"
+  },
+  "search": {
+    "placeholder": "Caută oraș",
+    "open": "Caută oraș",
+    "close": "Închide căutarea",
+    "results": "Rezultate căutare oraș",
+    "noResults": "Niciun oraș corespunzător",
+    "noLayerData": "Nu sunt date disponibile pentru această locație în stratul curent.",
+    "voice": "Căutare vocală",
+    "voiceComingSoon": "Căutare vocală în curând"
+  },
+  "layers": {
+    "title": "Straturi",
+    "routes": "Toate rutele",
+    "road": "Transport rutier",
+    "rail": "Transport feroviar",
+    "air": "Cargo aerian",
+    "sea": "Rute maritime",
+    "river": "Fluvial / Interior",
+    "companies": "Companii",
+    "jobs": "Locuri de muncă",
+    "warehouses": "Depozite"
+  },
+  "activity": {
+    "liveActivity": "Activitate live",
+    "freightVolume": "Volum marfă 24h",
+    "transportOffers": "Oferte de transport deschise",
+    "deliveryTime": "Timp mediu de livrare",
+    "co2Saving": "Economii CO₂"
+  },
+  "live": {
+    "title": "Platformă live",
+    "companies": "Companii",
+    "jobs": "Locuri de muncă",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "warehouses": "Depozite",
+    "partners": "Parteneri",
+    "digitalProducts": "Produse digitale",
+    "subscriptions": "Abonamente",
+    "aiRequests": "Cereri IA"
+  },
+  "tooltip": {
+    "companies": "{{count}} companii",
+    "jobs": "{{count}} locuri de muncă",
+    "warehouses": "{{count}} depozite",
+    "transport": "{{count}} oferte de transport",
+    "businessScore": "Scor de afaceri {{score}}",
+    "networkConnections": "{{count}} conexiuni de rețea",
+    "aiScore": "Scor IA {{score}}"
+  },
+  "country": {
+    "title": "Țara {{country}}",
+    "cities": "{{count}} orașe de afaceri",
+    "aiScore": "Scor infrastructură IA",
+    "selectCity": "Selectează un oraș pe hartă pentru detalii"
+  },
+  "germany": {
+    "bundeslandPicker": "Selectează landul federal",
+    "bundeslandTitle": "Land {{name}}",
+    "bundeslandSubtitle": "Profil economic regional",
+    "selectCityInState": "Selectează un oraș în acest land",
+    "population": "Populație",
+    "federalState": "Land federal",
+    "mainIndustry": "Industrie principală",
+    "transportRole": "Rol în transport",
+    "finance": "Finanțe",
+    "tech": "Tech",
+    "logistics": "Logistică",
+    "innovation": "Inovație",
+    "businessIndex": "Indice de afaceri",
+    "sustainability": "Sustenabilitate",
+    "gdpShort": "{{value}} mld € PIB",
+    "gdpEstimate": "PIB estimat: {{value}} mld €",
+    "marketplaceDesc": "Oferte marketplace active în regiune",
+    "stats": {
+      "cities": "Orașe",
+      "gdp": "PIB (est.)",
+      "logistics": "Scor logistică",
+      "businesses": "Afaceri"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Infrastructură din apropiere",
+      "seaports": "Porturi maritime",
+      "inlandPorts": "Porturi interioare",
+      "airCargo": "Hub-uri cargo aerian",
+      "industrialZones": "Zone industriale",
+      "logisticsHubs": "Hub-uri logistice",
+      "importance": "Importanță {{score}}/100",
+      "types": {
+        "seaport": "Port maritim",
+        "inland_port": "Port interior",
+        "air_cargo": "Hub cargo aerian",
+        "industrial_zone": "Zonă industrială"
+      }
+    },
+    "localNode": {
+      "title": "Servicii locale și hub regional",
+      "nearestHub": "Cel mai apropiat hub major",
+      "hubRoute": "Rută recomandată",
+      "useCases": "Cazuri de utilizare principale",
+      "transport": "Transport local",
+      "warehouses": "Depozitare în apropiere",
+      "services": "Servicii locale",
+      "craft": "Meșteri",
+      "nearbyHubs": "Hub-uri din apropiere",
+      "marketplaceDesc": "Oferte marketplace locale în regiunea ta",
+      "jobsDesc": "Locuri de muncă în oraș și prin hub regional",
+      "jobsViaHub": "Locuri de muncă navetiști și logistică prin {{hub}}",
+      "useCase": {
+        "local_transport": "Transport local",
+        "moving_service": "Serviciu de mutare",
+        "warehouse_near_me": "Depozit lângă mine",
+        "jobs_near_me": "Locuri de muncă lângă mine",
+        "craftsmen": "Meșteri",
+        "business_services": "Servicii de afaceri",
+        "local_marketplace": "Marketplace local",
+        "regional_logistics": "Logistică regională",
+        "agricultural_services": "Servicii agricole",
+        "tourism_services": "Servicii turistice"
+      }
+    }
+  },
+  "panel": {
+    "title": "Oraș {{city}}",
+    "close": "Închide",
+    "openWorkspace": "Deschide workspace",
+    "allRoutes": "Arată toate rutele",
+    "companies": "Companii",
+    "jobs": "Locuri de muncă",
+    "warehouses": "Depozite",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "partners": "Parteneri",
+    "aiScore": "Scor IA",
+    "digitalProducts": "Produse digitale",
+    "transportOffers": "Oferte de transport",
+    "companiesDesc": "Companii înregistrate în acest oraș",
+    "jobsDesc": "Anunțuri de angajare active",
+    "warehousesDesc": "Capacitate depozit disponibilă",
+    "tabs": {
+      "overview": "Prezentare generală",
+      "companies": "Companii",
+      "jobs": "Locuri de muncă",
+      "warehouses": "Depozite",
+      "routes": "Rute",
+      "transport": "Transport",
+      "marketplace": "Marketplace",
+      "services": "Servicii",
+      "analytics": "Analiză",
+      "partners": "Parteneri",
+      "activity": "Activitate"
+    }
+  },
+  "routePanel": {
+    "title": "Rută {{route}}",
+    "from": "De la",
+    "to": "Către",
+    "hours": "h",
+    "industries": "Industrii principale",
+    "delivery": "Timp mediu de livrare: {{time}}",
+    "lastActivity": "Ultima activitate: {{time}}",
+    "warehousesHint": "Depozite și hub-uri logistice disponibile de-a lungul acestui coridor.",
+    "status": {
+      "active": "Activă",
+      "congested": "Aglomerată",
+      "maintenance": "Întreținere",
+      "seasonal": "Sezonieră"
+    },
+    "modes": {
+      "road": "Transport rutier",
+      "rail": "Transport feroviar",
+      "air": "Cargo aerian",
+      "sea": "Transport maritim",
+      "river": "Fluvial / Interior"
+    },
+    "stats": {
+      "distance": "Distanță",
+      "time": "Timp est. (h)",
+      "volume": "Volum lunar (t)",
+      "offers": "Oferte de transport",
+      "orders": "Comenzi active",
+      "companies": "Companii",
+      "price": "Indice de preț",
+      "reliability": "Fiabilitate",
+      "co2": "CO₂ est."
+    },
+    "actions": {
+      "open": "Deschide ruta",
+      "search": "Găsește transport",
+      "create": "Creează ofertă"
+    }
+  },
+  "operating": {
+    "context": "Context",
+    "insights": "Inteligență live",
+    "activeMapMode": "Mod hartă activ",
+    "logisticsLayer": "Logistică",
+    "businessLayer": "Afaceri",
+    "country": "Țară",
+    "city": "Oraș",
+    "corridor": "Coridor",
+    "platform": "Activitate platformă",
+    "activeUsers": "Utilizatori activi",
+    "marketplace": "Marketplace",
+    "filters": "Filtre",
+    "logistics": "Logistică",
+    "business": "Module de afaceri",
+    "mapControls": "Controale hartă",
+    "trending": "Orașe în trend"
+  },
+  "a11y": {
+    "togglePanel": "Comută panoul",
+    "mapViewport": "Hartă de afaceri Europa",
+    "showCommandPanel": "Arată panoul de comandă",
+    "hideCommandPanel": "Ascunde panoul de comandă"
+  },
+  "businessLayers": {
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "companies": "Companii",
+    "jobs": "Locuri de muncă",
+    "warehouses": "Depozite",
+    "businessServices": "Servicii de afaceri",
+    "partners": "Parteneri",
+    "academy": "Academie",
+    "digitalProducts": "Produse digitale",
+    "ai": "IA",
+    "events": "Evenimente",
+    "investments": "Investiții",
+    "startups": "Startup-uri",
+    "manufacturing": "Producție",
+    "agriculture": "Agricultură",
+    "construction": "Construcții",
+    "medical": "Medical",
+    "tourism": "Turism",
+    "technology": "Tehnologie",
+    "finance": "Finanțe",
+    "legal": "Juridic",
+    "education": "Educație"
+  },
+  "mobile": {
+    "map": "Hartă",
+    "transport": "Transport",
+    "jobs": "Locuri de muncă",
+    "companies": "Companii",
+    "warehouses": "Depozite",
+    "ai": "IA",
+    "more": "Mai mult",
+    "mapControl": "Control hartă",
+    "commandCenter": "Centru de comandă hartă",
+    "mapControls": "Controale hartă",
+    "commandWheel": "Roată de comandă hartă",
+    "moreBusinessLayers": "Mai multe straturi de afaceri",
+    "businessLayers": "Straturi de afaceri",
+    "activeLayer": "Strat activ:",
+    "layerActive": "Strat {{layer}} activ",
+    "europeOverviewActive": "Prezentare generală Europa activă",
+    "aiComingSoon": "Asistent hartă IA în curând",
+    "exploreEcosystem": "Explorează ecosistemul EuroBusinessHub",
+    "aiAssistantTitle": "Asistent hartă IA",
+    "comingSoon": "În curând",
+    "close": "Închide",
+    "closeLayersPanel": "Închide panoul de straturi",
+    "layerGroups": {
+      "transport": {
+        "title": "Straturi transport",
+        "road": "Transport rutier",
+        "rail": "Feroviar",
+        "air": "Cargo aerian",
+        "sea": "Transport maritim",
+        "river": "Fluvial"
+      },
+      "business": {
+        "title": "Module de afaceri",
+        "marketplace": "Marketplace",
+        "companies": "Companii",
+        "jobs": "Locuri de muncă",
+        "warehouses": "Depozite",
+        "partners": "Parteneri"
+      },
+      "services": {
+        "title": "Servicii",
+        "legal": "Juridic",
+        "finance": "Finanțe",
+        "medical": "Medical",
+        "education": "Educație",
+        "technology": "Tehnologie"
+      },
+      "industries": {
+        "title": "Industrii",
+        "agriculture": "Agricultură",
+        "manufacturing": "Producție",
+        "construction": "Construcții",
+        "tourism": "Turism"
+      },
+      "innovation": {
+        "title": "Inovație",
+        "ai": "IA",
+        "startups": "Startup-uri",
+        "digitalProducts": "Produse digitale",
+        "academy": "Academie",
+        "investments": "Investiții"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Marketplace",
+      "partners": "Parteneri",
+      "academy": "Academie",
+      "digital-products": "Produse digitale",
+      "events": "Evenimente",
+      "investments": "Investiții",
+      "startups": "Startup-uri",
+      "manufacturing": "Producție",
+      "agriculture": "Agricultură",
+      "construction": "Construcții",
+      "medical": "Medical",
+      "tourism": "Turism",
+      "technology": "Tehnologie",
+      "finance": "Finanțe",
+      "legal": "Juridic",
+      "education": "Educație"
+    }
+  },
+  "tooltips": {
+    "companies": "Companii",
+    "jobs": "Locuri de muncă",
+    "warehouses": "Depozite",
+    "transport": "Transport",
+    "aiScore": "Scor IA",
+    "origin": "Origine",
+    "destination": "Destinație",
+    "routeType": "Tip rută",
+    "distance": "Distanță",
+    "activeOffers": "Oferte active",
+    "estTime": "Timp est.",
+    "aiOptimized": "Optimizat IA"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Prezentare generală Europa",
+      "recommendation": "Explorează harta operațională completă de afaceri europeană — toate coridoarele și hub-urile vizibile.",
+      "tickerEyebrow": "Recomandări IA",
+      "tickerMessages": [
+        "Cerere ridicată: Berlin → Izium logistică de reconstrucție",
+        "Extinde coridorul: Warsaw → Kyiv → Izium",
+        "Potrivire partener: Istanbul → Odesa logistică maritimă",
+        "Oportunitate nouă: lanț de aprovizionare reconstrucție Ukraine"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Mod Marketplace",
+      "recommendation": "Strălucirea mai intensă a orașelor evidențiază hotspot-urile comerciale — descoperă oportunități B2B marketplace în Europa.",
+      "tickerEyebrow": "Semnale marketplace",
+      "tickerMessages": [
+        "Rotterdam → Warsaw coridor en-gros în trend",
+        "Berlin anunțuri IMM +14% săptămâna aceasta",
+        "Potrivire marketplace transfrontalieră: Vienna ↔ Prague",
+        "Intenție ridicată de cumpărare la Munich aprovizionare industrială"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Mod Transport",
+      "recommendation": "Coridoarele de transport sunt subliniate subtil — urmărește fluxurile de marfă și activitatea bursei logistice.",
+      "tickerEyebrow": "Recomandări logistice",
+      "tickerMessages": [
+        "Slot feroviar disponibil: coridor Hamburg → Warsaw",
+        "Cerere transport maritim în creștere Rotterdam → Gdańsk",
+        "Capacitate rutieră în deschidere: bandă Lyon → Milan",
+        "Fereastră cargo aerian: Frankfurt → Bucharest express"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Mod Companii",
+      "recommendation": "Strălucirea hub-urilor de companii intensifică centrele majore de afaceri — ideal pentru descoperirea întreprinderilor.",
+      "tickerEyebrow": "Semnale hub companii",
+      "tickerMessages": [
+        "Frankfurt activitate cluster enterprise +11%",
+        "Paris relocări sedii centrale în trend spre Lyon",
+        "Warsaw extindere campus tech observată",
+        "Milan case de modă caută parteneri UE"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Mod Locuri de muncă",
+      "recommendation": "Strălucirea hotspot-urilor de angajare evidențiază cererea de ocupare — explorează rolurile deschise pe oraș.",
+      "tickerEyebrow": "Recomandări ocupare",
+      "tickerMessages": [
+        "Berlin roluri logistică +18% săptămână peste săptămână",
+        "Warsaw val de angajări inginerie continuă",
+        "Roluri remote-ready concentrate la Dublin",
+        "Izium proiecte reconstrucție postează meserii specializate"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Mod Depozite",
+      "recommendation": "Senzație de rețea depozite — nodurile de distribuție pulsează în gateway-urile logistice.",
+      "tickerEyebrow": "Semnale rețea depozite",
+      "tickerMessages": [
+        "Rotterdam depozitare vamală la 92% utilizare",
+        "Warsaw coridor extindere lanț frigorific activ",
+        "Hamburg ↔ Berlin bandă fulfillment optimizată",
+        "Prague capacitate hub regional în deschidere Q3"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Mod Servicii de afaceri",
+      "recommendation": "Strălucirea rețelei de servicii conectează clusterele de servicii profesionale în Europa.",
+      "tickerEyebrow": "Semnale rețea servicii",
+      "tickerMessages": [
+        "Brussels cerere consultanță conformitate în creștere",
+        "Zurich servicii fiduciare potrivite la Prague",
+        "Barcelona creștere export servicii creative",
+        "Vienna coridor consultanță în expansiune spre est"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Mod Parteneri",
+      "recommendation": "Senzație de rețea de colaborare — orașele pregătite pentru parteneriat strălucesc pentru alianțe transfrontaliere.",
+      "tickerEyebrow": "Semnale parteneriat",
+      "tickerMessages": [
+        "Nordic ↔ Baltic scor potrivire partener ridicat",
+        "Istanbul gateway caută distribuitori UE",
+        "Lyon căutare partener producție activă",
+        "Tallinn parteneri digitali deschiși pieței DACH"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Mod Academie",
+      "recommendation": "Senzație ecosistem educațional — hub-uri de învățare și coridoare de formare evidențiate.",
+      "tickerEyebrow": "Semnale academie",
+      "tickerMessages": [
+        "Heidelberg programe schimb cercetare deschise",
+        "Barcelona parteneriate bootcamp în trend",
+        "Warsaw cohortă academie STEM se completează rapid",
+        "Vienna educație executivă admitere transfrontalieră"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Mod Produse digitale",
+      "recommendation": "Senzație ecosistem tehnologic — hub-uri produse digitale strălucesc în orașele inovației.",
+      "tickerEyebrow": "Semnale produse digitale",
+      "tickerMessages": [
+        "Val anunțuri SaaS la Tallinn și Dublin",
+        "Berlin studiouri produs caută reselleri UE",
+        "Amsterdam API fintech deschise pentru integrare",
+        "Prague activitate marketplace instrumente dev +9%"
+      ]
+    },
+    "ai": {
+      "panelTitle": "Mod IA",
+      "recommendation": "Senzație rețea IA — coridoare inteligente și noduri de afaceri pregătite pentru IA evidențiate.",
+      "tickerEyebrow": "Semnale rețea IA",
+      "tickerMessages": [
+        "Frankfurt pilot rutare logistică IA live",
+        "Warsaw pool talente ML scor potrivire 94%",
+        "Paris instrumente commerce generativ în trend",
+        "Helsinki sandbox conformitate IA acceptă parteneri"
+      ]
+    },
+    "events": {
+      "panelTitle": "Mod Evenimente",
+      "recommendation": "Senzație hotspot evenimente — orașele de conferințe și târguri pulsează pe hartă.",
+      "tickerEyebrow": "Semnale hotspot evenimente",
+      "tickerMessages": [
+        "Hanover Messe rezervări coridor în creștere",
+        "Barcelona cerere spillover congres mobil",
+        "Vienna săptămână summit cazare limitată",
+        "Milan design week matchmaking furnizori deschis"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Mod Investiții",
+      "recommendation": "Senzație capital de investiții — fluxuri de capital și hotspot-uri de finanțare subliniate subtil.",
+      "tickerEyebrow": "Semnale investiții",
+      "tickerMessages": [
+        "Frankfurt interes VC pentru deeptech Warsaw",
+        "Luxembourg fonduri rutate prin hub Amsterdam",
+        "Berlin activitate rundă seed +12%",
+        "Capital reconstrucție vizat coridor Izium"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Mod Startup-uri",
+      "recommendation": "Senzație inovație startup — ecosisteme fondatori și coridoare scale-up strălucesc.",
+      "tickerEyebrow": "Semnale inovație startup",
+      "tickerMessages": [
+        "Berlin ↔ Tallinn schimb fondatori activ",
+        "Barcelona spinoff-uri healthtech caută pilote",
+        "Warsaw demo day accelerator interes inbound",
+        "Lisbon val angajări startup remote-first"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Mod Producție",
+      "recommendation": "Senzație rețea industrială — hub-uri de producție și coridoare de aprovizionare evidențiate.",
+      "tickerEyebrow": "Semnale rețea industrială",
+      "tickerMessages": [
+        "Stuttgart furnizori auto caută parteneri",
+        "Turin coridor componente capacitate disponibilă",
+        "Wrocław expansiune asamblare electronică",
+        "Lyon potrivire subcontractant aerospațial deschisă"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Mod Agricultură",
+      "recommendation": "Senzație ecosistem agricol — coridoare agroalimentare și noduri comerciale rurale strălucesc.",
+      "tickerEyebrow": "Semnale ecosistem agricultură",
+      "tickerMessages": [
+        "Danube coridor cereale cerere depozitare ridicată",
+        "Netherlands lanț frigorific spre Poland activ",
+        "Valencia sezon export citrice în ramp-up",
+        "Kraków distribuitor organic caută parteneri"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Mod Construcții",
+      "recommendation": "Senzație infrastructură — coridoare reconstrucție și aprovizionare construcții evidențiate.",
+      "tickerEyebrow": "Semnale infrastructură",
+      "tickerMessages": [
+        "Izium coridor materiale reconstrucție prioritar",
+        "Berlin căutare subcontractanți proiect locuințe",
+        "Warsaw activitate licitații infrastructură în creștere",
+        "Prague potrivire furnizori modernizare feroviară"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Mod Medical",
+      "recommendation": "Senzație ecosistem sănătate — hub-uri medicale și noduri logistică medicală evidențiate.",
+      "tickerEyebrow": "Semnale ecosistem sănătate",
+      "tickerMessages": [
+        "Basel bandă distribuție farmaceutică stabilă",
+        "Warsaw anunțuri dispozitive medtech +10%",
+        "Munich fereastră achiziții spital deschisă",
+        "Strasbourg parteneriate îngrijire transfrontalieră"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Mod Turism",
+      "recommendation": "Senzație destinație turistică — hotspot-uri economie vizitatori strălucesc în Europa.",
+      "tickerEyebrow": "Semnale destinație turistică",
+      "tickerMessages": [
+        "Barcelona val rezervări ospitalitate vară",
+        "Vienna parteneri turism cultural căutați",
+        "Athens coridor transfer croaziere activ",
+        "Prague pachete city-break în trend DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Mod Tehnologie",
+      "recommendation": "Senzație hub-uri tehnologice — clustere inovație și coridoare tech ușor iluminate.",
+      "tickerEyebrow": "Semnale hub tehnologic",
+      "tickerMessages": [
+        "Munich interes spinout deep-tech în creștere",
+        "Eindhoven parteneri semiconductor căutați",
+        "Tallinn scor potrivire talente cyber ridicat",
+        "Cambridge ↔ Berlin schimb cercetare deschis"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Mod Finanțe",
+      "recommendation": "Senzație rețea financiară — centre de capital și coridoare bancare evidențiate.",
+      "tickerEyebrow": "Semnale rețea financiară",
+      "tickerMessages": [
+        "Frankfurt activitate clearing stabilă",
+        "Luxembourg potrivire administrare fonduri deschisă",
+        "Dublin parteneri API fintech în trend",
+        "Zurich servicii patrimoniale admitere transfrontalieră"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Mod Juridic",
+      "recommendation": "Senzație servicii juridice — clustere de reglementare și consultanță juridică evidențiate.",
+      "tickerEyebrow": "Semnale servicii juridice",
+      "tickerMessages": [
+        "Brussels cerere consultanță reglementară ridicată",
+        "London ↔ Frankfurt coridor conformitate",
+        "Warsaw boutique drept UE expansiune observată",
+        "Vienna hub arbitraj căutare partener"
+      ]
+    },
+    "education": {
+      "panelTitle": "Mod Educație",
+      "recommendation": "Senzație rețea educațională — universități și coridoare de formare strălucesc delicat.",
+      "tickerEyebrow": "Semnale rețea educație",
+      "tickerMessages": [
+        "Erasmus activitate coridor: Barcelona ↔ Bologna",
+        "Warsaw parteneriate școli de limbi deschise",
+        "Heidelberg admitere cercetare transfrontalieră",
+        "Dublin schimb credențiale edtech în trend"
+      ]
+    },
+    "road": {
+      "panelTitle": "Mod Transport rutier",
+      "recommendation": "Coridoarele rutiere primesc accent subtil — benzile de marfă terestre strălucesc pe rețea.",
+      "tickerEyebrow": "Semnale transport rutier",
+      "tickerMessages": [
+        "Antwerp → Warsaw capacitate trucking disponibilă",
+        "Milan → Munich utilizare bandă 78%",
+        "Barcelona → Lyon slot express disponibil"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Mod Feroviar",
+      "recommendation": "Coridoare feroviare evidențiate — benzi intermodale și marfă feroviară subliniate.",
+      "tickerEyebrow": "Semnale coridoare feroviare",
+      "tickerMessages": [
+        "Hamburg → Warsaw slot feroviar în trend",
+        "Rotterdam predare intermodală stabilă",
+        "Basel → Milan cerere marfă feroviară în creștere"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Mod Transport maritim",
+      "recommendation": "Coridoare maritime evidențiate — benzi port-port strălucesc pe hartă.",
+      "tickerEyebrow": "Semnale transport maritim",
+      "tickerMessages": [
+        "Rotterdam → Gdańsk bandă containere activă",
+        "Hamburg → Odesa interes maritim în creștere",
+        "Barcelona rutare Mediteraneană stabilă"
+      ]
+    },
+    "air": {
+      "panelTitle": "Mod Cargo aerian",
+      "recommendation": "Coridoare cargo aerian evidențiate — benzi aviație express subliniate.",
+      "tickerEyebrow": "Semnale cargo aerian",
+      "tickerMessages": [
+        "Frankfurt → Bucharest uplift express disponibil",
+        "Paris CDG ↔ Warsaw fereastră cargo",
+        "Amsterdam hub aerian cross-dock activ"
+      ]
+    },
+    "river": {
+      "panelTitle": "Mod Fluvial",
+      "recommendation": "Coridoare fluviale evidențiate — benzi marfă pe căi navigabile interioare subliniate.",
+      "tickerEyebrow": "Semnale marfă fluvială",
+      "tickerMessages": [
+        "Danube coridor mișcare cereale activă",
+        "Rhine capacitate barje disponibilă",
+        "Elbe predări porturi interioare stabile"
+      ]
+    }
+  }
+}

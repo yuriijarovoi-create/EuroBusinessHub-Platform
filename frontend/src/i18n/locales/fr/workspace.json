@@ -1,0 +1,117 @@
+{
+  "title": "Espace de travail {{city}}",
+  "subtitle": "{{country}} · {{count}} entreprises",
+  "stats": {
+    "activeUsers": "Utilisateurs actifs",
+    "openOrders": "Commandes ouvertes",
+    "listings": "Annonces"
+  },
+  "metrics": {
+    "companies": "Entreprises",
+    "jobs": "Emplois",
+    "transport": "Transport",
+    "warehouses": "Entrepôts",
+    "marketplace": "Marketplace",
+    "partners": "Partenaires",
+    "digitalProducts": "Produits numériques",
+    "services": "Services"
+  },
+  "ecosystemMetrics": "Écosystème commercial",
+  "activeModules": "Modules actifs dans cette ville",
+  "backToMap": "Retour à la carte",
+  "backToEuropeMap": "Retour à la carte de l'Europe",
+  "quickActions": "Actions rapides",
+  "actions": {
+    "search": "Rechercher dans la ville",
+    "marketplace": "Ouvrir la marketplace",
+    "ki": "Démarrer l'assistant IA"
+  },
+  "companies": {
+    "title": "Entreprises à {{city}}",
+    "backToCity": "Retour à l'espace de travail de la ville",
+    "demoNotice": "Données de démonstration — aucune connexion au registre des entreprises en direct",
+    "notFoundCity": "Ville introuvable",
+    "loadMoreFoundation": "Architecture de pagination et chargement progressif prête pour les futurs jeux de données API.",
+    "stats": {
+      "label": "Statistiques des entreprises de la ville",
+      "totalCompanies": "Total des entreprises",
+      "verifiedProfiles": "Profils vérifiés",
+      "industries": "Secteurs",
+      "openOpportunities": "Opportunités ouvertes"
+    },
+    "search": {
+      "label": "Rechercher des entreprises",
+      "placeholder": "Rechercher par nom, secteur, tags…",
+      "clear": "Effacer la recherche"
+    },
+    "filters": {
+      "toggle": "Filtres",
+      "active": "actifs",
+      "industry": "Secteur",
+      "size": "Taille de l'entreprise",
+      "status": "Statut",
+      "sort": "Trier par",
+      "verifiedOnly": "Vérifiés uniquement",
+      "all": "Tous",
+      "clear": "Effacer les filtres"
+    },
+    "sort": {
+      "relevance": "Pertinence",
+      "name": "Nom de l'entreprise",
+      "size": "Taille de l'entreprise"
+    },
+    "results": {
+      "label": "Résultats d'entreprises",
+      "showing": "Affichage de {{count}} sur {{total}} entreprises de démonstration"
+    },
+    "card": {
+      "verified": "Vérifié",
+      "demo": "Démo",
+      "tags": "Tags",
+      "view": "Voir l'entreprise"
+    },
+    "details": {
+      "close": "Fermer les détails",
+      "size": "Taille de l'entreprise",
+      "status": "Statut",
+      "verification": "Vérification",
+      "employees": "Employés",
+      "description": "Description",
+      "tags": "Tags",
+      "opportunities": "Opportunités",
+      "location": "Localisation",
+      "website": "Site web"
+    },
+    "industries": {
+      "manufacturing": "Industrie manufacturière",
+      "logistics": "Logistique",
+      "technology": "Technologie",
+      "construction": "Construction",
+      "agriculture": "Agriculture",
+      "medical": "Médical",
+      "finance": "Finance",
+      "tourism": "Tourisme",
+      "retail": "Commerce de détail",
+      "professional-services": "Services professionnels"
+    },
+    "sizes": {
+      "micro": "Micro",
+      "small": "Petite",
+      "medium": "Moyenne",
+      "large": "Grande"
+    },
+    "statuses": {
+      "active": "Actif",
+      "inactive": "Inactif",
+      "pending": "En attente"
+    },
+    "emptyCity": {
+      "title": "Aucune donnée d'entreprise pour {{city}} pour le moment",
+      "body": "Cette ville est prise en charge sur la plateforme, mais le catalogue de démonstration ne contient pas encore d'entrées ici."
+    },
+    "emptyFilters": {
+      "title": "Aucune entreprise ne correspond aux filtres sélectionnés",
+      "body": "Essayez d'ajuster vos critères de recherche ou de filtrage."
+    }
+  }
+}

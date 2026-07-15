@@ -1,0 +1,117 @@
+{
+  "title": "Pracovný priestor {{city}}",
+  "subtitle": "{{country}} · {{count}} firiem",
+  "stats": {
+    "activeUsers": "Aktívni používatelia",
+    "openOrders": "Otvorené objednávky",
+    "listings": "Inzeráty"
+  },
+  "metrics": {
+    "companies": "Firmy",
+    "jobs": "Pracovné miesta",
+    "transport": "Doprava",
+    "warehouses": "Sklady",
+    "marketplace": "Trhovisko",
+    "partners": "Partneri",
+    "digitalProducts": "Digitálne produkty",
+    "services": "Služby"
+  },
+  "ecosystemMetrics": "Obchodný ekosystém",
+  "activeModules": "Aktívne moduly v tomto meste",
+  "backToMap": "Späť na mapu",
+  "backToEuropeMap": "Späť na mapu Európy",
+  "quickActions": "Rýchle akcie",
+  "actions": {
+    "search": "Vyhľadať v meste",
+    "marketplace": "Otvoriť trhovisko",
+    "ki": "Spustiť AI asistenta"
+  },
+  "companies": {
+    "title": "Firmy v {{city}}",
+    "backToCity": "Späť do mestského pracovného priestoru",
+    "demoNotice": "Ukážkové dáta — bez pripojenia k živému firemnému registru",
+    "notFoundCity": "Mesto nenájdené",
+    "loadMoreFoundation": "Architektúra stránkovania a načítania ďalších záznamov pripravená pre budúce API dátové sady.",
+    "stats": {
+      "label": "Štatistiky firiem v meste",
+      "totalCompanies": "Celkom firiem",
+      "verifiedProfiles": "Overené profily",
+      "industries": "Odvetvia",
+      "openOpportunities": "Otvorené príležitosti"
+    },
+    "search": {
+      "label": "Vyhľadať firmy",
+      "placeholder": "Hľadať podľa názvu, odvetvia, tagov…",
+      "clear": "Vymazať vyhľadávanie"
+    },
+    "filters": {
+      "toggle": "Filtre",
+      "active": "aktívne",
+      "industry": "Odvetvie",
+      "size": "Veľkosť firmy",
+      "status": "Stav",
+      "sort": "Zoradiť podľa",
+      "verifiedOnly": "Iba overené",
+      "all": "Všetko",
+      "clear": "Vymazať filtre"
+    },
+    "sort": {
+      "relevance": "Relevantnosť",
+      "name": "Názov firmy",
+      "size": "Veľkosť firmy"
+    },
+    "results": {
+      "label": "Výsledky firiem",
+      "showing": "Zobrazených {{count}} z {{total}} ukážkových firiem"
+    },
+    "card": {
+      "verified": "Overené",
+      "demo": "Ukážka",
+      "tags": "Tagy",
+      "view": "Zobraziť firmu"
+    },
+    "details": {
+      "close": "Zavrieť detail",
+      "size": "Veľkosť firmy",
+      "status": "Stav",
+      "verification": "Overenie",
+      "employees": "Zamestnanci",
+      "description": "Popis",
+      "tags": "Tagy",
+      "opportunities": "Príležitosti",
+      "location": "Lokalita",
+      "website": "Web"
+    },
+    "industries": {
+      "manufacturing": "Výroba",
+      "logistics": "Logistika",
+      "technology": "Technológie",
+      "construction": "Stavebníctvo",
+      "agriculture": "Poľnohospodárstvo",
+      "medical": "Zdravotníctvo",
+      "finance": "Financie",
+      "tourism": "Cestovný ruch",
+      "retail": "Maloobchod",
+      "professional-services": "Profesionálne služby"
+    },
+    "sizes": {
+      "micro": "Mikro",
+      "small": "Malá",
+      "medium": "Stredná",
+      "large": "Veľká"
+    },
+    "statuses": {
+      "active": "Aktívna",
+      "inactive": "Neaktívna",
+      "pending": "Čakajúca"
+    },
+    "emptyCity": {
+      "title": "Pre {{city}} zatiaľ nie sú k dispozícii firemné dáta",
+      "body": "Toto mesto je na platforme podporované, ale ukážkový katalóg firiem tu zatiaľ nemá žiadne záznamy."
+    },
+    "emptyFilters": {
+      "title": "Žiadne firmy nezodpovedajú vybraným filtrom",
+      "body": "Skúste upraviť vyhľadávanie alebo kritériá filtrov."
+    }
+  }
+}

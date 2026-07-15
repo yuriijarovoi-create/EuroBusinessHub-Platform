@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Tableau de bord", "description": "Votre espace de travail commercial personnel" },
+  "marketplace": { "name": "Marketplace", "description": "Marketplace B2B pour produits et services" },
+  "transport": { "name": "Bourse de transport", "description": "Fret, expédition et chaînes d'approvisionnement" },
+  "logistik": { "name": "Logistique", "description": "Entreposage, fulfillment et distribution" },
+  "lager": { "name": "Entrepôts", "description": "Gestion d'entrepôts et optimisation des stocks" },
+  "unternehmen": { "name": "Entreprises", "description": "Profils d'entreprise, réseau et conformité" },
+  "jobs": { "name": "Emplois", "description": "Offres d'emploi et mise en relation des talents" },
+  "services": { "name": "Services aux entreprises", "description": "Services professionnels B2B" },
+  "partner": { "name": "Partenaires", "description": "Réseau de partenaires et collaborations" },
+  "digitale-produkte": { "name": "Produits numériques", "description": "Logiciels, licences et actifs numériques" },
+  "akademie": { "name": "Académie", "description": "Formation et certifications" },
+  "ki": { "name": "Assistant IA", "description": "Outils IA, agents et automatisation" },
+  "analytics": { "name": "Analytique", "description": "Indicateurs, rapports et analyses" },
+  "payments": { "name": "Paiements", "description": "Abonnements, factures et transactions" },
+  "notifications": { "name": "Notifications", "description": "Alertes, mises à jour et messages système" },
+  "admin": { "name": "Administration", "description": "Administration de la plateforme" },
+  "status": { "active": "Actif", "beta": "Bêta", "coming-soon": "Bientôt disponible" },
+  "openModule": "Ouvrir le module",
+  "notFound": "Module introuvable",
+  "mockNotice": "Modules EuroBusinessHub — données de démonstration, pas d'API en direct",
+  "allModules": "Tous les modules",
+  "overview": "Quinze modules intégrés — un compte, une recherche, un écosystème.",
+  "workspace": {
+    "title": "Espace de travail du module",
+    "description": "Ce module est préparé comme espace réservé. Des données de démonstration seront affichées ici jusqu'à la connexion des API backend."
+  }
+}

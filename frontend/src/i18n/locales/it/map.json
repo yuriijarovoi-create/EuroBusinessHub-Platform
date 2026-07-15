@@ -1,0 +1,665 @@
+{
+  "title": "Rete aziendale europea vivente",
+  "eyebrow": "Mappa live",
+  "subtitle": "Berlin come hub centrale — Rete aziendale europea interattiva",
+  "legend": "Mappa interattiva d'Europa con nodi aziendali",
+  "hubLabel": "Hub Berlin",
+  "liveNetwork": "Rete live attiva",
+  "businesses": "{{count}} aziende",
+  "zoomHint": "Seleziona una città o un paese · Ogni città apre il proprio workspace",
+  "interactionHint": "Scorri per zoomare · Trascina per spostare · Clicca una città per i dettagli",
+  "loading": "Caricamento mappa…",
+  "controls": {
+    "zoomIn": "Ingrandisci",
+    "zoomOut": "Riduci",
+    "reset": "Reimposta vista",
+    "backEurope": "Europa"
+  },
+  "nav": {
+    "europe": "Europa",
+    "backToEurope": "Torna all'Europa",
+    "selectCity": "Seleziona città"
+  },
+  "search": {
+    "placeholder": "Cerca città",
+    "open": "Cerca città",
+    "close": "Chiudi ricerca",
+    "results": "Risultati ricerca città",
+    "noResults": "Nessuna città corrispondente",
+    "noLayerData": "Nessun dato disponibile per questa località nel layer corrente.",
+    "voice": "Ricerca vocale",
+    "voiceComingSoon": "Ricerca vocale in arrivo"
+  },
+  "layers": {
+    "title": "Layer",
+    "routes": "Tutte le rotte",
+    "road": "Trasporto stradale",
+    "rail": "Trasporto ferroviario",
+    "air": "Cargo aereo",
+    "sea": "Rotte marittime",
+    "river": "Fluviale / Interno",
+    "companies": "Aziende",
+    "jobs": "Lavoro",
+    "warehouses": "Magazzini"
+  },
+  "activity": {
+    "liveActivity": "Attività live",
+    "freightVolume": "Volume merci 24h",
+    "transportOffers": "Offerte di trasporto aperte",
+    "deliveryTime": "Tempo medio di consegna",
+    "co2Saving": "Risparmio CO₂"
+  },
+  "live": {
+    "title": "Piattaforma live",
+    "companies": "Aziende",
+    "jobs": "Lavoro",
+    "transport": "Trasporti",
+    "marketplace": "Marketplace",
+    "warehouses": "Magazzini",
+    "partners": "Partner",
+    "digitalProducts": "Prodotti digitali",
+    "subscriptions": "Abbonamenti",
+    "aiRequests": "Richieste IA"
+  },
+  "tooltip": {
+    "companies": "{{count}} aziende",
+    "jobs": "{{count}} offerte di lavoro",
+    "warehouses": "{{count}} magazzini",
+    "transport": "{{count}} offerte di trasporto",
+    "businessScore": "Punteggio aziendale {{score}}",
+    "networkConnections": "{{count}} connessioni di rete",
+    "aiScore": "Punteggio IA {{score}}"
+  },
+  "country": {
+    "title": "Paese {{country}}",
+    "cities": "{{count}} città aziendali",
+    "aiScore": "Punteggio infrastruttura IA",
+    "selectCity": "Seleziona una città sulla mappa per i dettagli"
+  },
+  "germany": {
+    "bundeslandPicker": "Seleziona stato federale",
+    "bundeslandTitle": "Stato {{name}}",
+    "bundeslandSubtitle": "Profilo economico regionale",
+    "selectCityInState": "Seleziona una città in questo stato",
+    "population": "Popolazione",
+    "federalState": "Stato federale",
+    "mainIndustry": "Settore principale",
+    "transportRole": "Ruolo nel trasporto",
+    "finance": "Finanza",
+    "tech": "Tech",
+    "logistics": "Logistica",
+    "innovation": "Innovazione",
+    "businessIndex": "Indice aziendale",
+    "sustainability": "Sostenibilità",
+    "gdpShort": "{{value}} mld € PIL",
+    "gdpEstimate": "PIL stimato: {{value}} mld €",
+    "marketplaceDesc": "Offerte marketplace attive nella regione",
+    "stats": {
+      "cities": "Città",
+      "gdp": "PIL (stim.)",
+      "logistics": "Punteggio logistica",
+      "businesses": "Aziende"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Infrastruttura nelle vicinanze",
+      "seaports": "Porti marittimi",
+      "inlandPorts": "Porti interni",
+      "airCargo": "Hub cargo aereo",
+      "industrialZones": "Zone industriali",
+      "logisticsHubs": "Hub logistici",
+      "importance": "Importanza {{score}}/100",
+      "types": {
+        "seaport": "Porto marittimo",
+        "inland_port": "Porto interno",
+        "air_cargo": "Hub cargo aereo",
+        "industrial_zone": "Zona industriale"
+      }
+    },
+    "localNode": {
+      "title": "Servizi locali e hub regionale",
+      "nearestHub": "Hub principale più vicino",
+      "hubRoute": "Rotta consigliata",
+      "useCases": "Casi d'uso principali",
+      "transport": "Trasporto locale",
+      "warehouses": "Magazzinaggio nelle vicinanze",
+      "services": "Servizi locali",
+      "craft": "Artigiani",
+      "nearbyHubs": "Hub nelle vicinanze",
+      "marketplaceDesc": "Offerte marketplace locali nella tua regione",
+      "jobsDesc": "Lavoro in città e tramite hub regionale",
+      "jobsViaHub": "Lavoro pendolare e logistico tramite {{hub}}",
+      "useCase": {
+        "local_transport": "Trasporto locale",
+        "moving_service": "Servizio traslochi",
+        "warehouse_near_me": "Magazzino vicino a me",
+        "jobs_near_me": "Lavoro vicino a me",
+        "craftsmen": "Artigiani",
+        "business_services": "Servizi aziendali",
+        "local_marketplace": "Marketplace locale",
+        "regional_logistics": "Logistica regionale",
+        "agricultural_services": "Servizi agricoli",
+        "tourism_services": "Servizi turistici"
+      }
+    }
+  },
+  "panel": {
+    "title": "Città {{city}}",
+    "close": "Chiudi",
+    "openWorkspace": "Apri workspace",
+    "allRoutes": "Mostra tutte le rotte",
+    "companies": "Aziende",
+    "jobs": "Lavoro",
+    "warehouses": "Magazzini",
+    "transport": "Trasporti",
+    "marketplace": "Marketplace",
+    "partners": "Partner",
+    "aiScore": "Punteggio IA",
+    "digitalProducts": "Prodotti digitali",
+    "transportOffers": "Offerte di trasporto",
+    "companiesDesc": "Aziende registrate in questa città",
+    "jobsDesc": "Offerte di lavoro attive",
+    "warehousesDesc": "Capacità magazzino disponibile",
+    "tabs": {
+      "overview": "Panoramica",
+      "companies": "Aziende",
+      "jobs": "Lavoro",
+      "warehouses": "Magazzini",
+      "routes": "Rotte",
+      "transport": "Trasporti",
+      "marketplace": "Marketplace",
+      "services": "Servizi",
+      "analytics": "Analisi",
+      "partners": "Partner",
+      "activity": "Attività"
+    }
+  },
+  "routePanel": {
+    "title": "Rotta {{route}}",
+    "from": "Da",
+    "to": "A",
+    "hours": "h",
+    "industries": "Settori principali",
+    "delivery": "Tempo medio di consegna: {{time}}",
+    "lastActivity": "Ultima attività: {{time}}",
+    "warehousesHint": "Magazzini e hub logistici disponibili lungo questo corridoio.",
+    "status": {
+      "active": "Attiva",
+      "congested": "Congestionata",
+      "maintenance": "Manutenzione",
+      "seasonal": "Stagionale"
+    },
+    "modes": {
+      "road": "Trasporto stradale",
+      "rail": "Trasporto ferroviario",
+      "air": "Cargo aereo",
+      "sea": "Trasporto marittimo",
+      "river": "Fluviale / Interno"
+    },
+    "stats": {
+      "distance": "Distanza",
+      "time": "Tempo stim. (h)",
+      "volume": "Volume mensile (t)",
+      "offers": "Offerte di trasporto",
+      "orders": "Ordini attivi",
+      "companies": "Aziende",
+      "price": "Indice prezzi",
+      "reliability": "Affidabilità",
+      "co2": "CO₂ stim."
+    },
+    "actions": {
+      "open": "Apri rotta",
+      "search": "Trova trasporto",
+      "create": "Crea offerta"
+    }
+  },
+  "operating": {
+    "context": "Contesto",
+    "insights": "Intelligence live",
+    "activeMapMode": "Modalità mappa attiva",
+    "logisticsLayer": "Logistica",
+    "businessLayer": "Business",
+    "country": "Paese",
+    "city": "Città",
+    "corridor": "Corridoio",
+    "platform": "Attività piattaforma",
+    "activeUsers": "Utenti attivi",
+    "marketplace": "Marketplace",
+    "filters": "Filtri",
+    "logistics": "Logistica",
+    "business": "Moduli business",
+    "mapControls": "Controlli mappa",
+    "trending": "Città in tendenza"
+  },
+  "a11y": {
+    "togglePanel": "Attiva/disattiva pannello",
+    "mapViewport": "Mappa aziendale d'Europa",
+    "showCommandPanel": "Mostra pannello comandi",
+    "hideCommandPanel": "Nascondi pannello comandi"
+  },
+  "businessLayers": {
+    "marketplace": "Marketplace",
+    "transport": "Trasporti",
+    "companies": "Aziende",
+    "jobs": "Lavoro",
+    "warehouses": "Magazzini",
+    "businessServices": "Servizi aziendali",
+    "partners": "Partner",
+    "academy": "Accademia",
+    "digitalProducts": "Prodotti digitali",
+    "ai": "IA",
+    "events": "Eventi",
+    "investments": "Investimenti",
+    "startups": "Startup",
+    "manufacturing": "Manifattura",
+    "agriculture": "Agricoltura",
+    "construction": "Edilizia",
+    "medical": "Sanità",
+    "tourism": "Turismo",
+    "technology": "Tecnologia",
+    "finance": "Finanza",
+    "legal": "Legale",
+    "education": "Formazione"
+  },
+  "mobile": {
+    "map": "Mappa",
+    "transport": "Trasporti",
+    "jobs": "Lavoro",
+    "companies": "Aziende",
+    "warehouses": "Magazzini",
+    "ai": "IA",
+    "more": "Altro",
+    "mapControl": "Controllo mappa",
+    "commandCenter": "Centro di controllo mappa",
+    "mapControls": "Controlli mappa",
+    "commandWheel": "Ruota comandi mappa",
+    "moreBusinessLayers": "Altri layer business",
+    "businessLayers": "Layer business",
+    "activeLayer": "Layer attivo:",
+    "layerActive": "Layer {{layer}} attivo",
+    "europeOverviewActive": "Panoramica Europa attiva",
+    "aiComingSoon": "Assistente mappa IA in arrivo",
+    "exploreEcosystem": "Esplora l'ecosistema EuroBusinessHub",
+    "aiAssistantTitle": "Assistente mappa IA",
+    "comingSoon": "In arrivo",
+    "close": "Chiudi",
+    "closeLayersPanel": "Chiudi pannello layer",
+    "layerGroups": {
+      "transport": {
+        "title": "Layer trasporto",
+        "road": "Trasporto stradale",
+        "rail": "Ferrovia",
+        "air": "Cargo aereo",
+        "sea": "Trasporto marittimo",
+        "river": "Fluviale"
+      },
+      "business": {
+        "title": "Moduli business",
+        "marketplace": "Marketplace",
+        "companies": "Aziende",
+        "jobs": "Lavoro",
+        "warehouses": "Magazzini",
+        "partners": "Partner"
+      },
+      "services": {
+        "title": "Servizi",
+        "legal": "Legale",
+        "finance": "Finanza",
+        "medical": "Sanità",
+        "education": "Formazione",
+        "technology": "Tecnologia"
+      },
+      "industries": {
+        "title": "Settori",
+        "agriculture": "Agricoltura",
+        "manufacturing": "Manifattura",
+        "construction": "Edilizia",
+        "tourism": "Turismo"
+      },
+      "innovation": {
+        "title": "Innovazione",
+        "ai": "IA",
+        "startups": "Startup",
+        "digitalProducts": "Prodotti digitali",
+        "academy": "Accademia",
+        "investments": "Investimenti"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Marketplace",
+      "partners": "Partner",
+      "academy": "Accademia",
+      "digital-products": "Prodotti digitali",
+      "events": "Eventi",
+      "investments": "Investimenti",
+      "startups": "Startup",
+      "manufacturing": "Manifattura",
+      "agriculture": "Agricoltura",
+      "construction": "Edilizia",
+      "medical": "Sanità",
+      "tourism": "Turismo",
+      "technology": "Tecnologia",
+      "finance": "Finanza",
+      "legal": "Legale",
+      "education": "Formazione"
+    }
+  },
+  "tooltips": {
+    "companies": "Aziende",
+    "jobs": "Lavoro",
+    "warehouses": "Magazzini",
+    "transport": "Trasporti",
+    "aiScore": "Punteggio IA",
+    "origin": "Origine",
+    "destination": "Destinazione",
+    "routeType": "Tipo di rotta",
+    "distance": "Distanza",
+    "activeOffers": "Offerte attive",
+    "estTime": "Tempo stim.",
+    "aiOptimized": "Ottimizzato da IA"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Panoramica Europa",
+      "recommendation": "Esplora la mappa operativa aziendale europea completa — tutti i corridoi e gli hub visibili.",
+      "tickerEyebrow": "Raccomandazioni IA",
+      "tickerMessages": [
+        "Forte domanda: Berlin → Izium logistica di ricostruzione",
+        "Espandi corridoio: Warsaw → Kyiv → Izium",
+        "Abbinamento partner: Istanbul → Odesa logistica marittima",
+        "Nuova opportunità: catena di approvvigionamento ricostruzione Ukraine"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Modalità Marketplace",
+      "recommendation": "Il bagliore più intenso delle città evidenzia i hotspot commerciali — scopri opportunità B2B marketplace in tutta Europa.",
+      "tickerEyebrow": "Segnali marketplace",
+      "tickerMessages": [
+        "Rotterdam → Warsaw corridoio all'ingrosso in tendenza",
+        "Berlin annunci PMI +14% questa settimana",
+        "Abbinamento marketplace transfrontaliero: Vienna ↔ Prague",
+        "Alta intenzione d'acquisto a Munich forniture industriali"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Modalità Trasporti",
+      "recommendation": "I corridoi di trasporto sono sottolineati con delicatezza — segui i flussi di merci e l'attività della borsa logistica.",
+      "tickerEyebrow": "Raccomandazioni logistiche",
+      "tickerMessages": [
+        "Slot ferroviario disponibile: corridoio Hamburg → Warsaw",
+        "Domanda trasporto marittimo in crescita Rotterdam → Gdańsk",
+        "Capacità stradale in apertura: corsia Lyon → Milan",
+        "Finestra cargo aereo: Frankfurt → Bucharest express"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Modalità Aziende",
+      "recommendation": "Il bagliore degli hub aziendali intensifica i principali centri business — ideale per la scoperta di imprese.",
+      "tickerEyebrow": "Segnali hub aziendali",
+      "tickerMessages": [
+        "Frankfurt attività cluster enterprise +11%",
+        "Paris trasferimenti sedi in tendenza verso Lyon",
+        "Warsaw espansione campus tech rilevata",
+        "Milan case di moda cercano partner UE"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Modalità Lavoro",
+      "recommendation": "Il bagliore dei hotspot di assunzione evidenzia la domanda di occupazione — esplora le posizioni aperte per città.",
+      "tickerEyebrow": "Raccomandazioni occupazione",
+      "tickerMessages": [
+        "Berlin ruoli logistici +18% settimana su settimana",
+        "Warsaw boom assunzioni ingegneria continua",
+        "Ruoli remote-ready concentrati a Dublin",
+        "Izium progetti di ricostruzione pubblicano mestieri specializzati"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Modalità Magazzini",
+      "recommendation": "Sensazione di rete magazzini — i nodi di distribuzione pulsano nei gateway logistici.",
+      "tickerEyebrow": "Segnali rete magazzini",
+      "tickerMessages": [
+        "Rotterdam stoccaggio vincolato al 92% di utilizzo",
+        "Warsaw corridoio espansione catena del freddo attivo",
+        "Hamburg ↔ Berlin corsia fulfillment ottimizzata",
+        "Prague capacità hub regionale in apertura Q3"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Modalità Servizi aziendali",
+      "recommendation": "Il bagliore della rete servizi collega i cluster di servizi professionali in tutta Europa.",
+      "tickerEyebrow": "Segnali rete servizi",
+      "tickerMessages": [
+        "Brussels domanda consulenza conformità in crescita",
+        "Zurich servizi fiduciari abbinati a Prague",
+        "Barcelona crescita export servizi creativi",
+        "Vienna corridoio consulenza in espansione verso est"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Modalità Partner",
+      "recommendation": "Sensazione di rete collaborativa — le città pronte per partnership brillano per alleanze transfrontaliere.",
+      "tickerEyebrow": "Segnali partnership",
+      "tickerMessages": [
+        "Nordic ↔ Baltic punteggio abbinamento partner elevato",
+        "Istanbul gateway cerca distributori UE",
+        "Lyon ricerca partner manifatturieri attiva",
+        "Tallinn partner digitali aperti al mercato DACH"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Modalità Accademia",
+      "recommendation": "Sensazione ecosistema formativo — hub di apprendimento e corridoi di formazione evidenziati.",
+      "tickerEyebrow": "Segnali accademia",
+      "tickerMessages": [
+        "Heidelberg programmi di scambio ricerca aperti",
+        "Barcelona partnership bootcamp in tendenza",
+        "Warsaw coorte accademia STEM si riempie rapidamente",
+        "Vienna formazione executive ammissione transfrontaliera"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Modalità Prodotti digitali",
+      "recommendation": "Sensazione ecosistema tecnologico — hub prodotti digitali brillano nelle città dell'innovazione.",
+      "tickerEyebrow": "Segnali prodotti digitali",
+      "tickerMessages": [
+        "Picco annunci SaaS a Tallinn e Dublin",
+        "Berlin studi prodotto cercano rivenditori UE",
+        "Amsterdam API fintech aperte all'integrazione",
+        "Prague attività marketplace strumenti dev +9%"
+      ]
+    },
+    "ai": {
+      "panelTitle": "Modalità IA",
+      "recommendation": "Sensazione rete IA — corridoi intelligenti e nodi aziendali IA-ready enfatizzati.",
+      "tickerEyebrow": "Segnali rete IA",
+      "tickerMessages": [
+        "Frankfurt pilota routing logistica IA live",
+        "Warsaw pool talenti ML punteggio abbinamento 94%",
+        "Paris strumenti commerce generativo in tendenza",
+        "Helsinki sandbox conformità IA accetta partner"
+      ]
+    },
+    "events": {
+      "panelTitle": "Modalità Eventi",
+      "recommendation": "Sensazione hotspot eventi — città di conferenze e fiere pulsano sulla mappa.",
+      "tickerEyebrow": "Segnali hotspot eventi",
+      "tickerMessages": [
+        "Hanover Messe prenotazioni corridoio in crescita",
+        "Barcelona domanda spillover congresso mobile",
+        "Vienna settimana summit alloggi limitati",
+        "Milan design week matchmaking fornitori aperto"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Modalità Investimenti",
+      "recommendation": "Sensazione capitale d'investimento — flussi di capitale e hotspot di finanziamento sottolineati con delicatezza.",
+      "tickerEyebrow": "Segnali investimenti",
+      "tickerMessages": [
+        "Frankfurt interesse VC per deeptech Warsaw",
+        "Luxembourg fondi instradati tramite hub Amsterdam",
+        "Berlin attività round seed +12%",
+        "Capitale ricostruzione diretto verso corridoio Izium"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Modalità Startup",
+      "recommendation": "Sensazione innovazione startup — ecosistemi founder e corridoi scale-up brillano.",
+      "tickerEyebrow": "Segnali innovazione startup",
+      "tickerMessages": [
+        "Berlin ↔ Tallinn scambio founder attivo",
+        "Barcelona spinoff healthtech cercano piloti",
+        "Warsaw demo day acceleratore interesse in entrata",
+        "Lisbon surge assunzioni startup remote-first"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Modalità Manifattura",
+      "recommendation": "Sensazione rete industriale — hub produttivi e corridoi di approvvigionamento enfatizzati.",
+      "tickerEyebrow": "Segnali rete industriale",
+      "tickerMessages": [
+        "Stuttgart fornitori automotive cercano partner",
+        "Turin corridoio componenti capacità disponibile",
+        "Wrocław espansione assemblaggio elettronica",
+        "Lyon abbinamento subappaltatore aerospaziale aperto"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Modalità Agricoltura",
+      "recommendation": "Sensazione ecosistema agricolo — corridoi agroalimentari e nodi commerciali rurali brillano.",
+      "tickerEyebrow": "Segnali ecosistema agricoltura",
+      "tickerMessages": [
+        "Danube corridoio cereali domanda stoccaggio elevata",
+        "Netherlands catena del freddo verso Poland attiva",
+        "Valencia stagione export agrumi in ramp-up",
+        "Kraków distributore biologico cerca partner"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Modalità Edilizia",
+      "recommendation": "Sensazione infrastrutture — corridoi ricostruzione e forniture edili evidenziati.",
+      "tickerEyebrow": "Segnali infrastrutture",
+      "tickerMessages": [
+        "Izium corridoio materiali ricostruzione prioritario",
+        "Berlin ricerca subappaltatori progetto abitativo",
+        "Warsaw attività gare infrastrutture in crescita",
+        "Prague abbinamento fornitori modernizzazione ferrovia"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Modalità Sanità",
+      "recommendation": "Sensazione ecosistema sanitario — hub medici e nodi logistica sanitaria enfatizzati.",
+      "tickerEyebrow": "Segnali ecosistema sanitario",
+      "tickerMessages": [
+        "Basel corsia distribuzione farmaceutica stabile",
+        "Warsaw annunci dispositivi medtech +10%",
+        "Munich finestra approvvigionamento ospedaliero aperta",
+        "Strasbourg partnership cure transfrontaliere"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Modalità Turismo",
+      "recommendation": "Sensazione destinazione turistica — hotspot economia dei visitatori brillano in Europa.",
+      "tickerEyebrow": "Segnali destinazione turistica",
+      "tickerMessages": [
+        "Barcelona picco prenotazioni ospitalità estiva",
+        "Vienna partner turismo culturale cercati",
+        "Athens corridoio trasferimenti crociere attivo",
+        "Prague pacchetti city-break in tendenza DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Modalità Tecnologia",
+      "recommendation": "Sensazione hub tecnologici — cluster innovazione e corridoi tech leggermente illuminati.",
+      "tickerEyebrow": "Segnali hub tecnologici",
+      "tickerMessages": [
+        "Munich interesse spinout deep-tech in crescita",
+        "Eindhoven partner semiconduttori cercati",
+        "Tallinn punteggio abbinamento talenti cyber elevato",
+        "Cambridge ↔ Berlin scambio ricerca aperto"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Modalità Finanza",
+      "recommendation": "Sensazione rete finanziaria — centri del capitale e corridoi bancari evidenziati.",
+      "tickerEyebrow": "Segnali rete finanziaria",
+      "tickerMessages": [
+        "Frankfurt attività clearing stabile",
+        "Luxembourg abbinamento amministrazione fondi aperto",
+        "Dublin partner API fintech in tendenza",
+        "Zurich servizi patrimoniali ammissione transfrontaliera"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Modalità Legale",
+      "recommendation": "Sensazione servizi legali — cluster normativi e consulenza legale enfatizzati.",
+      "tickerEyebrow": "Segnali servizi legali",
+      "tickerMessages": [
+        "Brussels domanda consulenza normativa elevata",
+        "London ↔ Frankfurt corridoio conformità",
+        "Warsaw boutique diritto UE espansione rilevata",
+        "Vienna hub arbitrato ricerca partner"
+      ]
+    },
+    "education": {
+      "panelTitle": "Modalità Formazione",
+      "recommendation": "Sensazione rete formativa — università e corridoi di formazione brillano delicatamente.",
+      "tickerEyebrow": "Segnali rete formazione",
+      "tickerMessages": [
+        "Erasmus attività corridoio: Barcelona ↔ Bologna",
+        "Warsaw partnership scuole di lingue aperte",
+        "Heidelberg ammissione ricerca transfrontaliera",
+        "Dublin scambio credenziali edtech in tendenza"
+      ]
+    },
+    "road": {
+      "panelTitle": "Modalità Trasporto stradale",
+      "recommendation": "I corridoi stradali ricevono enfasi delicata — le corsie merci terrestri brillano sulla rete.",
+      "tickerEyebrow": "Segnali trasporto stradale",
+      "tickerMessages": [
+        "Antwerp → Warsaw capacità trucking disponibile",
+        "Milan → Munich utilizzo corsia 78%",
+        "Barcelona → Lyon slot express disponibile"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Modalità Ferrovia",
+      "recommendation": "Corridoi ferroviari enfatizzati — corsie intermodali e merci ferroviarie evidenziate.",
+      "tickerEyebrow": "Segnali corridoi ferroviari",
+      "tickerMessages": [
+        "Hamburg → Warsaw slot ferroviario in tendenza",
+        "Rotterdam handoff intermodale stabile",
+        "Basel → Milan domanda merci ferroviarie in crescita"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Modalità Trasporto marittimo",
+      "recommendation": "Corridoi marittimi enfatizzati — rotte porto-porto brillano sulla mappa.",
+      "tickerEyebrow": "Segnali trasporto marittimo",
+      "tickerMessages": [
+        "Rotterdam → Gdańsk corsia container attiva",
+        "Hamburg → Odesa interesse marittimo in crescita",
+        "Barcelona instradamento Mediterraneo stabile"
+      ]
+    },
+    "air": {
+      "panelTitle": "Modalità Cargo aereo",
+      "recommendation": "Corridoi cargo aereo enfatizzati — corsie aviazione express evidenziate.",
+      "tickerEyebrow": "Segnali cargo aereo",
+      "tickerMessages": [
+        "Frankfurt → Bucharest uplift express disponibile",
+        "Paris CDG ↔ Warsaw finestra cargo",
+        "Amsterdam hub aereo cross-dock attivo"
+      ]
+    },
+    "river": {
+      "panelTitle": "Modalità Fluviale",
+      "recommendation": "Corridoi fluviali enfatizzati — corsie merci vie navigabili interne evidenziate.",
+      "tickerEyebrow": "Segnali merci fluviali",
+      "tickerMessages": [
+        "Danube corridoio movimento cereali attivo",
+        "Rhine capacità chiatte disponibile",
+        "Elbe handoff porti interni stabile"
+      ]
+    }
+  }
+}

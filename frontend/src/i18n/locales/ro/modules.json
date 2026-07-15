@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Dashboard", "description": "Workspace-ul tău personal de afaceri" },
+  "marketplace": { "name": "Marketplace", "description": "Marketplace B2B pentru produse și servicii" },
+  "transport": { "name": "Bursă de transport", "description": "Marfă, expediții și lanțuri de aprovizionare" },
+  "logistik": { "name": "Logistică", "description": "Depozitare, fulfillment și distribuție" },
+  "lager": { "name": "Depozite", "description": "Gestionarea depozitelor și optimizarea stocurilor" },
+  "unternehmen": { "name": "Companii", "description": "Profiluri de companii, rețea și conformitate" },
+  "jobs": { "name": "Locuri de muncă", "description": "Anunțuri de angajare și potrivirea talentelor" },
+  "services": { "name": "Servicii de afaceri", "description": "Servicii profesionale B2B" },
+  "partner": { "name": "Parteneri", "description": "Rețea de parteneri și colaborări" },
+  "digitale-produkte": { "name": "Produse digitale", "description": "Software, licențe și active digitale" },
+  "akademie": { "name": "Academie", "description": "Formare și certificări" },
+  "ki": { "name": "Asistent IA", "description": "Instrumente IA, agenți și automatizare" },
+  "analytics": { "name": "Analiză", "description": "Metrici, rapoarte și insight-uri" },
+  "payments": { "name": "Plăți", "description": "Abonamente, facturi și tranzacții" },
+  "notifications": { "name": "Notificări", "description": "Alerte, actualizări și mesaje de sistem" },
+  "admin": { "name": "Administrare", "description": "Administrarea platformei" },
+  "status": { "active": "Activ", "beta": "Beta", "coming-soon": "În curând" },
+  "openModule": "Deschide modulul",
+  "notFound": "Modul negăsit",
+  "mockNotice": "Module EuroBusinessHub — date demonstrative, fără API-uri live",
+  "allModules": "Toate modulele",
+  "overview": "Cincisprezece module integrate — un cont, o căutare, un ecosistem.",
+  "workspace": {
+    "title": "Workspace modul",
+    "description": "Acest modul este pregătit ca placeholder. Datele demonstrative vor fi afișate aici până la conectarea API-urilor backend."
+  }
+}

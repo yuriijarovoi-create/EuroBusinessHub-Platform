@@ -1,0 +1,17 @@
+{
+  "placeholder": "Firmy, doprava, pracovní místa, sklady, AI…",
+  "aiLabel": "Globální AI vyhledávání",
+  "noResults": "Žádné výsledky pro „{{query}}“",
+  "recent": "Návrhy",
+  "types": {
+    "city": "Město",
+    "module": "Modul",
+    "business": "Firma",
+    "product": "Produkt",
+    "job": "Pracovní místo",
+    "transport": "Doprava",
+    "warehouse": "Sklad",
+    "service": "Služba",
+    "ai": "AI"
+  }
+}

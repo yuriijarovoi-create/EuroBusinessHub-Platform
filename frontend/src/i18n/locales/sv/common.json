@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "En plattform. Obegränsade affärsmöjligheter.",
+    "subtitle": "AI-drivet affärsoperativsystem för Europa",
+    "description": "Transport, marknadsplats, logistik, jobb, partners och AI — förenade i ett intelligent europeiskt ekosystem.",
+    "pageTitle": "EuroBusinessHub — AI-drivet affärsoperativsystem",
+    "osTagline": "Affärs-OS"
+  },
+  "hero": {
+    "badge": "Live · Europeiskt nätverk",
+    "headlineLine1": "En plattform.",
+    "headlineLine2": "Obegränsade affärsmöjligheter.",
+    "cta": "Öppna instrumentpanel",
+    "ctaButtons": {
+      "marketplace": "Marknadsplats",
+      "transport": "Transport",
+      "unternehmen": "Företag",
+      "jobs": "Jobb"
+    },
+    "stats": {
+      "modules": "Moduler",
+      "cities": "Städer",
+      "businesses": "Företag"
+    }
+  },
+  "stats": {
+    "title": "Europeisk affärsstatistik",
+    "subtitle": "Live-data från EuroBusinessHub-nätverket",
+    "companies": "Företag",
+    "transportOrders": "Transportorder",
+    "openJobs": "Lediga jobb",
+    "warehouses": "Lager",
+    "marketplaceProducts": "Marknadsplatsprodukter",
+    "users": "Användare",
+    "partners": "Partners"
+  },
+  "dashboard": {
+    "title": "Plattformsinstrumentpanel",
+    "subtitle": "Dina affärsnyckeltal i ett ögonkast",
+    "viewAll": "Visa alla",
+    "marketplace": "Marknadsplats",
+    "transport": "Transport",
+    "jobs": "Jobb",
+    "companies": "Företag",
+    "revenue": "Intäkter",
+    "deals": "Affärer",
+    "subscriptions": "Prenumerationer",
+    "analytics": "Analys"
+  },
+  "modules": {
+    "title": "Ditt europeiska affärsekosystem",
+    "subtitle": "Alla affärsområden — kopplade via AI, sökning och ett enhetligt konto."
+  },
+  "ai": {
+    "title": "AI-funktioner"
+  },
+  "nav": {
+    "home": "Hem",
+    "map": "Karta",
+    "modules": "Moduler",
+    "workspace": "Arbetsyta",
+    "search": "Sök",
+    "dashboard": "Instrumentpanel",
+    "notifications": "Aviseringar",
+    "login": "Logga in",
+    "register": "Registrera",
+    "language": "Språk",
+    "theme": "Tema",
+    "menuOpen": "Meny",
+    "menuClose": "Stäng meny",
+    "mainNav": "Huvudnavigering"
+  },
+  "userMenu": {
+    "guest": "Gäst",
+    "company": "Företagskonto"
+  },
+  "notifications": {
+    "empty": "Inga aviseringar"
+  },
+  "future": {
+    "auth": "Autentisering kommer snart",
+    "payments": "Betalningar kommer snart",
+    "agents": "AI-agenter kommer snart",
+    "automation": "n8n-automation kommer snart"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Alla rättigheter förbehållna.",
+    "mockData": "Demodata — inga riktiga API-anslutningar",
+    "tagline": "Det europeiska affärsoperativsystemet"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Instrumentpanel",
+    "modules": "Moduler",
+    "stats": "Live"
+  }
+}

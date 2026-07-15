@@ -6,6 +6,14 @@ export const languageOptions = [
   { code: 'uk', nativeLabel: 'Українська' },
   { code: 'ru', nativeLabel: 'Русский' },
   { code: 'pl', nativeLabel: 'Polski' },
+  { code: 'cs', nativeLabel: 'Čeština' },
+  { code: 'sk', nativeLabel: 'Slovenčina' },
+  { code: 'lt', nativeLabel: 'Lietuvių' },
+  { code: 'fr', nativeLabel: 'Français' },
+  { code: 'nl', nativeLabel: 'Nederlands' },
+  { code: 'it', nativeLabel: 'Italiano' },
+  { code: 'ro', nativeLabel: 'Română' },
+  { code: 'sv', nativeLabel: 'Svenska' },
 ] as const;
 
 export const supportedLanguages = languageOptions.map((option) => option.code);

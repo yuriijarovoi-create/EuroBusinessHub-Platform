@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "O platformă. Oportunități de afaceri nelimitate.",
+    "subtitle": "Sistem de operare de afaceri cu IA pentru Europa",
+    "description": "Transport, marketplace, logistică, locuri de muncă, parteneri și IA — unite într-un singur ecosistem european inteligent.",
+    "pageTitle": "EuroBusinessHub — Sistem de operare de afaceri cu IA",
+    "osTagline": "Business OS"
+  },
+  "hero": {
+    "badge": "Live · Rețea europeană",
+    "headlineLine1": "O platformă.",
+    "headlineLine2": "Oportunități de afaceri nelimitate.",
+    "cta": "Deschide dashboard",
+    "ctaButtons": {
+      "marketplace": "Marketplace",
+      "transport": "Transport",
+      "unternehmen": "Companii",
+      "jobs": "Locuri de muncă"
+    },
+    "stats": {
+      "modules": "Module",
+      "cities": "Orașe",
+      "businesses": "Afaceri"
+    }
+  },
+  "stats": {
+    "title": "Statistici de afaceri europene",
+    "subtitle": "Date live din rețeaua EuroBusinessHub",
+    "companies": "Companii",
+    "transportOrders": "Comenzi de transport",
+    "openJobs": "Locuri de muncă deschise",
+    "warehouses": "Depozite",
+    "marketplaceProducts": "Produse marketplace",
+    "users": "Utilizatori",
+    "partners": "Parteneri"
+  },
+  "dashboard": {
+    "title": "Dashboard platformă",
+    "subtitle": "Metricile afacerii tale dintr-o privire",
+    "viewAll": "Vezi tot",
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "jobs": "Locuri de muncă",
+    "companies": "Companii",
+    "revenue": "Venituri",
+    "deals": "Tranzacții",
+    "subscriptions": "Abonamente",
+    "analytics": "Analiză"
+  },
+  "modules": {
+    "title": "Ecosistemul tău de afaceri european",
+    "subtitle": "Toate domeniile de afaceri — conectate prin IA, căutare și un singur cont unificat."
+  },
+  "ai": {
+    "title": "Capacități IA"
+  },
+  "nav": {
+    "home": "Acasă",
+    "map": "Hartă",
+    "modules": "Module",
+    "workspace": "Workspace",
+    "search": "Căutare",
+    "dashboard": "Dashboard",
+    "notifications": "Notificări",
+    "login": "Autentificare",
+    "register": "Înregistrare",
+    "language": "Limbă",
+    "theme": "Temă",
+    "menuOpen": "Meniu",
+    "menuClose": "Închide meniul",
+    "mainNav": "Navigare principală"
+  },
+  "userMenu": {
+    "guest": "Vizitator",
+    "company": "Cont companie"
+  },
+  "notifications": {
+    "empty": "Nicio notificare"
+  },
+  "future": {
+    "auth": "Autentificare în curând",
+    "payments": "Plăți în curând",
+    "agents": "Agenți IA în curând",
+    "automation": "Automatizare n8n în curând"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Toate drepturile rezervate.",
+    "mockData": "Date demonstrative — fără conexiuni API reale",
+    "tagline": "Sistemul de operare de afaceri european"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Dashboard",
+    "modules": "Module",
+    "stats": "Live"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Valdymo skydelis", "description": "Jūsų asmeninė verslo darbo erdvė" },
+  "marketplace": { "name": "Prekyvietė", "description": "B2B prekyvietė produktams ir paslaugoms" },
+  "transport": { "name": "Transporto birža", "description": "Kroviniai, pervežimai ir tiekimo grandinės" },
+  "logistik": { "name": "Logistika", "description": "Sandėliavimas, įvykdymas ir distribucija" },
+  "lager": { "name": "Sandėliai", "description": "Sandėlių valdymas ir atsargų optimizavimas" },
+  "unternehmen": { "name": "Įmonės", "description": "Įmonių profiliai, tinklas ir atitiktis" },
+  "jobs": { "name": "Darbo vietos", "description": "Darbo skelbimai ir talentų atranka" },
+  "services": { "name": "Verslo paslaugos", "description": "Profesionalios B2B paslaugos" },
+  "partner": { "name": "Partneriai", "description": "Partnerių tinklas ir bendradarbiavimas" },
+  "digitale-produkte": { "name": "Skaitmeniniai produktai", "description": "Programinė įranga, licencijos ir skaitmeniniai ištekliai" },
+  "akademie": { "name": "Akademija", "description": "Mokymai ir sertifikavimas" },
+  "ki": { "name": "AI asistentas", "description": "AI įrankiai, agentai ir automatizavimas" },
+  "analytics": { "name": "Analitika", "description": "Rodikliai, ataskaitos ir įžvalgos" },
+  "payments": { "name": "Mokėjimai", "description": "Prenumeratos, sąskaitos faktūros ir operacijos" },
+  "notifications": { "name": "Pranešimai", "description": "Įspėjimai, atnaujinimai ir sistemos pranešimai" },
+  "admin": { "name": "Administravimas", "description": "Platformos administravimas" },
+  "status": { "active": "Aktyvus", "beta": "Beta", "coming-soon": "Netrukus" },
+  "openModule": "Atidaryti modulį",
+  "notFound": "Modulis nerastas",
+  "mockNotice": "EuroBusinessHub moduliai — demonstraciniai duomenys, jokių tiesioginių API",
+  "allModules": "Visi moduliai",
+  "overview": "Penkiolika integruotų modulių — viena paskyra, viena paieška, viena ekosistema.",
+  "workspace": {
+    "title": "Modulio darbo erdvė",
+    "description": "Šis modulis paruoštas kaip rezervuota vieta. Demonstraciniai duomenys rodomi čia, kol bus prijungti backend API."
+  }
+}

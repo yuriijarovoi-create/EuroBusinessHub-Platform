@@ -1,0 +1,17 @@
+{
+  "placeholder": "Įmonės, transportas, darbo vietos, sandėliai, AI…",
+  "aiLabel": "Globali AI paieška",
+  "noResults": "Nėra rezultatų pagal „{{query}}“",
+  "recent": "Pasiūlymai",
+  "types": {
+    "city": "Miestas",
+    "module": "Modulis",
+    "business": "Įmonė",
+    "product": "Produktas",
+    "job": "Darbo vieta",
+    "transport": "Transportas",
+    "warehouse": "Sandėlis",
+    "service": "Paslauga",
+    "ai": "AI"
+  }
+}

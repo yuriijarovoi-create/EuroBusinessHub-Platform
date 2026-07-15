@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "Jedna platforma. Neomezené obchodní příležitosti.",
+    "subtitle": "AI Business Operating System pro Evropu",
+    "description": "Doprava, tržiště, logistika, pracovní místa, partneři a AI — sjednocené v jednom inteligentním evropském ekosystému.",
+    "pageTitle": "EuroBusinessHub — AI Business Operating System",
+    "osTagline": "Business OS"
+  },
+  "hero": {
+    "badge": "Live · Evropská síť",
+    "headlineLine1": "Jedna platforma.",
+    "headlineLine2": "Neomezené obchodní příležitosti.",
+    "cta": "Otevřít přehled",
+    "ctaButtons": {
+      "marketplace": "Tržiště",
+      "transport": "Doprava",
+      "unternehmen": "Firmy",
+      "jobs": "Pracovní místa"
+    },
+    "stats": {
+      "modules": "Moduly",
+      "cities": "Města",
+      "businesses": "Firmy"
+    }
+  },
+  "stats": {
+    "title": "Evropské obchodní statistiky",
+    "subtitle": "Živá data ze sítě EuroBusinessHub",
+    "companies": "Firmy",
+    "transportOrders": "Dopravní objednávky",
+    "openJobs": "Volná pracovní místa",
+    "warehouses": "Sklady",
+    "marketplaceProducts": "Produkty na tržišti",
+    "users": "Uživatelé",
+    "partners": "Partneři"
+  },
+  "dashboard": {
+    "title": "Přehled platformy",
+    "subtitle": "Vaše obchodní metriky na první pohled",
+    "viewAll": "Zobrazit vše",
+    "marketplace": "Tržiště",
+    "transport": "Doprava",
+    "jobs": "Pracovní místa",
+    "companies": "Firmy",
+    "revenue": "Tržby",
+    "deals": "Obchody",
+    "subscriptions": "Předplatné",
+    "analytics": "Analytika"
+  },
+  "modules": {
+    "title": "Váš evropský obchodní ekosystém",
+    "subtitle": "Všechny obchodní oblasti — propojené AI, vyhledáváním a jedním sjednoceným účtem."
+  },
+  "ai": {
+    "title": "Možnosti AI"
+  },
+  "nav": {
+    "home": "Domů",
+    "map": "Mapa",
+    "modules": "Moduly",
+    "workspace": "Pracovní prostor",
+    "search": "Vyhledávání",
+    "dashboard": "Přehled",
+    "notifications": "Oznámení",
+    "login": "Přihlásit se",
+    "register": "Registrace",
+    "language": "Jazyk",
+    "theme": "Motiv",
+    "menuOpen": "Menu",
+    "menuClose": "Zavřít menu",
+    "mainNav": "Hlavní navigace"
+  },
+  "userMenu": {
+    "guest": "Host",
+    "company": "Firemní účet"
+  },
+  "notifications": {
+    "empty": "Žádná oznámení"
+  },
+  "future": {
+    "auth": "Autentizace brzy k dispozici",
+    "payments": "Platby brzy k dispozici",
+    "agents": "AI agenti brzy k dispozici",
+    "automation": "Automatizace n8n brzy k dispozici"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Všechna práva vyhrazena.",
+    "mockData": "Ukázková data — bez připojení k reálným API",
+    "tagline": "Evropský Business Operating System"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Přehled",
+    "modules": "Moduly",
+    "stats": "Live"
+  }
+}

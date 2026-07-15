@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "Una piattaforma. Opportunità di business illimitate.",
+    "subtitle": "Sistema operativo aziendale con IA per l'Europa",
+    "description": "Trasporti, marketplace, logistica, lavoro, partner e IA — uniti in un unico ecosistema europeo intelligente.",
+    "pageTitle": "EuroBusinessHub — Sistema operativo aziendale con IA",
+    "osTagline": "Business OS"
+  },
+  "hero": {
+    "badge": "Live · Rete europea",
+    "headlineLine1": "Una piattaforma.",
+    "headlineLine2": "Opportunità di business illimitate.",
+    "cta": "Apri dashboard",
+    "ctaButtons": {
+      "marketplace": "Marketplace",
+      "transport": "Trasporti",
+      "unternehmen": "Aziende",
+      "jobs": "Lavoro"
+    },
+    "stats": {
+      "modules": "Moduli",
+      "cities": "Città",
+      "businesses": "Aziende"
+    }
+  },
+  "stats": {
+    "title": "Statistiche aziendali europee",
+    "subtitle": "Dati in tempo reale dalla rete EuroBusinessHub",
+    "companies": "Aziende",
+    "transportOrders": "Ordini di trasporto",
+    "openJobs": "Offerte di lavoro aperte",
+    "warehouses": "Magazzini",
+    "marketplaceProducts": "Prodotti marketplace",
+    "users": "Utenti",
+    "partners": "Partner"
+  },
+  "dashboard": {
+    "title": "Dashboard della piattaforma",
+    "subtitle": "Le tue metriche aziendali a colpo d'occhio",
+    "viewAll": "Visualizza tutto",
+    "marketplace": "Marketplace",
+    "transport": "Trasporti",
+    "jobs": "Lavoro",
+    "companies": "Aziende",
+    "revenue": "Ricavi",
+    "deals": "Affari",
+    "subscriptions": "Abbonamenti",
+    "analytics": "Analisi"
+  },
+  "modules": {
+    "title": "Il tuo ecosistema aziendale europeo",
+    "subtitle": "Tutte le aree di business — connesse da IA, ricerca e un unico account unificato."
+  },
+  "ai": {
+    "title": "Funzionalità IA"
+  },
+  "nav": {
+    "home": "Home",
+    "map": "Mappa",
+    "modules": "Moduli",
+    "workspace": "Workspace",
+    "search": "Ricerca",
+    "dashboard": "Dashboard",
+    "notifications": "Notifiche",
+    "login": "Accedi",
+    "register": "Registrati",
+    "language": "Lingua",
+    "theme": "Tema",
+    "menuOpen": "Menu",
+    "menuClose": "Chiudi menu",
+    "mainNav": "Navigazione principale"
+  },
+  "userMenu": {
+    "guest": "Ospite",
+    "company": "Account aziendale"
+  },
+  "notifications": {
+    "empty": "Nessuna notifica"
+  },
+  "future": {
+    "auth": "Autenticazione in arrivo",
+    "payments": "Pagamenti in arrivo",
+    "agents": "Agenti IA in arrivo",
+    "automation": "Automazione n8n in arrivo"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Tutti i diritti riservati.",
+    "mockData": "Dati dimostrativi — nessuna connessione API reale",
+    "tagline": "Il sistema operativo aziendale europeo"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Dashboard",
+    "modules": "Moduli",
+    "stats": "Live"
+  }
+}

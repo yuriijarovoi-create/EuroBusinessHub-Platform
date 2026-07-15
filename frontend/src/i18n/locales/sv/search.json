@@ -1,0 +1,17 @@
+{
+  "placeholder": "Företag, transport, jobb, lager, AI…",
+  "aiLabel": "Global AI-sökning",
+  "noResults": "Inga resultat för \"{{query}}\"",
+  "recent": "Förslag",
+  "types": {
+    "city": "Stad",
+    "module": "Modul",
+    "business": "Företag",
+    "product": "Produkt",
+    "job": "Jobb",
+    "transport": "Transport",
+    "warehouse": "Lager",
+    "service": "Tjänst",
+    "ai": "AI"
+  }
+}

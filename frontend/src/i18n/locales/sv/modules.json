@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Instrumentpanel", "description": "Din personliga affärsarbetsyta" },
+  "marketplace": { "name": "Marknadsplats", "description": "B2B-marknadsplats för produkter och tjänster" },
+  "transport": { "name": "Transportbörs", "description": "Frakt, sjöfart och försörjningskedjor" },
+  "logistik": { "name": "Logistik", "description": "Lagerhållning, fulfillment och distribution" },
+  "lager": { "name": "Lager", "description": "Lagerhantering och lageroptimering" },
+  "unternehmen": { "name": "Företag", "description": "Företagsprofiler, nätverk och efterlevnad" },
+  "jobs": { "name": "Jobb", "description": "Jobbannonser och talangmatchning" },
+  "services": { "name": "Affärstjänster", "description": "Professionella B2B-tjänster" },
+  "partner": { "name": "Partners", "description": "Partnernätverk och samarbeten" },
+  "digitale-produkte": { "name": "Digitala produkter", "description": "Programvara, licenser och digitala tillgångar" },
+  "akademie": { "name": "Akademi", "description": "Utbildning och certifieringar" },
+  "ki": { "name": "AI-assistent", "description": "AI-verktyg, agenter och automation" },
+  "analytics": { "name": "Analys", "description": "Nyckeltal, rapporter och insikter" },
+  "payments": { "name": "Betalningar", "description": "Prenumerationer, fakturor och transaktioner" },
+  "notifications": { "name": "Aviseringar", "description": "Varningar, uppdateringar och systemmeddelanden" },
+  "admin": { "name": "Administration", "description": "Plattformsadministration" },
+  "status": { "active": "Aktiv", "beta": "Beta", "coming-soon": "Kommer snart" },
+  "openModule": "Öppna modul",
+  "notFound": "Modulen hittades inte",
+  "mockNotice": "EuroBusinessHub-moduler — demodata, inga live-API:er",
+  "allModules": "Alla moduler",
+  "overview": "Femton integrerade moduler — ett konto, en sökning, ett ekosystem.",
+  "workspace": {
+    "title": "Modularbetsyta",
+    "description": "Denna modul är förberedd som platshållare. Demodata visas här tills backend-API:er är anslutna."
+  }
+}

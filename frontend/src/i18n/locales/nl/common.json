@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "Eén platform. Onbeperkte zakelijke kansen.",
+    "subtitle": "AI Business Operating System voor Europa",
+    "description": "Transport, marketplace, logistiek, vacatures, partners en AI — verenigd in één intelligent Europees ecosysteem.",
+    "pageTitle": "EuroBusinessHub — AI Business Operating System",
+    "osTagline": "Business OS"
+  },
+  "hero": {
+    "badge": "Live · Europees netwerk",
+    "headlineLine1": "Eén platform.",
+    "headlineLine2": "Onbeperkte zakelijke kansen.",
+    "cta": "Dashboard openen",
+    "ctaButtons": {
+      "marketplace": "Marketplace",
+      "transport": "Transport",
+      "unternehmen": "Bedrijven",
+      "jobs": "Vacatures"
+    },
+    "stats": {
+      "modules": "Modules",
+      "cities": "Steden",
+      "businesses": "Bedrijven"
+    }
+  },
+  "stats": {
+    "title": "Europese bedrijfsstatistieken",
+    "subtitle": "Livegegevens uit het EuroBusinessHub-netwerk",
+    "companies": "Bedrijven",
+    "transportOrders": "Transportorders",
+    "openJobs": "Open vacatures",
+    "warehouses": "Magazijnen",
+    "marketplaceProducts": "Marketplace-producten",
+    "users": "Gebruikers",
+    "partners": "Partners"
+  },
+  "dashboard": {
+    "title": "Platformdashboard",
+    "subtitle": "Uw bedrijfsstatistieken in één oogopslag",
+    "viewAll": "Alles bekijken",
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "jobs": "Vacatures",
+    "companies": "Bedrijven",
+    "revenue": "Omzet",
+    "deals": "Deals",
+    "subscriptions": "Abonnementen",
+    "analytics": "Analytics"
+  },
+  "modules": {
+    "title": "Uw Europees bedrijfsecosysteem",
+    "subtitle": "Alle bedrijfsdomeinen — verbonden door AI, zoeken en één uniform account."
+  },
+  "ai": {
+    "title": "AI-mogelijkheden"
+  },
+  "nav": {
+    "home": "Home",
+    "map": "Kaart",
+    "modules": "Modules",
+    "workspace": "Werkruimte",
+    "search": "Zoeken",
+    "dashboard": "Dashboard",
+    "notifications": "Meldingen",
+    "login": "Inloggen",
+    "register": "Registreren",
+    "language": "Taal",
+    "theme": "Thema",
+    "menuOpen": "Menu",
+    "menuClose": "Menu sluiten",
+    "mainNav": "Hoofdnavigatie"
+  },
+  "userMenu": {
+    "guest": "Gast",
+    "company": "Bedrijfsaccount"
+  },
+  "notifications": {
+    "empty": "Geen meldingen"
+  },
+  "future": {
+    "auth": "Authenticatie binnenkort beschikbaar",
+    "payments": "Betalingen binnenkort beschikbaar",
+    "agents": "AI-agenten binnenkort beschikbaar",
+    "automation": "n8n-automatisering binnenkort beschikbaar"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Alle rechten voorbehouden.",
+    "mockData": "Demogegevens — geen echte API-verbindingen",
+    "tagline": "Het Europese Business Operating System"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Dashboard",
+    "modules": "Modules",
+    "stats": "Live"
+  }
+}

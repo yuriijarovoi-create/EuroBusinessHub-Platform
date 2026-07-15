@@ -1,0 +1,665 @@
+{
+  "title": "Levande europeiskt affärsnätverk",
+  "eyebrow": "Live-karta",
+  "subtitle": "Berlin som central hub — Interaktivt europeiskt affärsnätverk",
+  "legend": "Interaktiv Europakarta med affärsnoder",
+  "hubLabel": "Berlin Hub",
+  "liveNetwork": "Live-nätverk aktivt",
+  "businesses": "{{count}} företag",
+  "zoomHint": "Välj en stad eller ett land · Varje stad öppnar sin egen arbetsyta",
+  "interactionHint": "Scrolla för att zooma · Dra för att panorera · Klicka på en stad för detaljer",
+  "loading": "Laddar karta…",
+  "controls": {
+    "zoomIn": "Zooma in",
+    "zoomOut": "Zooma ut",
+    "reset": "Återställ vy",
+    "backEurope": "Europa"
+  },
+  "nav": {
+    "europe": "Europa",
+    "backToEurope": "Tillbaka till Europa",
+    "selectCity": "Välj stad"
+  },
+  "search": {
+    "placeholder": "Sök stad",
+    "open": "Sök stad",
+    "close": "Stäng sökning",
+    "results": "Resultat för stadssökning",
+    "noResults": "Inga matchande städer",
+    "noLayerData": "Ingen data är tillgänglig för denna plats i det aktuella lagret ännu.",
+    "voice": "Röstsökning",
+    "voiceComingSoon": "Röstsökning kommer snart"
+  },
+  "layers": {
+    "title": "Lager",
+    "routes": "Alla rutter",
+    "road": "Vägfrakt",
+    "rail": "Tågfrakt",
+    "air": "Flygfrakt",
+    "sea": "Sjövägar",
+    "river": "Flod / Inland",
+    "companies": "Företag",
+    "jobs": "Jobb",
+    "warehouses": "Lager"
+  },
+  "activity": {
+    "liveActivity": "Live-aktivitet",
+    "freightVolume": "Fraktvolymer 24h",
+    "transportOffers": "Öppna transportofferter",
+    "deliveryTime": "Genomsn. leveranstid",
+    "co2Saving": "CO₂-besparingar"
+  },
+  "live": {
+    "title": "Live-plattform",
+    "companies": "Företag",
+    "jobs": "Jobb",
+    "transport": "Transport",
+    "marketplace": "Marknadsplats",
+    "warehouses": "Lager",
+    "partners": "Partners",
+    "digitalProducts": "Digitala produkter",
+    "subscriptions": "Prenumerationer",
+    "aiRequests": "AI-förfrågningar"
+  },
+  "tooltip": {
+    "companies": "{{count}} företag",
+    "jobs": "{{count}} jobb",
+    "warehouses": "{{count}} lager",
+    "transport": "{{count}} transportofferter",
+    "businessScore": "Affärspoäng {{score}}",
+    "networkConnections": "{{count}} nätverksanslutningar",
+    "aiScore": "AI-poäng {{score}}"
+  },
+  "country": {
+    "title": "Land {{country}}",
+    "cities": "{{count}} affärsstäder",
+    "aiScore": "Poäng för AI-infrastruktur",
+    "selectCity": "Välj en stad på kartan för detaljer"
+  },
+  "germany": {
+    "bundeslandPicker": "Välj delstat",
+    "bundeslandTitle": "Delstat {{name}}",
+    "bundeslandSubtitle": "Regional ekonomisk profil",
+    "selectCityInState": "Välj en stad i denna delstat",
+    "population": "Befolkning",
+    "federalState": "Delstat",
+    "mainIndustry": "Huvudbransch",
+    "transportRole": "Transportroll",
+    "finance": "Finans",
+    "tech": "Teknik",
+    "logistics": "Logistik",
+    "innovation": "Innovation",
+    "businessIndex": "Affärsindex",
+    "sustainability": "Hållbarhet",
+    "gdpShort": "{{value}} mdr € BNP",
+    "gdpEstimate": "Uppskattad BNP: {{value}} mdr €",
+    "marketplaceDesc": "Aktiva marknadsplatserbjudanden i regionen",
+    "stats": {
+      "cities": "Städer",
+      "gdp": "BNP (uppsk.)",
+      "logistics": "Logistikpoäng",
+      "businesses": "Företag"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Närliggande infrastruktur",
+      "seaports": "Hamnar",
+      "inlandPorts": "Inlandshamnar",
+      "airCargo": "Flygfrakthubbar",
+      "industrialZones": "Industriområden",
+      "logisticsHubs": "Logistikhubbar",
+      "importance": "Betydelse {{score}}/100",
+      "types": {
+        "seaport": "Hamn",
+        "inland_port": "Inlandshamn",
+        "air_cargo": "Flygfrakthubb",
+        "industrial_zone": "Industriområde"
+      }
+    },
+    "localNode": {
+      "title": "Lokala tjänster och regional hub",
+      "nearestHub": "Närmaste större hub",
+      "hubRoute": "Rekommenderad rutt",
+      "useCases": "Huvudsakliga användningsfall",
+      "transport": "Lokal transport",
+      "warehouses": "Lager i närheten",
+      "services": "Lokala tjänster",
+      "craft": "Hantverkare",
+      "nearbyHubs": "Närliggande hubbar",
+      "marketplaceDesc": "Lokala marknadsplatserbjudanden i din region",
+      "jobsDesc": "Jobb i staden och via regional hub",
+      "jobsViaHub": "Pendlar- och logistikjobb via {{hub}}",
+      "useCase": {
+        "local_transport": "Lokal transport",
+        "moving_service": "Flyttjänst",
+        "warehouse_near_me": "Lager nära mig",
+        "jobs_near_me": "Jobb nära mig",
+        "craftsmen": "Hantverkare",
+        "business_services": "Affärstjänster",
+        "local_marketplace": "Lokal marknadsplats",
+        "regional_logistics": "Regional logistik",
+        "agricultural_services": "Jordbrukstjänster",
+        "tourism_services": "Turisttjänster"
+      }
+    }
+  },
+  "panel": {
+    "title": "Stad {{city}}",
+    "close": "Stäng",
+    "openWorkspace": "Öppna arbetsyta",
+    "allRoutes": "Visa alla rutter",
+    "companies": "Företag",
+    "jobs": "Jobb",
+    "warehouses": "Lager",
+    "transport": "Transport",
+    "marketplace": "Marknadsplats",
+    "partners": "Partners",
+    "aiScore": "AI-poäng",
+    "digitalProducts": "Digitala produkter",
+    "transportOffers": "Transportofferter",
+    "companiesDesc": "Registrerade företag i denna stad",
+    "jobsDesc": "Aktiva jobbannonser",
+    "warehousesDesc": "Tillgänglig lagerkapacitet",
+    "tabs": {
+      "overview": "Översikt",
+      "companies": "Företag",
+      "jobs": "Jobb",
+      "warehouses": "Lager",
+      "routes": "Rutter",
+      "transport": "Transport",
+      "marketplace": "Marknadsplats",
+      "services": "Tjänster",
+      "analytics": "Analys",
+      "partners": "Partners",
+      "activity": "Aktivitet"
+    }
+  },
+  "routePanel": {
+    "title": "Rutt {{route}}",
+    "from": "Från",
+    "to": "Till",
+    "hours": "h",
+    "industries": "Huvudbranscher",
+    "delivery": "Genomsnittlig leveranstid: {{time}}",
+    "lastActivity": "Senaste aktivitet: {{time}}",
+    "warehousesHint": "Lager och logistikhubbar finns längs detta korridor.",
+    "status": {
+      "active": "Aktiv",
+      "congested": "Trängsel",
+      "maintenance": "Underhåll",
+      "seasonal": "Säsongsbetonad"
+    },
+    "modes": {
+      "road": "Vägfrakt",
+      "rail": "Tågfrakt",
+      "air": "Flygfrakt",
+      "sea": "Sjöfrakt",
+      "river": "Flod / Inland"
+    },
+    "stats": {
+      "distance": "Avstånd",
+      "time": "Uppsk. tid (h)",
+      "volume": "Månadsvolym (t)",
+      "offers": "Transportofferter",
+      "orders": "Aktiva order",
+      "companies": "Företag",
+      "price": "Prisindex",
+      "reliability": "Tillförlitlighet",
+      "co2": "CO₂ uppsk."
+    },
+    "actions": {
+      "open": "Öppna rutt",
+      "search": "Hitta transport",
+      "create": "Skapa offert"
+    }
+  },
+  "operating": {
+    "context": "Kontext",
+    "insights": "Live-intelligens",
+    "activeMapMode": "Aktivt kartläge",
+    "logisticsLayer": "Logistik",
+    "businessLayer": "Affär",
+    "country": "Land",
+    "city": "Stad",
+    "corridor": "Korridor",
+    "platform": "Plattformsaktivitet",
+    "activeUsers": "Aktiva användare",
+    "marketplace": "Marknadsplats",
+    "filters": "Filter",
+    "logistics": "Logistik",
+    "business": "Affärsmoduler",
+    "mapControls": "Kartkontroller",
+    "trending": "Trendande städer"
+  },
+  "a11y": {
+    "togglePanel": "Växla panel",
+    "mapViewport": "Europas affärskarta",
+    "showCommandPanel": "Visa kommandopanel",
+    "hideCommandPanel": "Dölj kommandopanel"
+  },
+  "businessLayers": {
+    "marketplace": "Marknadsplats",
+    "transport": "Transport",
+    "companies": "Företag",
+    "jobs": "Jobb",
+    "warehouses": "Lager",
+    "businessServices": "Affärstjänster",
+    "partners": "Partners",
+    "academy": "Akademi",
+    "digitalProducts": "Digitala produkter",
+    "ai": "AI",
+    "events": "Evenemang",
+    "investments": "Investeringar",
+    "startups": "Startups",
+    "manufacturing": "Tillverkning",
+    "agriculture": "Jordbruk",
+    "construction": "Bygg",
+    "medical": "Medicin",
+    "tourism": "Turism",
+    "technology": "Teknik",
+    "finance": "Finans",
+    "legal": "Juridik",
+    "education": "Utbildning"
+  },
+  "mobile": {
+    "map": "Karta",
+    "transport": "Transport",
+    "jobs": "Jobb",
+    "companies": "Företag",
+    "warehouses": "Lager",
+    "ai": "AI",
+    "more": "Mer",
+    "mapControl": "Kartkontroll",
+    "commandCenter": "Kartkontrollcenter",
+    "mapControls": "Kartkontroller",
+    "commandWheel": "Kartkommandohjul",
+    "moreBusinessLayers": "Fler affärslager",
+    "businessLayers": "Affärslager",
+    "activeLayer": "Aktivt lager:",
+    "layerActive": "{{layer}}-lager aktivt",
+    "europeOverviewActive": "Europaöversikt aktiv",
+    "aiComingSoon": "AI-kartassistent kommer snart",
+    "exploreEcosystem": "Utforska EuroBusinessHub-ekosystemet",
+    "aiAssistantTitle": "AI-kartassistent",
+    "comingSoon": "Kommer snart",
+    "close": "Stäng",
+    "closeLayersPanel": "Stäng lagerpanel",
+    "layerGroups": {
+      "transport": {
+        "title": "Transportlager",
+        "road": "Vägtransport",
+        "rail": "Tåg",
+        "air": "Flygfrakt",
+        "sea": "Sjöfrakt",
+        "river": "Flod"
+      },
+      "business": {
+        "title": "Affärsmoduler",
+        "marketplace": "Marknadsplats",
+        "companies": "Företag",
+        "jobs": "Jobb",
+        "warehouses": "Lager",
+        "partners": "Partners"
+      },
+      "services": {
+        "title": "Tjänster",
+        "legal": "Juridik",
+        "finance": "Finans",
+        "medical": "Medicin",
+        "education": "Utbildning",
+        "technology": "Teknik"
+      },
+      "industries": {
+        "title": "Branscher",
+        "agriculture": "Jordbruk",
+        "manufacturing": "Tillverkning",
+        "construction": "Bygg",
+        "tourism": "Turism"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "ai": "AI",
+        "startups": "Startups",
+        "digitalProducts": "Digitala produkter",
+        "academy": "Akademi",
+        "investments": "Investeringar"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Marknadsplats",
+      "partners": "Partners",
+      "academy": "Akademi",
+      "digital-products": "Digitala produkter",
+      "events": "Evenemang",
+      "investments": "Investeringar",
+      "startups": "Startups",
+      "manufacturing": "Tillverkning",
+      "agriculture": "Jordbruk",
+      "construction": "Bygg",
+      "medical": "Medicin",
+      "tourism": "Turism",
+      "technology": "Teknik",
+      "finance": "Finans",
+      "legal": "Juridik",
+      "education": "Utbildning"
+    }
+  },
+  "tooltips": {
+    "companies": "Företag",
+    "jobs": "Jobb",
+    "warehouses": "Lager",
+    "transport": "Transport",
+    "aiScore": "AI-poäng",
+    "origin": "Ursprung",
+    "destination": "Destination",
+    "routeType": "Ruttyp",
+    "distance": "Avstånd",
+    "activeOffers": "Aktiva offerter",
+    "estTime": "Uppsk. tid",
+    "aiOptimized": "AI-optimerad"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Europaöversikt",
+      "recommendation": "Utforska hela den europeiska affärsoperativa kartan — alla korridorer och hubbar synliga.",
+      "tickerEyebrow": "AI-rekommendationer",
+      "tickerMessages": [
+        "Hög efterfrågan: Berlin → Izium återuppbyggnadslogistik",
+        "Utöka korridor: Warsaw → Kyiv → Izium",
+        "Partnermatchning: Istanbul → Odesa maritim logistik",
+        "Ny möjlighet: Ukraine återuppbyggnad försörjningskedja"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Marknadsplatsläge",
+      "recommendation": "Starkare stadsglöd markerar handelsnav — upptäck B2B-marknadsplatsmöjligheter i hela Europa.",
+      "tickerEyebrow": "Marknadsplatssignaler",
+      "tickerMessages": [
+        "Rotterdam → Warsaw grossistkorridor i trend",
+        "Berlin SME-annonser +14 % denna vecka",
+        "Gränsöverskridande marknadsplatsmatchning: Vienna ↔ Prague",
+        "Hög köparintention i Munich industriförsörjning"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Transportläge",
+      "recommendation": "Transportkorridorer betonas subtilt — följ fraktflöden och logistikbörsaktivitet.",
+      "tickerEyebrow": "Logistikrekommendationer",
+      "tickerMessages": [
+        "Tågplats tillgänglig: Hamburg → Warsaw korridor",
+        "Sjöfraktsbehov stiger på Rotterdam → Gdańsk",
+        "Vägkapacitet öppnas: Lyon → Milan körfält",
+        "Flygfraktsfönster: Frankfurt → Bucharest express"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Företagsläge",
+      "recommendation": "Företagshubbglöd förstärker stora affärscentra — idealiskt för företagsupptäckt.",
+      "tickerEyebrow": "Företagshubbsignaler",
+      "tickerMessages": [
+        "Frankfurt företagsklusteraktivitet +11 %",
+        "Paris HQ-flyttar trendar mot Lyon",
+        "Warsaw techcampusutvidgning noterad",
+        "Milan modehus söker EU-partners"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Jobbläge",
+      "recommendation": "Rekryteringsnavglöd visar anställningsbehov — utforska lediga roller per stad.",
+      "tickerEyebrow": "Anställningsrekommendationer",
+      "tickerMessages": [
+        "Berlin logistikroller +18 % vecka för vecka",
+        "Warsaw ingenjörsrekrytering fortsätter",
+        "Distansvänliga roller klustrar i Dublin",
+        "Izium återuppbyggnadsprojekt söker yrkesarbetare"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Lagerläge",
+      "recommendation": "Lagernätverkskänsla — distributionsnoder pulserar över logistiknav.",
+      "tickerEyebrow": "Lagernätverkssignaler",
+      "tickerMessages": [
+        "Rotterdam tullager vid 92 % utnyttjande",
+        "Warsaw kylkedjeutvidgningskorridor aktiv",
+        "Hamburg ↔ Berlin fulfillment-korridor optimerad",
+        "Prague regional hubkapacitet öppnar Q3"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Affärstjänsteläge",
+      "recommendation": "Tjänstenätverksglöd kopplar professionella tjänstekluster i hela Europa.",
+      "tickerEyebrow": "Tjänstenätverkssignaler",
+      "tickerMessages": [
+        "Brussels efterlevnadsrådgivning efterfrågan stiger",
+        "Zurich förvaltningstjänster matchning i Prague",
+        "Barcelona kreativa tjänster exporttillväxt",
+        "Vienna konsultkorridor expanderar österut"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Partnerläge",
+      "recommendation": "Samarbetsnätverkskänsla — partnerskapsredo städer lyser för gränsöverskridande allianser.",
+      "tickerEyebrow": "Partnerskapssignaler",
+      "tickerMessages": [
+        "Nordic ↔ Baltic partnermatchningspoäng hög",
+        "Istanbul gateway söker EU-distributörer",
+        "Lyon tillverkningspartnersökning aktiv",
+        "Tallinn digitala partners öppna för DACH-marknaden"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Akademiläge",
+      "recommendation": "Utbildningsekosystemkänsla — lärnav och utbildningskorridorer markerade.",
+      "tickerEyebrow": "Akademisignaler",
+      "tickerMessages": [
+        "Heidelberg forskningsutbytesprogram öppna",
+        "Barcelona bootcamp-partnerskap i trend",
+        "Warsaw STEM-akademikohort fylls snabbt",
+        "Vienna executive education gränsöverskridande intag"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Digitala produkter-läge",
+      "recommendation": "Teknologiekosystemkänsla — digitala produkthubbar lyser i innovationsstäder.",
+      "tickerEyebrow": "Digitala produktsignaler",
+      "tickerMessages": [
+        "SaaS-annonser ökar i Tallinn och Dublin",
+        "Berlin produktstudior söker EU-återförsäljare",
+        "Amsterdam fintech-API:er öppna för integration",
+        "Prague utvecklingsverktygsmarknadsplatsaktivitet +9 %"
+      ]
+    },
+    "ai": {
+      "panelTitle": "AI-läge",
+      "recommendation": "AI-nätverkskänsla — intelligenta korridorer och AI-redo affärsnoder betonade.",
+      "tickerEyebrow": "AI-nätverkssignaler",
+      "tickerMessages": [
+        "Frankfurt AI-logistikruttning pilot live",
+        "Warsaw ML-talangpool matchningspoäng 94 %",
+        "Paris generativa handelsverktyg i trend",
+        "Helsinki AI-efterlevnadssandbox accepterar partners"
+      ]
+    },
+    "events": {
+      "panelTitle": "Evenemangsläge",
+      "recommendation": "Evenemangsnavkänsla — konferens- och mässstäder pulserar på kartan.",
+      "tickerEyebrow": "Evenemangsnavsignaler",
+      "tickerMessages": [
+        "Hanover Messe korridorbokningar stiger",
+        "Barcelona mobile congress spilloverbehov",
+        "Vienna toppmötesvecka boende knappt",
+        "Milan design week leverantörsmatchning öppen"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Investeringsläge",
+      "recommendation": "Investeringskapitalkänsla — kapitalflöden och finansieringsnav subtilt markerade.",
+      "tickerEyebrow": "Investeringssignaler",
+      "tickerMessages": [
+        "Frankfurt VC-intresse i Warsaw deeptech",
+        "Luxembourg fondrouting via Amsterdam hub",
+        "Berlin seed-rundaaktivitet +12 %",
+        "Återuppbyggnadskapital riktat mot Izium korridor"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Startups-läge",
+      "recommendation": "Startup-innovationskänsla — grundarekosystem och scale-up-korridorer lyser.",
+      "tickerEyebrow": "Startup-innovationssignaler",
+      "tickerMessages": [
+        "Berlin ↔ Tallinn grundarutbyte aktivt",
+        "Barcelona healthtech spinouts söker piloter",
+        "Warsaw accelerator demo day inkommande intresse",
+        "Lisbon remote-first startup rekrytering ökar"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Tillverkningsläge",
+      "recommendation": "Industrinätverkskänsla — produktionsnav och försörjningskorridorer betonade.",
+      "tickerEyebrow": "Industrinätverkssignaler",
+      "tickerMessages": [
+        "Stuttgart fordonsleverantörer söker partners",
+        "Turin komponentkorridor kapacitet tillgänglig",
+        "Wrocław elektronikmontering utvidgning",
+        "Lyon flygindustri underleverantörsmatchning öppen"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Jordbruksläge",
+      "recommendation": "Jordbruksekosystemkänsla — agrifood-korridorer och landsbygdshandelsnoder lyser.",
+      "tickerEyebrow": "Jordbruksekosystemsignaler",
+      "tickerMessages": [
+        "Donau spannmålskorridor lagringsbehov högt",
+        "Netherlands kylkedja till Poland aktiv",
+        "Valencia citrus export säsong ökar",
+        "Kraków ekologisk distributör söker partners"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Byggläge",
+      "recommendation": "Infrastrukturkänsla — återuppbyggnads- och byggmaterialkorridorer markerade.",
+      "tickerEyebrow": "Infrastruktursignaler",
+      "tickerMessages": [
+        "Izium återuppbyggnadsmaterialkorridor prioriterad",
+        "Berlin bostadsprojekt underleverantörssökning",
+        "Warsaw infrastrukturanbud aktivitet stiger",
+        "Prague järnvägsmodernisering leverantörsmatchning"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Medicinläge",
+      "recommendation": "Hälsoekosystemkänsla — medicinska nav och hälso-logistiknoder betonade.",
+      "tickerEyebrow": "Hälsoekosystemsignaler",
+      "tickerMessages": [
+        "Basel läkemedelsdistributionskorridor stabil",
+        "Warsaw medtech-enhetsannonser +10 %",
+        "Munich sjukhusupphandlingsfönster öppet",
+        "Strasbourg gränsöverskridande vårdpartnerskap"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Turismläge",
+      "recommendation": "Turistdestinationskänsla — besöksnäringsnav lyser i hela Europa.",
+      "tickerEyebrow": "Turistdestinationsignaler",
+      "tickerMessages": [
+        "Barcelona sommarhospitalitybokningar ökar",
+        "Vienna kulturturism partners sökes",
+        "Athens kryssningstransferkorridor aktiv",
+        "Prague storstadsresor i trend DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Teknikläge",
+      "recommendation": "Tekniknavkänsla — innovationskluster och tech-korridorer subtilt förstärkta.",
+      "tickerEyebrow": "Tekniknavsignaler",
+      "tickerMessages": [
+        "Munich deep-tech spinout-intresse stiger",
+        "Eindhoven halvledarpartners sökes",
+        "Tallinn cybersäkerhetstalang matchningspoäng hög",
+        "Cambridge ↔ Berlin forskningsutbyte öppet"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Finansläge",
+      "recommendation": "Finansnätverkskänsla — kapitalcentra och bankkorridorer markerade.",
+      "tickerEyebrow": "Finansnätverkssignaler",
+      "tickerMessages": [
+        "Frankfurt clearingaktivitet stabil",
+        "Luxembourg fondadministration matchning öppen",
+        "Dublin fintech-API-partners i trend",
+        "Zurich förmögenhetstjänster gränsöverskridande intag"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Juridikläge",
+      "recommendation": "Juridiska tjänstekänsla — regulatoriska och juridiska rådgivningskluster betonade.",
+      "tickerEyebrow": "Juridiska tjänstesignaler",
+      "tickerMessages": [
+        "Brussels regulatorisk rådgivning efterfrågan hög",
+        "London ↔ Frankfurt efterlevnadskorridor",
+        "Warsaw EU-rätt boutique utvidgning noterad",
+        "Vienna skiljedomshub partnersökning"
+      ]
+    },
+    "education": {
+      "panelTitle": "Utbildningsläge",
+      "recommendation": "Utbildningsnätverkskänsla — universitet och utbildningskorridorer lyser mjukt.",
+      "tickerEyebrow": "Utbildningsnätverkssignaler",
+      "tickerMessages": [
+        "Erasmus korridoraktivitet: Barcelona ↔ Bologna",
+        "Warsaw språkskolepartnerskap öppna",
+        "Heidelberg forskningsintag gränsöverskridande",
+        "Dublin edtech-kredentialutbyte i trend"
+      ]
+    },
+    "road": {
+      "panelTitle": "Vägtransportläge",
+      "recommendation": "Vägkorridorer får subtil betoning — landfraktkörfält lyser i nätverket.",
+      "tickerEyebrow": "Vägtransportsignaler",
+      "tickerMessages": [
+        "Antwerp → Warsaw lastbilskapacitet öppen",
+        "Milan → Munich körfältsutnyttjande 78 %",
+        "Barcelona → Lyon expressplats tillgänglig"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Tågläge",
+      "recommendation": "Tågkorridorer betonade — intermodala och godstågskörfält markerade.",
+      "tickerEyebrow": "Tågkorridorsignaler",
+      "tickerMessages": [
+        "Hamburg → Warsaw tågplats i trend",
+        "Rotterdam intermodal överlämning stabil",
+        "Basel → Milan tågfraktbehov upp"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Sjöfraktläge",
+      "recommendation": "Maritima korridorer betonade — hamn-till-hamn sjövägar lyser på kartan.",
+      "tickerEyebrow": "Sjöfraktsignaler",
+      "tickerMessages": [
+        "Rotterdam → Gdańsk containerkorridor aktiv",
+        "Hamburg → Odesa maritimt intresse stiger",
+        "Barcelona medelhavs-routing stabil"
+      ]
+    },
+    "air": {
+      "panelTitle": "Flygfraktläge",
+      "recommendation": "Flygfraktkorridorer betonade — expressflygfraktkörfält markerade.",
+      "tickerEyebrow": "Flygfraktsignaler",
+      "tickerMessages": [
+        "Frankfurt → Bucharest express upplift öppen",
+        "Paris CDG ↔ Warsaw fraktfönster",
+        "Amsterdam flyghub cross-dock aktiv"
+      ]
+    },
+    "river": {
+      "panelTitle": "Flodläge",
+      "recommendation": "Flodkorridorer betonade — inlandsvattenvägsfraktkörfält markerade.",
+      "tickerEyebrow": "Flodfraktsignaler",
+      "tickerMessages": [
+        "Donau korridor spannmålsrörelse aktiv",
+        "Rhine pråmkapacitet tillgänglig",
+        "Elbe inlandshamnsöverlämningar stabila"
+      ]
+    }
+  }
+}

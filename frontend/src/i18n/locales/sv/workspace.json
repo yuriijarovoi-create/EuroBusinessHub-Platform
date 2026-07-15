@@ -1,0 +1,117 @@
+{
+  "title": "Arbetsyta {{city}}",
+  "subtitle": "{{country}} · {{count}} företag",
+  "stats": {
+    "activeUsers": "Aktiva användare",
+    "openOrders": "Öppna order",
+    "listings": "Annonser"
+  },
+  "metrics": {
+    "companies": "Företag",
+    "jobs": "Jobb",
+    "transport": "Transport",
+    "warehouses": "Lager",
+    "marketplace": "Marknadsplats",
+    "partners": "Partners",
+    "digitalProducts": "Digitala produkter",
+    "services": "Tjänster"
+  },
+  "ecosystemMetrics": "Affärsekosystem",
+  "activeModules": "Aktiva moduler i denna stad",
+  "backToMap": "Tillbaka till kartan",
+  "backToEuropeMap": "Tillbaka till Europakartan",
+  "quickActions": "Snabbåtgärder",
+  "actions": {
+    "search": "Sök i staden",
+    "marketplace": "Öppna marknadsplats",
+    "ki": "Starta AI-assistent"
+  },
+  "companies": {
+    "title": "Företag i {{city}}",
+    "backToCity": "Tillbaka till stadsarbetsytan",
+    "demoNotice": "Demodata — ingen live-anslutning till företagsregister",
+    "notFoundCity": "Staden hittades inte",
+    "loadMoreFoundation": "Paginering och arkitektur för ladda-mer redo för framtida API-datauppsättningar.",
+    "stats": {
+      "label": "Stadsstatistik för företag",
+      "totalCompanies": "Totalt antal företag",
+      "verifiedProfiles": "Verifierade profiler",
+      "industries": "Branscher",
+      "openOpportunities": "Öppna möjligheter"
+    },
+    "search": {
+      "label": "Sök företag",
+      "placeholder": "Sök efter namn, bransch, taggar…",
+      "clear": "Rensa sökning"
+    },
+    "filters": {
+      "toggle": "Filter",
+      "active": "aktiva",
+      "industry": "Bransch",
+      "size": "Företagsstorlek",
+      "status": "Status",
+      "sort": "Sortera efter",
+      "verifiedOnly": "Endast verifierade",
+      "all": "Alla",
+      "clear": "Rensa filter"
+    },
+    "sort": {
+      "relevance": "Relevans",
+      "name": "Företagsnamn",
+      "size": "Företagsstorlek"
+    },
+    "results": {
+      "label": "Företagsresultat",
+      "showing": "Visar {{count}} av {{total}} demoföretag"
+    },
+    "card": {
+      "verified": "Verifierad",
+      "demo": "Demo",
+      "tags": "Taggar",
+      "view": "Visa företag"
+    },
+    "details": {
+      "close": "Stäng detaljer",
+      "size": "Företagsstorlek",
+      "status": "Status",
+      "verification": "Verifiering",
+      "employees": "Anställda",
+      "description": "Beskrivning",
+      "tags": "Taggar",
+      "opportunities": "Möjligheter",
+      "location": "Plats",
+      "website": "Webbplats"
+    },
+    "industries": {
+      "manufacturing": "Tillverkning",
+      "logistics": "Logistik",
+      "technology": "Teknik",
+      "construction": "Bygg",
+      "agriculture": "Jordbruk",
+      "medical": "Medicin",
+      "finance": "Finans",
+      "tourism": "Turism",
+      "retail": "Detaljhandel",
+      "professional-services": "Professionella tjänster"
+    },
+    "sizes": {
+      "micro": "Mikro",
+      "small": "Liten",
+      "medium": "Medel",
+      "large": "Stor"
+    },
+    "statuses": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "pending": "Väntande"
+    },
+    "emptyCity": {
+      "title": "Ingen företagsdata för {{city}} ännu",
+      "body": "Denna stad stöds på plattformen, men demokatalogen för företag har inga poster här ännu."
+    },
+    "emptyFilters": {
+      "title": "Inga företag matchar de valda filtren",
+      "body": "Prova att justera din sökning eller dina filterkriterier."
+    }
+  }
+}

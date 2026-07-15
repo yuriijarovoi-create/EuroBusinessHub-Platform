@@ -31,6 +31,54 @@ import plSearch from './locales/pl/search.json';
 import plModules from './locales/pl/modules.json';
 import plWorkspace from './locales/pl/workspace.json';
 
+import csCommon from './locales/cs/common.json';
+import csMap from './locales/cs/map.json';
+import csSearch from './locales/cs/search.json';
+import csModules from './locales/cs/modules.json';
+import csWorkspace from './locales/cs/workspace.json';
+
+import skCommon from './locales/sk/common.json';
+import skMap from './locales/sk/map.json';
+import skSearch from './locales/sk/search.json';
+import skModules from './locales/sk/modules.json';
+import skWorkspace from './locales/sk/workspace.json';
+
+import ltCommon from './locales/lt/common.json';
+import ltMap from './locales/lt/map.json';
+import ltSearch from './locales/lt/search.json';
+import ltModules from './locales/lt/modules.json';
+import ltWorkspace from './locales/lt/workspace.json';
+
+import frCommon from './locales/fr/common.json';
+import frMap from './locales/fr/map.json';
+import frSearch from './locales/fr/search.json';
+import frModules from './locales/fr/modules.json';
+import frWorkspace from './locales/fr/workspace.json';
+
+import nlCommon from './locales/nl/common.json';
+import nlMap from './locales/nl/map.json';
+import nlSearch from './locales/nl/search.json';
+import nlModules from './locales/nl/modules.json';
+import nlWorkspace from './locales/nl/workspace.json';
+
+import itCommon from './locales/it/common.json';
+import itMap from './locales/it/map.json';
+import itSearch from './locales/it/search.json';
+import itModules from './locales/it/modules.json';
+import itWorkspace from './locales/it/workspace.json';
+
+import roCommon from './locales/ro/common.json';
+import roMap from './locales/ro/map.json';
+import roSearch from './locales/ro/search.json';
+import roModules from './locales/ro/modules.json';
+import roWorkspace from './locales/ro/workspace.json';
+
+import svCommon from './locales/sv/common.json';
+import svMap from './locales/sv/map.json';
+import svSearch from './locales/sv/search.json';
+import svModules from './locales/sv/modules.json';
+import svWorkspace from './locales/sv/workspace.json';
+
 import {
   LANGUAGE_STORAGE_KEY,
   normalizeLanguageCode,
@@ -85,6 +133,62 @@ void i18n.use(initReactI18next).init({
       search: plSearch,
       modules: plModules,
       workspace: plWorkspace,
+    },
+    cs: {
+      common: csCommon,
+      map: csMap,
+      search: csSearch,
+      modules: csModules,
+      workspace: csWorkspace,
+    },
+    sk: {
+      common: skCommon,
+      map: skMap,
+      search: skSearch,
+      modules: skModules,
+      workspace: skWorkspace,
+    },
+    lt: {
+      common: ltCommon,
+      map: ltMap,
+      search: ltSearch,
+      modules: ltModules,
+      workspace: ltWorkspace,
+    },
+    fr: {
+      common: frCommon,
+      map: frMap,
+      search: frSearch,
+      modules: frModules,
+      workspace: frWorkspace,
+    },
+    nl: {
+      common: nlCommon,
+      map: nlMap,
+      search: nlSearch,
+      modules: nlModules,
+      workspace: nlWorkspace,
+    },
+    it: {
+      common: itCommon,
+      map: itMap,
+      search: itSearch,
+      modules: itModules,
+      workspace: itWorkspace,
+    },
+    ro: {
+      common: roCommon,
+      map: roMap,
+      search: roSearch,
+      modules: roModules,
+      workspace: roWorkspace,
+    },
+    sv: {
+      common: svCommon,
+      map: svMap,
+      search: svSearch,
+      modules: svModules,
+      workspace: svWorkspace,
     },
   },
   interpolation: { escapeValue: false },

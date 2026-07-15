@@ -1,0 +1,117 @@
+{
+  "title": "Pracovní prostor {{city}}",
+  "subtitle": "{{country}} · {{count}} firem",
+  "stats": {
+    "activeUsers": "Aktivní uživatelé",
+    "openOrders": "Otevřené objednávky",
+    "listings": "Inzeráty"
+  },
+  "metrics": {
+    "companies": "Firmy",
+    "jobs": "Pracovní místa",
+    "transport": "Doprava",
+    "warehouses": "Sklady",
+    "marketplace": "Tržiště",
+    "partners": "Partneři",
+    "digitalProducts": "Digitální produkty",
+    "services": "Služby"
+  },
+  "ecosystemMetrics": "Obchodní ekosystém",
+  "activeModules": "Aktivní moduly v tomto městě",
+  "backToMap": "Zpět na mapu",
+  "backToEuropeMap": "Zpět na mapu Evropy",
+  "quickActions": "Rychlé akce",
+  "actions": {
+    "search": "Vyhledat ve městě",
+    "marketplace": "Otevřít tržiště",
+    "ki": "Spustit AI asistenta"
+  },
+  "companies": {
+    "title": "Firmy v {{city}}",
+    "backToCity": "Zpět do městského pracovního prostoru",
+    "demoNotice": "Ukázková data — bez připojení k živému firemnímu registru",
+    "notFoundCity": "Město nenalezeno",
+    "loadMoreFoundation": "Architektura stránkování a načítání dalších záznamů připravena pro budoucí API datové sady.",
+    "stats": {
+      "label": "Statistiky firem ve městě",
+      "totalCompanies": "Celkem firem",
+      "verifiedProfiles": "Ověřené profily",
+      "industries": "Odvětví",
+      "openOpportunities": "Otevřené příležitosti"
+    },
+    "search": {
+      "label": "Vyhledat firmy",
+      "placeholder": "Hledat podle názvu, odvětví, tagů…",
+      "clear": "Vymazat vyhledávání"
+    },
+    "filters": {
+      "toggle": "Filtry",
+      "active": "aktivní",
+      "industry": "Odvětví",
+      "size": "Velikost firmy",
+      "status": "Stav",
+      "sort": "Seřadit podle",
+      "verifiedOnly": "Pouze ověřené",
+      "all": "Vše",
+      "clear": "Vymazat filtry"
+    },
+    "sort": {
+      "relevance": "Relevance",
+      "name": "Název firmy",
+      "size": "Velikost firmy"
+    },
+    "results": {
+      "label": "Výsledky firem",
+      "showing": "Zobrazeno {{count}} z {{total}} ukázkových firem"
+    },
+    "card": {
+      "verified": "Ověřeno",
+      "demo": "Ukázka",
+      "tags": "Tagy",
+      "view": "Zobrazit firmu"
+    },
+    "details": {
+      "close": "Zavřít detail",
+      "size": "Velikost firmy",
+      "status": "Stav",
+      "verification": "Ověření",
+      "employees": "Zaměstnanci",
+      "description": "Popis",
+      "tags": "Tagy",
+      "opportunities": "Příležitosti",
+      "location": "Lokalita",
+      "website": "Web"
+    },
+    "industries": {
+      "manufacturing": "Výroba",
+      "logistics": "Logistika",
+      "technology": "Technologie",
+      "construction": "Stavebnictví",
+      "agriculture": "Zemědělství",
+      "medical": "Zdravotnictví",
+      "finance": "Finance",
+      "tourism": "Cestovní ruch",
+      "retail": "Maloobchod",
+      "professional-services": "Profesionální služby"
+    },
+    "sizes": {
+      "micro": "Mikro",
+      "small": "Malá",
+      "medium": "Střední",
+      "large": "Velká"
+    },
+    "statuses": {
+      "active": "Aktivní",
+      "inactive": "Neaktivní",
+      "pending": "Čekající"
+    },
+    "emptyCity": {
+      "title": "Pro {{city}} zatím nejsou k dispozici firemní data",
+      "body": "Toto město je na platformě podporováno, ale ukázkový katalog firem zde zatím nemá žádné záznamy."
+    },
+    "emptyFilters": {
+      "title": "Žádné firmy neodpovídají vybraným filtrům",
+      "body": "Zkuste upravit vyhledávání nebo kritéria filtrů."
+    }
+  }
+}

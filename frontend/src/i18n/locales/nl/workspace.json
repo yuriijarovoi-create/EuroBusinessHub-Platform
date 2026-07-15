@@ -1,0 +1,117 @@
+{
+  "title": "Werkruimte {{city}}",
+  "subtitle": "{{country}} · {{count}} bedrijven",
+  "stats": {
+    "activeUsers": "Actieve gebruikers",
+    "openOrders": "Open orders",
+    "listings": "Advertenties"
+  },
+  "metrics": {
+    "companies": "Bedrijven",
+    "jobs": "Vacatures",
+    "transport": "Transport",
+    "warehouses": "Magazijnen",
+    "marketplace": "Marketplace",
+    "partners": "Partners",
+    "digitalProducts": "Digitale producten",
+    "services": "Diensten"
+  },
+  "ecosystemMetrics": "Bedrijfsecosysteem",
+  "activeModules": "Actieve modules in deze stad",
+  "backToMap": "Terug naar kaart",
+  "backToEuropeMap": "Terug naar Europa-kaart",
+  "quickActions": "Snelle acties",
+  "actions": {
+    "search": "Zoeken in stad",
+    "marketplace": "Marketplace openen",
+    "ki": "AI-assistent starten"
+  },
+  "companies": {
+    "title": "Bedrijven in {{city}}",
+    "backToCity": "Terug naar stadswerkruimte",
+    "demoNotice": "Demogegevens — geen live verbinding met bedrijfsregister",
+    "notFoundCity": "Stad niet gevonden",
+    "loadMoreFoundation": "Paginatie- en load-more-architectuur klaar voor toekomstige API-datasets.",
+    "stats": {
+      "label": "Bedrijfsstatistieken van de stad",
+      "totalCompanies": "Totaal bedrijven",
+      "verifiedProfiles": "Geverifieerde profielen",
+      "industries": "Sectoren",
+      "openOpportunities": "Open kansen"
+    },
+    "search": {
+      "label": "Bedrijven zoeken",
+      "placeholder": "Zoeken op naam, sector, tags…",
+      "clear": "Zoekopdracht wissen"
+    },
+    "filters": {
+      "toggle": "Filters",
+      "active": "actief",
+      "industry": "Sector",
+      "size": "Bedrijfsgrootte",
+      "status": "Status",
+      "sort": "Sorteren op",
+      "verifiedOnly": "Alleen geverifieerd",
+      "all": "Alle",
+      "clear": "Filters wissen"
+    },
+    "sort": {
+      "relevance": "Relevantie",
+      "name": "Bedrijfsnaam",
+      "size": "Bedrijfsgrootte"
+    },
+    "results": {
+      "label": "Bedrijfsresultaten",
+      "showing": "{{count}} van {{total}} demobedrijven weergegeven"
+    },
+    "card": {
+      "verified": "Geverifieerd",
+      "demo": "Demo",
+      "tags": "Tags",
+      "view": "Bedrijf bekijken"
+    },
+    "details": {
+      "close": "Details sluiten",
+      "size": "Bedrijfsgrootte",
+      "status": "Status",
+      "verification": "Verificatie",
+      "employees": "Medewerkers",
+      "description": "Beschrijving",
+      "tags": "Tags",
+      "opportunities": "Kansen",
+      "location": "Locatie",
+      "website": "Website"
+    },
+    "industries": {
+      "manufacturing": "Productie",
+      "logistics": "Logistiek",
+      "technology": "Technologie",
+      "construction": "Bouw",
+      "agriculture": "Landbouw",
+      "medical": "Medisch",
+      "finance": "Financiën",
+      "tourism": "Toerisme",
+      "retail": "Detailhandel",
+      "professional-services": "Professionele diensten"
+    },
+    "sizes": {
+      "micro": "Micro",
+      "small": "Klein",
+      "medium": "Middelgroot",
+      "large": "Groot"
+    },
+    "statuses": {
+      "active": "Actief",
+      "inactive": "Inactief",
+      "pending": "In behandeling"
+    },
+    "emptyCity": {
+      "title": "Nog geen bedrijfsgegevens voor {{city}}",
+      "body": "Deze stad wordt ondersteund op het platform, maar de demobedrijfscatalogus bevat hier nog geen vermeldingen."
+    },
+    "emptyFilters": {
+      "title": "Geen bedrijven komen overeen met de geselecteerde filters",
+      "body": "Probeer uw zoek- of filtercriteria aan te passen."
+    }
+  }
+}

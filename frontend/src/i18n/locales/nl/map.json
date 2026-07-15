@@ -1,0 +1,665 @@
+{
+  "title": "Levend Europees bedrijfsnetwerk",
+  "eyebrow": "Live kaart",
+  "subtitle": "Berlin als centraal hub — Interactief Europees bedrijfsnetwerk",
+  "legend": "Interactieve Europa-kaart met bedrijfsnodes",
+  "hubLabel": "Berlin Hub",
+  "liveNetwork": "Live netwerk actief",
+  "businesses": "{{count}} bedrijven",
+  "zoomHint": "Selecteer een stad of land · Elke stad opent zijn eigen werkruimte",
+  "interactionHint": "Scroll om te zoomen · Sleep om te verschuiven · Klik op een stad voor details",
+  "loading": "Kaart laden…",
+  "controls": {
+    "zoomIn": "Inzoomen",
+    "zoomOut": "Uitzoomen",
+    "reset": "Weergave resetten",
+    "backEurope": "Europa"
+  },
+  "nav": {
+    "europe": "Europa",
+    "backToEurope": "Terug naar Europa",
+    "selectCity": "Stad selecteren"
+  },
+  "search": {
+    "placeholder": "Stad zoeken",
+    "open": "Stad zoeken",
+    "close": "Zoeken sluiten",
+    "results": "Zoekresultaten steden",
+    "noResults": "Geen overeenkomende steden",
+    "noLayerData": "Er zijn nog geen gegevens beschikbaar voor deze locatie in de huidige laag.",
+    "voice": "Spraakzoeken",
+    "voiceComingSoon": "Spraakzoeken binnenkort beschikbaar"
+  },
+  "layers": {
+    "title": "Lagen",
+    "routes": "Alle routes",
+    "road": "Wegvracht",
+    "rail": "Spoorvracht",
+    "air": "Luchtvracht",
+    "sea": "Zeeroutes",
+    "river": "Rivier / Binnenvaart",
+    "companies": "Bedrijven",
+    "jobs": "Vacatures",
+    "warehouses": "Magazijnen"
+  },
+  "activity": {
+    "liveActivity": "Live activiteit",
+    "freightVolume": "Vrachtvolume 24 u",
+    "transportOffers": "Open transportaanbiedingen",
+    "deliveryTime": "Gem. levertijd",
+    "co2Saving": "CO₂-besparing"
+  },
+  "live": {
+    "title": "Live platform",
+    "companies": "Bedrijven",
+    "jobs": "Vacatures",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "warehouses": "Magazijnen",
+    "partners": "Partners",
+    "digitalProducts": "Digitale producten",
+    "subscriptions": "Abonnementen",
+    "aiRequests": "AI-verzoeken"
+  },
+  "tooltip": {
+    "companies": "{{count}} bedrijven",
+    "jobs": "{{count}} vacatures",
+    "warehouses": "{{count}} magazijnen",
+    "transport": "{{count}} transportaanbiedingen",
+    "businessScore": "Bedrijfsscore {{score}}",
+    "networkConnections": "{{count}} netwerkverbindingen",
+    "aiScore": "AI-score {{score}}"
+  },
+  "country": {
+    "title": "Land {{country}}",
+    "cities": "{{count}} bedrijfssteden",
+    "aiScore": "AI-infrastructuurscore",
+    "selectCity": "Selecteer een stad op de kaart voor details"
+  },
+  "germany": {
+    "bundeslandPicker": "Deelstaat selecteren",
+    "bundeslandTitle": "Deelstaat {{name}}",
+    "bundeslandSubtitle": "Regionaal economisch profiel",
+    "selectCityInState": "Selecteer een stad in deze deelstaat",
+    "population": "Bevolking",
+    "federalState": "Deelstaat",
+    "mainIndustry": "Hoofdsector",
+    "transportRole": "Transportrol",
+    "finance": "Financiën",
+    "tech": "Tech",
+    "logistics": "Logistiek",
+    "innovation": "Innovatie",
+    "businessIndex": "Bedrijfsindex",
+    "sustainability": "Duurzaamheid",
+    "gdpShort": "{{value}} mld € BBP",
+    "gdpEstimate": "Geschat BBP: {{value}} mld €",
+    "marketplaceDesc": "Actieve marketplace-aanbiedingen in de regio",
+    "stats": {
+      "cities": "Steden",
+      "gdp": "BBP (geschat)",
+      "logistics": "Logistiekscore",
+      "businesses": "Bedrijven"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Nabijgelegen infrastructuur",
+      "seaports": "Zeehavens",
+      "inlandPorts": "Binnenhavens",
+      "airCargo": "Luchtvrachthubs",
+      "industrialZones": "Industriële zones",
+      "logisticsHubs": "Logistieke hubs",
+      "importance": "Belang {{score}}/100",
+      "types": {
+        "seaport": "Zeehaven",
+        "inland_port": "Binnenhaven",
+        "air_cargo": "Luchtvrachthub",
+        "industrial_zone": "Industriële zone"
+      }
+    },
+    "localNode": {
+      "title": "Lokale diensten en regionale hub",
+      "nearestHub": "Dichtstbijzijnde grote hub",
+      "hubRoute": "Aanbevolen route",
+      "useCases": "Belangrijkste use cases",
+      "transport": "Lokaal transport",
+      "warehouses": "Opslag in de buurt",
+      "services": "Lokale diensten",
+      "craft": "Ambachtslieden",
+      "nearbyHubs": "Nabijgelegen hubs",
+      "marketplaceDesc": "Lokale marketplace-aanbiedingen in uw regio",
+      "jobsDesc": "Vacatures in de stad en via regionale hub",
+      "jobsViaHub": "Pendel- en logistieke vacatures via {{hub}}",
+      "useCase": {
+        "local_transport": "Lokaal transport",
+        "moving_service": "Verhuisdienst",
+        "warehouse_near_me": "Magazijn bij mij in de buurt",
+        "jobs_near_me": "Vacatures bij mij in de buurt",
+        "craftsmen": "Ambachtslieden",
+        "business_services": "Zakelijke diensten",
+        "local_marketplace": "Lokale marketplace",
+        "regional_logistics": "Regionale logistiek",
+        "agricultural_services": "Landbouwdiensten",
+        "tourism_services": "Toerismediensten"
+      }
+    }
+  },
+  "panel": {
+    "title": "Stad {{city}}",
+    "close": "Sluiten",
+    "openWorkspace": "Werkruimte openen",
+    "allRoutes": "Alle routes tonen",
+    "companies": "Bedrijven",
+    "jobs": "Vacatures",
+    "warehouses": "Magazijnen",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "partners": "Partners",
+    "aiScore": "AI-score",
+    "digitalProducts": "Digitale producten",
+    "transportOffers": "Transportaanbiedingen",
+    "companiesDesc": "Geregistreerde bedrijven in deze stad",
+    "jobsDesc": "Actieve vacatures",
+    "warehousesDesc": "Beschikbare magazijncapaciteit",
+    "tabs": {
+      "overview": "Overzicht",
+      "companies": "Bedrijven",
+      "jobs": "Vacatures",
+      "warehouses": "Magazijnen",
+      "routes": "Routes",
+      "transport": "Transport",
+      "marketplace": "Marketplace",
+      "services": "Diensten",
+      "analytics": "Analytics",
+      "partners": "Partners",
+      "activity": "Activiteit"
+    }
+  },
+  "routePanel": {
+    "title": "Route {{route}}",
+    "from": "Van",
+    "to": "Naar",
+    "hours": "u",
+    "industries": "Hoofdsectoren",
+    "delivery": "Gemiddelde levertijd: {{time}}",
+    "lastActivity": "Laatste activiteit: {{time}}",
+    "warehousesHint": "Magazijnen en logistieke hubs zijn beschikbaar langs dit corridor.",
+    "status": {
+      "active": "Actief",
+      "congested": "Overbelast",
+      "maintenance": "Onderhoud",
+      "seasonal": "Seizoensgebonden"
+    },
+    "modes": {
+      "road": "Wegvracht",
+      "rail": "Spoorvracht",
+      "air": "Luchtvracht",
+      "sea": "Zeevracht",
+      "river": "Rivier / Binnenvaart"
+    },
+    "stats": {
+      "distance": "Afstand",
+      "time": "Geschatte tijd (u)",
+      "volume": "Maandelijks volume (t)",
+      "offers": "Transportaanbiedingen",
+      "orders": "Actieve orders",
+      "companies": "Bedrijven",
+      "price": "Prijsindex",
+      "reliability": "Betrouwbaarheid",
+      "co2": "CO₂ geschat"
+    },
+    "actions": {
+      "open": "Route openen",
+      "search": "Transport zoeken",
+      "create": "Aanbieding maken"
+    }
+  },
+  "operating": {
+    "context": "Context",
+    "insights": "Live intelligence",
+    "activeMapMode": "Actieve kaartmodus",
+    "logisticsLayer": "Logistiek",
+    "businessLayer": "Zakelijk",
+    "country": "Land",
+    "city": "Stad",
+    "corridor": "Corridor",
+    "platform": "Platformactiviteit",
+    "activeUsers": "Actieve gebruikers",
+    "marketplace": "Marketplace",
+    "filters": "Filters",
+    "logistics": "Logistiek",
+    "business": "Bedrijfsmodules",
+    "mapControls": "Kaartbediening",
+    "trending": "Trending steden"
+  },
+  "a11y": {
+    "togglePanel": "Paneel wisselen",
+    "mapViewport": "Europa bedrijfskaart",
+    "showCommandPanel": "Commandopaneel tonen",
+    "hideCommandPanel": "Commandopaneel verbergen"
+  },
+  "businessLayers": {
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "companies": "Bedrijven",
+    "jobs": "Vacatures",
+    "warehouses": "Magazijnen",
+    "businessServices": "Zakelijke diensten",
+    "partners": "Partners",
+    "academy": "Academie",
+    "digitalProducts": "Digitale producten",
+    "ai": "AI",
+    "events": "Evenementen",
+    "investments": "Investeringen",
+    "startups": "Startups",
+    "manufacturing": "Productie",
+    "agriculture": "Landbouw",
+    "construction": "Bouw",
+    "medical": "Medisch",
+    "tourism": "Toerisme",
+    "technology": "Technologie",
+    "finance": "Financiën",
+    "legal": "Juridisch",
+    "education": "Onderwijs"
+  },
+  "mobile": {
+    "map": "Kaart",
+    "transport": "Transport",
+    "jobs": "Vacatures",
+    "companies": "Bedrijven",
+    "warehouses": "Magazijnen",
+    "ai": "AI",
+    "more": "Meer",
+    "mapControl": "Kaartbediening",
+    "commandCenter": "Kaartbedieningscentrum",
+    "mapControls": "Kaartbediening",
+    "commandWheel": "Kaartcommandowiel",
+    "moreBusinessLayers": "Meer bedrijfslagen",
+    "businessLayers": "Bedrijfslagen",
+    "activeLayer": "Actieve laag:",
+    "layerActive": "{{layer}}-laag actief",
+    "europeOverviewActive": "Europa-overzicht actief",
+    "aiComingSoon": "AI-kaartassistent binnenkort beschikbaar",
+    "exploreEcosystem": "Verken het EuroBusinessHub-ecosysteem",
+    "aiAssistantTitle": "AI-kaartassistent",
+    "comingSoon": "Binnenkort beschikbaar",
+    "close": "Sluiten",
+    "closeLayersPanel": "Lagenpaneel sluiten",
+    "layerGroups": {
+      "transport": {
+        "title": "Transportlagen",
+        "road": "Wegtransport",
+        "rail": "Spoor",
+        "air": "Luchtvracht",
+        "sea": "Zeevracht",
+        "river": "Rivier"
+      },
+      "business": {
+        "title": "Bedrijfsmodules",
+        "marketplace": "Marketplace",
+        "companies": "Bedrijven",
+        "jobs": "Vacatures",
+        "warehouses": "Magazijnen",
+        "partners": "Partners"
+      },
+      "services": {
+        "title": "Diensten",
+        "legal": "Juridisch",
+        "finance": "Financiën",
+        "medical": "Medisch",
+        "education": "Onderwijs",
+        "technology": "Technologie"
+      },
+      "industries": {
+        "title": "Sectoren",
+        "agriculture": "Landbouw",
+        "manufacturing": "Productie",
+        "construction": "Bouw",
+        "tourism": "Toerisme"
+      },
+      "innovation": {
+        "title": "Innovatie",
+        "ai": "AI",
+        "startups": "Startups",
+        "digitalProducts": "Digitale producten",
+        "academy": "Academie",
+        "investments": "Investeringen"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Marketplace",
+      "partners": "Partners",
+      "academy": "Academie",
+      "digital-products": "Digitale producten",
+      "events": "Evenementen",
+      "investments": "Investeringen",
+      "startups": "Startups",
+      "manufacturing": "Productie",
+      "agriculture": "Landbouw",
+      "construction": "Bouw",
+      "medical": "Medisch",
+      "tourism": "Toerisme",
+      "technology": "Technologie",
+      "finance": "Financiën",
+      "legal": "Juridisch",
+      "education": "Onderwijs"
+    }
+  },
+  "tooltips": {
+    "companies": "Bedrijven",
+    "jobs": "Vacatures",
+    "warehouses": "Magazijnen",
+    "transport": "Transport",
+    "aiScore": "AI-score",
+    "origin": "Herkomst",
+    "destination": "Bestemming",
+    "routeType": "Routetype",
+    "distance": "Afstand",
+    "activeOffers": "Actieve aanbiedingen",
+    "estTime": "Geschatte tijd",
+    "aiOptimized": "AI-geoptimaliseerd"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Europa-overzicht",
+      "recommendation": "Verken de volledige Europese bedrijfsoperationele kaart — alle corridors en hubs zichtbaar.",
+      "tickerEyebrow": "AI-aanbevelingen",
+      "tickerMessages": [
+        "Hoge vraag: Berlin → Izium reconstructielogistiek",
+        "Corridor uitbreiden: Warsaw → Kyiv → Izium",
+        "Partnermatch: Istanbul → Odesa maritieme logistiek",
+        "Nieuwe kans: Ukraine wederopbouw supply chain"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Marketplace-modus",
+      "recommendation": "Helderder stads gloed benadrukt handelshotspots — ontdek B2B-marketplacekansen in heel Europa.",
+      "tickerEyebrow": "Marketplacesignalen",
+      "tickerMessages": [
+        "Rotterdam → Warsaw groothandelcorridor trending",
+        "Berlin MKB-advertenties +14% deze week",
+        "Grensoverschrijdende marketplace-match: Vienna ↔ Prague",
+        "Hoge koopintentie in Munich industriële benodigdheden"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Transportmodus",
+      "recommendation": "Transportcorridors worden subtiel benadrukt — volg vrachtstromen en logistieke beursactiviteit.",
+      "tickerEyebrow": "Logistieke aanbevelingen",
+      "tickerMessages": [
+        "Spoorslot beschikbaar: Hamburg → Warsaw corridor",
+        "Zeevrachtvraag stijgt op Rotterdam → Gdańsk",
+        "Wegcapaciteit opent: Lyon → Milan baan",
+        "Luchtvrachtvenster: Frankfurt → Bucharest express"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Bedrijvenmodus",
+      "recommendation": "Bedrijfshub-gloed versterkt grote bedrijfscentra — ideaal voor bedrijfsontdekking.",
+      "tickerEyebrow": "Bedrijfshubsignalen",
+      "tickerMessages": [
+        "Frankfurt enterprise-clusteractiviteit +11%",
+        "Paris HQ-verhuizingen trending naar Lyon",
+        "Warsaw techcampus-uitbreiding opgemerkt",
+        "Milan modehuizen zoeken EU-partners"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Vacaturemodus",
+      "recommendation": "Wervingshotspot-gloed toont arbeidsvraag — verken open functies per stad.",
+      "tickerEyebrow": "Werkgelegenheidsaanbevelingen",
+      "tickerMessages": [
+        "Berlin logistieke functies +18% week op week",
+        "Warsaw engineering-wervingsgolf zet door",
+        "Remote-ready functies clusteren in Dublin",
+        "Izium wederopbouwprojecten plaatsen vakbekwame beroepen"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Magazijnmodus",
+      "recommendation": "Magazijnnetwerkgevoel — distributienodes pulseren over logistieke poorten.",
+      "tickerEyebrow": "Magazijnnetwerksignalen",
+      "tickerMessages": [
+        "Rotterdam douaneopslag op 92% bezetting",
+        "Warsaw koudeketenuitbreidingscorridor actief",
+        "Hamburg ↔ Berlin fulfillmentbaan geoptimaliseerd",
+        "Prague regionale hubcapaciteit opent Q3"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Zakelijke dienstenmodus",
+      "recommendation": "Dienstnetwerk-gloed verbindt professionele dienstclusters in heel Europa.",
+      "tickerEyebrow": "Dienstnetwerksignalen",
+      "tickerMessages": [
+        "Brussels compliance-adviesvraag stijgt",
+        "Zurich fiduciaire diensten match in Prague",
+        "Barcelona creatieve diensten exportgroei",
+        "Vienna adviescorridor breidt uit naar het oosten"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Partnersmodus",
+      "recommendation": "Samenwerkingsnetwerkgevoel — partnership-klare steden stralen voor grensoverschrijdende allianties.",
+      "tickerEyebrow": "Partnerschapsignalen",
+      "tickerMessages": [
+        "Nordic ↔ Baltic partnermatchscore hoog",
+        "Istanbul gateway zoekt EU-distributeurs",
+        "Lyon productiepartnerzoek actief",
+        "Tallinn digitale partners open voor DACH-markt"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Academiemodus",
+      "recommendation": "Onderwijsecosysteemgevoel — leerhubs en trainingscorridors benadrukt.",
+      "tickerEyebrow": "Academiesignalen",
+      "tickerMessages": [
+        "Heidelberg onderzoeksuitwisselingsprogramma's open",
+        "Barcelona bootcamp-partnerschappen trending",
+        "Warsaw STEM-academiecohort vult snel",
+        "Vienna executive education grensoverschrijdende intake"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Digitale productenmodus",
+      "recommendation": "Technologie-ecosysteemgevoel — digitale producthubs gloeien in innovatiesteden.",
+      "tickerEyebrow": "Digitale productsignalen",
+      "tickerMessages": [
+        "SaaS-advertenties stijgen in Tallinn en Dublin",
+        "Berlin productstudio's zoeken EU-resellers",
+        "Amsterdam fintech-API's open voor integratie",
+        "Prague dev tools marketplace-activiteit +9%"
+      ]
+    },
+    "ai": {
+      "panelTitle": "AI-modus",
+      "recommendation": "AI-netwerkgevoel — intelligente corridors en AI-klare bedrijfsnodes benadrukt.",
+      "tickerEyebrow": "AI-netwerksignalen",
+      "tickerMessages": [
+        "Frankfurt AI-logistiek routeringspilot live",
+        "Warsaw ML-talentpool matchscore 94%",
+        "Paris generatieve commercetools trending",
+        "Helsinki AI-compliance sandbox accepteert partners"
+      ]
+    },
+    "events": {
+      "panelTitle": "Evenementenmodus",
+      "recommendation": "Evenementhotspotgevoel — conferentie- en beurssteden pulseren op de kaart.",
+      "tickerEyebrow": "Evenementhotspotsignalen",
+      "tickerMessages": [
+        "Hanover Messe corridorboekingen stijgen",
+        "Barcelona mobile congress spillover-vraag",
+        "Vienna topweek accommodatie krap",
+        "Milan design week leveranciersmatchmaking open"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Investeringsmodus",
+      "recommendation": "Investeringskapitaalgevoel — kapitaalstromen en financieringshotspots subtiel benadrukt.",
+      "tickerEyebrow": "Investeringssignalen",
+      "tickerMessages": [
+        "Frankfurt VC-interesse in Warsaw deeptech",
+        "Luxembourg fondsrouting via Amsterdam hub",
+        "Berlin seed round-activiteit +12%",
+        "Wederopbouwkapitaal richt zich op Izium corridor"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Startupmodus",
+      "recommendation": "Startupinnovatiegevoel — founder-ecosystemen en scale-upcorridors gloeien.",
+      "tickerEyebrow": "Startupinnovatiesignalen",
+      "tickerMessages": [
+        "Berlin ↔ Tallinn founder-uitwisseling actief",
+        "Barcelona healthtech-spinoffs zoeken pilots",
+        "Warsaw accelerator demo day inkomende interesse",
+        "Lisbon remote-first startup wervingsgolf"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Productiemodus",
+      "recommendation": "Industrieel netwerkgevoel — productiehubs en supplycorridors benadrukt.",
+      "tickerEyebrow": "Industrieel netwerksignalen",
+      "tickerMessages": [
+        "Stuttgart automobieleveranciers zoeken partners",
+        "Turin componentencorridor capaciteit beschikbaar",
+        "Wrocław elektronica-assemblage-uitbreiding",
+        "Lyon luchtvaartonderaannemer match open"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Landbouwnmodus",
+      "recommendation": "Landbouwekosysteemgevoel — agrovoedselcorridors en landelijke handelsnodes gloeien.",
+      "tickerEyebrow": "Landbouwekosysteemsignalen",
+      "tickerMessages": [
+        "Danube graancorridor opslagvraag hoog",
+        "Netherlands koudeketen naar Poland actief",
+        "Valencia citrus exportseizoen op gang",
+        "Kraków biologische distributeur zoekt partners"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Bouwmodus",
+      "recommendation": "Infrastructuurgevoel — wederopbouw- en bouwsupplycorridors benadrukt.",
+      "tickerEyebrow": "Infrastructuursignalen",
+      "tickerMessages": [
+        "Izium wederopbouwmateriaalencorridor geprioriteerd",
+        "Berlin woningbouwproject onderaannemerzoek",
+        "Warsaw infrastructuuraanbestedingsactiviteit stijgt",
+        "Prague spoorwegemodernisering leveranciersmatch"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Medische modus",
+      "recommendation": "Gezondheidszorgekosysteemgevoel — medische hubs en gezondheidslogistieknodes benadrukt.",
+      "tickerEyebrow": "Gezondheidszorgekosysteemsignalen",
+      "tickerMessages": [
+        "Basel farmaceutische distributiebaan stabiel",
+        "Warsaw medtech-apparaatadvertenties +10%",
+        "Munich ziekenhuisinkoopvenster open",
+        "Strasbourg grensoverschrijdende zorgpartnerschappen"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Toerismemodus",
+      "recommendation": "Toerismebestemmingsgevoel — bezoekereconomie-hotspots gloeien in heel Europa.",
+      "tickerEyebrow": "Toerismebestemmingssignalen",
+      "tickerMessages": [
+        "Barcelona zomerhospitalityboekingen stijgen",
+        "Vienna cultureel toerisme partners gezocht",
+        "Athens cruise transfercorridor actief",
+        "Prague city-breakpakketten trending DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Technologiemodus",
+      "recommendation": "Technologiehubsgevoel — innovatieclusters en techcorridors subtiel verlicht.",
+      "tickerEyebrow": "Technologiehubsignalen",
+      "tickerMessages": [
+        "Munich deep-tech spinout-interesse stijgt",
+        "Eindhoven halfgeleiderpartners gezocht",
+        "Tallinn cyber-talentmatchscore hoog",
+        "Cambridge ↔ Berlin onderzoeksuitwisseling open"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Financiënmodus",
+      "recommendation": "Financieel netwerkgevoel — kapitaalcentra en bankcorridors benadrukt.",
+      "tickerEyebrow": "Financieel netwerksignalen",
+      "tickerMessages": [
+        "Frankfurt clearingactiviteit stabiel",
+        "Luxembourg fondsadministratie match open",
+        "Dublin fintech-API-partners trending",
+        "Zurich vermogensdiensten grensoverschrijdende intake"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Juridische modus",
+      "recommendation": "Juridische dienstengevoel — regelgevings- en juridische adviesclusters benadrukt.",
+      "tickerEyebrow": "Juridische dienstensignalen",
+      "tickerMessages": [
+        "Brussels regelgevingsadviesvraag hoog",
+        "London ↔ Frankfurt compliancecorridor",
+        "Warsaw EU-recht boutique-uitbreiding opgemerkt",
+        "Vienna arbitragehub partnerzoek"
+      ]
+    },
+    "education": {
+      "panelTitle": "Onderwijsmodus",
+      "recommendation": "Onderwijsnetwerkgevoel — universiteiten en trainingscorridors gloeien zacht.",
+      "tickerEyebrow": "Onderwijsnetwerksignalen",
+      "tickerMessages": [
+        "Erasmus corridoractiviteit: Barcelona ↔ Bologna",
+        "Warsaw taalschoolpartnerschappen open",
+        "Heidelberg onderzoeksintake grensoverschrijdend",
+        "Dublin edtech-credentialuitwisseling trending"
+      ]
+    },
+    "road": {
+      "panelTitle": "Wegtransportmodus",
+      "recommendation": "Wegcorridors krijgen subtiele nadruk — overlandvrachtbanen gloeien op het netwerk.",
+      "tickerEyebrow": "Wegtransportsignalen",
+      "tickerMessages": [
+        "Antwerp → Warsaw vrachtcapaciteit open",
+        "Milan → Munich baanbezetting 78%",
+        "Barcelona → Lyon expressslot beschikbaar"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Spoormodus",
+      "recommendation": "Spoorcorridors benadrukt — intermodale en spoorvrachtbanen gemarkeerd.",
+      "tickerEyebrow": "Spoorcorridorsignalen",
+      "tickerMessages": [
+        "Hamburg → Warsaw spoorslot trending",
+        "Rotterdam intermodale overdracht stabiel",
+        "Basel → Milan spoorvrachtvraag stijgt"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Zeevrachtmodus",
+      "recommendation": "Maritieme corridors benadrukt — haven-tot-haven zeebanen gloeien op de kaart.",
+      "tickerEyebrow": "Zeevrachtsignalen",
+      "tickerMessages": [
+        "Rotterdam → Gdańsk containerbaan actief",
+        "Hamburg → Odesa maritieme interesse stijgt",
+        "Barcelona mediterrane routing stabiel"
+      ]
+    },
+    "air": {
+      "panelTitle": "Luchtvrachtmodus",
+      "recommendation": "Luchtvrachtcorridors benadrukt — expressluchtvaartbanen gemarkeerd.",
+      "tickerEyebrow": "Luchtvrachtsignalen",
+      "tickerMessages": [
+        "Frankfurt → Bucharest express uplift open",
+        "Paris CDG ↔ Warsaw cargovenster",
+        "Amsterdam luchthub cross-dock actief"
+      ]
+    },
+    "river": {
+      "panelTitle": "Riviermodus",
+      "recommendation": "Riviercorridors benadrukt — binnenvaartvrachtbanen gemarkeerd.",
+      "tickerEyebrow": "Riviervrachtsignalen",
+      "tickerMessages": [
+        "Danube corridor graantransport actief",
+        "Rhine bargecapaciteit beschikbaar",
+        "Elbe binnenhavenoverdrachten stabiel"
+      ]
+    }
+  }
+}

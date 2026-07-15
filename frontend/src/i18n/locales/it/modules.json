@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Dashboard", "description": "Il tuo workspace aziendale personale" },
+  "marketplace": { "name": "Marketplace", "description": "Marketplace B2B per prodotti e servizi" },
+  "transport": { "name": "Borsa dei trasporti", "description": "Merce, spedizioni e catene di approvvigionamento" },
+  "logistik": { "name": "Logistica", "description": "Magazzinaggio, fulfillment e distribuzione" },
+  "lager": { "name": "Magazzini", "description": "Gestione magazzini e ottimizzazione inventario" },
+  "unternehmen": { "name": "Aziende", "description": "Profili aziendali, rete e conformità" },
+  "jobs": { "name": "Lavoro", "description": "Offerte di lavoro e matching dei talenti" },
+  "services": { "name": "Servizi aziendali", "description": "Servizi professionali B2B" },
+  "partner": { "name": "Partner", "description": "Rete di partner e collaborazioni" },
+  "digitale-produkte": { "name": "Prodotti digitali", "description": "Software, licenze e asset digitali" },
+  "akademie": { "name": "Accademia", "description": "Formazione e certificazioni" },
+  "ki": { "name": "Assistente IA", "description": "Strumenti IA, agenti e automazione" },
+  "analytics": { "name": "Analisi", "description": "Metriche, report e insight" },
+  "payments": { "name": "Pagamenti", "description": "Abbonamenti, fatture e transazioni" },
+  "notifications": { "name": "Notifiche", "description": "Avvisi, aggiornamenti e messaggi di sistema" },
+  "admin": { "name": "Amministrazione", "description": "Amministrazione della piattaforma" },
+  "status": { "active": "Attivo", "beta": "Beta", "coming-soon": "In arrivo" },
+  "openModule": "Apri modulo",
+  "notFound": "Modulo non trovato",
+  "mockNotice": "Moduli EuroBusinessHub — dati dimostrativi, nessuna API live",
+  "allModules": "Tutti i moduli",
+  "overview": "Quindici moduli integrati — un account, una ricerca, un ecosistema.",
+  "workspace": {
+    "title": "Workspace del modulo",
+    "description": "Questo modulo è preparato come segnaposto. I dati dimostrativi verranno mostrati qui fino al collegamento delle API backend."
+  }
+}

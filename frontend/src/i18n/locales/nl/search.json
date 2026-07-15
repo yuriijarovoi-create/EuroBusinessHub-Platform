@@ -1,0 +1,17 @@
+{
+  "placeholder": "Bedrijven, transport, vacatures, magazijnen, AI…",
+  "aiLabel": "Globale AI-zoekopdracht",
+  "noResults": "Geen resultaten voor \"{{query}}\"",
+  "recent": "Suggesties",
+  "types": {
+    "city": "Stad",
+    "module": "Module",
+    "business": "Bedrijf",
+    "product": "Product",
+    "job": "Vacature",
+    "transport": "Transport",
+    "warehouse": "Magazijn",
+    "service": "Dienst",
+    "ai": "AI"
+  }
+}

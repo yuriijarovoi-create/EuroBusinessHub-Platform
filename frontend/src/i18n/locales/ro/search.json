@@ -1,0 +1,17 @@
+{
+  "placeholder": "Companii, transport, locuri de muncă, depozite, IA…",
+  "aiLabel": "Căutare globală cu IA",
+  "noResults": "Niciun rezultat pentru \"{{query}}\"",
+  "recent": "Sugestii",
+  "types": {
+    "city": "Oraș",
+    "module": "Modul",
+    "business": "Companie",
+    "product": "Produs",
+    "job": "Loc de muncă",
+    "transport": "Transport",
+    "warehouse": "Depozit",
+    "service": "Serviciu",
+    "ai": "IA"
+  }
+}

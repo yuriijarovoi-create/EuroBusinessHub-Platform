@@ -1,0 +1,665 @@
+{
+  "title": "Živá európska obchodná sieť",
+  "eyebrow": "Živá mapa",
+  "subtitle": "Berlin ako centrálny uzol — Interaktívna európska obchodná sieť",
+  "legend": "Interaktívna mapa Európy s obchodnými uzlami",
+  "hubLabel": "Berlin Hub",
+  "liveNetwork": "Živá sieť aktívna",
+  "businesses": "{{count}} firiem",
+  "zoomHint": "Vyberte mesto alebo krajinu · Každé mesto otvára vlastný pracovný priestor",
+  "interactionHint": "Rolujte pre priblíženie · Ťahaním posúvajte · Kliknite na mesto pre detail",
+  "loading": "Načítava sa mapa…",
+  "controls": {
+    "zoomIn": "Priblížiť",
+    "zoomOut": "Oddialiť",
+    "reset": "Obnoviť zobrazenie",
+    "backEurope": "Európa"
+  },
+  "nav": {
+    "europe": "Európa",
+    "backToEurope": "Späť do Európy",
+    "selectCity": "Vybrať mesto"
+  },
+  "search": {
+    "placeholder": "Hľadať mesto",
+    "open": "Hľadať mesto",
+    "close": "Zavrieť vyhľadávanie",
+    "results": "Výsledky vyhľadávania miest",
+    "noResults": "Žiadne zodpovedajúce mestá",
+    "noLayerData": "Pre túto lokalitu zatiaľ nie sú v aktuálnej vrstve k dispozícii žiadne dáta.",
+    "voice": "Hlasové vyhľadávanie",
+    "voiceComingSoon": "Hlasové vyhľadávanie čoskoro k dispozícii"
+  },
+  "layers": {
+    "title": "Vrstvy",
+    "routes": "Všetky trasy",
+    "road": "Cestná nákladná doprava",
+    "rail": "Železničná nákladná doprava",
+    "air": "Letecká nákladná doprava",
+    "sea": "Námorné trasy",
+    "river": "Riečna / vnútrozemská",
+    "companies": "Firmy",
+    "jobs": "Pracovné miesta",
+    "warehouses": "Sklady"
+  },
+  "activity": {
+    "liveActivity": "Živá aktivita",
+    "freightVolume": "Objem nákladu 24 h",
+    "transportOffers": "Otvorené dopravné ponuky",
+    "deliveryTime": "Priem. doba doručenia",
+    "co2Saving": "Úspora CO₂"
+  },
+  "live": {
+    "title": "Živá platforma",
+    "companies": "Firmy",
+    "jobs": "Pracovné miesta",
+    "transport": "Doprava",
+    "marketplace": "Trhovisko",
+    "warehouses": "Sklady",
+    "partners": "Partneri",
+    "digitalProducts": "Digitálne produkty",
+    "subscriptions": "Predplatné",
+    "aiRequests": "AI požiadavky"
+  },
+  "tooltip": {
+    "companies": "{{count}} firiem",
+    "jobs": "{{count}} pracovných miest",
+    "warehouses": "{{count}} skladov",
+    "transport": "{{count}} dopravných ponúk",
+    "businessScore": "Obchodné skóre {{score}}",
+    "networkConnections": "{{count}} sieťových prepojení",
+    "aiScore": "AI skóre {{score}}"
+  },
+  "country": {
+    "title": "Krajina {{country}}",
+    "cities": "{{count}} obchodných miest",
+    "aiScore": "Skóre AI infraštruktúry",
+    "selectCity": "Vyberte mesto na mape pre detail"
+  },
+  "germany": {
+    "bundeslandPicker": "Vybrať spolkovú krajinu",
+    "bundeslandTitle": "Spolková krajina {{name}}",
+    "bundeslandSubtitle": "Regionálny ekonomický profil",
+    "selectCityInState": "Vyberte mesto v tejto spolkovej krajine",
+    "population": "Populácia",
+    "federalState": "Spolková krajina",
+    "mainIndustry": "Hlavné odvetvie",
+    "transportRole": "Úloha v doprave",
+    "finance": "Financie",
+    "tech": "Tech",
+    "logistics": "Logistika",
+    "innovation": "Inovácie",
+    "businessIndex": "Obchodný index",
+    "sustainability": "Udržateľnosť",
+    "gdpShort": "{{value}} mld. € HDP",
+    "gdpEstimate": "Odhadované HDP: {{value}} mld. €",
+    "marketplaceDesc": "Aktívne ponuky na trhovisku v regióne",
+    "stats": {
+      "cities": "Mestá",
+      "gdp": "HDP (odh.)",
+      "logistics": "Logistické skóre",
+      "businesses": "Firmy"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Blízka infraštruktúra",
+      "seaports": "Námorné prístavy",
+      "inlandPorts": "Vnútrozemské prístavy",
+      "airCargo": "Letecké nákladné centrá",
+      "industrialZones": "Priemyselné zóny",
+      "logisticsHubs": "Logistické centrá",
+      "importance": "Význam {{score}}/100",
+      "types": {
+        "seaport": "Námorný prístav",
+        "inland_port": "Vnútrozemský prístav",
+        "air_cargo": "Letecké nákladné centrum",
+        "industrial_zone": "Priemyselná zóna"
+      }
+    },
+    "localNode": {
+      "title": "Miestne služby a regionálny uzol",
+      "nearestHub": "Najbližší hlavný uzol",
+      "hubRoute": "Odporúčaná trasa",
+      "useCases": "Hlavné prípady použitia",
+      "transport": "Miestna doprava",
+      "warehouses": "Skladovanie v okolí",
+      "services": "Miestne služby",
+      "craft": "Remeselníci",
+      "nearbyHubs": "Blízke uzly",
+      "marketplaceDesc": "Miestne ponuky na trhovisku vo vašom regióne",
+      "jobsDesc": "Pracovné miesta v meste a cez regionálny uzol",
+      "jobsViaHub": "Dochádzanie a logistické miesta cez {{hub}}",
+      "useCase": {
+        "local_transport": "Miestna doprava",
+        "moving_service": "Sťahovacia služba",
+        "warehouse_near_me": "Sklad v okolí",
+        "jobs_near_me": "Pracovné miesta v okolí",
+        "craftsmen": "Remeselníci",
+        "business_services": "Obchodné služby",
+        "local_marketplace": "Miestne trhovisko",
+        "regional_logistics": "Regionálna logistika",
+        "agricultural_services": "Poľnohospodárske služby",
+        "tourism_services": "Služby cestovného ruchu"
+      }
+    }
+  },
+  "panel": {
+    "title": "Mesto {{city}}",
+    "close": "Zavrieť",
+    "openWorkspace": "Otvoriť pracovný priestor",
+    "allRoutes": "Zobraziť všetky trasy",
+    "companies": "Firmy",
+    "jobs": "Pracovné miesta",
+    "warehouses": "Sklady",
+    "transport": "Doprava",
+    "marketplace": "Trhovisko",
+    "partners": "Partneri",
+    "aiScore": "AI skóre",
+    "digitalProducts": "Digitálne produkty",
+    "transportOffers": "Dopravné ponuky",
+    "companiesDesc": "Registrované firmy v tomto meste",
+    "jobsDesc": "Aktívne pracovné ponuky",
+    "warehousesDesc": "Dostupná skladová kapacita",
+    "tabs": {
+      "overview": "Prehľad",
+      "companies": "Firmy",
+      "jobs": "Pracovné miesta",
+      "warehouses": "Sklady",
+      "routes": "Trasy",
+      "transport": "Doprava",
+      "marketplace": "Trhovisko",
+      "services": "Služby",
+      "analytics": "Analytika",
+      "partners": "Partneri",
+      "activity": "Aktivita"
+    }
+  },
+  "routePanel": {
+    "title": "Trasa {{route}}",
+    "from": "Od",
+    "to": "Do",
+    "hours": "h",
+    "industries": "Hlavné odvetvia",
+    "delivery": "Priemerná doba doručenia: {{time}}",
+    "lastActivity": "Posledná aktivita: {{time}}",
+    "warehousesHint": "Sklady a logistické centrá sú dostupné pozdĺž tohto koridoru.",
+    "status": {
+      "active": "Aktívna",
+      "congested": "Preťažená",
+      "maintenance": "Údržba",
+      "seasonal": "Sezónna"
+    },
+    "modes": {
+      "road": "Cestná nákladná doprava",
+      "rail": "Železničná nákladná doprava",
+      "air": "Letecká nákladná doprava",
+      "sea": "Námorná nákladná doprava",
+      "river": "Riečna / vnútrozemská"
+    },
+    "stats": {
+      "distance": "Vzdialenosť",
+      "time": "Odh. čas (h)",
+      "volume": "Mesačný objem (t)",
+      "offers": "Dopravné ponuky",
+      "orders": "Aktívne objednávky",
+      "companies": "Firmy",
+      "price": "Cenový index",
+      "reliability": "Spoľahlivosť",
+      "co2": "Odh. CO₂"
+    },
+    "actions": {
+      "open": "Otvoriť trasu",
+      "search": "Nájsť dopravu",
+      "create": "Vytvoriť ponuku"
+    }
+  },
+  "operating": {
+    "context": "Kontext",
+    "insights": "Živá inteligencia",
+    "activeMapMode": "Aktívny režim mapy",
+    "logisticsLayer": "Logistika",
+    "businessLayer": "Obchod",
+    "country": "Krajina",
+    "city": "Mesto",
+    "corridor": "Koridor",
+    "platform": "Aktivita platformy",
+    "activeUsers": "Aktívni používatelia",
+    "marketplace": "Trhovisko",
+    "filters": "Filtre",
+    "logistics": "Logistika",
+    "business": "Obchodné moduly",
+    "mapControls": "Ovládanie mapy",
+    "trending": "Trendujúce mestá"
+  },
+  "a11y": {
+    "togglePanel": "Prepnúť panel",
+    "mapViewport": "Európska obchodná mapa",
+    "showCommandPanel": "Zobraziť príkazový panel",
+    "hideCommandPanel": "Skryť príkazový panel"
+  },
+  "businessLayers": {
+    "marketplace": "Trhovisko",
+    "transport": "Doprava",
+    "companies": "Firmy",
+    "jobs": "Pracovné miesta",
+    "warehouses": "Sklady",
+    "businessServices": "Obchodné služby",
+    "partners": "Partneri",
+    "academy": "Akadémia",
+    "digitalProducts": "Digitálne produkty",
+    "ai": "AI",
+    "events": "Podujatia",
+    "investments": "Investície",
+    "startups": "Startupy",
+    "manufacturing": "Výroba",
+    "agriculture": "Poľnohospodárstvo",
+    "construction": "Stavebníctvo",
+    "medical": "Zdravotníctvo",
+    "tourism": "Cestovný ruch",
+    "technology": "Technológie",
+    "finance": "Financie",
+    "legal": "Právne služby",
+    "education": "Vzdelávanie"
+  },
+  "mobile": {
+    "map": "Mapa",
+    "transport": "Doprava",
+    "jobs": "Pracovné miesta",
+    "companies": "Firmy",
+    "warehouses": "Sklady",
+    "ai": "AI",
+    "more": "Viac",
+    "mapControl": "Ovládanie mapy",
+    "commandCenter": "Centrum ovládania mapy",
+    "mapControls": "Ovládanie mapy",
+    "commandWheel": "Koleso príkazov mapy",
+    "moreBusinessLayers": "Ďalšie obchodné vrstvy",
+    "businessLayers": "Obchodné vrstvy",
+    "activeLayer": "Aktívna vrstva:",
+    "layerActive": "Vrstva {{layer}} aktívna",
+    "europeOverviewActive": "Prehľad Európy aktívny",
+    "aiComingSoon": "AI mapový asistent čoskoro k dispozícii",
+    "exploreEcosystem": "Preskúmajte ekosystém EuroBusinessHub",
+    "aiAssistantTitle": "AI mapový asistent",
+    "comingSoon": "Čoskoro k dispozícii",
+    "close": "Zavrieť",
+    "closeLayersPanel": "Zavrieť panel vrstiev",
+    "layerGroups": {
+      "transport": {
+        "title": "Dopravné vrstvy",
+        "road": "Cestná doprava",
+        "rail": "Železnica",
+        "air": "Letecká nákladná doprava",
+        "sea": "Námorná nákladná doprava",
+        "river": "Riečna"
+      },
+      "business": {
+        "title": "Obchodné moduly",
+        "marketplace": "Trhovisko",
+        "companies": "Firmy",
+        "jobs": "Pracovné miesta",
+        "warehouses": "Sklady",
+        "partners": "Partneri"
+      },
+      "services": {
+        "title": "Služby",
+        "legal": "Právne služby",
+        "finance": "Financie",
+        "medical": "Zdravotníctvo",
+        "education": "Vzdelávanie",
+        "technology": "Technológie"
+      },
+      "industries": {
+        "title": "Odvetvia",
+        "agriculture": "Poľnohospodárstvo",
+        "manufacturing": "Výroba",
+        "construction": "Stavebníctvo",
+        "tourism": "Cestovný ruch"
+      },
+      "innovation": {
+        "title": "Inovácie",
+        "ai": "AI",
+        "startups": "Startupy",
+        "digitalProducts": "Digitálne produkty",
+        "academy": "Akadémia",
+        "investments": "Investície"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Trhovisko",
+      "partners": "Partneri",
+      "academy": "Akadémia",
+      "digital-products": "Digitálne produkty",
+      "events": "Podujatia",
+      "investments": "Investície",
+      "startups": "Startupy",
+      "manufacturing": "Výroba",
+      "agriculture": "Poľnohospodárstvo",
+      "construction": "Stavebníctvo",
+      "medical": "Zdravotníctvo",
+      "tourism": "Cestovný ruch",
+      "technology": "Technológie",
+      "finance": "Financie",
+      "legal": "Právne služby",
+      "education": "Vzdelávanie"
+    }
+  },
+  "tooltips": {
+    "companies": "Firmy",
+    "jobs": "Pracovné miesta",
+    "warehouses": "Sklady",
+    "transport": "Doprava",
+    "aiScore": "AI skóre",
+    "origin": "Pôvod",
+    "destination": "Cieľ",
+    "routeType": "Typ trasy",
+    "distance": "Vzdialenosť",
+    "activeOffers": "Aktívne ponuky",
+    "estTime": "Odh. čas",
+    "aiOptimized": "Optimalizované AI"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Prehľad Európy",
+      "recommendation": "Preskúmajte kompletnú európsku obchodnú operačnú mapu — všetky koridory a uzly sú viditeľné.",
+      "tickerEyebrow": "AI odporúčania",
+      "tickerMessages": [
+        "Vysoký dopyt: Berlin → Izium logistika obnovy",
+        "Rozšírenie koridoru: Warsaw → Kyiv → Izium",
+        "Zhoda partnerov: Istanbul → Odesa námorná logistika",
+        "Nová príležitosť: dodávateľský reťazec obnovy Ukrajiny"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Režim trhoviska",
+      "recommendation": "Jasnejšia žiara miest zvýrazňuje obchodné hotspoty — objavte B2B príležitosti na trhovisku v celej Európe.",
+      "tickerEyebrow": "Signály trhoviska",
+      "tickerMessages": [
+        "Veľkoobchodný koridor Rotterdam → Warsaw v trende",
+        "Inzeráty SME v Berlin +14 % tento týždeň",
+        "Cezhraničná zhoda na trhovisku: Vienna ↔ Prague",
+        "Vysoký nákupný záujem o priemyselné dodávky v Munich"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Režim dopravy",
+      "recommendation": "Dopravné koridory sú jemne zvýraznené — sledujte toky nákladu a aktivitu dopravnej burzy.",
+      "tickerEyebrow": "Logistické odporúčania",
+      "tickerMessages": [
+        "Voľný železničný slot: koridor Hamburg → Warsaw",
+        "Rastúci dopyt po námornej doprave Rotterdam → Gdańsk",
+        "Uvoľňuje sa cestná kapacita: pruh Lyon → Milan",
+        "Okno leteckej nákladnej dopravy: expres Frankfurt → Bucharest"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Režim firiem",
+      "recommendation": "Žiara firemných uzlov zintenzívňuje hlavné obchodné centrá — ideálne na objavovanie podnikov.",
+      "tickerEyebrow": "Signály firemných uzlov",
+      "tickerMessages": [
+        "Aktivita podnikového clusteru Frankfurt +11 %",
+        "Trend presunu sídla do Lyon z Paris",
+        "Zaznamenaná expanzia tech kampusu vo Warsaw",
+        "Módne domy v Milan hľadajú partnerov v EÚ"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Režim pracovných miest",
+      "recommendation": "Žiara hotspotov náboru ukazuje dopyt po zamestnancoch — preskúmajte voľné pozície podľa miest.",
+      "tickerEyebrow": "Odporúčania zamestnanosti",
+      "tickerMessages": [
+        "Logistické miesta v Berlin +18 % týždeň po týždni",
+        "Nábor inžinierov vo Warsaw pokračuje v raste",
+        "Vzdialené pozície sa sústreďujú v Dublin",
+        "Projekty obnovy v Izium ponúkajú kvalifikované remeselné profese"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Režim skladov",
+      "recommendation": "Pocit skladovej siete — distribučné uzly pulzujú naprieč logistickými bránami.",
+      "tickerEyebrow": "Signály skladovej siete",
+      "tickerMessages": [
+        "Colné skladovanie v Rotterdam na 92 % využití",
+        "Aktívny koridor expanzie chladírenského reťazca vo Warsaw",
+        "Optimalizovaný fulfillment pruh Hamburg ↔ Berlin",
+        "Kapacita regionálneho uzla v Prague sa otvára v 3. štvrťroku"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Režim obchodných služieb",
+      "recommendation": "Žiara siete služieb prepája clustery profesionálnych služieb naprieč Európou.",
+      "tickerEyebrow": "Signály siete služieb",
+      "tickerMessages": [
+        "Rastúci dopyt po compliance poradenstve v Brussels",
+        "Zhoda fiduciárnych služieb Zurich v Prague",
+        "Rast exportu kreatívnych služieb v Barcelona",
+        "Poradenský koridor Vienna sa rozširuje na východ"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Režim partnerov",
+      "recommendation": "Pocit partnerskej siete — mestá pripravené na spoluprácu žiaria pre cezhraničné aliancie.",
+      "tickerEyebrow": "Signály partnerstva",
+      "tickerMessages": [
+        "Vysoké skóre zhody partnerov Nordic ↔ Baltic",
+        "Brána Istanbul hľadá distribútorov v EÚ",
+        "Aktívne hľadanie výrobného partnera v Lyon",
+        "Digitálni partneri v Tallinn otvorení trhu DACH"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Režim akadémie",
+      "recommendation": "Pocit vzdelávacieho ekosystému — vzdelávacie uzly a školiace koridory sú zvýraznené.",
+      "tickerEyebrow": "Signály akadémie",
+      "tickerMessages": [
+        "Otvorené výmenné programy výskumu v Heidelberg",
+        "Trend partnerských bootcampov v Barcelona",
+        "Kohorta STEM akadémie vo Warsaw sa rýchlo plní",
+        "Cezhraničné prijímacie konanie pre executive education vo Vienna"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Režim digitálnych produktov",
+      "recommendation": "Pocit technologického ekosystému — uzly digitálnych produktov žiaria v inovačných mestách.",
+      "tickerEyebrow": "Signály digitálnych produktov",
+      "tickerMessages": [
+        "Nárast SaaS inzerátov v Tallinn a Dublin",
+        "Produktové štúdiá v Berlin hľadajú predajcov v EÚ",
+        "Fintech API v Amsterdam otvorené pre integráciu",
+        "Aktivita trhoviska dev nástrojov v Prague +9 %"
+      ]
+    },
+    "ai": {
+      "panelTitle": "Režim AI",
+      "recommendation": "Pocit AI siete — inteligentné koridory a AI-ready obchodné uzly sú zvýraznené.",
+      "tickerEyebrow": "Signály AI siete",
+      "tickerMessages": [
+        "Pilot AI logistického smerovania vo Frankfurt je aktívny",
+        "Skóre zhody ML talent pool vo Warsaw 94 %",
+        "Generatívne obchodné nástroje v Paris v trende",
+        "AI compliance sandbox v Helsinki prijíma partnerov"
+      ]
+    },
+    "events": {
+      "panelTitle": "Režim podujatí",
+      "recommendation": "Pocit hotspotov podujatí — mestá konferencií a veľtrhov pulzujú na mape.",
+      "tickerEyebrow": "Signály hotspotov podujatí",
+      "tickerMessages": [
+        "Rastúce rezervácie koridoru Hanover Messe",
+        "Dopyt po ubytovaní počas mobilného kongresu v Barcelona",
+        "Ubytovanie počas summit week vo Vienna je napäté",
+        "Otvorený matchmaking dodávateľov počas design week v Milan"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Režim investícií",
+      "recommendation": "Pocit investičného kapitálu — toky kapitálu a hotspoty financovania sú jemne zvýraznené.",
+      "tickerEyebrow": "Investičné signály",
+      "tickerMessages": [
+        "Záujem VC vo Frankfurt o deeptech vo Warsaw",
+        "Smerovanie fondu z Luxembourg cez uzol Amsterdam",
+        "Aktivita seed kôl v Berlin +12 %",
+        "Kapitál obnovy smeruje ku koridoru Izium"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Režim startupov",
+      "recommendation": "Pocit startupovej inovácie — founder ekosystémy a koridory scale-up žiaria.",
+      "tickerEyebrow": "Signály startupovej inovácie",
+      "tickerMessages": [
+        "Aktívna founder exchange Berlin ↔ Tallinn",
+        "Healthtech spinouty v Barcelona hľadajú piloty",
+        "Záujem o demo day akcelerátora vo Warsaw",
+        "Nábor remote-first startupov v Lisbon rastie"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Režim výroby",
+      "recommendation": "Pocit priemyselnej siete — výrobné uzly a dodávateľské koridory sú zvýraznené.",
+      "tickerEyebrow": "Signály priemyselnej siete",
+      "tickerMessages": [
+        "Automobiloví dodávatelia vo Stuttgart hľadajú partnerov",
+        "Dostupná kapacita koridoru komponentov v Turin",
+        "Expanzia montáže elektroniky vo Wrocław",
+        "Otvorená zhoda subdodávateľa aerospace v Lyon"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Režim poľnohospodárstva",
+      "recommendation": "Pocit agrifood ekosystému — agrifood koridory a vidiecke obchodné uzly žiaria.",
+      "tickerEyebrow": "Signály agrifood ekosystému",
+      "tickerMessages": [
+        "Vysoký dopyt po skladovaní obilia na koridore Danube",
+        "Aktívny chladírenský reťazec Netherlands → Poland",
+        "Sezóna exportu citrusov vo Valencia naberá na obrátkach",
+        "Organický distribútor v Kraków hľadá partnerov"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Režim stavebníctva",
+      "recommendation": "Pocit infraštruktúry — koridory obnovy a stavebných dodávok sú zvýraznené.",
+      "tickerEyebrow": "Infraštruktúrne signály",
+      "tickerMessages": [
+        "Prioritný koridor stavebných materiálov obnovy Izium",
+        "Hľadanie subdodávateľa pre bytové projekty v Berlin",
+        "Rastúca aktivita infraštruktúrnych tendrov vo Warsaw",
+        "Zhoda dodávateľa pre modernizáciu železnice v Prague"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Režim zdravotníctva",
+      "recommendation": "Pocit zdravotníckeho ekosystému — zdravotnícke uzly a logistické uzly zdravotníctva sú zvýraznené.",
+      "tickerEyebrow": "Signály zdravotníckeho ekosystému",
+      "tickerMessages": [
+        "Stabilný distribučný pruh farmaceutiky v Basel",
+        "Inzeráty medtech zariadení vo Warsaw +10 %",
+        "Otvorené okno nemocničného nákupu v Munich",
+        "Cezhraničné partnerstvá starostlivosti vo Strasbourg"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Režim cestovného ruchu",
+      "recommendation": "Pocit turistických destinácií — hotspoty návštevníckej ekonomiky žiaria naprieč Európou.",
+      "tickerEyebrow": "Signály turistických destinácií",
+      "tickerMessages": [
+        "Nárast letných rezervácií pohostinstva v Barcelona",
+        "Hľadaní partneri kultúrneho cestovného ruchu vo Vienna",
+        "Aktívny koridor transferov z výletných lodí v Athens",
+        "City-break balíčky v Prague v trende v DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Režim technológií",
+      "recommendation": "Pocit technologických uzlov — inovačné clustery a tech koridory sú jemne zosvetlené.",
+      "tickerEyebrow": "Signály technologických uzlov",
+      "tickerMessages": [
+        "Rastúci záujem o deep-tech spinouty v Munich",
+        "Hľadaní partneri pre polovodiče v Eindhoven",
+        "Vysoké skóre zhody cyber talentu v Tallinn",
+        "Otvorená výmena výskumu Cambridge ↔ Berlin"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Režim financií",
+      "recommendation": "Pocit finančnej siete — kapitálové centrá a bankové koridory sú zvýraznené.",
+      "tickerEyebrow": "Signály finančnej siete",
+      "tickerMessages": [
+        "Stabilná clearingová aktivita vo Frankfurt",
+        "Otvorená zhoda pre správu fondov v Luxembourg",
+        "Trend partnerov fintech API v Dublin",
+        "Cezhraničný príjem wealth služieb vo Zurich"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Režim právnych služieb",
+      "recommendation": "Pocit právnych služieb — regulatory a právne poradenské clustery sú zvýraznené.",
+      "tickerEyebrow": "Signály právnych služieb",
+      "tickerMessages": [
+        "Vysoký dopyt po regulatory poradenstve v Brussels",
+        "Compliance koridor London ↔ Frankfurt",
+        "Zaznamenaná expanzia butiku EÚ práva vo Warsaw",
+        "Hľadanie partnera arbitration hubu vo Vienna"
+      ]
+    },
+    "education": {
+      "panelTitle": "Režim vzdelávania",
+      "recommendation": "Pocit vzdelávacej siete — univerzity a školiace koridory jemne žiaria.",
+      "tickerEyebrow": "Signály vzdelávacej siete",
+      "tickerMessages": [
+        "Aktivita koridoru Erasmus: Barcelona ↔ Bologna",
+        "Otvorené partnerstvá jazykových škôl vo Warsaw",
+        "Cezhraničné prijímacie konanie výskumu v Heidelberg",
+        "Trend výmeny edtech credential v Dublin"
+      ]
+    },
+    "road": {
+      "panelTitle": "Režim cestnej dopravy",
+      "recommendation": "Cestné koridory sú jemne zvýraznené — pozemné nákladné pruhy žiaria v sieti.",
+      "tickerEyebrow": "Signály cestnej dopravy",
+      "tickerMessages": [
+        "Voľná kapacita kamiónovej dopravy Antwerp → Warsaw",
+        "Využitie pruhu Milan → Munich 78 %",
+        "Dostupný expresný slot Barcelona → Lyon"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Režim železnice",
+      "recommendation": "Železničné koridory sú zvýraznené — intermodálne a nákladné železničné pruhy sú zvýraznené.",
+      "tickerEyebrow": "Signály železničných koridorov",
+      "tickerMessages": [
+        "Trendujúci železničný slot Hamburg → Warsaw",
+        "Stabilné intermodálne predanie v Rotterdam",
+        "Rastúci dopyt po železničnej nákladnej doprave Basel → Milan"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Režim námornej dopravy",
+      "recommendation": "Námorné koridory sú zvýraznené — námorné pruhy medzi prístavmi žiaria na mape.",
+      "tickerEyebrow": "Signály námornej dopravy",
+      "tickerMessages": [
+        "Aktívny kontajnerový pruh Rotterdam → Gdańsk",
+        "Rastúci záujem o námornú dopravu Hamburg → Odesa",
+        "Stabilné smerovanie v Stredomorí z Barcelona"
+      ]
+    },
+    "air": {
+      "panelTitle": "Režim leteckej nákladnej dopravy",
+      "recommendation": "Koridory leteckej nákladnej dopravy sú zvýraznené — expresné letecké pruhy sú zvýraznené.",
+      "tickerEyebrow": "Signály leteckej nákladnej dopravy",
+      "tickerMessages": [
+        "Otvorený expresný uplift Frankfurt → Bucharest",
+        "Okno nákladu Paris CDG ↔ Warsaw",
+        "Aktívny cross-dock leteckého uzla v Amsterdam"
+      ]
+    },
+    "river": {
+      "panelTitle": "Režim riečnej dopravy",
+      "recommendation": "Riečne koridory sú zvýraznené — vnútrozemské vodné nákladné pruhy sú zvýraznené.",
+      "tickerEyebrow": "Signály riečnej nákladnej dopravy",
+      "tickerMessages": [
+        "Aktívny pohyb obilia na koridore Danube",
+        "Dostupná kapacita bargov na Rhine",
+        "Stabilné predanie vnútrozemských prístavov na Elbe"
+      ]
+    }
+  }
+}

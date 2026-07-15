@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "Viena platforma. Neribotos verslo galimybės.",
+    "subtitle": "AI verslo operacinė sistema Europai",
+    "description": "Transportas, prekyvietė, logistika, darbo vietos, partneriai ir AI — sujungti viename intelektualioje Europos ekosistemoje.",
+    "pageTitle": "EuroBusinessHub — AI verslo operacinė sistema",
+    "osTagline": "Verslo OS"
+  },
+  "hero": {
+    "badge": "Tiesiogiai · Europos tinklas",
+    "headlineLine1": "Viena platforma.",
+    "headlineLine2": "Neribotos verslo galimybės.",
+    "cta": "Atidaryti valdymo skydelį",
+    "ctaButtons": {
+      "marketplace": "Prekyvietė",
+      "transport": "Transportas",
+      "unternehmen": "Įmonės",
+      "jobs": "Darbo vietos"
+    },
+    "stats": {
+      "modules": "Moduliai",
+      "cities": "Miestai",
+      "businesses": "Įmonės"
+    }
+  },
+  "stats": {
+    "title": "Europos verslo statistika",
+    "subtitle": "Tiesioginiai duomenys iš EuroBusinessHub tinklo",
+    "companies": "Įmonės",
+    "transportOrders": "Transporto užsakymai",
+    "openJobs": "Laisvos darbo vietos",
+    "warehouses": "Sandėliai",
+    "marketplaceProducts": "Prekyvietės produktai",
+    "users": "Naudotojai",
+    "partners": "Partneriai"
+  },
+  "dashboard": {
+    "title": "Platformos valdymo skydelis",
+    "subtitle": "Jūsų verslo rodikliai viename žvilgsnyje",
+    "viewAll": "Rodyti viską",
+    "marketplace": "Prekyvietė",
+    "transport": "Transportas",
+    "jobs": "Darbo vietos",
+    "companies": "Įmonės",
+    "revenue": "Pajamos",
+    "deals": "Sandoriai",
+    "subscriptions": "Prenumeratos",
+    "analytics": "Analitika"
+  },
+  "modules": {
+    "title": "Jūsų Europos verslo ekosistema",
+    "subtitle": "Visos verslo sritys — sujungtos AI, paieška ir viena paskyra."
+  },
+  "ai": {
+    "title": "AI galimybės"
+  },
+  "nav": {
+    "home": "Pradžia",
+    "map": "Žemėlapis",
+    "modules": "Moduliai",
+    "workspace": "Darbo erdvė",
+    "search": "Paieška",
+    "dashboard": "Valdymo skydelis",
+    "notifications": "Pranešimai",
+    "login": "Prisijungti",
+    "register": "Registruotis",
+    "language": "Kalba",
+    "theme": "Tema",
+    "menuOpen": "Meniu",
+    "menuClose": "Uždaryti meniu",
+    "mainNav": "Pagrindinė navigacija"
+  },
+  "userMenu": {
+    "guest": "Svečias",
+    "company": "Įmonės paskyra"
+  },
+  "notifications": {
+    "empty": "Nėra pranešimų"
+  },
+  "future": {
+    "auth": "Autentifikavimas netrukus",
+    "payments": "Mokėjimai netrukus",
+    "agents": "AI agentai netrukus",
+    "automation": "n8n automatizavimas netrukus"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Visos teisės saugomos.",
+    "mockData": "Demonstraciniai duomenys — jokių realių API ryšių",
+    "tagline": "Europos verslo operacinė sistema"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Valdymo skydelis",
+    "modules": "Moduliai",
+    "stats": "Tiesiogiai"
+  }
+}

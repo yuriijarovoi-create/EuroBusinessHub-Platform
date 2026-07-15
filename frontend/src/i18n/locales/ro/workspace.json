@@ -1,0 +1,117 @@
+{
+  "title": "Workspace {{city}}",
+  "subtitle": "{{country}} · {{count}} afaceri",
+  "stats": {
+    "activeUsers": "Utilizatori activi",
+    "openOrders": "Comenzi deschise",
+    "listings": "Anunțuri"
+  },
+  "metrics": {
+    "companies": "Companii",
+    "jobs": "Locuri de muncă",
+    "transport": "Transport",
+    "warehouses": "Depozite",
+    "marketplace": "Marketplace",
+    "partners": "Parteneri",
+    "digitalProducts": "Produse digitale",
+    "services": "Servicii"
+  },
+  "ecosystemMetrics": "Ecosistem de afaceri",
+  "activeModules": "Module active în acest oraș",
+  "backToMap": "Înapoi la hartă",
+  "backToEuropeMap": "Înapoi la harta Europei",
+  "quickActions": "Acțiuni rapide",
+  "actions": {
+    "search": "Caută în oraș",
+    "marketplace": "Deschide marketplace",
+    "ki": "Pornește asistentul IA"
+  },
+  "companies": {
+    "title": "Companii în {{city}}",
+    "backToCity": "Înapoi la workspace-ul orașului",
+    "demoNotice": "Date demonstrative — fără conexiune la registrul live al companiilor",
+    "notFoundCity": "Oraș negăsit",
+    "loadMoreFoundation": "Arhitectura de paginare și încărcare progresivă pregătită pentru viitoare seturi de date API.",
+    "stats": {
+      "label": "Statistici companii oraș",
+      "totalCompanies": "Total companii",
+      "verifiedProfiles": "Profiluri verificate",
+      "industries": "Industrii",
+      "openOpportunities": "Oportunități deschise"
+    },
+    "search": {
+      "label": "Caută companii",
+      "placeholder": "Caută după nume, industrie, etichete…",
+      "clear": "Șterge căutarea"
+    },
+    "filters": {
+      "toggle": "Filtre",
+      "active": "active",
+      "industry": "Industrie",
+      "size": "Dimensiune companie",
+      "status": "Stare",
+      "sort": "Sortează după",
+      "verifiedOnly": "Doar verificate",
+      "all": "Toate",
+      "clear": "Șterge filtrele"
+    },
+    "sort": {
+      "relevance": "Relevanță",
+      "name": "Nume companie",
+      "size": "Dimensiune companie"
+    },
+    "results": {
+      "label": "Rezultate companii",
+      "showing": "Se afișează {{count}} din {{total}} companii demonstrative"
+    },
+    "card": {
+      "verified": "Verificată",
+      "demo": "Demo",
+      "tags": "Etichete",
+      "view": "Vezi compania"
+    },
+    "details": {
+      "close": "Închide detaliile",
+      "size": "Dimensiune companie",
+      "status": "Stare",
+      "verification": "Verificare",
+      "employees": "Angajați",
+      "description": "Descriere",
+      "tags": "Etichete",
+      "opportunities": "Oportunități",
+      "location": "Locație",
+      "website": "Site web"
+    },
+    "industries": {
+      "manufacturing": "Producție",
+      "logistics": "Logistică",
+      "technology": "Tehnologie",
+      "construction": "Construcții",
+      "agriculture": "Agricultură",
+      "medical": "Medical",
+      "finance": "Finanțe",
+      "tourism": "Turism",
+      "retail": "Retail",
+      "professional-services": "Servicii profesionale"
+    },
+    "sizes": {
+      "micro": "Micro",
+      "small": "Mică",
+      "medium": "Medie",
+      "large": "Mare"
+    },
+    "statuses": {
+      "active": "Activă",
+      "inactive": "Inactivă",
+      "pending": "În așteptare"
+    },
+    "emptyCity": {
+      "title": "Nicio dată de companii pentru {{city}} încă",
+      "body": "Acest oraș este suportat pe platformă, dar catalogul demonstrativ nu are încă intrări aici."
+    },
+    "emptyFilters": {
+      "title": "Nicio companie nu corespunde filtrelor selectate",
+      "body": "Încearcă să ajustezi criteriile de căutare sau filtrele."
+    }
+  }
+}

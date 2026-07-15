@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Přehled", "description": "Váš osobní obchodní pracovní prostor" },
+  "marketplace": { "name": "Tržiště", "description": "B2B tržiště pro produkty a služby" },
+  "transport": { "name": "Dopravní burza", "description": "Nákladní doprava, přeprava a dodavatelské řetězce" },
+  "logistik": { "name": "Logistika", "description": "Skladování, fulfillment a distribuce" },
+  "lager": { "name": "Sklady", "description": "Správa skladů a optimalizace zásob" },
+  "unternehmen": { "name": "Firmy", "description": "Firemní profily, síť a compliance" },
+  "jobs": { "name": "Pracovní místa", "description": "Pracovní nabídky a párování talentů" },
+  "services": { "name": "Obchodní služby", "description": "Profesionální B2B služby" },
+  "partner": { "name": "Partneři", "description": "Partnerská síť a spolupráce" },
+  "digitale-produkte": { "name": "Digitální produkty", "description": "Software, licence a digitální aktiva" },
+  "akademie": { "name": "Akademie", "description": "Školení a certifikace" },
+  "ki": { "name": "AI asistent", "description": "Nástroje AI, agenti a automatizace" },
+  "analytics": { "name": "Analytika", "description": "Metriky, reporty a přehledy" },
+  "payments": { "name": "Platby", "description": "Předplatné, faktury a transakce" },
+  "notifications": { "name": "Oznámení", "description": "Upozornění, aktualizace a systémové zprávy" },
+  "admin": { "name": "Administrace", "description": "Správa platformy" },
+  "status": { "active": "Aktivní", "beta": "Beta", "coming-soon": "Brzy k dispozici" },
+  "openModule": "Otevřít modul",
+  "notFound": "Modul nenalezen",
+  "mockNotice": "Moduly EuroBusinessHub — ukázková data, bez živých API",
+  "allModules": "Všechny moduly",
+  "overview": "Patnáct integrovaných modulů — jeden účet, jedno vyhledávání, jeden ekosystém.",
+  "workspace": {
+    "title": "Pracovní prostor modulu",
+    "description": "Tento modul je připraven jako zástupný obsah. Ukázková data se zobrazí zde, dokud nebudou připojena backendová API."
+  }
+}

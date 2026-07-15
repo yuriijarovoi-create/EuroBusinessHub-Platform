@@ -1,0 +1,117 @@
+{
+  "title": "Darbo erdvė {{city}}",
+  "subtitle": "{{country}} · {{count}} įmonių",
+  "stats": {
+    "activeUsers": "Aktyvūs naudotojai",
+    "openOrders": "Atviri užsakymai",
+    "listings": "Skelbimai"
+  },
+  "metrics": {
+    "companies": "Įmonės",
+    "jobs": "Darbo vietos",
+    "transport": "Transportas",
+    "warehouses": "Sandėliai",
+    "marketplace": "Prekyvietė",
+    "partners": "Partneriai",
+    "digitalProducts": "Skaitmeniniai produktai",
+    "services": "Paslaugos"
+  },
+  "ecosystemMetrics": "Verslo ekosistema",
+  "activeModules": "Aktyvūs moduliai šiame mieste",
+  "backToMap": "Atgal į žemėlapį",
+  "backToEuropeMap": "Atgal į Europos žemėlapį",
+  "quickActions": "Greiti veiksmai",
+  "actions": {
+    "search": "Ieškoti mieste",
+    "marketplace": "Atidaryti prekyvietę",
+    "ki": "Paleisti AI asistentą"
+  },
+  "companies": {
+    "title": "Įmonės {{city}}",
+    "backToCity": "Atgal į miesto darbo erdvę",
+    "demoNotice": "Demonstraciniai duomenys — jokio tiesioginio ryšio su įmonių registru",
+    "notFoundCity": "Miestas nerastas",
+    "loadMoreFoundation": "Puslapiavimo ir „įkelti daugiau“ architektūra paruošta būsimiems API duomenų rinkiniams.",
+    "stats": {
+      "label": "Miesto įmonių statistika",
+      "totalCompanies": "Viso įmonių",
+      "verifiedProfiles": "Patvirtinti profiliai",
+      "industries": "Pramonės šakos",
+      "openOpportunities": "Atviros galimybės"
+    },
+    "search": {
+      "label": "Ieškoti įmonių",
+      "placeholder": "Ieškoti pagal pavadinimą, pramonės šaką, žymas…",
+      "clear": "Išvalyti paiešką"
+    },
+    "filters": {
+      "toggle": "Filtrai",
+      "active": "aktyvūs",
+      "industry": "Pramonės šaka",
+      "size": "Įmonės dydis",
+      "status": "Būsena",
+      "sort": "Rūšiuoti pagal",
+      "verifiedOnly": "Tik patvirtintos",
+      "all": "Visos",
+      "clear": "Išvalyti filtrus"
+    },
+    "sort": {
+      "relevance": "Aktualumas",
+      "name": "Įmonės pavadinimas",
+      "size": "Įmonės dydis"
+    },
+    "results": {
+      "label": "Įmonių rezultatai",
+      "showing": "Rodoma {{count}} iš {{total}} demonstracinių įmonių"
+    },
+    "card": {
+      "verified": "Patvirtinta",
+      "demo": "Demo",
+      "tags": "Žymos",
+      "view": "Peržiūrėti įmonę"
+    },
+    "details": {
+      "close": "Uždaryti detales",
+      "size": "Įmonės dydis",
+      "status": "Būsena",
+      "verification": "Patvirtinimas",
+      "employees": "Darbuotojai",
+      "description": "Aprašymas",
+      "tags": "Žymos",
+      "opportunities": "Galimybės",
+      "location": "Vieta",
+      "website": "Svetainė"
+    },
+    "industries": {
+      "manufacturing": "Gamyba",
+      "logistics": "Logistika",
+      "technology": "Technologijos",
+      "construction": "Statyba",
+      "agriculture": "Žemės ūkis",
+      "medical": "Medicina",
+      "finance": "Finansai",
+      "tourism": "Turizmas",
+      "retail": "Mažmeninė prekyba",
+      "professional-services": "Profesionalios paslaugos"
+    },
+    "sizes": {
+      "micro": "Mikro",
+      "small": "Maža",
+      "medium": "Vidutinė",
+      "large": "Didelė"
+    },
+    "statuses": {
+      "active": "Aktyvi",
+      "inactive": "Neaktyvi",
+      "pending": "Laukiama"
+    },
+    "emptyCity": {
+      "title": "Dar nėra įmonių duomenų {{city}}",
+      "body": "Šis miestas palaikomas platformoje, tačiau demonstracinė įmonių katalogas čia dar neturi įrašų."
+    },
+    "emptyFilters": {
+      "title": "Nėra įmonių, atitinkančių pasirinktus filtrus",
+      "body": "Pabandykite pakoreguoti paieškos ar filtravimo kriterijus."
+    }
+  }
+}

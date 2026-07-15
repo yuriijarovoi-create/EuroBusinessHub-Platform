@@ -1,0 +1,17 @@
+{
+  "placeholder": "Entreprises, transport, emplois, entrepôts, IA…",
+  "aiLabel": "Recherche IA globale",
+  "noResults": "Aucun résultat pour « {{query}} »",
+  "recent": "Suggestions",
+  "types": {
+    "city": "Ville",
+    "module": "Module",
+    "business": "Entreprise",
+    "product": "Produit",
+    "job": "Emploi",
+    "transport": "Transport",
+    "warehouse": "Entrepôt",
+    "service": "Service",
+    "ai": "IA"
+  }
+}

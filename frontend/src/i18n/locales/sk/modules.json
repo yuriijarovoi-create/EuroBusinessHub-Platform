@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Prehľad", "description": "Váš osobný obchodný pracovný priestor" },
+  "marketplace": { "name": "Trhovisko", "description": "B2B trhovisko pre produkty a služby" },
+  "transport": { "name": "Dopravná burza", "description": "Nákladná doprava, preprava a dodávateľské reťazce" },
+  "logistik": { "name": "Logistika", "description": "Skladovanie, fulfillment a distribúcia" },
+  "lager": { "name": "Sklady", "description": "Správa skladov a optimalizácia zásob" },
+  "unternehmen": { "name": "Firmy", "description": "Firemné profily, sieť a compliance" },
+  "jobs": { "name": "Pracovné miesta", "description": "Pracovné ponuky a párovanie talentov" },
+  "services": { "name": "Obchodné služby", "description": "Profesionálne B2B služby" },
+  "partner": { "name": "Partneri", "description": "Partnerská sieť a spolupráca" },
+  "digitale-produkte": { "name": "Digitálne produkty", "description": "Softvér, licencie a digitálne aktíva" },
+  "akademie": { "name": "Akadémia", "description": "Školenia a certifikácie" },
+  "ki": { "name": "AI asistent", "description": "Nástroje AI, agenti a automatizácia" },
+  "analytics": { "name": "Analytika", "description": "Metriky, reporty a prehľady" },
+  "payments": { "name": "Platby", "description": "Predplatné, faktúry a transakcie" },
+  "notifications": { "name": "Oznámenia", "description": "Upozornenia, aktualizácie a systémové správy" },
+  "admin": { "name": "Administrácia", "description": "Správa platformy" },
+  "status": { "active": "Aktívny", "beta": "Beta", "coming-soon": "Čoskoro k dispozícii" },
+  "openModule": "Otvoriť modul",
+  "notFound": "Modul nenájdený",
+  "mockNotice": "Moduly EuroBusinessHub — ukážkové dáta, bez živých API",
+  "allModules": "Všetky moduly",
+  "overview": "Pätnásť integrovaných modulov — jeden účet, jedno vyhľadávanie, jeden ekosystém.",
+  "workspace": {
+    "title": "Pracovný priestor modulu",
+    "description": "Tento modul je pripravený ako zástupný obsah. Ukážkové dáta sa zobrazia tu, kým nebudú pripojené backendové API."
+  }
+}

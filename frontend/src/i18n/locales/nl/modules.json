@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Dashboard", "description": "Uw persoonlijke bedrijfswerkruimte" },
+  "marketplace": { "name": "Marketplace", "description": "B2B-marketplace voor producten en diensten" },
+  "transport": { "name": "Transportbeurs", "description": "Vracht, verzending en supply chains" },
+  "logistik": { "name": "Logistiek", "description": "Opslag, fulfillment en distributie" },
+  "lager": { "name": "Magazijnen", "description": "Magazijnbeheer en voorraadoptimalisatie" },
+  "unternehmen": { "name": "Bedrijven", "description": "Bedrijfsprofielen, netwerk en compliance" },
+  "jobs": { "name": "Vacatures", "description": "Vacatures en talentmatching" },
+  "services": { "name": "Zakelijke diensten", "description": "Professionele B2B-diensten" },
+  "partner": { "name": "Partners", "description": "Partnernetwerk en samenwerkingen" },
+  "digitale-produkte": { "name": "Digitale producten", "description": "Software, licenties en digitale activa" },
+  "akademie": { "name": "Academie", "description": "Training en certificeringen" },
+  "ki": { "name": "AI-assistent", "description": "AI-tools, agenten en automatisering" },
+  "analytics": { "name": "Analytics", "description": "Statistieken, rapporten en inzichten" },
+  "payments": { "name": "Betalingen", "description": "Abonnementen, facturen en transacties" },
+  "notifications": { "name": "Meldingen", "description": "Waarschuwingen, updates en systeemberichten" },
+  "admin": { "name": "Administratie", "description": "Platformbeheer" },
+  "status": { "active": "Actief", "beta": "Bèta", "coming-soon": "Binnenkort beschikbaar" },
+  "openModule": "Module openen",
+  "notFound": "Module niet gevonden",
+  "mockNotice": "EuroBusinessHub-modules — demogegevens, geen live API's",
+  "allModules": "Alle modules",
+  "overview": "Vijftien geïntegreerde modules — één account, één zoekfunctie, één ecosysteem.",
+  "workspace": {
+    "title": "Modulewerkruimte",
+    "description": "Deze module is voorbereid als tijdelijke placeholder. Demogegevens worden hier getoond totdat backend-API's zijn aangesloten."
+  }
+}

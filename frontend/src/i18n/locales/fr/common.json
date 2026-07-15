@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "Une plateforme. Des opportunités commerciales illimitées.",
+    "subtitle": "Système d'exploitation commercial IA pour l'Europe",
+    "description": "Transport, marketplace, logistique, emplois, partenaires et IA — réunis dans un écosystème européen intelligent.",
+    "pageTitle": "EuroBusinessHub — Système d'exploitation commercial IA",
+    "osTagline": "Business OS"
+  },
+  "hero": {
+    "badge": "En direct · Réseau européen",
+    "headlineLine1": "Une plateforme.",
+    "headlineLine2": "Des opportunités commerciales illimitées.",
+    "cta": "Ouvrir le tableau de bord",
+    "ctaButtons": {
+      "marketplace": "Marketplace",
+      "transport": "Transport",
+      "unternehmen": "Entreprises",
+      "jobs": "Emplois"
+    },
+    "stats": {
+      "modules": "Modules",
+      "cities": "Villes",
+      "businesses": "Entreprises"
+    }
+  },
+  "stats": {
+    "title": "Statistiques commerciales européennes",
+    "subtitle": "Données en direct du réseau EuroBusinessHub",
+    "companies": "Entreprises",
+    "transportOrders": "Commandes de transport",
+    "openJobs": "Offres d'emploi ouvertes",
+    "warehouses": "Entrepôts",
+    "marketplaceProducts": "Produits marketplace",
+    "users": "Utilisateurs",
+    "partners": "Partenaires"
+  },
+  "dashboard": {
+    "title": "Tableau de bord de la plateforme",
+    "subtitle": "Vos indicateurs commerciaux en un coup d'œil",
+    "viewAll": "Tout afficher",
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "jobs": "Emplois",
+    "companies": "Entreprises",
+    "revenue": "Chiffre d'affaires",
+    "deals": "Transactions",
+    "subscriptions": "Abonnements",
+    "analytics": "Analytique"
+  },
+  "modules": {
+    "title": "Votre écosystème commercial européen",
+    "subtitle": "Tous les domaines d'activité — connectés par l'IA, la recherche et un compte unifié."
+  },
+  "ai": {
+    "title": "Capacités IA"
+  },
+  "nav": {
+    "home": "Accueil",
+    "map": "Carte",
+    "modules": "Modules",
+    "workspace": "Espace de travail",
+    "search": "Recherche",
+    "dashboard": "Tableau de bord",
+    "notifications": "Notifications",
+    "login": "Se connecter",
+    "register": "S'inscrire",
+    "language": "Langue",
+    "theme": "Thème",
+    "menuOpen": "Menu",
+    "menuClose": "Fermer le menu",
+    "mainNav": "Navigation principale"
+  },
+  "userMenu": {
+    "guest": "Invité",
+    "company": "Compte entreprise"
+  },
+  "notifications": {
+    "empty": "Aucune notification"
+  },
+  "future": {
+    "auth": "Authentification bientôt disponible",
+    "payments": "Paiements bientôt disponibles",
+    "agents": "Agents IA bientôt disponibles",
+    "automation": "Automatisation n8n bientôt disponible"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Tous droits réservés.",
+    "mockData": "Données de démonstration — aucune connexion API réelle",
+    "tagline": "Le système d'exploitation commercial européen"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Tableau de bord",
+    "modules": "Modules",
+    "stats": "En direct"
+  }
+}
