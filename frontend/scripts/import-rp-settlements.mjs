@@ -85,33 +85,55 @@ const LANDKREIS_REGION = {
 
 /** Bbox [south, west, north, east] — candidate sort heuristic; Nominatim confirms at import */
 const LANDKREIS_BBOX = {
-  'Cochem-Zell': [49.93, 6.92, 50.38, 7.48],
-  'Bernkastel-Wittlich': [49.72, 6.62, 50.12, 7.18],
-  'Trier-Saarburg': [49.42, 6.32, 49.88, 6.92],
-  'Mayen-Koblenz': [50.12, 7.02, 50.58, 7.58],
-  'Vulkaneifel': [49.92, 6.42, 50.08, 7.08],
-  'Eifelkreis Bitburg-Prüm': [49.72, 6.12, 50.28, 6.68],
-  'Rhein-Hunsrück-Kreis': [49.82, 7.12, 50.22, 7.78],
-  'Bad Kreuznach': [49.62, 7.52, 50.08, 8.08],
-  'Rhein-Lahn-Kreis': [50.0, 7.68, 50.62, 8.32],
-  'Ahrweiler': [50.22, 6.78, 50.62, 7.22],
-  'Neuwied': [50.32, 7.32, 50.62, 7.68],
   'Altenkirchen': [50.52, 7.42, 50.95, 8.05],
+  'Eifelkreis Bitburg-Prüm': [49.72, 6.12, 50.28, 6.68],
+  'Rhein-Lahn-Kreis': [50.0, 7.68, 50.62, 8.32],
+  'Bad Kreuznach': [49.62, 7.52, 50.08, 8.08],
+  'Rhein-Hunsrück-Kreis': [49.82, 7.12, 50.22, 7.78],
+  'Mayen-Koblenz': [50.12, 7.02, 50.58, 7.58],
+  'Neuwied': [50.32, 7.32, 50.62, 7.68],
+  'Ahrweiler': [50.22, 6.78, 50.62, 7.22],
+  'Vulkaneifel': [49.92, 6.42, 50.08, 7.08],
+  'Trier-Saarburg': [49.42, 6.32, 49.88, 6.92],
+  'Bernkastel-Wittlich': [49.72, 6.62, 50.12, 7.18],
+  'Cochem-Zell': [49.93, 6.92, 50.38, 7.48],
+  'Westerwaldkreis': [50.35, 7.55, 50.75, 8.35],
+  'Kusel': [49.35, 7.25, 49.75, 7.85],
+  'Donnersbergkreis': [49.55, 7.65, 49.95, 8.25],
+  'Südwestpfalz': [49.05, 7.05, 49.45, 7.65],
+  'Kaiserslautern': [49.25, 7.45, 49.65, 8.05],
+  'Südliche Weinstraße': [49.05, 7.85, 49.55, 8.45],
+  'Germersheim': [49.15, 8.05, 49.45, 8.55],
+  'Rhein-Pfalz-Kreis': [49.35, 8.15, 49.62, 8.55],
+  'Bad Dürkheim': [49.35, 7.95, 49.65, 8.35],
+  'Birkenfeld': [49.55, 7.05, 50.05, 7.55],
+  'Mainz-Bingen': [49.75, 7.75, 50.05, 8.35],
 };
 
 const LANDKREIS_PRIORITY = [
-  'Cochem-Zell',
-  'Bernkastel-Wittlich',
-  'Trier-Saarburg',
-  'Mayen-Koblenz',
-  'Vulkaneifel',
+  'Altenkirchen',
   'Eifelkreis Bitburg-Prüm',
+  'Rhein-Lahn-Kreis',
   'Rhein-Hunsrück-Kreis',
   'Bad Kreuznach',
-  'Rhein-Lahn-Kreis',
-  'Ahrweiler',
+  'Westerwaldkreis',
   'Neuwied',
-  'Altenkirchen',
+  'Ahrweiler',
+  'Mayen-Koblenz',
+  'Südwestpfalz',
+  'Kusel',
+  'Donnersbergkreis',
+  'Kaiserslautern',
+  'Südliche Weinstraße',
+  'Germersheim',
+  'Rhein-Pfalz-Kreis',
+  'Bad Dürkheim',
+  'Mainz-Bingen',
+  'Birkenfeld',
+  'Vulkaneifel',
+  'Trier-Saarburg',
+  'Bernkastel-Wittlich',
+  'Cochem-Zell',
 ];
 
 function inferLandkreisSort(lat, lng) {
@@ -126,9 +148,41 @@ function inferLandkreisSort(lat, lng) {
   return hits[0];
 }
 
-function districtPriority(lk) {
-  const idx = LANDKREIS_PRIORITY.indexOf(lk);
-  return idx === -1 ? 99 : idx;
+function sortPlacesList(list) {
+  return [...list].sort((a, b) => {
+    const pa = PLACE_PRIORITY[a.place] ?? 9;
+    const pb = PLACE_PRIORITY[b.place] ?? 9;
+    if (pa !== pb) return pa - pb;
+    const popA = a.population ?? 0;
+    const popB = b.population ?? 0;
+    if (popA !== popB) return popB - popA;
+    return a.name.localeCompare(b.name, 'de');
+  });
+}
+
+/** Round-robin across priority districts to avoid single-district density spikes. */
+function buildDistributedQueue(rawPlaces) {
+  const byDistrict = new Map();
+  for (const p of rawPlaces) {
+    const lk = inferLandkreisSort(p.lat, p.lng);
+    if (!byDistrict.has(lk)) byDistrict.set(lk, []);
+    byDistrict.get(lk).push(p);
+  }
+  for (const [lk, list] of byDistrict) {
+    byDistrict.set(lk, sortPlacesList(list));
+  }
+
+  const districtOrder = [...LANDKREIS_PRIORITY, 'other'];
+  const maxRound = Math.max(...[...byDistrict.values()].map((l) => l.length), 0);
+  const queue = [];
+  for (let round = 0; round < maxRound; round += 1) {
+    for (const lk of districtOrder) {
+      const list = byDistrict.get(lk);
+      if (!list || round >= list.length) continue;
+      queue.push(list[round]);
+    }
+  }
+  return queue;
 }
 
 const LEGACY_SLUGS = new Set(['bingen_am_rhein', 'landau_in_der_pfalz', 'weiden_in_der_oberpfalz']);
@@ -360,18 +414,7 @@ if (!fs.existsSync(osmPath)) {
 
 const { places: rawPlaces } = JSON.parse(fs.readFileSync(osmPath, 'utf8'));
 
-const places = [...rawPlaces].sort((a, b) => {
-  const da = districtPriority(inferLandkreisSort(a.lat, a.lng));
-  const db = districtPriority(inferLandkreisSort(b.lat, b.lng));
-  if (da !== db) return da - db;
-  const pa = PLACE_PRIORITY[a.place] ?? 9;
-  const pb = PLACE_PRIORITY[b.place] ?? 9;
-  if (pa !== pb) return pa - pb;
-  const popA = a.population ?? 0;
-  const popB = b.population ?? 0;
-  if (popA !== popB) return popB - popA;
-  return a.name.localeCompare(b.name, 'de');
-});
+const places = buildDistributedQueue(rawPlaces);
 const { ids: existingIds, coords: existingCoords, namesByLandkreis } = loadExistingIds();
 const usedIds = new Set(existingIds);
 const usedCoords = new Set(existingCoords.map((c) => coordKey(c.lat, c.lng)));
