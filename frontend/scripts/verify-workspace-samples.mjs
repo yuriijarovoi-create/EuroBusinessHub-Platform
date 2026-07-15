@@ -16,6 +16,7 @@ const SEED_FILES = [
   'features/map/data/germany/germanyLocalNodes.generated.ts',
   'features/map/data/germany/germanyLocalNodesRural.generated.ts',
   'features/map/data/germany/germanyRheinlandPfalzNodes.generated.ts',
+  'features/map/data/germany/germanySaarlandNodes.generated.ts',
   'features/map/data/germany/germanyRegionalClusters.generated.ts',
 ];
 

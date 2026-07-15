@@ -9,6 +9,7 @@ const SEED_FILES = [
   'src/features/map/data/germany/germanyLocalNodes.generated.ts',
   'src/features/map/data/germany/germanyLocalNodesRural.generated.ts',
   'src/features/map/data/germany/germanyRheinlandPfalzNodes.generated.ts',
+  'src/features/map/data/germany/germanySaarlandNodes.generated.ts',
   'src/features/map/data/germany/germanyCitiesDense.ts',
 ];
 
