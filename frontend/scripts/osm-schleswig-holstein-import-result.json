@@ -1,58 +1,72 @@
 {
   "report": {
     "totalSourceCandidates": 3710,
-    "verifiedCandidates": 1304,
+    "verifiedCandidates": 950,
     "candidateByLk": {
-      "Nordfriesland": 160,
-      "Helgoland": 1,
-      "Segeberg": 120,
-      "Ostholstein": 142,
-      "Rendsburg-Eckernförde": 154,
+      "Rendsburg-Eckernförde": 120,
+      "Nordfriesland": 121,
+      "Steinburg": 84,
       "Dithmarschen": 74,
-      "Stormarn": 111,
-      "Plön": 152,
-      "Schleswig-Flensburg": 124,
-      "Steinburg": 105,
-      "Herzogtum Lauenburg": 80,
-      "Pinneberg": 52,
+      "Ostholstein": 93,
+      "Herzogtum Lauenburg": 62,
+      "Pinneberg": 39,
+      "Stormarn": 56,
+      "Schleswig-Flensburg": 105,
+      "Segeberg": 75,
+      "Plön": 100,
       "Kiel": 1,
+      "Lübeck": 17,
       "Neumünster": 1,
-      "Lübeck": 26,
+      "Helgoland": 1,
       "Flensburg": 1
     },
-    "imported": 700,
+    "imported": 950,
+    "newlyImported": 250,
+    "resumeSeed": 700,
+    "targetCount": 950,
+    "queueExhausted": false,
     "skipped": {
-      "duplicateId": 72,
+      "duplicateId": 756,
       "duplicateCoord": 0,
       "nearExisting": 0,
       "verifyFailed": 0,
-      "slugCollision": 14,
-      "duplicateName": 1,
-      "unsupportedName": 12,
+      "slugCollision": 0,
+      "duplicateName": 0,
+      "unsupportedName": 11,
       "outsideSh": 0,
-      "kreisCap": 603
+      "kreisCap": 0,
+      "deferred429": 0,
+      "cacheHit": 0,
+      "parentOrtsteil": 0,
+      "ambiguousAdmin": 0
     },
     "byLandkreis": {
-      "Nordfriesland": 85,
-      "Helgoland": 1,
-      "Segeberg": 45,
-      "Ostholstein": 70,
-      "Rendsburg-Eckernförde": 85,
+      "Rendsburg-Eckernförde": 120,
+      "Nordfriesland": 121,
+      "Steinburg": 84,
       "Dithmarschen": 74,
-      "Stormarn": 40,
-      "Plön": 55,
-      "Schleswig-Flensburg": 85,
-      "Steinburg": 55,
-      "Herzogtum Lauenburg": 55,
-      "Pinneberg": 35,
+      "Ostholstein": 93,
+      "Herzogtum Lauenburg": 62,
+      "Pinneberg": 39,
+      "Stormarn": 56,
+      "Schleswig-Flensburg": 105,
+      "Segeberg": 75,
+      "Plön": 100,
       "Kiel": 1,
+      "Lübeck": 17,
       "Neumünster": 1,
-      "Lübeck": 12,
+      "Helgoland": 1,
       "Flensburg": 1
     },
-    "coastalCount": 260,
+    "coastalCount": 354,
     "islandCount": 106,
+    "deferred": 0,
+    "failed": 0,
+    "nominatimRequests": 250,
+    "http429Retries": 0,
+    "cacheEntries": 950,
     "first15": [
+      "aasbuttel",
       "achterwehr",
       "achtrup",
       "ackerum",
@@ -60,36 +74,50 @@
       "albersdorf",
       "albertsdorf",
       "alkersum",
+      "alt_bennebek",
       "alt_duvenstedt",
       "alt_molln",
+      "alt_springhirsch",
       "altendeich",
       "altenfelde",
-      "altenholz",
-      "altenteil",
-      "altholzkrug",
-      "altjellingsdorf"
+      "altengors"
     ],
     "last15": [
-      "wiemerskamp",
-      "wilstedt",
-      "wilster",
-      "windeby",
-      "winnert",
-      "wisch",
+      "wittbek",
       "wittdun_auf_amrum",
+      "wittenbergen",
+      "wittenberger_passau",
+      "wittendun",
       "witzeeze",
       "wohltorf",
       "wrist",
       "wrixum",
       "wyk_auf_fohr",
       "zarpen",
+      "zarpenerhof",
+      "zarpenerwohld",
       "ziegelhof",
       "ziethen"
     ],
     "landkreisCoverage": 16,
-    "mode": "nominatim-reverse"
+    "mode": "nominatim-reverse",
+    "resumeSafe": true,
+    "noCaps": true
   },
   "imported": [
+    {
+      "id": "aasbuttel",
+      "name": "Aasbüttel",
+      "lat": 54.065483,
+      "lng": 9.438698,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Schenefeld",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 900,
+      "osmId": 240073193
+    },
     {
       "id": "achterwehr",
       "name": "Achterwehr",
@@ -192,6 +220,19 @@
       "island": "Föhr"
     },
     {
+      "id": "alt_bennebek",
+      "name": "Alt Bennebek",
+      "lat": 54.37822,
+      "lng": 9.432614,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Kropp-Stapelholm",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 369,
+      "osmId": 240101757
+    },
+    {
       "id": "alt_duvenstedt",
       "name": "Alt Duvenstedt",
       "lat": 54.358604,
@@ -216,6 +257,19 @@
       "nearestMajorCity": "Lübeck",
       "population": 845,
       "osmId": 240066067
+    },
+    {
+      "id": "alt_springhirsch",
+      "name": "Alt-Springhirsch",
+      "lat": 53.8512,
+      "lng": 9.910115,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Auenland Südholstein",
+      "nearestMajorCityId": "norderstedt",
+      "nearestMajorCity": "Norderstedt",
+      "population": 900,
+      "osmId": 421427541
     },
     {
       "id": "altendeich",
@@ -244,6 +298,19 @@
       "osmId": 4891381967
     },
     {
+      "id": "altengors",
+      "name": "Altengörs",
+      "lat": 53.897687,
+      "lng": 10.364237,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 25415428
+    },
+    {
       "id": "altenholz",
       "name": "Altenholz",
       "lat": 54.395676,
@@ -256,6 +323,32 @@
       "population": 4500,
       "osmId": 240113660,
       "coastal": true
+    },
+    {
+      "id": "altenmoor",
+      "name": "Altenmoor",
+      "lat": 53.765661,
+      "lng": 9.571233,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Horst-Herzhorn",
+      "nearestMajorCityId": "elmshorn",
+      "nearestMajorCity": "Elmshorn",
+      "population": 900,
+      "osmId": 240120354
+    },
+    {
+      "id": "altenrade_dreikronen",
+      "name": "Altenrade-Dreikronen",
+      "lat": 54.087817,
+      "lng": 10.162446,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Bokhorst-Wankendorf",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 250,
+      "osmId": 413705631
     },
     {
       "id": "altenteil",
@@ -303,6 +396,20 @@
       "island": "Fehmarn"
     },
     {
+      "id": "altratjensdorf",
+      "name": "Altratjensdorf",
+      "lat": 54.226379,
+      "lng": 11.000416,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Lensahn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 460390223,
+      "coastal": true
+    },
+    {
       "id": "alveslohe",
       "name": "Alveslohe",
       "lat": 53.789089,
@@ -327,6 +434,20 @@
       "nearestMajorCity": "Norderstedt",
       "population": 900,
       "osmId": 240048444
+    },
+    {
+      "id": "antoinettenhof",
+      "name": "Antoinettenhof",
+      "lat": 54.285902,
+      "lng": 10.98533,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Oldenburg-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 1745189274,
+      "coastal": true
     },
     {
       "id": "appen",
@@ -385,6 +506,46 @@
       "osmId": 240026985
     },
     {
+      "id": "arlewatt",
+      "name": "Arlewatt",
+      "lat": 54.539443,
+      "lng": 9.081854,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Nordsee-Treene",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 335,
+      "osmId": 180296627,
+      "coastal": true
+    },
+    {
+      "id": "armstedt",
+      "name": "Armstedt",
+      "lat": 53.970285,
+      "lng": 9.851741,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Amt Bad Bramstedt-Land",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 900,
+      "osmId": 240050649
+    },
+    {
+      "id": "arpsdorf",
+      "name": "Arpsdorf",
+      "lat": 54.039433,
+      "lng": 9.858599,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Mittelholstein",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 900,
+      "osmId": 240086973
+    },
+    {
       "id": "ascheffel",
       "name": "Ascheffel",
       "lat": 54.429659,
@@ -396,6 +557,19 @@
       "nearestMajorCity": "Schleswig",
       "population": 1012,
       "osmId": 240112342
+    },
+    {
+      "id": "asheide",
+      "name": "Asheide",
+      "lat": 54.068971,
+      "lng": 10.375083,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 250,
+      "osmId": 2463228541
     },
     {
       "id": "auf_dem_schlag",
@@ -454,6 +628,19 @@
       "nearestMajorCity": "Hamburg",
       "population": 3092,
       "osmId": 240127522
+    },
+    {
+      "id": "auufer",
+      "name": "Auufer",
+      "lat": 53.929623,
+      "lng": 9.690159,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Breitenburg",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 136,
+      "osmId": 240123119
     },
     {
       "id": "avendorf",
@@ -568,6 +755,19 @@
       "osmId": 240052561
     },
     {
+      "id": "bahrenhof",
+      "name": "Bahrenhof",
+      "lat": 53.877983,
+      "lng": 10.379904,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 215,
+      "osmId": 240068637
+    },
+    {
       "id": "bak",
       "name": "Bäk",
       "lat": 53.712482,
@@ -595,6 +795,20 @@
       "osmId": 33471539,
       "coastal": true,
       "island": "Fehmarn"
+    },
+    {
+      "id": "barensdorf",
+      "name": "Barensdorf",
+      "lat": 54.277487,
+      "lng": 10.730232,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Oldenburg-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 470061436,
+      "coastal": true
     },
     {
       "id": "bargen",
@@ -664,6 +878,19 @@
       "osmId": 240129302
     },
     {
+      "id": "barghorst",
+      "name": "Barghorst",
+      "lat": 54.023929,
+      "lng": 10.564608,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ahrensbök",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 4201821286
+    },
+    {
       "id": "bargstedt",
       "name": "Bargstedt",
       "lat": 54.16224,
@@ -715,6 +942,20 @@
       "nearestMajorCity": "Neumünster",
       "population": 986,
       "osmId": 240093436
+    },
+    {
+      "id": "barkau",
+      "name": "Barkau",
+      "lat": 54.075085,
+      "lng": 10.626489,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Süsel",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 373170131,
+      "coastal": true
     },
     {
       "id": "barkelsby",
@@ -823,6 +1064,33 @@
       "osmId": 240103190
     },
     {
+      "id": "bauersdorf",
+      "name": "Bauersdorf",
+      "lat": 54.269044,
+      "lng": 10.473181,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 460365052,
+      "coastal": true
+    },
+    {
+      "id": "behnkenmuhlen",
+      "name": "Behnkenmühlen",
+      "lat": 54.196643,
+      "lng": 10.222189,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 359385453
+    },
+    {
       "id": "beidenfleth",
       "name": "Beidenfleth",
       "lat": 53.878848,
@@ -834,6 +1102,32 @@
       "nearestMajorCity": "Itzehoe",
       "population": 846,
       "osmId": 240126911
+    },
+    {
+      "id": "bekdorf",
+      "name": "Bekdorf",
+      "lat": 53.937894,
+      "lng": 9.423996,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Itzehoe-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 102,
+      "osmId": 240069996
+    },
+    {
+      "id": "bekmunde",
+      "name": "Bekmünde",
+      "lat": 53.928482,
+      "lng": 9.463664,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Itzehoe-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 147,
+      "osmId": 240081626
     },
     {
       "id": "belau",
@@ -878,6 +1172,34 @@
       "island": "Fehmarn"
     },
     {
+      "id": "bellin",
+      "name": "Bellin",
+      "lat": 54.280268,
+      "lng": 10.466821,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 147099977,
+      "coastal": true
+    },
+    {
+      "id": "bendfeld",
+      "name": "Bendfeld",
+      "lat": 54.364035,
+      "lng": 10.419592,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Probstei",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 218,
+      "osmId": 240129772,
+      "coastal": true
+    },
+    {
       "id": "benstaben",
       "name": "Benstaben",
       "lat": 53.81627,
@@ -889,6 +1211,34 @@
       "nearestMajorCity": "Lübeck",
       "population": 900,
       "osmId": 1654273348
+    },
+    {
+      "id": "bentfeld",
+      "name": "Bentfeld",
+      "lat": 54.162239,
+      "lng": 10.889748,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ostholstein-Mitte",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 460371407,
+      "coastal": true
+    },
+    {
+      "id": "benz",
+      "name": "Benz",
+      "lat": 54.210069,
+      "lng": 10.631768,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Malente",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 1693082049,
+      "coastal": true
     },
     {
       "id": "bergenhusen",
@@ -917,6 +1267,20 @@
       "osmId": 240032511
     },
     {
+      "id": "bergfeld",
+      "name": "Bergfeld",
+      "lat": 54.197116,
+      "lng": 10.701256,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ostholstein-Mitte",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 1794165856,
+      "coastal": true
+    },
+    {
       "id": "berkenthin",
       "name": "Berkenthin",
       "lat": 53.733807,
@@ -941,6 +1305,33 @@
       "nearestMajorCity": "Itzehoe",
       "population": 900,
       "osmId": 240114652
+    },
+    {
+      "id": "besenbek",
+      "name": "Besenbek",
+      "lat": 53.759156,
+      "lng": 9.632818,
+      "region": "Hamburg Region",
+      "landkreis": "Pinneberg",
+      "municipality": "Elmshorn-Land",
+      "nearestMajorCityId": "elmshorn",
+      "nearestMajorCity": "Elmshorn",
+      "population": 900,
+      "osmId": 309882561
+    },
+    {
+      "id": "beusloe",
+      "name": "Beusloe",
+      "lat": 54.129078,
+      "lng": 10.861271,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ostholstein-Mitte",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 464482399,
+      "coastal": true
     },
     {
       "id": "binnenkamp",
@@ -972,6 +1363,32 @@
       "island": "Fehmarn"
     },
     {
+      "id": "bissee",
+      "name": "Bissee",
+      "lat": 54.189732,
+      "lng": 10.112319,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Bordesholm",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 168,
+      "osmId": 240080119
+    },
+    {
+      "id": "bistensee",
+      "name": "Bistensee",
+      "lat": 54.399948,
+      "lng": 9.698839,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Ahlefeld-Bistensee",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 262,
+      "osmId": 240072307
+    },
+    {
       "id": "blekendorf",
       "name": "Blekendorf",
       "lat": 54.276795,
@@ -1000,6 +1417,35 @@
       "osmId": 271078339,
       "coastal": true,
       "island": "Fehmarn"
+    },
+    {
+      "id": "bliesdorf",
+      "name": "Bliesdorf",
+      "lat": 54.132088,
+      "lng": 10.904672,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ostholstein-Mitte",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 100661305,
+      "coastal": true
+    },
+    {
+      "id": "bliesdorf_strand",
+      "name": "Bliesdorf - Strand",
+      "lat": 54.12492,
+      "lng": 10.924715,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ostholstein-Mitte",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "tourism": true,
+      "osmId": 2146854743,
+      "coastal": true
     },
     {
       "id": "bliestorf",
@@ -1042,6 +1488,60 @@
       "coastal": true
     },
     {
+      "id": "blunk",
+      "name": "Blunk",
+      "lat": 54.010232,
+      "lng": 10.312195,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 584,
+      "osmId": 240061820
+    },
+    {
+      "id": "bobs",
+      "name": "Böbs",
+      "lat": 53.98001,
+      "lng": 10.63081,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ahrensbök",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 379706353,
+      "coastal": true
+    },
+    {
+      "id": "bockholt",
+      "name": "Bockholt",
+      "lat": 54.106862,
+      "lng": 10.647002,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Süsel",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 297311138,
+      "coastal": true
+    },
+    {
+      "id": "boel",
+      "name": "Böel",
+      "lat": 54.646834,
+      "lng": 9.720949,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Süderbrarup",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 771,
+      "osmId": 240079470
+    },
+    {
       "id": "bohmstedt",
       "name": "Bohmstedt",
       "lat": 54.580626,
@@ -1054,6 +1554,33 @@
       "population": 743,
       "osmId": 168883020,
       "coastal": true
+    },
+    {
+      "id": "bohnhusen",
+      "name": "Böhnhusen",
+      "lat": 54.222985,
+      "lng": 10.055219,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Flintbek",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 344,
+      "osmId": 240099802,
+      "coastal": true
+    },
+    {
+      "id": "bohren",
+      "name": "Böhren",
+      "lat": 54.058521,
+      "lng": 10.164097,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Bokhorst-Wankendorf",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 250,
+      "osmId": 4439281442
     },
     {
       "id": "bojendorf",
@@ -1085,6 +1612,73 @@
       "osmId": 240038972
     },
     {
+      "id": "boken",
+      "name": "Böken",
+      "lat": 54.08456,
+      "lng": 9.803893,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Mittelholstein",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 900,
+      "osmId": 293582599
+    },
+    {
+      "id": "bokhof",
+      "name": "Bokhof",
+      "lat": 53.96857,
+      "lng": 10.60245,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ahrensbök",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 1250471004,
+      "coastal": true
+    },
+    {
+      "id": "bokholt",
+      "name": "Bokholt",
+      "lat": 54.352478,
+      "lng": 10.271217,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Probstei",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 339278127,
+      "coastal": true
+    },
+    {
+      "id": "bokholt_hanredder",
+      "name": "Bokholt-Hanredder",
+      "lat": 53.784459,
+      "lng": 9.718632,
+      "region": "Hamburg Region",
+      "landkreis": "Pinneberg",
+      "municipality": "Rantzau",
+      "nearestMajorCityId": "elmshorn",
+      "nearestMajorCity": "Elmshorn",
+      "population": 900,
+      "osmId": 240026363
+    },
+    {
+      "id": "bokhorst",
+      "name": "Bokhorst",
+      "lat": 54.058523,
+      "lng": 9.400496,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Schenefeld",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 900,
+      "osmId": 240074094
+    },
+    {
       "id": "boklund",
       "name": "Böklund",
       "lat": 54.59997,
@@ -1096,6 +1690,20 @@
       "nearestMajorCity": "Schleswig",
       "population": 1464,
       "osmId": 240109515
+    },
+    {
+      "id": "boksee",
+      "name": "Boksee",
+      "lat": 54.243228,
+      "lng": 10.129948,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 487,
+      "osmId": 240059802,
+      "coastal": true
     },
     {
       "id": "bolande",
@@ -1164,6 +1772,19 @@
       "coastal": true
     },
     {
+      "id": "boren",
+      "name": "Boren",
+      "lat": 54.61446,
+      "lng": 9.819384,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Süderbrarup",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 773,
+      "osmId": 240023610
+    },
+    {
       "id": "borgholz",
       "name": "Borgholz",
       "lat": 54.232046,
@@ -1207,6 +1828,32 @@
       "island": "Föhr"
     },
     {
+      "id": "borgwedel",
+      "name": "Borgwedel",
+      "lat": 54.500931,
+      "lng": 9.664916,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Haddeby",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 712,
+      "osmId": 240119583
+    },
+    {
+      "id": "borm",
+      "name": "Börm",
+      "lat": 54.4,
+      "lng": 9.38333,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Kropp-Stapelholm",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 768,
+      "osmId": 240073738
+    },
+    {
       "id": "bornholt",
       "name": "Bornholt",
       "lat": 54.100343,
@@ -1246,6 +1893,20 @@
       "osmId": 240123882
     },
     {
+      "id": "borsbull",
+      "name": "Borsbüll",
+      "lat": 54.600531,
+      "lng": 8.986052,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 158618274,
+      "coastal": true
+    },
+    {
       "id": "borsfleth",
       "name": "Borsfleth",
       "lat": 53.826641,
@@ -1272,6 +1933,47 @@
       "osmId": 240083271
     },
     {
+      "id": "bosbull",
+      "name": "Bosbüll",
+      "lat": 54.823344,
+      "lng": 8.861268,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 239,
+      "osmId": 240040753,
+      "coastal": true
+    },
+    {
+      "id": "bosdorf",
+      "name": "Bösdorf",
+      "lat": 54.140005,
+      "lng": 10.489922,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Bösdorf",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 240105905
+    },
+    {
+      "id": "bothkamp",
+      "name": "Bothkamp",
+      "lat": 54.203259,
+      "lng": 10.133664,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 307,
+      "osmId": 240090104,
+      "coastal": true
+    },
+    {
       "id": "bovenau",
       "name": "Bovenau",
       "lat": 54.330154,
@@ -1283,6 +1985,45 @@
       "nearestMajorCity": "Rendsburg",
       "population": 1067,
       "osmId": 240063678
+    },
+    {
+      "id": "boxlund",
+      "name": "Böxlund",
+      "lat": 54.839127,
+      "lng": 9.179742,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Schafflund",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 112,
+      "osmId": 240130227
+    },
+    {
+      "id": "braak",
+      "name": "Braak",
+      "lat": 53.608795,
+      "lng": 10.244,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Siek",
+      "nearestMajorCityId": "hamburg",
+      "nearestMajorCity": "Hamburg",
+      "population": 787,
+      "osmId": 240110109
+    },
+    {
+      "id": "brackrade",
+      "name": "Brackrade",
+      "lat": 54.099574,
+      "lng": 10.481582,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Großer Plöner See",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 100668440
     },
     {
       "id": "braderup",
@@ -1299,6 +2040,60 @@
       "osmId": 875662502,
       "coastal": true,
       "island": "Sylt"
+    },
+    {
+      "id": "brammer",
+      "name": "Brammer",
+      "lat": 54.199629,
+      "lng": 9.763876,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Nortorfer Land",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 426,
+      "osmId": 240107075
+    },
+    {
+      "id": "bramstedtlund",
+      "name": "Bramstedtlund",
+      "lat": 54.841124,
+      "lng": 9.084804,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 900,
+      "osmId": 2677829555,
+      "coastal": true
+    },
+    {
+      "id": "brande_hornerkirchen",
+      "name": "Brande-Hörnerkirchen",
+      "lat": 53.849109,
+      "lng": 9.708277,
+      "region": "Hamburg Region",
+      "landkreis": "Pinneberg",
+      "municipality": "Hörnerkirchen",
+      "nearestMajorCityId": "elmshorn",
+      "nearestMajorCity": "Elmshorn",
+      "population": 900,
+      "osmId": 240095847
+    },
+    {
+      "id": "brasilien",
+      "name": "Brasilien",
+      "lat": 54.423918,
+      "lng": 10.390479,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Probstei",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 281814044,
+      "coastal": true
     },
     {
       "id": "bredenbek",
@@ -1325,6 +2120,20 @@
       "nearestMajorCity": "Neumünster",
       "population": 280,
       "osmId": 100668428
+    },
+    {
+      "id": "bredeneek",
+      "name": "Bredeneek",
+      "lat": 54.262569,
+      "lng": 10.302624,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 331421028,
+      "coastal": true
     },
     {
       "id": "bredstedt",
@@ -1381,6 +2190,33 @@
       "coastal": true
     },
     {
+      "id": "brenkenhagen",
+      "name": "Brenkenhagen",
+      "lat": 54.155643,
+      "lng": 10.913538,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Grömitz",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 458872234,
+      "coastal": true
+    },
+    {
+      "id": "brodersby",
+      "name": "Brodersby",
+      "lat": 54.635546,
+      "lng": 9.979825,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Schlei-Ostsee",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 756,
+      "osmId": 240097174
+    },
+    {
       "id": "brodersdorf",
       "name": "Brodersdorf",
       "lat": 54.385919,
@@ -1392,6 +2228,20 @@
       "nearestMajorCity": "Kiel",
       "population": 455,
       "osmId": 240124775,
+      "coastal": true
+    },
+    {
+      "id": "brodten",
+      "name": "Brodten",
+      "lat": 53.987992,
+      "lng": 10.861873,
+      "region": "Lübeck",
+      "landkreis": "Lübeck",
+      "municipality": "Lübeck",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 28256077,
       "coastal": true
     },
     {
@@ -1458,6 +2308,33 @@
       "nearestMajorCity": "Itzehoe",
       "population": 12651,
       "osmId": 2989680190
+    },
+    {
+      "id": "buhnsdorf",
+      "name": "Bühnsdorf",
+      "lat": 53.88755,
+      "lng": 10.377217,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 362,
+      "osmId": 240096194
+    },
+    {
+      "id": "bujendorf",
+      "name": "Bujendorf",
+      "lat": 54.105022,
+      "lng": 10.714902,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Süsel",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 900,
+      "osmId": 361190583,
+      "coastal": true
     },
     {
       "id": "bunsdorf",
@@ -1557,6 +2434,33 @@
       "coastal": true
     },
     {
+      "id": "buttel",
+      "name": "Büttel",
+      "lat": 53.899972,
+      "lng": 9.228412,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Wilstermarsch",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 45,
+      "osmId": 240069802
+    },
+    {
+      "id": "buttjebull",
+      "name": "Büttjebüll",
+      "lat": 54.652951,
+      "lng": 8.906275,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 2974350402,
+      "coastal": true
+    },
+    {
       "id": "cashagen",
       "name": "Cashagen",
       "lat": 53.949136,
@@ -1568,6 +2472,74 @@
       "nearestMajorCity": "Lübeck",
       "population": 900,
       "osmId": 333184779
+    },
+    {
+      "id": "charlottental",
+      "name": "Charlottental",
+      "lat": 54.333,
+      "lng": 10.357974,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Probstei",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 370650076,
+      "coastal": true
+    },
+    {
+      "id": "christiansholm",
+      "name": "Christiansholm",
+      "lat": 54.320502,
+      "lng": 9.406977,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Hohner Harde",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 281,
+      "osmId": 240072531
+    },
+    {
+      "id": "christinenthal",
+      "name": "Christinenthal",
+      "lat": 54.053392,
+      "lng": 9.533463,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Schenefeld",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 900,
+      "osmId": 240058136
+    },
+    {
+      "id": "dagebull",
+      "name": "Dagebüll",
+      "lat": 54.730665,
+      "lng": 8.713064,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 617040425,
+      "coastal": true
+    },
+    {
+      "id": "dagebull_hafen",
+      "name": "Dagebüll-Hafen",
+      "lat": 54.729495,
+      "lng": 8.693917,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 44961505,
+      "coastal": true
     },
     {
       "id": "dageling",
@@ -1608,6 +2580,19 @@
       "population": 900,
       "osmId": 1597468968,
       "coastal": true
+    },
+    {
+      "id": "dammfleth",
+      "name": "Dammfleth",
+      "lat": 53.896921,
+      "lng": 9.363054,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Wilstermarsch",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 269,
+      "osmId": 240041124
     },
     {
       "id": "danischenhagen",
@@ -1666,6 +2651,20 @@
       "osmId": 240112656
     },
     {
+      "id": "deezbull",
+      "name": "Deezbüll",
+      "lat": 54.777572,
+      "lng": 8.814639,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 10158150141,
+      "coastal": true
+    },
+    {
       "id": "dehnhoft",
       "name": "Dehnhöft",
       "lat": 54.41408,
@@ -1717,6 +2716,19 @@
       "nearestMajorCity": "Heide",
       "population": 900,
       "osmId": 240060848
+    },
+    {
+      "id": "depenau",
+      "name": "Depenau",
+      "lat": 54.157096,
+      "lng": 10.234711,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Bokhorst-Wankendorf",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 250,
+      "osmId": 834134000
     },
     {
       "id": "dersau",
@@ -1814,6 +2826,20 @@
       "coastal": true
     },
     {
+      "id": "dohnsdorf",
+      "name": "Döhnsdorf",
+      "lat": 54.294873,
+      "lng": 10.730189,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Oldenburg-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 215,
+      "osmId": 470061867,
+      "coastal": true
+    },
+    {
       "id": "dollerup",
       "name": "Dollerup",
       "lat": 54.779622,
@@ -1883,6 +2909,19 @@
       "island": "Fehmarn"
     },
     {
+      "id": "dorphof",
+      "name": "Dörphof",
+      "lat": 54.618487,
+      "lng": 9.977099,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Schlei-Ostsee",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 756,
+      "osmId": 240050538
+    },
+    {
       "id": "dorpling",
       "name": "Dörpling",
       "lat": 54.260152,
@@ -1896,6 +2935,47 @@
       "osmId": 240067605
     },
     {
+      "id": "dorpum",
+      "name": "Dörpum",
+      "lat": 54.651586,
+      "lng": 8.996558,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 185965732,
+      "coastal": true
+    },
+    {
+      "id": "dreggers",
+      "name": "Dreggers",
+      "lat": 53.884731,
+      "lng": 10.346531,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 54,
+      "osmId": 240121929
+    },
+    {
+      "id": "drelsdorf",
+      "name": "Drelsdorf",
+      "lat": 54.60506,
+      "lng": 9.043982,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 178741022,
+      "coastal": true
+    },
+    {
       "id": "duckerswisch",
       "name": "Dückerswisch",
       "lat": 54.055757,
@@ -1907,6 +2987,20 @@
       "nearestMajorCity": "Heide",
       "population": 900,
       "osmId": 652382844
+    },
+    {
+      "id": "dunsum",
+      "name": "Dunsum",
+      "lat": 54.731715,
+      "lng": 8.41765,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Föhr-Amrum",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 240042233,
+      "coastal": true
     },
     {
       "id": "duvensee",
@@ -1987,6 +3081,19 @@
       "osmId": 240056812
     },
     {
+      "id": "eichhorst",
+      "name": "Eichhorst",
+      "lat": 54.187571,
+      "lng": 10.368136,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Großer Plöner See",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 803552956
+    },
+    {
       "id": "ekel",
       "name": "Ekel",
       "lat": 54.325254,
@@ -2024,6 +3131,47 @@
       "nearestMajorCity": "Elmshorn",
       "population": 1326,
       "osmId": 240102286
+    },
+    {
+      "id": "ellhoft",
+      "name": "Ellhöft",
+      "lat": 54.887025,
+      "lng": 8.953515,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 135,
+      "osmId": 240044177,
+      "coastal": true
+    },
+    {
+      "id": "ellhornsberg",
+      "name": "Ellhornsberg",
+      "lat": 54.273532,
+      "lng": 10.390343,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 414257652,
+      "coastal": true
+    },
+    {
+      "id": "ellingstedt",
+      "name": "Ellingstedt",
+      "lat": 54.474656,
+      "lng": 9.409515,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Arensharde",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 840,
+      "osmId": 240052816
     },
     {
       "id": "elmenhorst",
@@ -2077,6 +3225,32 @@
       "nearestMajorCity": "Rendsburg",
       "population": 1688,
       "osmId": 240051979
+    },
+    {
+      "id": "elskop",
+      "name": "Elskop",
+      "lat": 53.813665,
+      "lng": 9.498142,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Krempermarsch",
+      "nearestMajorCityId": "elmshorn",
+      "nearestMajorCity": "Elmshorn",
+      "population": 154,
+      "osmId": 240028437
+    },
+    {
+      "id": "embuhren",
+      "name": "Embühren",
+      "lat": 54.169833,
+      "lng": 9.591904,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Jevenstedt",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 225,
+      "osmId": 240044413
     },
     {
       "id": "emkendorf",
@@ -2185,6 +3359,19 @@
       "nearestMajorCity": "Hamburg",
       "population": 3339,
       "osmId": 240103127
+    },
+    {
+      "id": "esgrus",
+      "name": "Esgrus",
+      "lat": 54.723339,
+      "lng": 9.780736,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Geltinger Bucht",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 833,
+      "osmId": 240029532
     },
     {
       "id": "eutin",
@@ -2486,6 +3673,19 @@
       "island": "Föhrden-Barl"
     },
     {
+      "id": "fredesdorf",
+      "name": "Fredesdorf",
+      "lat": 53.877005,
+      "lng": 10.198688,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Leezen",
+      "nearestMajorCityId": "norderstedt",
+      "nearestMajorCity": "Norderstedt",
+      "population": 353,
+      "osmId": 240028278
+    },
+    {
       "id": "freienwill",
       "name": "Freienwill",
       "lat": 54.728077,
@@ -2525,6 +3725,48 @@
       "osmId": 240031116
     },
     {
+      "id": "freudenholm",
+      "name": "Freudenholm",
+      "lat": 54.216841,
+      "lng": 10.312728,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 246278368,
+      "coastal": true
+    },
+    {
+      "id": "friedrich_wilhelm_lubke_koog",
+      "name": "Friedrich-Wilhelm-Lübke-Koog",
+      "lat": 54.863012,
+      "lng": 8.629568,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 166,
+      "osmId": 240074898,
+      "coastal": true
+    },
+    {
+      "id": "friedrichsberg",
+      "name": "Friedrichsberg",
+      "lat": 54.332386,
+      "lng": 10.269998,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 4563338771,
+      "coastal": true
+    },
+    {
       "id": "friedrichsgabekoog",
       "name": "Friedrichsgabekoog",
       "lat": 54.153744,
@@ -2551,6 +3793,19 @@
       "population": 250,
       "osmId": 2152177161,
       "coastal": true
+    },
+    {
+      "id": "friedrichsholm",
+      "name": "Friedrichsholm",
+      "lat": 54.302945,
+      "lng": 9.430041,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Hohner Harde",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 458,
+      "osmId": 240081648
     },
     {
       "id": "friedrichskoog",
@@ -2639,6 +3894,20 @@
       "osmId": 33471550,
       "coastal": true,
       "island": "Fehmarn"
+    },
+    {
+      "id": "garding",
+      "name": "Garding",
+      "lat": 54.329573,
+      "lng": 8.779389,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Eiderstedt",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 900,
+      "osmId": 240099545,
+      "coastal": true
     },
     {
       "id": "gaushorn",
@@ -2774,6 +4043,19 @@
       "osmId": 240077734
     },
     {
+      "id": "godau",
+      "name": "Godau",
+      "lat": 54.121483,
+      "lng": 10.388708,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Großer Plöner See",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 250,
+      "osmId": 322128759
+    },
+    {
       "id": "gokels",
       "name": "Gokels",
       "lat": 54.11335,
@@ -2801,6 +4083,34 @@
       "osmId": 271077908,
       "coastal": true,
       "island": "Fehmarn"
+    },
+    {
+      "id": "goldebek",
+      "name": "Goldebek",
+      "lat": 54.679304,
+      "lng": 9.145921,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 351,
+      "osmId": 240051163,
+      "coastal": true
+    },
+    {
+      "id": "goldelund",
+      "name": "Goldelund",
+      "lat": 54.67886,
+      "lng": 9.108859,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 398,
+      "osmId": 240038807,
+      "coastal": true
     },
     {
       "id": "goldenbek",
@@ -2832,6 +4142,32 @@
       "island": "Fehmarn"
     },
     {
+      "id": "gonnebek",
+      "name": "Gönnebek",
+      "lat": 54.049183,
+      "lng": 10.176981,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Bornhöved",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 496,
+      "osmId": 240050438
+    },
+    {
+      "id": "goosefeld",
+      "name": "Goosefeld",
+      "lat": 54.429477,
+      "lng": 9.815823,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Schlei-Ostsee",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 766,
+      "osmId": 240030951
+    },
+    {
       "id": "goting",
       "name": "Goting",
       "lat": 54.689222,
@@ -2861,6 +4197,46 @@
       "osmId": 7218573803
     },
     {
+      "id": "gotzberg",
+      "name": "Götzberg",
+      "lat": 53.793452,
+      "lng": 10.044069,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Henstedt-Ulzburg",
+      "nearestMajorCityId": "norderstedt",
+      "nearestMajorCity": "Norderstedt",
+      "population": 370,
+      "osmId": 343636637
+    },
+    {
+      "id": "grabensee",
+      "name": "Grabensee",
+      "lat": 54.301901,
+      "lng": 10.383226,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 147104423,
+      "coastal": true
+    },
+    {
+      "id": "grauel",
+      "name": "Grauel",
+      "lat": 54.070598,
+      "lng": 9.673465,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Mittelholstein",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 900,
+      "osmId": 240086093
+    },
+    {
       "id": "grebin",
       "name": "Grebin",
       "lat": 54.198005,
@@ -2872,6 +4248,46 @@
       "nearestMajorCity": "Kiel",
       "population": 1021,
       "osmId": 33855541
+    },
+    {
+      "id": "grevenhorst",
+      "name": "Grevenhorst",
+      "lat": 54.313412,
+      "lng": 9.352476,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Kropp-Stapelholm",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 900,
+      "osmId": 425720179
+    },
+    {
+      "id": "grevenkrug",
+      "name": "Grevenkrug",
+      "lat": 54.21242,
+      "lng": 10.010726,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Bordesholm",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 279,
+      "osmId": 240122182,
+      "coastal": true
+    },
+    {
+      "id": "gribbohm",
+      "name": "Gribbohm",
+      "lat": 54.028968,
+      "lng": 9.347555,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Schenefeld",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 900,
+      "osmId": 240109169
     },
     {
       "id": "gromitz",
@@ -2886,6 +4302,19 @@
       "population": 6839,
       "osmId": 100661303,
       "coastal": true
+    },
+    {
+      "id": "gross_buchwald",
+      "name": "Groß Buchwald",
+      "lat": 54.162637,
+      "lng": 10.084661,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Bordesholm",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 368,
+      "osmId": 240033307
     },
     {
       "id": "gross_gronau",
@@ -2927,6 +4356,21 @@
       "osmId": 240048199
     },
     {
+      "id": "gross_nordsee",
+      "name": "Groß Nordsee",
+      "lat": 54.333071,
+      "lng": 9.943117,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Achterwehr",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 240,
+      "tourism": true,
+      "osmId": 290705032,
+      "coastal": true
+    },
+    {
       "id": "gross_rheide",
       "name": "Groß Rheide",
       "lat": 54.441527,
@@ -2938,6 +4382,19 @@
       "nearestMajorCity": "Schleswig",
       "population": 1049,
       "osmId": 240065690
+    },
+    {
+      "id": "gross_ronnau",
+      "name": "Groß Rönnau",
+      "lat": 53.972946,
+      "lng": 10.312424,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 582,
+      "osmId": 25543398
     },
     {
       "id": "gross_sarau",
@@ -3003,6 +4460,20 @@
       "nearestMajorCity": "Rendsburg",
       "population": 1102,
       "osmId": 240046830
+    },
+    {
+      "id": "grossbarkau",
+      "name": "Großbarkau",
+      "lat": 54.225355,
+      "lng": 10.168404,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 194,
+      "osmId": 35244238,
+      "coastal": true
     },
     {
       "id": "grossenrade",
@@ -3110,6 +4581,19 @@
       "osmId": 240083500
     },
     {
+      "id": "guby",
+      "name": "Güby",
+      "lat": 54.485642,
+      "lng": 9.666586,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Schlei-Ostsee",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 857,
+      "osmId": 240058553
+    },
+    {
       "id": "gudendorf",
       "name": "Gudendorf",
       "lat": 54.025468,
@@ -3148,6 +4632,19 @@
       "nearestMajorCity": "Hamburg",
       "population": 1300,
       "osmId": 240068848
+    },
+    {
+      "id": "gusdorf",
+      "name": "Güsdorf",
+      "lat": 54.179344,
+      "lng": 10.342932,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Großer Plöner See",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 250,
+      "osmId": 331424119
     },
     {
       "id": "guster",
@@ -3205,6 +4702,19 @@
       "osmId": 240033725
     },
     {
+      "id": "hamannsohlen",
+      "name": "Hamannsöhlen",
+      "lat": 53.866026,
+      "lng": 10.469339,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293107414
+    },
+    {
       "id": "hamberge",
       "name": "Hamberge",
       "lat": 53.839968,
@@ -3255,6 +4765,19 @@
       "nearestMajorCity": "Flensburg",
       "population": 4500,
       "osmId": 240091054
+    },
+    {
+      "id": "hardebek",
+      "name": "Hardebek",
+      "lat": 53.988138,
+      "lng": 9.868493,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Amt Bad Bramstedt-Land",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 474,
+      "osmId": 240119556
     },
     {
       "id": "harrislee",
@@ -3322,6 +4845,19 @@
       "osmId": 180296677
     },
     {
+      "id": "hasenkrug",
+      "name": "Hasenkrug",
+      "lat": 53.984739,
+      "lng": 9.850186,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Amt Bad Bramstedt-Land",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 347,
+      "osmId": 240039762
+    },
+    {
       "id": "hasloh",
       "name": "Hasloh",
       "lat": 53.693295,
@@ -3346,6 +4882,19 @@
       "nearestMajorCity": "Flensburg",
       "population": 917,
       "osmId": 240045701
+    },
+    {
+      "id": "hassmoor",
+      "name": "Haßmoor",
+      "lat": 54.291879,
+      "lng": 9.820518,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Eiderkanal",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 284,
+      "osmId": 240024279
     },
     {
       "id": "hattersbullhallig",
@@ -3378,6 +4927,33 @@
       "coastal": true
     },
     {
+      "id": "hattstedtermarsch",
+      "name": "Hattstedtermarsch",
+      "lat": 54.55,
+      "lng": 9,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Nordsee-Treene",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 323,
+      "osmId": 240058893,
+      "coastal": true
+    },
+    {
+      "id": "havetoft",
+      "name": "Havetoft",
+      "lat": 54.649964,
+      "lng": 9.517119,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Südangeln",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 878,
+      "osmId": 240064301
+    },
+    {
       "id": "havetoftloit",
       "name": "Havetoftloit",
       "lat": 54.661545,
@@ -3389,6 +4965,19 @@
       "nearestMajorCity": "Flensburg",
       "population": 943,
       "osmId": 240050185
+    },
+    {
+      "id": "havighorst",
+      "name": "Havighorst",
+      "lat": 53.521233,
+      "lng": 10.171189,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Oststeinbek",
+      "nearestMajorCityId": "hamburg",
+      "nearestMajorCity": "Hamburg",
+      "population": 900,
+      "osmId": 1665807707
     },
     {
       "id": "hedwigenkoog",
@@ -3443,6 +5032,19 @@
       "nearestMajorCity": "Elmshorn",
       "population": 900,
       "osmId": 240023803
+    },
+    {
+      "id": "heidmoor",
+      "name": "Heidmoor",
+      "lat": 53.866917,
+      "lng": 9.816803,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Amt Bad Bramstedt-Land",
+      "nearestMajorCityId": "elmshorn",
+      "nearestMajorCity": "Elmshorn",
+      "population": 330,
+      "osmId": 240102921
     },
     {
       "id": "heikendorf",
@@ -3541,6 +5143,20 @@
       "island": "Helgoland"
     },
     {
+      "id": "helle",
+      "name": "Helle",
+      "lat": 54.324126,
+      "lng": 8.66623,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Eiderstedt",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 250,
+      "osmId": 5829896366,
+      "coastal": true
+    },
+    {
       "id": "hellschen",
       "name": "Hellschen",
       "lat": 54.194099,
@@ -3552,6 +5168,20 @@
       "nearestMajorCity": "Heide",
       "population": 900,
       "osmId": 664144007,
+      "coastal": true
+    },
+    {
+      "id": "helmstorf",
+      "name": "Helmstorf",
+      "lat": 54.287472,
+      "lng": 10.59456,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Lütjenburg",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 325,
+      "osmId": 240047321,
       "coastal": true
     },
     {
@@ -3800,6 +5430,32 @@
       "island": "Fehmarn"
     },
     {
+      "id": "hodorf",
+      "name": "Hodorf",
+      "lat": 53.904494,
+      "lng": 9.427292,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Itzehoe-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 900,
+      "osmId": 240074756
+    },
+    {
+      "id": "hogersdorf",
+      "name": "Högersdorf",
+      "lat": 53.921022,
+      "lng": 10.281699,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Leezen",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 411,
+      "osmId": 240113805
+    },
+    {
       "id": "hohenaspe",
       "name": "Hohenaspe",
       "lat": 53.989143,
@@ -3838,6 +5494,19 @@
       "population": 1070,
       "osmId": 240036348,
       "coastal": true
+    },
+    {
+      "id": "hohenhorn",
+      "name": "Hohenhorn",
+      "lat": 53.476205,
+      "lng": 10.368767,
+      "region": "Lauenburg",
+      "landkreis": "Herzogtum Lauenburg",
+      "municipality": "Hohe Elbgeest",
+      "nearestMajorCityId": "hamburg",
+      "nearestMajorCity": "Hamburg",
+      "population": 446,
+      "osmId": 240029186
     },
     {
       "id": "hohenlockstedt",
@@ -3933,6 +5602,19 @@
       "osmId": 173405060
     },
     {
+      "id": "hollenbek",
+      "name": "Hollenbek",
+      "lat": 53.591292,
+      "lng": 10.820374,
+      "region": "Lauenburg",
+      "landkreis": "Herzogtum Lauenburg",
+      "municipality": "Lauenburgische Seen",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 444,
+      "osmId": 240051391
+    },
+    {
       "id": "hollingstedt",
       "name": "Hollingstedt",
       "lat": 54.456713,
@@ -3972,6 +5654,33 @@
       "osmId": 240086046
     },
     {
+      "id": "holstenniendorf",
+      "name": "Holstenniendorf",
+      "lat": 54.041676,
+      "lng": 9.3481,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Schenefeld",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 900,
+      "osmId": 240130123
+    },
+    {
+      "id": "holt",
+      "name": "Holt",
+      "lat": 54.811017,
+      "lng": 9.147203,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Schafflund",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 188,
+      "osmId": 240048173,
+      "coastal": true
+    },
+    {
       "id": "holtsee",
       "name": "Holtsee",
       "lat": 54.398811,
@@ -3985,6 +5694,32 @@
       "osmId": 240093132
     },
     {
+      "id": "holzbunge",
+      "name": "Holzbunge",
+      "lat": 54.381776,
+      "lng": 9.704484,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Hüttener Berge",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 340,
+      "osmId": 240041947
+    },
+    {
+      "id": "holzdorf",
+      "name": "Holzdorf",
+      "lat": 54.554442,
+      "lng": 9.896551,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Schlei-Ostsee",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 953,
+      "osmId": 240071215
+    },
+    {
       "id": "homfeld",
       "name": "Homfeld",
       "lat": 54.07448,
@@ -3996,6 +5731,20 @@
       "nearestMajorCity": "Neumünster",
       "population": 900,
       "osmId": 293582597
+    },
+    {
+      "id": "honigsee",
+      "name": "Honigsee",
+      "lat": 54.228445,
+      "lng": 10.187995,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 446,
+      "osmId": 35244230,
+      "coastal": true
     },
     {
       "id": "hooger_fahre",
@@ -4099,6 +5848,19 @@
       "coastal": true
     },
     {
+      "id": "huje",
+      "name": "Huje",
+      "lat": 53.976834,
+      "lng": 9.434591,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Itzehoe-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 274,
+      "osmId": 240070684
+    },
+    {
       "id": "humptrup",
       "name": "Humptrup",
       "lat": 54.865518,
@@ -4150,6 +5912,32 @@
       "nearestMajorCity": "Flensburg",
       "population": 2230,
       "osmId": 240057890
+    },
+    {
+      "id": "huttblek",
+      "name": "Hüttblek",
+      "lat": 53.83859,
+      "lng": 10.072781,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Kisdorf",
+      "nearestMajorCityId": "norderstedt",
+      "nearestMajorCity": "Norderstedt",
+      "population": 364,
+      "osmId": 240108678
+    },
+    {
+      "id": "idstedt",
+      "name": "Idstedt",
+      "lat": 54.586383,
+      "lng": 9.511206,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Südangeln",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 834,
+      "osmId": 240105269
     },
     {
       "id": "immenstedt",
@@ -4245,6 +6033,19 @@
       "osmId": 240077962
     },
     {
+      "id": "jahrsdorf",
+      "name": "Jahrsdorf",
+      "lat": 54.065602,
+      "lng": 9.632989,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Mittelholstein",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 900,
+      "osmId": 240048721
+    },
+    {
       "id": "jardelund",
       "name": "Jardelund",
       "lat": 54.825698,
@@ -4299,6 +6100,19 @@
       "population": 745,
       "osmId": 240065127,
       "coastal": true
+    },
+    {
+      "id": "jorl",
+      "name": "Jörl",
+      "lat": 54.610283,
+      "lng": 9.291308,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Eggebek",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 846,
+      "osmId": 240023461
     },
     {
       "id": "jubek",
@@ -4437,6 +6251,20 @@
       "osmId": 8487261843
     },
     {
+      "id": "karlum",
+      "name": "Karlum",
+      "lat": 54.828947,
+      "lng": 8.973064,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 213,
+      "osmId": 240030820,
+      "coastal": true
+    },
+    {
       "id": "karolinenkoog",
       "name": "Karolinenkoog",
       "lat": 54.2833,
@@ -4536,6 +6364,20 @@
       "coastal": true
     },
     {
+      "id": "kirchnuchel",
+      "name": "Kirchnüchel",
+      "lat": 54.203668,
+      "lng": 10.678665,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Lütjenburg",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 193,
+      "osmId": 240032088,
+      "coastal": true
+    },
+    {
       "id": "kisdorf",
       "name": "Kisdorf",
       "lat": 53.810352,
@@ -4565,6 +6407,20 @@
       "island": "Fehmarn"
     },
     {
+      "id": "klein_barkau",
+      "name": "Klein Barkau",
+      "lat": 54.221606,
+      "lng": 10.134004,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 260,
+      "osmId": 240100843,
+      "coastal": true
+    },
+    {
       "id": "klein_barnitz",
       "name": "Klein Barnitz",
       "lat": 53.812492,
@@ -4576,6 +6432,19 @@
       "nearestMajorCity": "Lübeck",
       "population": 900,
       "osmId": 443450496
+    },
+    {
+      "id": "klein_gladebrugge",
+      "name": "Klein Gladebrügge",
+      "lat": 53.916333,
+      "lng": 10.32039,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 588,
+      "osmId": 25524822
     },
     {
       "id": "klein_nordende",
@@ -4617,6 +6486,19 @@
       "osmId": 25543399
     },
     {
+      "id": "klein_sarlhusen",
+      "name": "Klein Sarlhusen",
+      "lat": 54.018738,
+      "lng": 9.799694,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Kellinghusen",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 250,
+      "osmId": 10180040418
+    },
+    {
       "id": "klein_tastrup",
       "name": "Klein Tastrup",
       "lat": 54.760826,
@@ -4643,6 +6525,19 @@
       "osmId": 240028274
     },
     {
+      "id": "klein_wittensee",
+      "name": "Klein Wittensee",
+      "lat": 54.391431,
+      "lng": 9.733287,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Hüttener Berge",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 218,
+      "osmId": 240041221
+    },
+    {
       "id": "klempau",
       "name": "Klempau",
       "lat": 53.763188,
@@ -4654,6 +6549,20 @@
       "nearestMajorCity": "Lübeck",
       "population": 611,
       "osmId": 240091599
+    },
+    {
+      "id": "kletkamp",
+      "name": "Kletkamp",
+      "lat": 54.249028,
+      "lng": 10.638292,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Lütjenburg",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 148,
+      "osmId": 240035756,
+      "coastal": true
     },
     {
       "id": "klinkrade",
@@ -4766,6 +6675,19 @@
       "osmId": 240106112
     },
     {
+      "id": "kollmoor",
+      "name": "Kollmoor",
+      "lat": 53.922719,
+      "lng": 9.59874,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Breitenburg",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 33,
+      "osmId": 240117742
+    },
+    {
       "id": "kolln_reisiek",
       "name": "Kölln-Reisiek",
       "lat": 53.757516,
@@ -4849,6 +6771,19 @@
       "coastal": true
     },
     {
+      "id": "krempdorf",
+      "name": "Krempdorf",
+      "lat": 53.826685,
+      "lng": 9.461455,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Horst-Herzhorn",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 230,
+      "osmId": 240121585
+    },
+    {
       "id": "krempe",
       "name": "Krempe",
       "lat": 53.836039,
@@ -4900,6 +6835,33 @@
       "nearestMajorCity": "Itzehoe",
       "population": 548,
       "osmId": 240075565
+    },
+    {
+      "id": "krems_ii",
+      "name": "Krems II",
+      "lat": 53.987069,
+      "lng": 10.355382,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 441,
+      "osmId": 240097933
+    },
+    {
+      "id": "krim",
+      "name": "Krim",
+      "lat": 54.616544,
+      "lng": 10.005819,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Schlei-Ostsee",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 250,
+      "osmId": 373320028,
+      "coastal": true
     },
     {
       "id": "kringelkrug",
@@ -4971,6 +6933,19 @@
       "coastal": true
     },
     {
+      "id": "kronsmoor",
+      "name": "Kronsmoor",
+      "lat": 53.908185,
+      "lng": 9.601511,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Breitenburg",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 177,
+      "osmId": 240052101
+    },
+    {
       "id": "kroppelshagen",
       "name": "Kröppelshagen",
       "lat": 53.486626,
@@ -4996,6 +6971,46 @@
       "population": 900,
       "osmId": 294120731,
       "coastal": true
+    },
+    {
+      "id": "krucken",
+      "name": "Krücken",
+      "lat": 53.91146,
+      "lng": 9.795915,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Amt Bad Bramstedt-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 250,
+      "osmId": 12103291932
+    },
+    {
+      "id": "krummbek",
+      "name": "Krummbek",
+      "lat": 54.379234,
+      "lng": 10.401609,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Probstei",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 349,
+      "osmId": 240037225,
+      "coastal": true
+    },
+    {
+      "id": "krummendiek",
+      "name": "Krummendiek",
+      "lat": 53.945817,
+      "lng": 9.41742,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Itzehoe-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 75,
+      "osmId": 240051013
     },
     {
       "id": "krummensiek",
@@ -5119,6 +7134,19 @@
       "osmId": 240033994
     },
     {
+      "id": "kukels",
+      "name": "Kükels",
+      "lat": 53.89679,
+      "lng": 10.235368,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Leezen",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 435,
+      "osmId": 25686744
+    },
+    {
       "id": "kummerfeld",
       "name": "Kummerfeld",
       "lat": 53.691612,
@@ -5186,6 +7214,20 @@
       "osmId": 240119708
     },
     {
+      "id": "lammershagen",
+      "name": "Lammershagen",
+      "lat": 54.275638,
+      "lng": 10.445322,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 302,
+      "osmId": 240053937,
+      "coastal": true
+    },
+    {
       "id": "landgraben",
       "name": "Landgraben",
       "lat": 54.344095,
@@ -5214,6 +7256,19 @@
       "osmId": 271078899,
       "coastal": true,
       "island": "Fehmarn"
+    },
+    {
+      "id": "landrecht",
+      "name": "Landrecht",
+      "lat": 53.912495,
+      "lng": 9.409192,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Wilstermarsch",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 113,
+      "osmId": 240128244
     },
     {
       "id": "landscheide",
@@ -5255,6 +7310,19 @@
       "osmId": 896987949
     },
     {
+      "id": "langeln",
+      "name": "Langeln",
+      "lat": 53.795894,
+      "lng": 9.852189,
+      "region": "Hamburg Region",
+      "landkreis": "Pinneberg",
+      "municipality": "Rantzau",
+      "nearestMajorCityId": "norderstedt",
+      "nearestMajorCity": "Norderstedt",
+      "population": 504,
+      "osmId": 240109138
+    },
+    {
       "id": "langstedt",
       "name": "Langstedt",
       "lat": 54.616271,
@@ -5266,6 +7334,19 @@
       "nearestMajorCity": "Schleswig",
       "population": 1008,
       "osmId": 240027060
+    },
+    {
+      "id": "lankau",
+      "name": "Lankau",
+      "lat": 53.6667,
+      "lng": 10.6667,
+      "region": "Lauenburg",
+      "landkreis": "Herzogtum Lauenburg",
+      "municipality": "Sandesneben-Nusse",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 497,
+      "osmId": 240061325
     },
     {
       "id": "lanze",
@@ -5363,6 +7444,19 @@
       "coastal": true
     },
     {
+      "id": "lehmrade",
+      "name": "Lehmrade",
+      "lat": 53.593918,
+      "lng": 10.750638,
+      "region": "Lauenburg",
+      "landkreis": "Herzogtum Lauenburg",
+      "municipality": "Breitenfelde",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 467,
+      "osmId": 240025406
+    },
+    {
       "id": "lemkendorf",
       "name": "Lemkendorf",
       "lat": 54.472187,
@@ -5452,6 +7546,20 @@
       "coastal": true
     },
     {
+      "id": "lexgaard",
+      "name": "Lexgaard",
+      "lat": 54.83178,
+      "lng": 8.937528,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 67,
+      "osmId": 240098132,
+      "coastal": true
+    },
+    {
       "id": "lieth",
       "name": "Lieth",
       "lat": 54.155387,
@@ -5506,6 +7614,19 @@
       "osmId": 240043216,
       "coastal": true,
       "island": "Sylt"
+    },
+    {
+      "id": "lockstedt",
+      "name": "Lockstedt",
+      "lat": 54.00404,
+      "lng": 9.685366,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Kellinghusen",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 178,
+      "osmId": 240115039
     },
     {
       "id": "lohbarbek",
@@ -5564,6 +7685,19 @@
       "osmId": 240049595
     },
     {
+      "id": "loose",
+      "name": "Loose",
+      "lat": 54.519981,
+      "lng": 9.888008,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Schlei-Ostsee",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 841,
+      "osmId": 240024919
+    },
+    {
       "id": "loptin",
       "name": "Löptin",
       "lat": 54.175348,
@@ -5590,6 +7724,33 @@
       "osmId": 240046716
     },
     {
+      "id": "lubeck",
+      "name": "Lübeck",
+      "lat": 53.866444,
+      "lng": 10.684738,
+      "region": "Lübeck",
+      "landkreis": "Lübeck",
+      "municipality": "Lübeck",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 212958,
+      "osmId": 25327151
+    },
+    {
+      "id": "luckeberg",
+      "name": "Lückeberg",
+      "lat": 54.619512,
+      "lng": 10.018051,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Schlei-Ostsee",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 250,
+      "osmId": 373320033,
+      "coastal": true
+    },
+    {
       "id": "ludersbuttel",
       "name": "Lüdersbüttel",
       "lat": 54.220644,
@@ -5601,6 +7762,19 @@
       "nearestMajorCity": "Heide",
       "population": 900,
       "osmId": 190814031
+    },
+    {
+      "id": "luhnstedt",
+      "name": "Luhnstedt",
+      "lat": 54.167257,
+      "lng": 9.698626,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Jevenstedt",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 451,
+      "osmId": 240047631
     },
     {
       "id": "lunden",
@@ -5657,6 +7831,20 @@
       "coastal": true
     },
     {
+      "id": "lutjenholm",
+      "name": "Lütjenholm",
+      "lat": 54.683974,
+      "lng": 9.025258,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 334,
+      "osmId": 240047900,
+      "coastal": true
+    },
+    {
       "id": "lutjensee",
       "name": "Lütjensee",
       "lat": 53.649329,
@@ -5708,6 +7896,47 @@
       "nearestMajorCity": "Flensburg",
       "population": 745,
       "osmId": 240062457
+    },
+    {
+      "id": "maasholm",
+      "name": "Maasholm",
+      "lat": 54.684332,
+      "lng": 9.991514,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Geltinger Bucht",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 681,
+      "osmId": 240109020
+    },
+    {
+      "id": "malkwitz",
+      "name": "Malkwitz",
+      "lat": 54.206366,
+      "lng": 10.591698,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Malente",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 372,
+      "osmId": 371773465,
+      "coastal": true
+    },
+    {
+      "id": "manhagen",
+      "name": "Manhagen",
+      "lat": 54.196362,
+      "lng": 10.914517,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Lensahn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 382,
+      "osmId": 240026680,
+      "coastal": true
     },
     {
       "id": "marienleuchte",
@@ -5972,6 +8201,19 @@
       "osmId": 240121454
     },
     {
+      "id": "monchteich",
+      "name": "Mönchteich",
+      "lat": 53.877811,
+      "lng": 10.425737,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 5295892583
+    },
+    {
       "id": "monkeberg",
       "name": "Mönkeberg",
       "lat": 54.350374,
@@ -6012,6 +8254,19 @@
       "osmId": 240073081
     },
     {
+      "id": "moordiek",
+      "name": "Moordiek",
+      "lat": 53.913126,
+      "lng": 9.651461,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Breitenburg",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 112,
+      "osmId": 240085813
+    },
+    {
       "id": "moorgarten",
       "name": "Moorgarten",
       "lat": 53.808335,
@@ -6049,6 +8304,19 @@
       "nearestMajorCity": "Elmshorn",
       "population": 4516,
       "osmId": 240115228
+    },
+    {
+      "id": "mozen",
+      "name": "Mözen",
+      "lat": 53.91055,
+      "lng": 10.259555,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Leezen",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 447,
+      "osmId": 83478700
     },
     {
       "id": "munkbrarup",
@@ -6119,6 +8387,19 @@
       "island": "Amrum"
     },
     {
+      "id": "negenharrie",
+      "name": "Negenharrie",
+      "lat": 54.143772,
+      "lng": 10.075547,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Bordesholm",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 350,
+      "osmId": 240112473
+    },
+    {
       "id": "negernbotel",
       "name": "Negernbötel",
       "lat": 53.983073,
@@ -6130,6 +8411,19 @@
       "nearestMajorCity": "Neumünster",
       "population": 1046,
       "osmId": 240126291
+    },
+    {
+      "id": "nettelsee",
+      "name": "Nettelsee",
+      "lat": 54.17641,
+      "lng": 10.193407,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 397,
+      "osmId": 240073876
     },
     {
       "id": "neuberend",
@@ -6271,6 +8565,19 @@
       "island": "Fehmarn"
     },
     {
+      "id": "neukoppel",
+      "name": "Neukoppel",
+      "lat": 53.871087,
+      "lng": 10.441813,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293107936
+    },
+    {
       "id": "neukrug",
       "name": "Neukrug",
       "lat": 54.77256,
@@ -6282,6 +8589,19 @@
       "nearestMajorCity": "Flensburg",
       "population": 250,
       "osmId": 8532733455
+    },
+    {
+      "id": "neumuhlen",
+      "name": "Neumühlen",
+      "lat": 53.893849,
+      "lng": 10.523874,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 910357747
     },
     {
       "id": "neuwittenbek",
@@ -6354,6 +8674,32 @@
       "osmId": 3675106563
     },
     {
+      "id": "niemark",
+      "name": "Niemark",
+      "lat": 53.800794,
+      "lng": 10.650891,
+      "region": "Lübeck",
+      "landkreis": "Lübeck",
+      "municipality": "Lübeck",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 313805394
+    },
+    {
+      "id": "niendeel",
+      "name": "Niendeel",
+      "lat": 53.858488,
+      "lng": 10.403609,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293114840
+    },
+    {
       "id": "niendorf",
       "name": "Niendorf",
       "lat": 54.455827,
@@ -6396,6 +8742,19 @@
       "osmId": 240065972
     },
     {
+      "id": "nienwohld",
+      "name": "Nienwohld",
+      "lat": 53.785912,
+      "lng": 10.193806,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Bargteheide-Land",
+      "nearestMajorCityId": "norderstedt",
+      "nearestMajorCity": "Norderstedt",
+      "population": 474,
+      "osmId": 240102898
+    },
+    {
       "id": "noer",
       "name": "Noer",
       "lat": 54.462732,
@@ -6424,6 +8783,19 @@
       "osmId": 240044021,
       "coastal": true,
       "island": "Amrum"
+    },
+    {
+      "id": "norderbrarup",
+      "name": "Norderbrarup",
+      "lat": 54.654782,
+      "lng": 9.770428,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Süderbrarup",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 683,
+      "osmId": 240081966
     },
     {
       "id": "norderdeich",
@@ -6467,6 +8839,20 @@
       "nearestMajorCity": "Flensburg",
       "population": 509,
       "osmId": 240105063
+    },
+    {
+      "id": "norstedt",
+      "name": "Norstedt",
+      "lat": 54.588223,
+      "lng": 9.127295,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Viöl",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 427,
+      "osmId": 240028447,
+      "coastal": true
     },
     {
       "id": "nortorf",
@@ -6586,6 +8972,19 @@
       "osmId": 240086250
     },
     {
+      "id": "oeschebuttel",
+      "name": "Oeschebüttel",
+      "lat": 53.989235,
+      "lng": 9.721462,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Kellinghusen",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 223,
+      "osmId": 240035312
+    },
+    {
       "id": "oevenum",
       "name": "Oevenum",
       "lat": 54.710892,
@@ -6640,6 +9039,20 @@
       "nearestMajorCity": "Husum",
       "population": 649,
       "osmId": 240055181
+    },
+    {
+      "id": "olderup",
+      "name": "Olderup",
+      "lat": 54.538708,
+      "lng": 9.110172,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Nordsee-Treene",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 456,
+      "osmId": 240045915,
+      "coastal": true
     },
     {
       "id": "oppendorf",
@@ -6711,6 +9124,33 @@
       "nearestMajorCity": "Rendsburg",
       "population": 559,
       "osmId": 240062575
+    },
+    {
+      "id": "osterby",
+      "name": "Osterby",
+      "lat": 54.453424,
+      "lng": 9.753793,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Hüttener Berge",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 923,
+      "osmId": 240121250
+    },
+    {
+      "id": "ostereck",
+      "name": "Ostereck",
+      "lat": 54.329488,
+      "lng": 8.645941,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Sankt Peter-Ording",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 250,
+      "osmId": 5831478201,
+      "coastal": true
     },
     {
       "id": "osterende",
@@ -6814,6 +9254,34 @@
       "coastal": true
     },
     {
+      "id": "otteresing",
+      "name": "Otteresing",
+      "lat": 54.334264,
+      "lng": 8.66081,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Eiderstedt",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 250,
+      "osmId": 5831478956,
+      "coastal": true
+    },
+    {
+      "id": "ovendorfer_hof",
+      "name": "Ovendorfer Hof",
+      "lat": 53.948878,
+      "lng": 10.821513,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ratekau",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293234614,
+      "coastal": true
+    },
+    {
       "id": "owschlag",
       "name": "Owschlag",
       "lat": 54.393739,
@@ -6838,6 +9306,19 @@
       "nearestMajorCity": "Flensburg",
       "population": 900,
       "osmId": 321731060
+    },
+    {
+      "id": "padelugge",
+      "name": "Padelügge",
+      "lat": 53.853575,
+      "lng": 10.62487,
+      "region": "Lübeck",
+      "landkreis": "Lübeck",
+      "municipality": "Lübeck",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293107616
     },
     {
       "id": "padenstedt",
@@ -6895,6 +9376,19 @@
       "island": "Pellworm"
     },
     {
+      "id": "pasewerk",
+      "name": "Pasewerk",
+      "lat": 53.856896,
+      "lng": 10.524795,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Reinfeld",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293116260
+    },
+    {
       "id": "passade",
       "name": "Passade",
       "lat": 54.3667,
@@ -6936,6 +9430,19 @@
       "nearestMajorCity": "Kiel",
       "population": 4500,
       "osmId": 240100817
+    },
+    {
+      "id": "poggenpohl",
+      "name": "Poggenpohl",
+      "lat": 53.847594,
+      "lng": 10.612304,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 1483394209
     },
     {
       "id": "poggensiek",
@@ -7207,6 +9714,33 @@
       "osmId": 504617054
     },
     {
+      "id": "ramstedt",
+      "name": "Ramstedt",
+      "lat": 54.4,
+      "lng": 9.16667,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Nordsee-Treene",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 449,
+      "osmId": 240092922
+    },
+    {
+      "id": "rantzau",
+      "name": "Rantzau",
+      "lat": 54.236796,
+      "lng": 10.51582,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Großer Plöner See",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 329,
+      "osmId": 59734318,
+      "coastal": true
+    },
+    {
       "id": "rastorf",
       "name": "Rastorf",
       "lat": 54.271653,
@@ -7391,6 +9925,34 @@
       "coastal": true
     },
     {
+      "id": "robsdorf",
+      "name": "Röbsdorf",
+      "lat": 54.373953,
+      "lng": 10.258104,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Probstei",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 388087540,
+      "coastal": true
+    },
+    {
+      "id": "rodenbek",
+      "name": "Rodenbek",
+      "lat": 54.275604,
+      "lng": 10.019094,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Molfsee",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 486,
+      "osmId": 240108901,
+      "coastal": true
+    },
+    {
       "id": "rogen",
       "name": "Rögen",
       "lat": 54.404301,
@@ -7403,6 +9965,19 @@
       "population": 250,
       "osmId": 4469991989,
       "coastal": true
+    },
+    {
+      "id": "roggenhorst",
+      "name": "Roggenhorst",
+      "lat": 53.860304,
+      "lng": 10.59985,
+      "region": "Lübeck",
+      "landkreis": "Lübeck",
+      "municipality": "Lübeck",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293469200
     },
     {
       "id": "rohlstorf",
@@ -7429,6 +10004,19 @@
       "nearestMajorCity": "Lübeck",
       "population": 865,
       "osmId": 240049174
+    },
+    {
+      "id": "roseburg",
+      "name": "Roseburg",
+      "lat": 53.531498,
+      "lng": 10.626591,
+      "region": "Lauenburg",
+      "landkreis": "Herzogtum Lauenburg",
+      "municipality": "Büchen",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 515,
+      "osmId": 240100494
     },
     {
       "id": "rosenhof",
@@ -7553,6 +10141,19 @@
       "nearestMajorCity": "Lübeck",
       "population": 1690,
       "osmId": 240091164
+    },
+    {
+      "id": "sandhof",
+      "name": "Sandhof",
+      "lat": 53.846127,
+      "lng": 10.589453,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 300853928
     },
     {
       "id": "sankt_margarethen",
@@ -7746,6 +10347,32 @@
       "osmId": 240094457
     },
     {
+      "id": "schieren",
+      "name": "Schieren",
+      "lat": 53.944403,
+      "lng": 10.391365,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 280,
+      "osmId": 240048934
+    },
+    {
+      "id": "schierensee",
+      "name": "Schierensee",
+      "lat": 54.256568,
+      "lng": 9.985057,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Molfsee",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 381,
+      "osmId": 240062368
+    },
+    {
       "id": "schillsdorf",
       "name": "Schillsdorf",
       "lat": 54.11408,
@@ -7785,6 +10412,19 @@
       "osmId": 240036203
     },
     {
+      "id": "schipphorst",
+      "name": "Schipphorst",
+      "lat": 54.083346,
+      "lng": 10.150769,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Bokhorst-Wankendorf",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 900,
+      "osmId": 903972760
+    },
+    {
       "id": "schlagsdorf",
       "name": "Schlagsdorf",
       "lat": 54.497411,
@@ -7813,6 +10453,19 @@
       "population": 532,
       "osmId": 37104681,
       "coastal": true
+    },
+    {
+      "id": "schlotfeld",
+      "name": "Schlotfeld",
+      "lat": 53.955541,
+      "lng": 9.582218,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Itzehoe-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 238,
+      "osmId": 240128994
     },
     {
       "id": "schlutup",
@@ -7854,6 +10507,19 @@
       "osmId": 240086507
     },
     {
+      "id": "schmalstede",
+      "name": "Schmalstede",
+      "lat": 54.193626,
+      "lng": 10.028877,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Bordesholm",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 261,
+      "osmId": 240111298
+    },
+    {
       "id": "schmilau",
       "name": "Schmilau",
       "lat": 53.663719,
@@ -7878,6 +10544,19 @@
       "nearestMajorCity": "Hamburg",
       "population": 845,
       "osmId": 240069609
+    },
+    {
+      "id": "schonboken",
+      "name": "Schönböken",
+      "lat": 54.082424,
+      "lng": 10.197567,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Bokhorst-Wankendorf",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 900,
+      "osmId": 422795898
     },
     {
       "id": "schonhagen",
@@ -7908,6 +10587,20 @@
       "coastal": true
     },
     {
+      "id": "schonkamp",
+      "name": "Schönkamp",
+      "lat": 53.949755,
+      "lng": 10.640648,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Stockelsdorf",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 2461446516,
+      "coastal": true
+    },
+    {
       "id": "schonkirchen",
       "name": "Schönkirchen",
       "lat": 54.337173,
@@ -7933,6 +10626,19 @@
       "nearestMajorCity": "Schleswig",
       "population": 2540,
       "osmId": 1562157081
+    },
+    {
+      "id": "schulendorf",
+      "name": "Schulendorf",
+      "lat": 53.473053,
+      "lng": 10.560481,
+      "region": "Lauenburg",
+      "landkreis": "Herzogtum Lauenburg",
+      "municipality": "Büchen",
+      "nearestMajorCityId": "hamburg",
+      "nearestMajorCity": "Hamburg",
+      "population": 466,
+      "osmId": 240049562
     },
     {
       "id": "schulldorf",
@@ -8041,6 +10747,19 @@
       "population": 929,
       "osmId": 180295960,
       "coastal": true
+    },
+    {
+      "id": "schwissel",
+      "name": "Schwissel",
+      "lat": 53.896361,
+      "lng": 10.293916,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Leezen",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 229,
+      "osmId": 240045260
     },
     {
       "id": "seedorf",
@@ -8190,6 +10909,33 @@
       "coastal": true
     },
     {
+      "id": "selk",
+      "name": "Selk",
+      "lat": 54.472191,
+      "lng": 9.570311,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Haddeby",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 808,
+      "osmId": 240105173
+    },
+    {
+      "id": "selkau",
+      "name": "Selkau",
+      "lat": 54.299128,
+      "lng": 10.335168,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 452114401,
+      "coastal": true
+    },
+    {
       "id": "seth",
       "name": "Seth",
       "lat": 53.849452,
@@ -8214,6 +10960,20 @@
       "nearestMajorCity": "Lübeck",
       "population": 669,
       "osmId": 240095354
+    },
+    {
+      "id": "sieversdorf",
+      "name": "Sieversdorf",
+      "lat": 54.228051,
+      "lng": 10.223795,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 35237932,
+      "coastal": true
     },
     {
       "id": "sievershutten",
@@ -8255,6 +11015,33 @@
       "osmId": 180296264
     },
     {
+      "id": "silzen",
+      "name": "Silzen",
+      "lat": 54.028605,
+      "lng": 9.635072,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Itzehoe-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 169,
+      "osmId": 240126094
+    },
+    {
+      "id": "soholm",
+      "name": "Soholm",
+      "lat": 54.69858,
+      "lng": 9.032741,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 134,
+      "osmId": 1574331830,
+      "coastal": true
+    },
+    {
       "id": "sommerland",
       "name": "Sommerland",
       "lat": 53.798493,
@@ -8268,6 +11055,60 @@
       "osmId": 240122541
     },
     {
+      "id": "sonnebull",
+      "name": "Sönnebüll",
+      "lat": 54.627941,
+      "lng": 8.996264,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 227,
+      "osmId": 185965729,
+      "coastal": true
+    },
+    {
+      "id": "sophienhamm",
+      "name": "Sophienhamm",
+      "lat": 54.278736,
+      "lng": 9.465558,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Hohner Harde",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 349,
+      "osmId": 240108063
+    },
+    {
+      "id": "sophienhof",
+      "name": "Sophienhof",
+      "lat": 54.210187,
+      "lng": 10.336739,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 293189027,
+      "coastal": true
+    },
+    {
+      "id": "soren",
+      "name": "Sören",
+      "lat": 54.202708,
+      "lng": 9.998571,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Bordesholm",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 200,
+      "osmId": 240051135
+    },
+    {
       "id": "sorup",
       "name": "Sörup",
       "lat": 54.716936,
@@ -8279,6 +11120,20 @@
       "nearestMajorCity": "Flensburg",
       "population": 4179,
       "osmId": 1572459264
+    },
+    {
+      "id": "sprakebull",
+      "name": "Sprakebüll",
+      "lat": 54.774857,
+      "lng": 9.077056,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 218,
+      "osmId": 240111106,
+      "coastal": true
     },
     {
       "id": "staberdorf",
@@ -8295,6 +11150,19 @@
       "osmId": 33471524,
       "coastal": true,
       "island": "Fehmarn"
+    },
+    {
+      "id": "stafstedt",
+      "name": "Stafstedt",
+      "lat": 54.17055,
+      "lng": 9.665997,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Jevenstedt",
+      "nearestMajorCityId": "rendsburg",
+      "nearestMajorCity": "Rendsburg",
+      "population": 369,
+      "osmId": 240105487
     },
     {
       "id": "staun",
@@ -8354,6 +11222,19 @@
       "osmId": 240115832
     },
     {
+      "id": "steinkoppel",
+      "name": "Steinkoppel",
+      "lat": 53.905743,
+      "lng": 10.525257,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 910357753
+    },
+    {
       "id": "sterley",
       "name": "Sterley",
       "lat": 53.619473,
@@ -8378,6 +11259,19 @@
       "nearestMajorCity": "Flensburg",
       "population": 1491,
       "osmId": 240024044
+    },
+    {
+      "id": "stipsdorf",
+      "name": "Stipsdorf",
+      "lat": 53.941842,
+      "lng": 10.335431,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 226,
+      "osmId": 83477418
     },
     {
       "id": "stockelsdorf",
@@ -8419,6 +11313,19 @@
       "osmId": 240054251
     },
     {
+      "id": "stoltebull",
+      "name": "Stoltebüll",
+      "lat": 54.700191,
+      "lng": 9.879226,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Geltinger Bucht",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 853,
+      "osmId": 240039772
+    },
+    {
       "id": "stoltenberg",
       "name": "Stoltenberg",
       "lat": 54.34376,
@@ -8431,6 +11338,19 @@
       "population": 340,
       "osmId": 147111710,
       "coastal": true
+    },
+    {
+      "id": "stordorf",
+      "name": "Stördorf",
+      "lat": 53.913539,
+      "lng": 9.414599,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Wilstermarsch",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 120,
+      "osmId": 240114885
     },
     {
       "id": "storkathen",
@@ -8513,6 +11433,32 @@
       "nearestMajorCity": "Norderstedt",
       "population": 1107,
       "osmId": 25076750
+    },
+    {
+      "id": "struxdorf",
+      "name": "Struxdorf",
+      "lat": 54.63116,
+      "lng": 9.640256,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Südangeln",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 685,
+      "osmId": 240094894
+    },
+    {
+      "id": "stubben",
+      "name": "Stubben",
+      "lat": 53.733627,
+      "lng": 10.432082,
+      "region": "Lauenburg",
+      "landkreis": "Herzogtum Lauenburg",
+      "municipality": "Sandesneben-Nusse",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 421,
+      "osmId": 240122230
     },
     {
       "id": "stubbendorf",
@@ -8643,6 +11589,19 @@
       "osmId": 271075806,
       "coastal": true,
       "island": "Fehmarn"
+    },
+    {
+      "id": "taarstedt",
+      "name": "Taarstedt",
+      "lat": 54.566751,
+      "lng": 9.686225,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Südangeln",
+      "nearestMajorCityId": "schleswig",
+      "nearestMajorCity": "Schleswig",
+      "population": 876,
+      "osmId": 240040714
     },
     {
       "id": "talkau",
@@ -8781,6 +11740,34 @@
       "osmId": 240048268
     },
     {
+      "id": "tholendorf",
+      "name": "Tholendorf",
+      "lat": 54.330145,
+      "lng": 8.673037,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Eiderstedt",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 250,
+      "osmId": 1841181149,
+      "coastal": true
+    },
+    {
+      "id": "tiefende",
+      "name": "Tiefende",
+      "lat": 53.927637,
+      "lng": 10.766632,
+      "region": "Ostholstein",
+      "landkreis": "Ostholstein",
+      "municipality": "Ratekau",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293234705,
+      "coastal": true
+    },
+    {
       "id": "tielen",
       "name": "Tielen",
       "lat": 54.285522,
@@ -8808,6 +11795,20 @@
       "osmId": 1259327161,
       "coastal": true,
       "island": "Pellworm"
+    },
+    {
+      "id": "tinningstedt",
+      "name": "Tinningstedt",
+      "lat": 54.813269,
+      "lng": 8.930758,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 203,
+      "osmId": 240128333,
+      "coastal": true
     },
     {
       "id": "tinnum",
@@ -8871,6 +11872,20 @@
       "island": "Föhr"
     },
     {
+      "id": "tokendorf",
+      "name": "Tökendorf",
+      "lat": 54.330679,
+      "lng": 10.29041,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 282435722,
+      "coastal": true
+    },
+    {
       "id": "tolk",
       "name": "Tolk",
       "lat": 54.579715,
@@ -8896,6 +11911,19 @@
       "population": 4500,
       "osmId": 240125969,
       "coastal": true
+    },
+    {
+      "id": "tonsheide",
+      "name": "Tönsheide",
+      "lat": 54.059534,
+      "lng": 9.766492,
+      "region": "MIT",
+      "landkreis": "Rendsburg-Eckernförde",
+      "municipality": "Amt Mittelholstein",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 250,
+      "osmId": 372429764
     },
     {
       "id": "tornesch",
@@ -8924,6 +11952,32 @@
       "osmId": 240095952
     },
     {
+      "id": "travenhorst",
+      "name": "Travenhorst",
+      "lat": 54.018975,
+      "lng": 10.456402,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 203,
+      "osmId": 240101600
+    },
+    {
+      "id": "traventhal",
+      "name": "Traventhal",
+      "lat": 53.9,
+      "lng": 10.3167,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 540,
+      "osmId": 240059753
+    },
+    {
       "id": "treia",
       "name": "Treia",
       "lat": 54.514736,
@@ -8935,6 +11989,20 @@
       "nearestMajorCity": "Schleswig",
       "population": 1504,
       "osmId": 240123426
+    },
+    {
+      "id": "trent",
+      "name": "Trent",
+      "lat": 54.204383,
+      "lng": 10.366527,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 146573262,
+      "coastal": true
     },
     {
       "id": "trittau",
@@ -8989,6 +12057,20 @@
       "osmId": 321731104
     },
     {
+      "id": "uphusum",
+      "name": "Uphusum",
+      "lat": 54.841842,
+      "lng": 8.85725,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 371,
+      "osmId": 240115159,
+      "coastal": true
+    },
+    {
       "id": "vadersdorf",
       "name": "Vadersdorf",
       "lat": 54.484906,
@@ -9034,6 +12116,33 @@
       "island": "Fehmarn"
     },
     {
+      "id": "vollstedt",
+      "name": "Vollstedt",
+      "lat": 54.623778,
+      "lng": 9.042099,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Mittleres Nordfriesland",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 186,
+      "osmId": 240125511,
+      "coastal": true
+    },
+    {
+      "id": "vosskaten",
+      "name": "Voßkaten",
+      "lat": 53.856318,
+      "lng": 10.468095,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293107538
+    },
+    {
       "id": "waabs",
       "name": "Waabs",
       "lat": 54.533235,
@@ -9058,6 +12167,45 @@
       "nearestMajorCity": "Neumünster",
       "population": 9391,
       "osmId": 24964556
+    },
+    {
+      "id": "wahlstorf_dorf",
+      "name": "Wahlstorf (Dorf)",
+      "lat": 54.178379,
+      "lng": 10.295374,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 414257695
+    },
+    {
+      "id": "wahlstorf_hof",
+      "name": "Wahlstorf-Hof",
+      "lat": 54.195655,
+      "lng": 10.309974,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 524,
+      "osmId": 240042686
+    },
+    {
+      "id": "wakendorf_i",
+      "name": "Wakendorf I",
+      "lat": 53.864622,
+      "lng": 10.35682,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Trave-Land",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 428,
+      "osmId": 240075807
     },
     {
       "id": "waldhusen",
@@ -9113,6 +12261,19 @@
       "nearestMajorCity": "Neumünster",
       "population": 2975,
       "osmId": 240111196
+    },
+    {
+      "id": "warnau",
+      "name": "Warnau",
+      "lat": 54.187687,
+      "lng": 10.161761,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 376,
+      "osmId": 240030955
     },
     {
       "id": "wasbek_bullenbek",
@@ -9220,6 +12381,21 @@
       "coastal": true
     },
     {
+      "id": "wendtorfer_strand",
+      "name": "Wendtorfer Strand",
+      "lat": 54.415726,
+      "lng": 10.284011,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Probstei",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "tourism": true,
+      "osmId": 369733683,
+      "coastal": true
+    },
+    {
       "id": "wenkendorf",
       "name": "Wenkendorf",
       "lat": 54.512207,
@@ -9278,6 +12454,19 @@
       "osmId": 320508972
     },
     {
+      "id": "wesenbergerheide",
+      "name": "Wesenbergerheide",
+      "lat": 53.802677,
+      "lng": 10.567986,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 313801897
+    },
+    {
       "id": "wesselburen",
       "name": "Wesselburen",
       "lat": 54.212343,
@@ -9318,6 +12507,19 @@
       "osmId": 180296036
     },
     {
+      "id": "westerau",
+      "name": "Westerau",
+      "lat": 53.776656,
+      "lng": 10.483501,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 805,
+      "osmId": 240051103
+    },
+    {
       "id": "westerbergen",
       "name": "Westerbergen",
       "lat": 54.43919,
@@ -9348,6 +12550,19 @@
       "osmId": 6928685546,
       "coastal": true,
       "island": "Sylt"
+    },
+    {
+      "id": "westerholz",
+      "name": "Westerholz",
+      "lat": 54.817399,
+      "lng": 9.669232,
+      "region": "Schleswig",
+      "landkreis": "Schleswig-Flensburg",
+      "municipality": "Langballig",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 730,
+      "osmId": 240041117
     },
     {
       "id": "westerhorn",
@@ -9437,6 +12652,20 @@
       "island": "Pellworm"
     },
     {
+      "id": "westre",
+      "name": "Westre",
+      "lat": 54.854222,
+      "lng": 8.985753,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Südtondern",
+      "nearestMajorCityId": "flensburg",
+      "nearestMajorCity": "Flensburg",
+      "population": 402,
+      "osmId": 240123246,
+      "coastal": true
+    },
+    {
       "id": "wewelsfleth",
       "name": "Wewelsfleth",
       "lat": 53.843569,
@@ -9474,6 +12703,33 @@
       "nearestMajorCity": "Norderstedt",
       "population": 900,
       "osmId": 504587234
+    },
+    {
+      "id": "wildenhorst",
+      "name": "Wildenhorst",
+      "lat": 54.272872,
+      "lng": 10.329749,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Preetz-Land",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 250844949,
+      "coastal": true
+    },
+    {
+      "id": "willenscharen",
+      "name": "Willenscharen",
+      "lat": 54.013283,
+      "lng": 9.803266,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Kellinghusen",
+      "nearestMajorCityId": "neumuenster",
+      "nearestMajorCity": "Neumünster",
+      "population": 160,
+      "osmId": 240079781
     },
     {
       "id": "wilstedt",
@@ -9528,6 +12784,33 @@
       "osmId": 240099714
     },
     {
+      "id": "winseldorf",
+      "name": "Winseldorf",
+      "lat": 53.944647,
+      "lng": 9.606505,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Amt Itzehoe-Land",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 315,
+      "tourism": true,
+      "osmId": 240124021
+    },
+    {
+      "id": "winsen",
+      "name": "Winsen",
+      "lat": 53.832002,
+      "lng": 10.01568,
+      "region": "Holstein",
+      "landkreis": "Segeberg",
+      "municipality": "Kisdorf",
+      "nearestMajorCityId": "norderstedt",
+      "nearestMajorCity": "Norderstedt",
+      "population": 412,
+      "osmId": 240084964
+    },
+    {
       "id": "wisch",
       "name": "Wisch",
       "lat": 54.410068,
@@ -9540,6 +12823,19 @@
       "population": 750,
       "osmId": 240126864,
       "coastal": true
+    },
+    {
+      "id": "wittbek",
+      "name": "Wittbek",
+      "lat": 54.471863,
+      "lng": 9.204037,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Nordsee-Treene",
+      "nearestMajorCityId": "husum",
+      "nearestMajorCity": "Husum",
+      "population": 793,
+      "osmId": 240080508
     },
     {
       "id": "wittdun_auf_amrum",
@@ -9556,6 +12852,47 @@
       "osmId": 240091761,
       "coastal": true,
       "island": "Amrum"
+    },
+    {
+      "id": "wittenbergen",
+      "name": "Wittenbergen",
+      "lat": 53.933822,
+      "lng": 9.68244,
+      "region": "Stör",
+      "landkreis": "Steinburg",
+      "municipality": "Breitenburg",
+      "nearestMajorCityId": "itzehoe",
+      "nearestMajorCity": "Itzehoe",
+      "population": 161,
+      "osmId": 240026689
+    },
+    {
+      "id": "wittenberger_passau",
+      "name": "Wittenberger Passau",
+      "lat": 54.290745,
+      "lng": 10.383807,
+      "region": "Holstein",
+      "landkreis": "Plön",
+      "municipality": "Selent/Schlesen",
+      "nearestMajorCityId": "kiel",
+      "nearestMajorCity": "Kiel",
+      "population": 900,
+      "osmId": 415254902,
+      "coastal": true
+    },
+    {
+      "id": "wittendun",
+      "name": "Wittendün",
+      "lat": 54.302554,
+      "lng": 8.664816,
+      "region": "Nordfriesland",
+      "landkreis": "Nordfriesland",
+      "municipality": "Sankt Peter-Ording",
+      "nearestMajorCityId": "heide",
+      "nearestMajorCity": "Heide",
+      "population": 250,
+      "osmId": 1883606400,
+      "coastal": true
     },
     {
       "id": "witzeeze",
@@ -9642,6 +12979,32 @@
       "osmId": 240038200
     },
     {
+      "id": "zarpenerhof",
+      "name": "Zarpenerhof",
+      "lat": 53.869802,
+      "lng": 10.529002,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293116069
+    },
+    {
+      "id": "zarpenerwohld",
+      "name": "Zarpenerwohld",
+      "lat": 53.883217,
+      "lng": 10.499518,
+      "region": "Hamburg Region",
+      "landkreis": "Stormarn",
+      "municipality": "Nordstormarn",
+      "nearestMajorCityId": "luebeck",
+      "nearestMajorCity": "Lübeck",
+      "population": 250,
+      "osmId": 293115864
+    },
+    {
       "id": "ziegelhof",
       "name": "Ziegelhof",
       "lat": 53.806012,
@@ -9667,5 +13030,8 @@
       "population": 979,
       "osmId": 240127017
     }
-  ]
+  ],
+  "deferred": [],
+  "failed": [],
+  "rejectedOutside": []
 }

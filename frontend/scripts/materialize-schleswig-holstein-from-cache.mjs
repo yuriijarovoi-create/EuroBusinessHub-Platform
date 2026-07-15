@@ -2,7 +2,7 @@
  * Materialize Schleswig-Holstein TS artifacts from verified import-result / cache.
  * Does NOT call Nominatim. Safe recovery when verification already completed.
  *
- * Usage: node scripts/materialize-schleswig-holstein-from-cache.mjs [--limit=700]
+ * Usage: node scripts/materialize-schleswig-holstein-from-cache.mjs [--limit=5000]
  */
 import fs from 'fs';
 import path from 'path';
@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 
 const __dir = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dir, '..', 'src');
-const LIMIT = parseInt(process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1] ?? '700', 10);
+const LIMIT = parseInt(process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1] ?? '5000', 10);
 
 const RESULT_PATH = path.join(__dir, 'osm-schleswig-holstein-import-result.json');
 const CACHE_PATH = path.join(__dir, 'osm-schleswig-holstein-verification-cache.json');
@@ -189,27 +189,29 @@ for (const raw of source) {
 
 sanitized.sort((a, b) => a.id.localeCompare(b.id));
 
-// Persistent verification cache keyed by OSM id + coordinates
+// Merge into persistent verification cache (never drop prior verified entries)
+const priorCache = fs.existsSync(CACHE_PATH)
+  ? JSON.parse(fs.readFileSync(CACHE_PATH, 'utf8'))
+  : { entries: {} };
+const mergedEntries = { ...(priorCache.entries ?? {}) };
+for (const e of sanitized) {
+  mergedEntries[`node/${e.osmId}@${e.lat.toFixed(6)},${e.lng.toFixed(6)}`] = {
+    osmId: e.osmId,
+    id: e.id,
+    name: e.name,
+    lat: e.lat,
+    lng: e.lng,
+    landkreis: e.landkreis,
+    municipality: e.municipality,
+    verified: true,
+    status: 'ok',
+  };
+}
 const cache = {
   updatedAt: new Date().toISOString(),
   source: 'osm-schleswig-holstein-import-result.json',
-  count: sanitized.length,
-  entries: Object.fromEntries(
-    sanitized.map((e) => [
-      `node/${e.osmId}@${e.lat.toFixed(6)},${e.lng.toFixed(6)}`,
-      {
-        osmId: e.osmId,
-        id: e.id,
-        name: e.name,
-        lat: e.lat,
-        lng: e.lng,
-        landkreis: e.landkreis,
-        municipality: e.municipality,
-        verified: true,
-        status: 'ok',
-      },
-    ]),
-  ),
+  count: Object.keys(mergedEntries).length,
+  entries: mergedEntries,
 };
 fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2));
 
@@ -219,16 +221,21 @@ for (const e of sanitized) {
   byLandkreis[lk] = (byLandkreis[lk] ?? 0) + 1;
 }
 
+const priorCp = fs.existsSync(CHECKPOINT_PATH)
+  ? JSON.parse(fs.readFileSync(CHECKPOINT_PATH, 'utf8'))
+  : {};
 const checkpoint = {
   updatedAt: new Date().toISOString(),
   phase: 'materialized',
   importedCount: sanitized.length,
   batchLimit: LIMIT,
   processedOsmIds: sanitized.map((e) => e.osmId),
+  processedKeys: priorCp.processedKeys ?? [],
   byLandkreis,
   corrections,
-  deferred: [],
-  failed: [],
+  deferred: priorCp.deferred ?? [],
+  failed: priorCp.failed ?? [],
+  noCaps: priorCp.noCaps ?? true,
 };
 fs.writeFileSync(CHECKPOINT_PATH, JSON.stringify(checkpoint, null, 2));
 

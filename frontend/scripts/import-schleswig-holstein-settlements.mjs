@@ -1,9 +1,9 @@
 /**
  * Import OSM-verified Schleswig-Holstein settlements into generated TS files.
  * Usage:
- *   node scripts/import-schleswig-holstein-settlements.mjs [--limit=700] [--dry-run] [--fast]
+ *   node scripts/import-schleswig-holstein-settlements.mjs [--limit=5000] [--chunk=250] [--dry-run] [--fast]
  *   node scripts/import-schleswig-holstein-settlements.mjs --from-cache
- *   node scripts/import-schleswig-holstein-settlements.mjs --resume
+ *   node scripts/import-schleswig-holstein-settlements.mjs --resume --no-caps --chunk=250
  *
  * Nominatim: sequential only, >=1.2s delay, persistent verification cache, checkpoint after each candidate.
  */
@@ -14,15 +14,20 @@ import { fileURLToPath } from 'url';
 
 const __dir = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dir, '..', 'src');
-const LIMIT = parseInt(process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1] ?? '700', 10);
+const LIMIT = parseInt(process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1] ?? '5000', 10);
+const CHUNK_NEW = parseInt(process.argv.find((a) => a.startsWith('--chunk='))?.split('=')[1] ?? '0', 10);
 const DRY = process.argv.includes('--dry-run');
 const FAST = process.argv.includes('--fast');
 const FROM_CACHE = process.argv.includes('--from-cache');
 const RESUME = process.argv.includes('--resume') || process.argv.includes('--from-cache');
+const NO_CAPS = process.argv.includes('--no-caps');
 const MIN_DELAY_MS = 1200;
 const USER_AGENT = 'EuroBusinessHub-Platform/1.0 (schleswig-holstein-import; contact=geo-data-import)';
 const BACKOFF_429 = [30_000, 60_000, 120_000, 300_000];
 const MAX_RETRIES = 4;
+let nominatimRequests = 0;
+let http429Retries = 0;
+const resumeSeedCount = { value: 0 };
 
 const CACHE_PATH = path.join(__dir, 'osm-schleswig-holstein-verification-cache.json');
 const CHECKPOINT_PATH = path.join(__dir, 'osm-schleswig-holstein-checkpoint.json');
@@ -108,7 +113,7 @@ const LANDKREIS_PRIORITY = [
   'Flensburg', 'Kiel', 'Lübeck', 'Neumünster', 'Helgoland',
 ];
 
-/** Soft caps after Nominatim assignment — keep Hamburg belt from dominating Batch 1 */
+/** Soft caps after Nominatim assignment — Batch 1 only. Disabled with --no-caps for full coverage. */
 const LANDKREIS_CAPS = {
   Nordfriesland: 85,
   'Schleswig-Flensburg': 85,
@@ -245,11 +250,12 @@ function buildDistributedQueue(rawPlaces) {
   return queue;
 }
 
-function loadExistingIds() {
+function loadExistingIds({ excludeShGenerated = false } = {}) {
   const ids = new Set();
   const coords = [];
   const namesByLandkreis = new Map();
   for (const f of SEED_FILES) {
+    if (excludeShGenerated && f.includes('germanySchleswigHolsteinNodes.generated')) continue;
     const fullPath = path.join(ROOT, f);
     if (!fs.existsSync(fullPath)) continue;
     const src = fs.readFileSync(fullPath, 'utf8');
@@ -453,6 +459,7 @@ async function reverseVerify(lat, lng, { osmId } = {}) {
 
   let attempt = 0;
   while (attempt <= MAX_RETRIES) {
+    nominatimRequests++;
     const url = `https://nominatim.openstreetmap.org/reverse?${new URLSearchParams({
       lat: String(lat), lon: String(lng), format: 'json', addressdetails: '1', zoom: '10',
     })}`;
@@ -471,6 +478,7 @@ async function reverseVerify(lat, lng, { osmId } = {}) {
     }
 
     if (res.status === 429) {
+      http429Retries++;
       if (attempt >= MAX_RETRIES) {
         return { status: 'deferred', reason: 'http-429' };
       }
@@ -510,10 +518,16 @@ async function reverseVerify(lat, lng, { osmId } = {}) {
 }
 
 function underCap(landkreis, byLandkreis) {
+  if (NO_CAPS) return true;
   if (!landkreis) return true;
   const cap = LANDKREIS_CAPS[landkreis];
   if (cap == null) return (byLandkreis[landkreis] ?? 0) < 40;
   return (byLandkreis[landkreis] ?? 0) < cap;
+}
+
+function chunkTarget(seedCount) {
+  if (CHUNK_NEW > 0) return Math.min(LIMIT, seedCount + CHUNK_NEW);
+  return LIMIT;
 }
 
 // Fast path: materialize from existing verified import-result / cache without Nominatim
@@ -531,7 +545,10 @@ if (!fs.existsSync(osmPath)) { console.error('Run fetch-osm-schleswig-holstein-o
 
 const { places: rawPlaces } = JSON.parse(fs.readFileSync(osmPath, 'utf8'));
 const places = buildDistributedQueue(rawPlaces);
-const { ids: existingIds, coords: existingCoords, namesByLandkreis } = loadExistingIds();
+// When resuming, exclude SH generated file so prior result can be re-seeded safely
+const { ids: existingIds, coords: existingCoords, namesByLandkreis } = loadExistingIds({
+  excludeShGenerated: RESUME,
+});
 const usedIds = new Set(existingIds);
 const usedCoords = new Set(existingCoords.map((c) => coordKey(c.lat, c.lng)));
 const usedSlugs = new Map();
@@ -539,7 +556,7 @@ const batchNamesByLandkreis = new Map();
 const skipped = {
   duplicateId: 0, duplicateCoord: 0, nearExisting: 0, verifyFailed: 0,
   slugCollision: 0, duplicateName: 0, unsupportedName: 0, outsideSh: 0,
-  kreisCap: 0, deferred429: 0, cacheHit: 0,
+  kreisCap: 0, deferred429: 0, cacheHit: 0, parentOrtsteil: 0, ambiguousAdmin: 0,
 };
 const imported = [];
 const byLandkreis = {};
@@ -547,17 +564,23 @@ let coastalCount = 0;
 let islandCount = 0;
 const deferred = [];
 const failed = [];
+const rejectedOutside = [];
 
 const verificationCache = loadVerificationCache();
 const checkpoint = loadCheckpoint();
 const processedKeys = new Set(checkpoint.processedKeys ?? []);
+const processedOsmIds = new Set(checkpoint.processedOsmIds ?? []);
+
+// Seed processed keys from prior OSM ids (materialize checkpoint format)
+for (const osmId of processedOsmIds) {
+  processedKeys.add(`osm:${osmId}`);
+}
 
 // Seed imported from prior checkpoint / result when resuming
 if (RESUME && fs.existsSync(RESULT_PATH)) {
   try {
     const prev = JSON.parse(fs.readFileSync(RESULT_PATH, 'utf8'));
     for (const e of prev.imported ?? []) {
-      if (imported.length >= LIMIT) break;
       if (!e?.id || usedIds.has(e.id)) continue;
       imported.push(e);
       usedIds.add(e.id);
@@ -573,25 +596,46 @@ if (RESUME && fs.existsSync(RESULT_PATH)) {
         if (!batchNamesByLandkreis.has(e.landkreis)) batchNamesByLandkreis.set(e.landkreis, new Set());
         batchNamesByLandkreis.get(e.landkreis).add(norm);
       }
-      if (e.osmId) processedKeys.add(cacheKey(e.osmId, e.lat, e.lng));
+      if (e.osmId) {
+        processedOsmIds.add(e.osmId);
+        processedKeys.add(cacheKey(e.osmId, e.lat, e.lng));
+        processedKeys.add(`osm:${e.osmId}`);
+      }
     }
-    console.error(`Resume seed: ${imported.length} records from prior result`);
+    for (const d of prev.deferred ?? []) {
+      deferred.push(d);
+      if (d?.osmId) processedOsmIds.add(d.osmId);
+    }
+    for (const f of prev.failed ?? []) {
+      failed.push(f);
+      if (f?.osmId) processedOsmIds.add(f.osmId);
+    }
+    resumeSeedCount.value = imported.length;
+    console.error(`Resume seed: ${imported.length} records from prior result (no-caps=${NO_CAPS}, chunk=${CHUNK_NEW || 'off'})`);
   } catch (err) {
     console.error('Resume seed failed:', err?.message);
   }
 }
 
+const targetCount = chunkTarget(imported.length);
+console.error(`Import target: ${targetCount} (seed=${imported.length}, limit=${LIMIT}, chunkNew=${CHUNK_NEW || 0})`);
+
 // Pre-write analysis counters for candidates that pass local filters
 let verifiedCandidates = imported.length;
 const candidateByLk = { ...byLandkreis };
+let newlyImported = 0;
+let queueExhausted = true;
 
 for (const p of places) {
-  if (imported.length >= LIMIT) break;
+  if (imported.length >= targetCount) {
+    queueExhausted = false;
+    break;
+  }
   if (SKIP_NAME.test(p.name)) { skipped.unsupportedName++; continue; }
   if (p.place === 'city' && existingIds.has(p.id)) { skipped.duplicateId++; continue; }
 
   let id = p.id;
-  if (existingIds.has(id) || (existingIds.has(slug(p.name)) && slug(p.name) !== id)) {
+  if (usedIds.has(id) || existingIds.has(id) || (existingIds.has(slug(p.name)) && slug(p.name) !== id)) {
     skipped.duplicateId++; continue;
   }
 
@@ -601,7 +645,9 @@ for (const p of places) {
   const key = cacheKey(p.osmId, lat, lng);
   if (usedCoords.has(ck)) { skipped.duplicateCoord++; continue; }
   if (isNearExisting(lat, lng, existingCoords)) { skipped.nearExisting++; continue; }
-  if (processedKeys.has(key) && imported.some((e) => e.osmId === p.osmId)) continue;
+  if (processedOsmIds.has(p.osmId) || (processedKeys.has(key) && imported.some((e) => e.osmId === p.osmId))) {
+    continue;
+  }
 
   const islandHint = detectIsland(lat, lng, p.name);
   const inMainland = inBbox(lat, lng, SH_BBOX);
@@ -620,6 +666,18 @@ for (const p of places) {
     deferred.push({ osmId: p.osmId, id: p.id, name: p.name, reason: verificationCache.entries[key].reason ?? 'cached-deferred' });
     skipped.deferred429++;
     processedKeys.add(key);
+    processedOsmIds.add(p.osmId);
+    continue;
+  } else if (verificationCache.entries[key]?.status === 'rejected') {
+    const reason = verificationCache.entries[key].reason ?? 'cached-rejected';
+    if (reason === 'outside-sh' || reason === 'outside-de') {
+      skipped.outsideSh++;
+      rejectedOutside.push({ osmId: p.osmId, id: p.id, name: p.name, reason });
+    } else {
+      skipped.verifyFailed++;
+    }
+    processedKeys.add(key);
+    processedOsmIds.add(p.osmId);
     continue;
   } else {
     await sleep(MIN_DELAY_MS);
@@ -646,7 +704,9 @@ for (const p of places) {
       deferred.push({ osmId: p.osmId, id: p.id, name: p.name, reason: admin.reason });
       skipped.deferred429++;
       processedKeys.add(key);
+      processedOsmIds.add(p.osmId);
       checkpoint.processedKeys = [...processedKeys];
+      checkpoint.processedOsmIds = [...processedOsmIds];
       checkpoint.importedCount = imported.length;
       checkpoint.deferred = deferred;
       checkpoint.failed = failed;
@@ -657,14 +717,18 @@ for (const p of places) {
           totalSourceCandidates: rawPlaces.length,
           verifiedCandidates,
           imported: imported.length,
+          newlyImported,
           skipped,
           byLandkreis,
           coastalCount,
           islandCount,
           deferred: deferred.length,
           failed: failed.length,
+          nominatimRequests,
+          http429Retries,
           mode: 'nominatim-reverse',
           resumeSafe: true,
+          noCaps: NO_CAPS,
         },
         imported,
         deferred,
@@ -675,14 +739,28 @@ for (const p of places) {
       failed.push({ osmId: p.osmId, id: p.id, name: p.name, reason: admin.reason });
       skipped.verifyFailed++;
       processedKeys.add(key);
+      processedOsmIds.add(p.osmId);
       checkpoint.processedKeys = [...processedKeys];
+      checkpoint.processedOsmIds = [...processedOsmIds];
       checkpoint.importedCount = imported.length;
       checkpoint.failed = failed;
       saveCheckpoint(checkpoint);
       continue;
     } else {
-      skipped.verifyFailed++;
+      // rejected (outside SH / DE / http)
+      verificationCache.entries[key] = {
+        osmId: p.osmId, id: p.id, name: p.name, lat, lng,
+        status: 'rejected', reason: admin.reason,
+      };
+      saveVerificationCache(verificationCache);
+      if (admin.reason === 'outside-sh' || admin.reason === 'outside-de') {
+        skipped.outsideSh++;
+        rejectedOutside.push({ osmId: p.osmId, id: p.id, name: p.name, reason: admin.reason });
+      } else {
+        skipped.verifyFailed++;
+      }
       processedKeys.add(key);
+      processedOsmIds.add(p.osmId);
       continue;
     }
   }
@@ -693,9 +771,16 @@ for (const p of places) {
   const lkPre = admin.landkreis ?? inferLandkreisSort(lat, lng);
   candidateByLk[lkPre] = (candidateByLk[lkPre] ?? 0) + 1;
 
+  if (!admin.landkreis) {
+    skipped.ambiguousAdmin++;
+    processedKeys.add(key);
+    processedOsmIds.add(p.osmId);
+    continue;
+  }
+
   if (!underCap(lkPre, byLandkreis)) {
     skipped.kreisCap++;
-    processedKeys.add(key);
+    // Do NOT mark as fully processed — allow later --no-caps resume to pick up
     continue;
   }
 
@@ -711,7 +796,11 @@ for (const p of places) {
   if (admin.landkreis) {
     const norm = slug(p.name.replace(/\s*\([^)]*\)/g, '').trim());
     if (namesByLandkreis.get(admin.landkreis)?.has(norm) || batchNamesByLandkreis.get(admin.landkreis)?.has(norm)) {
-      skipped.duplicateName++; continue;
+      skipped.duplicateName++;
+      skipped.parentOrtsteil++;
+      processedKeys.add(key);
+      processedOsmIds.add(p.osmId);
+      continue;
     }
   }
 
@@ -734,9 +823,11 @@ for (const p of places) {
   };
 
   imported.push(entry);
+  newlyImported++;
   usedIds.add(id); usedCoords.add(ck); usedSlugs.set(p.id, id);
   existingCoords.push({ id, lat, lng });
   processedKeys.add(key);
+  processedOsmIds.add(p.osmId);
   if (coastal) coastalCount++;
   if (island) islandCount++;
 
@@ -751,32 +842,39 @@ for (const p of places) {
 
   // Persist progress after every accepted candidate
   checkpoint.processedKeys = [...processedKeys];
+  checkpoint.processedOsmIds = [...processedOsmIds];
   checkpoint.importedCount = imported.length;
   checkpoint.deferred = deferred;
   checkpoint.failed = failed;
   checkpoint.byLandkreis = { ...byLandkreis };
+  checkpoint.phase = 'importing';
+  checkpoint.noCaps = NO_CAPS;
   saveCheckpoint(checkpoint);
   fs.writeFileSync(RESULT_PATH, JSON.stringify({
     report: {
       totalSourceCandidates: rawPlaces.length,
       verifiedCandidates,
       imported: imported.length,
+      newlyImported,
       skipped,
       byLandkreis,
       coastalCount,
       islandCount,
       deferred: deferred.length,
       failed: failed.length,
+      nominatimRequests,
+      http429Retries,
       mode: FAST ? 'fast-bbox' : 'nominatim-reverse',
       resumeSafe: true,
+      noCaps: NO_CAPS,
     },
     imported,
     deferred,
     failed,
   }, null, 2));
 
-  if (imported.length % 25 === 0 || imported.length <= 5) {
-    console.error(`OK ${imported.length}/${LIMIT} ${id} (${p.name}) [${lkKey}]${island ? ` island=${island}` : ''}`);
+  if (imported.length % 25 === 0 || newlyImported <= 5 || newlyImported % 10 === 0) {
+    console.error(`OK ${imported.length}/${targetCount} (+${newlyImported}) ${id} (${p.name}) [${lkKey}]${island ? ` island=${island}` : ''}`);
   }
 }
 
@@ -786,21 +884,33 @@ const report = {
   verifiedCandidates,
   candidateByLk,
   imported: imported.length,
+  newlyImported,
+  resumeSeed: resumeSeedCount.value,
+  targetCount,
+  queueExhausted,
   skipped,
   byLandkreis,
   coastalCount,
   islandCount,
   deferred: deferred.length,
   failed: failed.length,
+  nominatimRequests,
+  http429Retries,
+  cacheEntries: Object.keys(verificationCache.entries).length,
   first15: imported.slice(0, 15).map((i) => i.id),
   last15: imported.slice(-15).map((i) => i.id),
   landkreisCoverage: Object.keys(byLandkreis).length,
   mode: FAST ? 'fast-bbox' : 'nominatim-reverse',
   resumeSafe: true,
+  noCaps: NO_CAPS,
 };
-fs.writeFileSync(RESULT_PATH, JSON.stringify({ report, imported, deferred, failed }, null, 2));
-checkpoint.phase = imported.length >= LIMIT || deferred.length === 0 ? 'complete' : 'partial';
+fs.writeFileSync(RESULT_PATH, JSON.stringify({ report, imported, deferred, failed, rejectedOutside }, null, 2));
+checkpoint.phase = queueExhausted && deferred.length === 0 ? 'complete' : (newlyImported > 0 ? 'chunk-complete' : 'partial');
 checkpoint.importedCount = imported.length;
+checkpoint.processedKeys = [...processedKeys];
+checkpoint.processedOsmIds = [...processedOsmIds];
+checkpoint.newlyImported = newlyImported;
+checkpoint.queueExhausted = queueExhausted;
 saveCheckpoint(checkpoint);
 console.log(JSON.stringify(report, null, 2));
 
@@ -836,7 +946,7 @@ function b(c: number, j: number, w: number, t: number, m: number, a: number): Me
 
 export const GERMANY_SH_ENRICHMENT: Record<string, SchleswigHolsteinEnrichment> = {
 
-  // ── Schleswig-Holstein batch 1 import (OSM ${new Date().toISOString().slice(0, 10)}) ──
+  // ── Schleswig-Holstein OSM import (${new Date().toISOString().slice(0, 10)}) ──
 `;
 fs.writeFileSync(enrichPath, `${enrichHeader}${imported.map(formatEnrich).join('\n')}\n};\n`);
 
@@ -859,4 +969,4 @@ if (aliasLines.length) {
   }
   fs.writeFileSync(aliasPath, aliasSrc);
 }
-console.error(`Wrote ${imported.length} settlements into TS files`);
+console.error(`Wrote ${imported.length} settlements into TS files (+${newlyImported} this run)`);
