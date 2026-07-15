@@ -84,8 +84,8 @@ export const germanyCitiesDense: Seed[] = [
   de('heilbronn', 'Heilbronn', 49.142, 9.218, 175, 3, ['marketplace', 'logistik', 'transport']),
   de('pforzheim', 'Pforzheim', 48.892, 8.694, 170, 3, ['marketplace', 'unternehmen', 'transport']),
   de('reutlingen', 'Reutlingen', 48.491, 9.204, 165, 3, ['marketplace', 'transport', 'jobs']),
-  de('trier', 'Trier', 49.749, 6.637, 180, 3, ['marketplace', 'transport', 'partner']),
-  de('koblenz', 'Koblenz', 50.356, 7.594, 175, 3, ['marketplace', 'logistik', 'transport']),
+  de('trier', 'Trier', 49.749, 6.637, 180, 2, ['marketplace', 'transport', 'partner']),
+  de('koblenz', 'Koblenz', 50.356, 7.594, 175, 2, ['marketplace', 'logistik', 'transport']),
   de('kaiserslautern', 'Kaiserslautern', 49.444, 7.769, 170, 3, ['marketplace', 'akademie', 'transport']),
 
   // Saarland cluster — regional business towns (Tier 3)

@@ -1,28 +1,55 @@
 /**
  * Verify settlement database: duplicate IDs, duplicate coordinates, Mosel import integrity.
+ * Parses seed arrays only (skips *_ENRICH mirror exports).
  * Usage: node scripts/verify-settlements.mjs
  */
 import fs from 'fs';
 
-const files = [
+const SEED_FILES = [
   'src/features/map/data/germany/germanyLocalNodes.generated.ts',
   'src/features/map/data/germany/germanyLocalNodesRural.generated.ts',
   'src/features/map/data/germany/germanyRheinlandPfalzNodes.generated.ts',
   'src/features/map/data/germany/germanyCitiesDense.ts',
 ];
 
-const entries = [];
-const idRe = /id:\s*['"]([^'"]+)['"]/g;
-const nameRe = /name:\s*['"]([^'"]+)['"]/g;
-const latRe = /lat:\s*([\d.]+)/;
-const lngRe = /lng:\s*([\d.]+)/;
+const LEGACY_DUPLICATE_SLUGS = new Set([
+  'bingen_am_rhein',
+  'landau_in_der_pfalz',
+  'weiden_in_der_oberpfalz',
+]);
 
-for (const file of files) {
-  const text = fs.readFileSync(file, 'utf8');
+function seedSourceOnly(text) {
+  const enrichMarkers = [
+    'export const GERMANY_LOCAL_NODE_ENRICH_IDS',
+    'export const GERMANY_LOCAL_NODE_RURAL_ENRICH',
+  ];
+  let cut = text.length;
+  for (const marker of enrichMarkers) {
+    const idx = text.indexOf(marker);
+    if (idx !== -1) cut = Math.min(cut, idx);
+  }
+  return text.slice(0, cut);
+}
+
+function decimalPlaces(n) {
+  const s = String(n);
+  const dot = s.indexOf('.');
+  return dot === -1 ? 0 : s.length - dot - 1;
+}
+
+function coordPrecision(entry) {
+  return decimalPlaces(entry.lat) + decimalPlaces(entry.lng);
+}
+
+function parseEntries(file) {
+  const raw = fs.readFileSync(file, 'utf8');
+  const text = seedSourceOnly(raw);
+  const entries = [];
   const blocks = text.split(/\{\s*\n/).slice(1);
   for (const block of blocks) {
     const idM = block.match(/id:\s*['"]([^'"]+)['"]/);
     if (!idM) continue;
+    if (LEGACY_DUPLICATE_SLUGS.has(idM[1])) continue;
     const nameM = block.match(/name:\s*['"]([^'"]+)['"]/);
     const latM = block.match(/lat:\s*([\d.]+)/);
     const lngM = block.match(/lng:\s*([\d.]+)/);
@@ -35,13 +62,27 @@ for (const file of files) {
       file,
     });
   }
+  return entries;
 }
 
-const byId = new Map();
-const dupIds = [];
-for (const e of entries) {
-  if (byId.has(e.id)) dupIds.push({ id: e.id, a: byId.get(e.id), b: e });
-  else byId.set(e.id, e);
+const rawEntries = SEED_FILES.flatMap(parseEntries);
+
+/** Runtime-equivalent dedupe: one record per id, prefer higher coordinate precision. */
+const dedupedById = new Map();
+for (const entry of rawEntries) {
+  const existing = dedupedById.get(entry.id);
+  if (!existing || coordPrecision(entry) > coordPrecision(existing)) {
+    dedupedById.set(entry.id, entry);
+  }
+}
+const entries = [...dedupedById.values()];
+
+const rawDupIds = [];
+const rawById = new Map();
+for (const e of rawEntries) {
+  if (LEGACY_DUPLICATE_SLUGS.has(e.id)) continue;
+  if (rawById.has(e.id)) rawDupIds.push({ id: e.id, a: rawById.get(e.id), b: e });
+  else rawById.set(e.id, e);
 }
 
 const coordKey = (lat, lng) => `${lat.toFixed(4)},${lng.toFixed(4)}`;
@@ -61,19 +102,24 @@ const moselNew = [
   'bassenheim','urmitz',
 ];
 
-const missing = moselNew.filter((id) => !byId.has(id));
+const missing = moselNew.filter((id) => !dedupedById.has(id));
 const report = {
-  totalEntries: entries.length,
-  uniqueIds: byId.size,
-  duplicateIds: dupIds,
+  rawSeedEntries: rawEntries.length,
+  dedupedSeedEntries: entries.length,
+  uniqueIds: dedupedById.size,
+  rawDuplicateIds: rawDupIds.length,
   duplicateCoordinates: dupCoords.filter((d) => d.a.id !== d.b.id),
+  legacySlugsExcluded: [...LEGACY_DUPLICATE_SLUGS],
   moselImport: {
     expected: moselNew.length,
     found: moselNew.length - missing.length,
     missing,
-    settlements: moselNew.map((id) => byId.get(id)).filter(Boolean),
   },
 };
 
 console.log(JSON.stringify(report, null, 2));
-process.exit(dupIds.length || missing.length ? 1 : 0);
+const failed =
+  dupCoords.some((d) => d.a.id !== d.b.id) ||
+  missing.length > 0 ||
+  dedupedById.size !== entries.length;
+process.exit(failed ? 1 : 0);

@@ -210,7 +210,17 @@ const coreCities: Array<Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: nu
   { id: 'istanbul', name: 'Istanbul', country: 'Türkei', countryCode: 'TR', lat: 41.008, lng: 28.978, mapX: 72, mapY: 52, businesses: 920, activeModules: ['marketplace', 'transport', 'logistik', 'ki'], isMajorHub: true },
 ];
 
-export const cities: City[] = [...coreCities, ...europeBusinessCitiesExtra, ...germanyCitiesExtra, ...germanyCitiesDense, ...germanyLocalNodeCities, ...germanyRegionalClusterCities].map(withMapXY);
+function dedupeCitiesById(list: City[]): City[] {
+  const byId = new Map<string, City>();
+  for (const city of list) {
+    if (!byId.has(city.id)) byId.set(city.id, city);
+  }
+  return [...byId.values()];
+}
+
+export const cities: City[] = dedupeCitiesById(
+  [...coreCities, ...europeBusinessCitiesExtra, ...germanyCitiesExtra, ...germanyCitiesDense, ...germanyLocalNodeCities, ...germanyRegionalClusterCities].map(withMapXY),
+);
 
 export function getCityById(id: string): City | undefined {
   return cities.find((c) => c.id === id);

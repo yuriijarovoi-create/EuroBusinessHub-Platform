@@ -10,14 +10,30 @@ import {
   GERMANY_LOCAL_NODE_RURAL_ENRICH,
 } from './germanyLocalNodesRural.generated';
 import { GERMANY_RP_NODE_DEFS } from './germanyRheinlandPfalzNodes.generated';
+import {
+  dedupeSettlementDefs,
+  DUPLICATE_SETTLEMENT_SLUGS,
+  inferSettlementMapTier,
+  type SettlementMapTier,
+} from './settlementTierUtils';
 
-const GERMANY_LOCAL_NODE_SEED_DEFS = [
+const RURAL_SEED_DEFS = GERMANY_LOCAL_NODE_RURAL_DEFS.filter(
+  (def) => !DUPLICATE_SETTLEMENT_SLUGS.has(def.id),
+);
+
+const GERMANY_LOCAL_NODE_SEED_DEFS = dedupeSettlementDefs([
   ...GERMANY_LOCAL_NODE_DEFS,
-  ...GERMANY_LOCAL_NODE_RURAL_DEFS,
+  ...RURAL_SEED_DEFS,
   ...GERMANY_RP_NODE_DEFS,
-];
+]);
 
-type Seed = Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: number; mapTier?: 4 };
+const SEED_DEF_IDS = new Set(GERMANY_LOCAL_NODE_SEED_DEFS.map((def) => def.id));
+
+const FILTERED_RURAL_ENRICH = GERMANY_LOCAL_NODE_RURAL_ENRICH.filter(
+  (def) => !SEED_DEF_IDS.has(def.id) && !DUPLICATE_SETTLEMENT_SLUGS.has(def.id),
+);
+
+type Seed = Omit<City, 'mapX' | 'mapY'> & { mapX?: number; mapY?: number; mapTier?: SettlementMapTier };
 
 const DEFAULT_USE_CASES: GermanyLocalUseCase[] = [
   'local_transport',
@@ -112,6 +128,7 @@ function buildProfile(def: RawLocalNodeDef): GermanyLocalServiceNode {
 
 function toCitySeed(def: RawLocalNodeDef, profile: GermanyLocalServiceNode): Seed {
   const modules: ModuleId[] = ['marketplace', 'transport', 'logistik', 'jobs', 'partner'];
+  const mapTier = inferSettlementMapTier(def);
   return {
     id: def.id,
     name: def.name,
@@ -121,15 +138,16 @@ function toCitySeed(def: RawLocalNodeDef, profile: GermanyLocalServiceNode): See
     lng: def.lng,
     businesses: profile.companies,
     activeModules: modules,
-    mapTier: 4,
+    mapTier,
+    population: def.population,
   };
 }
 
-const ALL_DEFS = [
+const ALL_DEFS = dedupeSettlementDefs([
   ...GERMANY_LOCAL_NODE_SEED_DEFS,
   ...GERMANY_LOCAL_NODE_ENRICH_IDS,
-  ...GERMANY_LOCAL_NODE_RURAL_ENRICH,
-];
+  ...FILTERED_RURAL_ENRICH,
+]);
 
 export const GERMANY_LOCAL_NODE_PROFILES: Record<string, GermanyLocalServiceNode> = Object.fromEntries(
   ALL_DEFS.map((def) => [def.id, buildProfile(def)]),
@@ -155,7 +173,7 @@ export function getGermanyLocalNodeMeta(cityId: string) {
   const industry =
     def.tourism ? 'Tourismus & Handwerk' : `${def.region} — Dienstleistung & Logistik`;
   return {
-    tier: 4 as const,
+    tier: inferSettlementMapTier(def),
     population: def.population,
     mainIndustry: industry,
     transportRole: `Regional — Anbindung ${def.nearestMajorCity}`,

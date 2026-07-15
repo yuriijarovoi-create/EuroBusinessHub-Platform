@@ -1,6 +1,5 @@
-/** Mosel corridor — marker visibility uses tier-4 zoom floor (see cityVisibilityUtils) */
+/** Mosel corridor — true villages only; towns use population-based tiers */
 export const MOSEL_VILLAGE_IDS = new Set([
-  'cochem',
   'klotten',
   'ernst',
   'valwig',
@@ -14,8 +13,6 @@ export const MOSEL_VILLAGE_IDS = new Set([
   'mueden',
   'pommern',
   'moselkern',
-  'kaisersesch',
-  'zell_an_der_mosel',
   'bullay',
   'alf',
 ]);

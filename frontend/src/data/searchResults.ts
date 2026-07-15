@@ -1,10 +1,47 @@
 import type { SearchResult } from '@shared/types';
 import { cities } from './cities';
 import { platformModules } from './modules';
+import {
+  CITY_SEARCH_ALIASES,
+  CITY_SEARCH_SLUG_ALIASES,
+} from '@/features/map/data/citySearchAliases';
 
 export const SEARCHABLE_MODULES = [
   'companies', 'transport', 'marketplace', 'jobs', 'warehouses', 'services', 'ai',
 ] as const;
+
+function buildCityAliasSearchEntries(): SearchResult[] {
+  const byId = new Map(cities.map((city) => [city.id, city]));
+  const entries: SearchResult[] = [];
+
+  for (const [cityId, aliases] of Object.entries(CITY_SEARCH_ALIASES)) {
+    const city = byId.get(cityId);
+    if (!city) continue;
+    for (const alias of aliases) {
+      entries.push({
+        id: `city-alias-${cityId}-${alias.replace(/\s+/g, '-').toLowerCase()}`,
+        type: 'city',
+        title: alias,
+        subtitle: `${city.country} · ${city.name}`,
+        route: `/map?city=${cityId}`,
+      });
+    }
+  }
+
+  for (const [legacySlug, canonicalId] of Object.entries(CITY_SEARCH_SLUG_ALIASES)) {
+    const city = byId.get(canonicalId);
+    if (!city) continue;
+    entries.push({
+      id: `city-slug-${legacySlug}`,
+      type: 'city',
+      title: legacySlug.replace(/_/g, ' '),
+      subtitle: `${city.country} · ${city.name}`,
+      route: `/map?city=${canonicalId}`,
+    });
+  }
+
+  return entries;
+}
 
 export const searchIndex: SearchResult[] = [
   ...cities.map((city) => ({
@@ -14,13 +51,7 @@ export const searchIndex: SearchResult[] = [
     subtitle: `${city.country} · ${city.businesses} Unternehmen`,
     route: `/map?city=${city.id}`,
   })),
-  {
-    id: 'city-landau',
-    type: 'city' as const,
-    title: 'Landau in der Pfalz',
-    subtitle: 'Deutschland · Pfalz',
-    route: '/map?city=landau_pfalz',
-  },
+  ...buildCityAliasSearchEntries(),
   {
     id: 'city-dessau',
     type: 'city' as const,
@@ -34,13 +65,6 @@ export const searchIndex: SearchResult[] = [
     title: 'Brandenburg an der Havel',
     subtitle: 'Deutschland · Brandenburg',
     route: '/map?city=brandenburg_havel',
-  },
-  {
-    id: 'city-bingen',
-    type: 'city' as const,
-    title: 'Bingen am Rhein',
-    subtitle: 'Deutschland · Rheinland-Pfalz',
-    route: '/map?city=bingen',
   },
   ...platformModules.map((mod) => ({
     id: `module-${mod.id}`,
