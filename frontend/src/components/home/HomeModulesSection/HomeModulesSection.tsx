@@ -10,7 +10,7 @@ export function HomeModulesSection() {
   return (
     <section className={styles.section}>
       <SectionHeader
-        eyebrow="Module"
+        eyebrow={t('sectionEyebrows.modules')}
         title={t('modules.title')}
         subtitle={t('modules.subtitle')}
       />

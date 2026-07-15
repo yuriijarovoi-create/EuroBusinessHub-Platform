@@ -12,7 +12,7 @@ export function CityWorkspacePage() {
   if (!city) {
     return (
       <div className={styles.notFound}>
-        <h1>Stadt nicht gefunden</h1>
+        <h1>{t('companies.notFoundCity')}</h1>
         <Link to="/">{t('backToMap')}</Link>
       </div>
     );

@@ -94,7 +94,7 @@ export function MapCitySearch({
   onResetFocus,
   countryFocusActive = false,
 }: MapCitySearchProps) {
-  const { t, i18n } = useTranslation('map');
+  const { t } = useTranslation('map');
   const listboxId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -111,7 +111,7 @@ export function MapCitySearch({
   );
 
   const activeLayerLabel = activeMapContext.businessLayer
-    ? getBusinessLayerLabel(activeMapContext.businessLayer)
+    ? getBusinessLayerLabel(activeMapContext.businessLayer, t)
     : null;
 
   const results = useMemo(
@@ -174,17 +174,10 @@ export function MapCitySearch({
       closeSearch();
       onSelectCity(city, { hasLayerData });
       if (activeMapContext.businessLayer && !hasLayerData) {
-        setLayerEmptyMessage(
-          t('search.noLayerData', {
-            defaultValue:
-              i18n.language.startsWith('de')
-                ? 'Für diesen Ort sind in dieser Ebene noch keine Daten verfügbar.'
-                : 'No data is available for this location in the current layer yet.',
-          }),
-        );
+        setLayerEmptyMessage(t('search.noLayerData'));
       }
     },
-    [activeMapContext.businessLayer, closeSearch, i18n.language, onSelectCity, t],
+    [activeMapContext.businessLayer, closeSearch, onSelectCity, t],
   );
 
   const handleDisplayClick = useCallback(() => {
@@ -192,7 +185,7 @@ export function MapCitySearch({
   }, [onResetFocus]);
 
   const handleVoicePlaceholder = useCallback(() => {
-    const message = t('search.voiceComingSoon', { defaultValue: 'Voice search coming soon' });
+    const message = t('search.voiceComingSoon');
     if (import.meta.env.DEV) {
       // eslint-disable-next-line no-console
       console.info('Voice search coming soon');
@@ -252,12 +245,8 @@ export function MapCitySearch({
               setActiveIndex(-1);
             }}
             onKeyDown={handleInputKeyDown}
-            placeholder={t('search.placeholder', {
-              defaultValue: i18n.language.startsWith('de') ? 'Stadt suchen' : 'Search city',
-            })}
-            aria-label={t('search.placeholder', {
-              defaultValue: i18n.language.startsWith('de') ? 'Stadt suchen' : 'Search city',
-            })}
+            placeholder={t('search.placeholder')}
+            aria-label={t('search.placeholder')}
             aria-autocomplete="list"
             aria-controls={listboxId}
             aria-activedescendant={
@@ -272,7 +261,7 @@ export function MapCitySearch({
             type="button"
             className={styles.searchCloseBtn}
             onClick={closeSearch}
-            aria-label={t('search.close', { defaultValue: 'Close search' })}
+            aria-label={t('search.close')}
           >
             <CloseIcon />
           </button>
@@ -293,7 +282,7 @@ export function MapCitySearch({
               type="button"
               className={styles.searchIconBtn}
               onClick={openSearch}
-              aria-label={t('search.open', { defaultValue: 'Search city' })}
+              aria-label={t('search.open')}
             >
               <SearchIcon />
             </button>
@@ -301,7 +290,7 @@ export function MapCitySearch({
               type="button"
               className={styles.searchIconBtn}
               onClick={handleVoicePlaceholder}
-              aria-label={t('search.voice', { defaultValue: 'Voice search' })}
+              aria-label={t('search.voice')}
             >
               <MicrophoneIcon />
             </button>
@@ -314,7 +303,7 @@ export function MapCitySearch({
           id={listboxId}
           className={styles.searchDropdown}
           role="listbox"
-          aria-label={t('search.results', { defaultValue: 'City search results' })}
+          aria-label={t('search.results')}
         >
           {results.map((result, index) => {
             const metaParts = [result.city.country];
@@ -346,7 +335,7 @@ export function MapCitySearch({
 
       {isOpen && query.trim().length >= 2 && results.length === 0 ? (
         <p className={styles.searchStatus} role="status">
-          {t('search.noResults', { defaultValue: 'No matching cities' })}
+          {t('search.noResults')}
         </p>
       ) : null}
 

@@ -11,6 +11,7 @@ import {
   type ActiveMapContext,
 } from '../utils/mapLayerContext';
 import { resolvePrimaryVisualMode } from '../utils/mapVisualModes';
+import { useMapVisualModeCopy } from '../hooks/useMapVisualModeCopy';
 import styles from './BusinessOperatingMap.module.css';
 
 interface StatisticsPanelProps {
@@ -43,16 +44,17 @@ export function StatisticsPanel({
   const hubProfile = city ? getCityHubProfile(city.id) : undefined;
   const showEuropeOverview = isEuropeOverview(activeMapContext);
   const visualMode = resolvePrimaryVisualMode(activeMapContext);
+  const visualCopy = useMapVisualModeCopy(visualMode);
 
   return (
     <aside
       className={`${styles.sidebar} ${styles.sidebarRight} ${collapsed ? styles.sidebarCollapsed : ''}`}
-      aria-label={t('operating.context', { defaultValue: 'Context' })}
+      aria-label={t('operating.context')}
     >
       <div className={styles.sidebarHeader}>
-        <span className={styles.sidebarTitle}>{t('operating.insights', { defaultValue: 'Live intelligence' })}</span>
+        <span className={styles.sidebarTitle}>{t('operating.insights')}</span>
         {onToggle && (
-          <button type="button" className={styles.sidebarToggle} onClick={onToggle} aria-label="Toggle panel">
+          <button type="button" className={styles.sidebarToggle} onClick={onToggle} aria-label={t('a11y.togglePanel')}>
             ›
           </button>
         )}
@@ -60,22 +62,22 @@ export function StatisticsPanel({
 
       <div className={styles.statBlock}>
         <span className={styles.statEyebrow}>
-          {t('operating.activeMapMode', { defaultValue: 'Active map mode' })}
+          {t('operating.activeMapMode')}
         </span>
-        <h3 className={styles.statTitle}>{visualMode.panelTitle}</h3>
-        <p className={styles.statMeta}>{visualMode.recommendation}</p>
+        <h3 className={styles.statTitle}>{visualCopy.panelTitle}</h3>
+        <p className={styles.statMeta}>{visualCopy.recommendation}</p>
         {!showEuropeOverview && (
           <>
             {activeMapContext.logisticsLayer && (
               <p className={styles.statMeta}>
-                {t('operating.logisticsLayer', { defaultValue: 'Logistics' })}:{' '}
-                {getLogisticsLayerLabel(activeMapContext.logisticsLayer)}
+                {t('operating.logisticsLayer')}:{' '}
+                {getLogisticsLayerLabel(activeMapContext.logisticsLayer, t)}
               </p>
             )}
             {activeMapContext.businessLayer && (
               <p className={styles.statMeta}>
-                {t('operating.businessLayer', { defaultValue: 'Business' })}:{' '}
-                {getBusinessLayerLabel(activeMapContext.businessLayer)}
+                {t('operating.businessLayer')}:{' '}
+                {getBusinessLayerLabel(activeMapContext.businessLayer, t)}
               </p>
             )}
           </>
@@ -84,14 +86,14 @@ export function StatisticsPanel({
 
       {country && (
         <div className={styles.statBlock}>
-          <span className={styles.statEyebrow}>{t('operating.country', { defaultValue: 'Country' })}</span>
+          <span className={styles.statEyebrow}>{t('operating.country')}</span>
           <h3 className={styles.statTitle}>{country.name}</h3>
         </div>
       )}
 
       {city && (
         <div className={styles.statBlock}>
-          <span className={styles.statEyebrow}>{t('operating.city', { defaultValue: 'City' })}</span>
+          <span className={styles.statEyebrow}>{t('operating.city')}</span>
           <h3 className={styles.statTitle}>{city.name}</h3>
           <p className={styles.statMeta}>{hubProfile?.businessCategory ?? city.country}</p>
           {m && (
@@ -120,7 +122,7 @@ export function StatisticsPanel({
           )}
           {hubProfile?.topRoutePairs && (
             <div className={styles.statRoutes}>
-              <span className={styles.statEyebrow}>{t('panel.tabs.routes', { defaultValue: 'Top routes' })}</span>
+              <span className={styles.statEyebrow}>{t('panel.tabs.routes')}</span>
               <ul className={styles.statRouteList}>
                 {hubProfile.topRoutePairs.map(([fromId, toId]) => (
                   <li key={`${fromId}-${toId}`}>
@@ -135,7 +137,7 @@ export function StatisticsPanel({
 
       {route && (
         <div className={styles.statBlock}>
-          <span className={styles.statEyebrow}>{t('operating.corridor', { defaultValue: 'Corridor' })}</span>
+          <span className={styles.statEyebrow}>{t('operating.corridor')}</span>
           <p className={styles.statRoute}>
             {getMapCityById(route.fromCityId)?.name ?? route.fromCityId} →{' '}
             {getMapCityById(route.toCityId)?.name ?? route.toCityId}
@@ -145,11 +147,11 @@ export function StatisticsPanel({
       )}
 
       <div className={styles.statBlock}>
-        <span className={styles.statEyebrow}>{t('operating.platform', { defaultValue: 'Platform activity' })}</span>
+        <span className={styles.statEyebrow}>{t('operating.platform')}</span>
         <div className={styles.statGrid}>
           <div className={styles.statItem}>
             <AnimatedCounter value={stats.activeUsers} className={styles.statValue} />
-            <span className={styles.statLabel}>{t('operating.activeUsers', { defaultValue: 'Active users' })}</span>
+            <span className={styles.statLabel}>{t('operating.activeUsers')}</span>
           </div>
           <div className={styles.statItem}>
             <AnimatedCounter value={stats.openJobs} className={styles.statValue} />
@@ -157,7 +159,7 @@ export function StatisticsPanel({
           </div>
           <div className={styles.statItem}>
             <AnimatedCounter value={stats.marketplaceOffers} className={styles.statValue} />
-            <span className={styles.statLabel}>{t('operating.marketplace', { defaultValue: 'Marketplace' })}</span>
+            <span className={styles.statLabel}>{t('operating.marketplace')}</span>
           </div>
           <div className={styles.statItem}>
             <AnimatedCounter value={stats.transportOffers} className={styles.statValue} />

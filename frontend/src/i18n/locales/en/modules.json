@@ -17,6 +17,8 @@
   "admin": { "name": "Administration", "description": "Platform administration" },
   "status": { "active": "Active", "beta": "Beta", "coming-soon": "Coming soon" },
   "openModule": "Open module",
+  "notFound": "Module not found",
+  "mockNotice": "EuroBusinessHub modules — demo data, no live APIs",
   "allModules": "All modules",
   "overview": "Fifteen integrated modules — one account, one search, one ecosystem.",
   "workspace": {

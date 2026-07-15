@@ -1,4 +1,5 @@
 import { memo, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MAP_VIEWBOX } from '../data/europeGeo';
 import styles from './EuropeBusinessMap.module.css';
 
@@ -8,12 +9,14 @@ interface MapViewportProps {
 }
 
 export const MapViewport = memo(function MapViewport({ transform, children }: MapViewportProps) {
+  const { t } = useTranslation('map');
+
   return (
     <svg
       viewBox={`0 0 ${MAP_VIEWBOX.width} ${MAP_VIEWBOX.height}`}
       className={styles.svg}
       role="img"
-      aria-label="Europe business map"
+      aria-label={t('a11y.mapViewport')}
     >
       <defs>
         <radialGradient id="ebmOcean" cx="50%" cy="40%" r="80%">

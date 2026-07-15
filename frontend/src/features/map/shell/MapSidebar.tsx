@@ -49,13 +49,13 @@ export function MapSidebar({
       onTouchStart={stopChipPointerEvent}
     >
       <div className={styles.sidebarHeader}>
-        <span className={styles.sidebarTitle}>{t('operating.filters', { defaultValue: 'Filters' })}</span>
+        <span className={styles.sidebarTitle}>{t('operating.filters')}</span>
       </div>
 
       <div className={styles.sidebarSection}>
-        <span className={styles.sidebarEyebrow}>{t('operating.logistics', { defaultValue: 'Logistics' })}</span>
+        <span className={styles.sidebarEyebrow}>{t('operating.logistics')}</span>
         <div className={styles.filterGrid}>
-          {LOGISTICS_LAYER_OPTIONS.map(({ id, label, color }) => {
+          {LOGISTICS_LAYER_OPTIONS.map(({ id, labelKey, color }) => {
             const isActive = activeMapContext.logisticsLayer === id;
             return (
               <button
@@ -69,7 +69,7 @@ export function MapSidebar({
                 aria-pressed={isActive}
               >
                 <span className={styles.filterDot} />
-                {label}
+                {t(labelKey)}
               </button>
             );
           })}
@@ -77,9 +77,9 @@ export function MapSidebar({
       </div>
 
       <div className={styles.sidebarSection}>
-        <span className={styles.sidebarEyebrow}>{t('operating.business', { defaultValue: 'Business modules' })}</span>
+        <span className={styles.sidebarEyebrow}>{t('operating.business')}</span>
         <div className={styles.filterGrid}>
-          {BUSINESS_LAYER_OPTIONS.map(({ id, label }) => {
+          {BUSINESS_LAYER_OPTIONS.map(({ id, labelKey }) => {
             const isActive = activeMapContext.businessLayer === id;
             return (
               <button
@@ -91,7 +91,7 @@ export function MapSidebar({
                 onTouchStart={stopChipPointerEvent}
                 aria-pressed={isActive}
               >
-                {label}
+                {t(labelKey)}
               </button>
             );
           })}

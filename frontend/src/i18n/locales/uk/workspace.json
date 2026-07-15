@@ -1,0 +1,117 @@
+{
+  "title": "Робочий простір {{city}}",
+  "subtitle": "{{country}} · {{count}} компаній",
+  "stats": {
+    "activeUsers": "Активні користувачі",
+    "openOrders": "Відкриті замовлення",
+    "listings": "Оголошення"
+  },
+  "metrics": {
+    "companies": "Компанії",
+    "jobs": "Jobs",
+    "transport": "Transport",
+    "warehouses": "Склади",
+    "marketplace": "Маркетплейс",
+    "partners": "Партнери",
+    "digitalProducts": "Цифрові продукти",
+    "services": "Services"
+  },
+  "ecosystemMetrics": "Бізнес-екосистема",
+  "activeModules": "Активні модулі в цьому місті",
+  "backToMap": "Назад до карти",
+  "backToEuropeMap": "Назад до карти Європи",
+  "quickActions": "Швидкі дії",
+  "actions": {
+    "search": "Пошук у місті",
+    "marketplace": "Відкрити маркетплейс",
+    "ki": "Запустити ШІ-асистента"
+  },
+  "companies": {
+    "title": "Компанії в {{city}}",
+    "backToCity": "Назад до робочого простору міста",
+    "demoNotice": "Демо-дані — без підключення до реєстру компаній",
+    "notFoundCity": "Місто не знайдено",
+    "loadMoreFoundation": "Архітектура пагінації та load-more готова для майбутніх API-наборів даних.",
+    "stats": {
+      "label": "Статистика компаній міста",
+      "totalCompanies": "Усього компаній",
+      "verifiedProfiles": "Верифіковані профілі",
+      "industries": "Галузі",
+      "openOpportunities": "Відкриті можливості"
+    },
+    "search": {
+      "label": "Пошук компаній",
+      "placeholder": "Пошук за назвою, галуззю, тегами…",
+      "clear": "Очистити пошук"
+    },
+    "filters": {
+      "toggle": "Фільтри",
+      "active": "активні",
+      "industry": "Галузь",
+      "size": "Розмір компанії",
+      "status": "Статус",
+      "sort": "Сортувати за",
+      "verifiedOnly": "Лише верифіковані",
+      "all": "Усі",
+      "clear": "Скинути фільтри"
+    },
+    "sort": {
+      "relevance": "Релевантність",
+      "name": "Назва компанії",
+      "size": "Розмір компанії"
+    },
+    "results": {
+      "label": "Результати пошуку компаній",
+      "showing": "Показано {{count}} з {{total}} демо-компаній"
+    },
+    "card": {
+      "verified": "Верифіковано",
+      "demo": "Demo",
+      "tags": "Теги",
+      "view": "Переглянути компанію"
+    },
+    "details": {
+      "close": "Закрити деталі",
+      "size": "Розмір компанії",
+      "status": "Статус",
+      "verification": "Верифікація",
+      "employees": "Співробітники",
+      "description": "Опис",
+      "tags": "Теги",
+      "opportunities": "Можливості",
+      "location": "Локація",
+      "website": "Веб-сайт"
+    },
+    "industries": {
+      "manufacturing": "Виробництво",
+      "logistics": "Логістика",
+      "technology": "Технології",
+      "construction": "Будівництво",
+      "agriculture": "Сільське господарство",
+      "medical": "Медицина",
+      "finance": "Фінанси",
+      "tourism": "Туризм",
+      "retail": "Роздрібна торгівля",
+      "professional-services": "Професійні послуги"
+    },
+    "sizes": {
+      "micro": "Мікро",
+      "small": "Мала",
+      "medium": "Середня",
+      "large": "Велика"
+    },
+    "statuses": {
+      "active": "Активна",
+      "inactive": "Неактивна",
+      "pending": "Очікує"
+    },
+    "emptyCity": {
+      "title": "Дані про компанії для {{city}} ще відсутні",
+      "body": "Це місто підтримується на платформі, але демо-каталог компаній поки не містить записів тут."
+    },
+    "emptyFilters": {
+      "title": "Жодна компанія не відповідає обраним фільтрам",
+      "body": "Спробуйте змінити критерії пошуку або фільтрації."
+    }
+  }
+}

@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { supportedLanguages } from '@/i18n';
+import { languageOptions, normalizeLanguageCode } from '@/i18n/languages';
 import styles from './LanguageSelector.module.css';
 
 export function LanguageSelector() {
   const { i18n, t } = useTranslation('common');
+  const activeLanguage = normalizeLanguageCode(i18n.language) ?? 'de';
 
   return (
     <div className={styles.wrapper}>
@@ -11,13 +12,13 @@ export function LanguageSelector() {
       <select
         id="lang-select"
         className={styles.select}
-        value={i18n.language}
+        value={activeLanguage}
         onChange={(e) => void i18n.changeLanguage(e.target.value)}
         aria-label={t('nav.language')}
       >
-        {supportedLanguages.map((lang) => (
-          <option key={lang} value={lang}>
-            {lang === 'de' ? 'Deutsch' : 'English'}
+        {languageOptions.map(({ code, nativeLabel }) => (
+          <option key={code} value={code}>
+            {nativeLabel}
           </option>
         ))}
       </select>

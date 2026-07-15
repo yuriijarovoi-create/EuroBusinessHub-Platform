@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { MobileCommandCenterPanel } from './MobileCommandCenterPanel';
 import type { MobileLayerSelectionId } from './mobileCommandCenterData';
 import { useMobileMapUi } from './useMobileMapUi';
@@ -16,6 +17,7 @@ export function MobileMapControlCenter({
   enabled = true,
   onLayerSelect,
 }: MobileMapControlCenterProps) {
+  const { t } = useTranslation('map');
   const isMobileMapUi = useMobileMapUi();
   const [open, setOpen] = useState(false);
   const [portalReady, setPortalReady] = useState(false);
@@ -51,13 +53,13 @@ export function MobileMapControlCenter({
         }}
         onTouchStart={stopMapPropagation}
         onMouseDown={stopMapPropagation}
-        aria-label="Map control center"
+        aria-label={t('mobile.commandCenter')}
         aria-expanded={open}
       >
         <span className={styles.fabMainIcon} aria-hidden>
           🗺
         </span>
-        <span className={styles.fabMainLabel}>Map</span>
+        <span className={styles.fabMainLabel}>{t('mobile.map')}</span>
       </button>
 
       {open ? (

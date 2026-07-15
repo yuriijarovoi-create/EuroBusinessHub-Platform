@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "Jedna platforma. Nieograniczone możliwości biznesowe.",
+    "subtitle": "AI Business Operating System dla Europy",
+    "description": "Transport, marketplace, logistyka, oferty pracy, partnerzy i AI — połączone w jednym inteligentnym europejskim ekosystemie.",
+    "pageTitle": "EuroBusinessHub — AI Business Operating System",
+    "osTagline": "Business OS"
+  },
+  "hero": {
+    "badge": "Live · Sieć europejska",
+    "headlineLine1": "Jedna platforma.",
+    "headlineLine2": "Nieograniczone możliwości biznesowe.",
+    "cta": "Otwórz panel",
+    "ctaButtons": {
+      "marketplace": "Marketplace",
+      "transport": "Transport",
+      "unternehmen": "Firmy",
+      "jobs": "Oferty pracy"
+    },
+    "stats": {
+      "modules": "Moduły",
+      "cities": "Miasta",
+      "businesses": "Firmy"
+    }
+  },
+  "stats": {
+    "title": "Europejskie statystyki biznesowe",
+    "subtitle": "Dane na żywo z sieci EuroBusinessHub",
+    "companies": "Firmy",
+    "transportOrders": "Zlecenia transportowe",
+    "openJobs": "Otwarte oferty pracy",
+    "warehouses": "Magazyny",
+    "marketplaceProducts": "Produkty na marketplace",
+    "users": "Użytkownicy",
+    "partners": "Partnerzy"
+  },
+  "dashboard": {
+    "title": "Panel platformy",
+    "subtitle": "Twoje wskaźniki biznesowe na pierwszy rzut oka",
+    "viewAll": "Zobacz wszystko",
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "jobs": "Oferty pracy",
+    "companies": "Firmy",
+    "revenue": "Przychód",
+    "deals": "Transakcje",
+    "subscriptions": "Subskrypcje",
+    "analytics": "Analityka"
+  },
+  "modules": {
+    "title": "Twój europejski ekosystem biznesowy",
+    "subtitle": "Wszystkie obszary biznesu — połączone przez AI, wyszukiwanie i jedno konto."
+  },
+  "ai": {
+    "title": "Możliwości AI"
+  },
+  "nav": {
+    "home": "Strona główna",
+    "map": "Mapa",
+    "modules": "Moduły",
+    "workspace": "Przestrzeń robocza",
+    "search": "Wyszukiwanie",
+    "dashboard": "Panel",
+    "notifications": "Powiadomienia",
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się",
+    "language": "Język",
+    "theme": "Motyw",
+    "menuOpen": "Menu",
+    "menuClose": "Zamknij menu",
+    "mainNav": "Główna nawigacja"
+  },
+  "userMenu": {
+    "guest": "Gość",
+    "company": "Konto firmowe"
+  },
+  "notifications": {
+    "empty": "Brak powiadomień"
+  },
+  "future": {
+    "auth": "Uwierzytelnianie wkrótce",
+    "payments": "Płatności wkrótce",
+    "agents": "Agenci AI wkrótce",
+    "automation": "Automatyzacja n8n wkrótce"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Wszelkie prawa zastrzeżone.",
+    "mockData": "Dane demo — brak połączeń z rzeczywistymi API",
+    "tagline": "Europejski Business Operating System"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Panel",
+    "modules": "Moduły",
+    "stats": "Live"
+  }
+}

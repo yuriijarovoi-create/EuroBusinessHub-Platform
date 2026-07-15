@@ -7,6 +7,7 @@ import {
   type CSSProperties,
   type TouchEvent,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   MOBILE_MORE_CATEGORIES,
   MOBILE_RADIAL_CENTER,
@@ -30,6 +31,7 @@ function MobileCommandCenterPanelInner({
   onClose,
   onLayerSelect,
 }: MobileCommandCenterPanelProps) {
+  const { t } = useTranslation('map');
   const [activeRadial, setActiveRadial] = useState<MobileRadialActionId>('map');
   const [activeMore, setActiveMore] = useState<MobileMoreCategoryId | null>(null);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -91,25 +93,29 @@ function MobileCommandCenterPanelInner({
   };
 
   const handleRadialSelect = useCallback(
-    (id: MobileRadialActionId, message: string) => {
+    (id: MobileRadialActionId) => {
       flashPress(`radial-${id}`);
 
       if (id === 'more') {
         setMoreOpen((current) => !current);
         setActiveRadial('more');
-        showToast(message);
+        showToast(t('mobile.moreBusinessLayers'));
         return;
       }
 
       setActiveRadial(id);
       setActiveMore(null);
-      showToast(message);
+      showToast(
+        id === 'map'
+          ? t('mobile.europeOverviewActive')
+          : t('mobile.layerActive', { layer: t(`mobile.${id}`) }),
+      );
 
       if (id !== 'map') {
         onLayerSelect?.(id);
       }
     },
-    [flashPress, onLayerSelect, showToast],
+    [flashPress, onLayerSelect, showToast, t],
   );
 
   const handleMoreSelect = useCallback(
@@ -117,10 +123,12 @@ function MobileCommandCenterPanelInner({
       flashPress(`more-${category.id}`);
       setActiveMore(category.id);
       setActiveRadial('more');
-      showToast(`${category.title} layer active`);
+      showToast(
+        t('mobile.layerActive', { layer: t(`mobile.moreCategories.${category.id}`) }),
+      );
       onLayerSelect?.(category.layerId);
     },
-    [flashPress, onLayerSelect, showToast],
+    [flashPress, onLayerSelect, showToast, t],
   );
 
   const orbitAngleStyle = (angle: number): CSSProperties =>
@@ -144,7 +152,7 @@ function MobileCommandCenterPanelInner({
         className={`${styles.radialAnchor} ${styles.radialAnchorOpen}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Map command wheel"
+        aria-label={t('mobile.commandWheel')}
         onClick={stopMapPropagation}
         onTouchStart={stopMapPropagation}
       >
@@ -160,14 +168,14 @@ function MobileCommandCenterPanelInner({
             className={`${styles.radialBtn} ${styles.radialCenter} ${
               activeRadial === MOBILE_RADIAL_CENTER.id ? styles.radialBtnActive : ''
             } ${pressedId === `radial-${MOBILE_RADIAL_CENTER.id}` ? styles.radialBtnPressed : ''}`}
-            onClick={() => handleRadialSelect(MOBILE_RADIAL_CENTER.id, `${MOBILE_RADIAL_CENTER.label} view active`)}
+            onClick={() => handleRadialSelect(MOBILE_RADIAL_CENTER.id)}
             aria-pressed={activeRadial === MOBILE_RADIAL_CENTER.id}
-            aria-label={MOBILE_RADIAL_CENTER.label}
+            aria-label={t('mobile.map')}
           >
             <span className={styles.radialIcon} aria-hidden>
               {MOBILE_RADIAL_CENTER.icon}
             </span>
-            <span className={styles.radialLabel}>{MOBILE_RADIAL_CENTER.label}</span>
+            <span className={styles.radialLabel}>{t('mobile.map')}</span>
           </button>
 
           {MOBILE_RADIAL_ORBIT.map((action) => (
@@ -180,20 +188,15 @@ function MobileCommandCenterPanelInner({
                 pressedId === `radial-${action.id}` ? styles.radialBtnPressed : ''
               }`}
               style={orbitAngleStyle(action.angle)}
-              onClick={() =>
-                handleRadialSelect(
-                  action.id,
-                  action.layerId ? `${action.label} layer active` : `${action.label} selected`,
-                )
-              }
+              onClick={() => handleRadialSelect(action.id)}
               aria-pressed={activeRadial === action.id}
               aria-expanded={action.id === 'more' ? moreOpen : undefined}
-              aria-label={action.label}
+              aria-label={t(`mobile.${action.id}`)}
             >
               <span className={styles.radialIcon} aria-hidden>
                 {action.icon}
               </span>
-              <span className={styles.radialLabel}>{action.label}</span>
+              <span className={styles.radialLabel}>{t(`mobile.${action.id}`)}</span>
             </button>
           ))}
         </div>
@@ -208,7 +211,7 @@ function MobileCommandCenterPanelInner({
       <div
         className={`${styles.moreSheet} ${moreOpen ? styles.moreSheetOpen : ''}`}
         role="region"
-        aria-label="More business layers"
+        aria-label={t('mobile.moreBusinessLayers')}
         aria-hidden={!moreOpen}
         onClick={stopMapPropagation}
         onTouchStart={stopMapPropagation}
@@ -223,8 +226,8 @@ function MobileCommandCenterPanelInner({
         </div>
 
         <header className={styles.moreHeader}>
-          <h3 className={styles.moreTitle}>Business layers</h3>
-          <p className={styles.moreSubtitle}>Explore the EuroBusinessHub ecosystem</p>
+          <h3 className={styles.moreTitle}>{t('mobile.businessLayers')}</h3>
+          <p className={styles.moreSubtitle}>{t('mobile.exploreEcosystem')}</p>
         </header>
 
         <div className={styles.moreBody}>
@@ -242,7 +245,7 @@ function MobileCommandCenterPanelInner({
                 <span className={styles.moreChipIcon} aria-hidden>
                   {category.icon}
                 </span>
-                <span className={styles.moreChipLabel}>{category.title}</span>
+                <span className={styles.moreChipLabel}>{t(`mobile.moreCategories.${category.id}`)}</span>
               </button>
             ))}
           </div>

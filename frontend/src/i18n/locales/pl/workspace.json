@@ -1,0 +1,117 @@
+{
+  "title": "Przestrzeń robocza {{city}}",
+  "subtitle": "{{country}} · {{count}} firm",
+  "stats": {
+    "activeUsers": "Aktywni użytkownicy",
+    "openOrders": "Otwarte zlecenia",
+    "listings": "Ogłoszenia"
+  },
+  "metrics": {
+    "companies": "Firmy",
+    "jobs": "Jobs",
+    "transport": "Transport",
+    "warehouses": "Magazyny",
+    "marketplace": "Marketplace",
+    "partners": "Partnerzy",
+    "digitalProducts": "Produkty cyfrowe",
+    "services": "Services"
+  },
+  "ecosystemMetrics": "Ekosystem biznesowy",
+  "activeModules": "Aktywne moduły w tym mieście",
+  "backToMap": "Powrót do mapy",
+  "backToEuropeMap": "Powrót do mapy Europy",
+  "quickActions": "Szybkie akcje",
+  "actions": {
+    "search": "Szukaj w mieście",
+    "marketplace": "Otwórz marketplace",
+    "ki": "Uruchom asystenta AI"
+  },
+  "companies": {
+    "title": "Firmy w {{city}}",
+    "backToCity": "Powrót do przestrzeni roboczej miasta",
+    "demoNotice": "Dane demo — brak połączenia z rejestrem firm",
+    "notFoundCity": "Nie znaleziono miasta",
+    "loadMoreFoundation": "Architektura paginacji i load-more gotowa na przyszłe zestawy danych API.",
+    "stats": {
+      "label": "Statystyki firm w mieście",
+      "totalCompanies": "Łączna liczba firm",
+      "verifiedProfiles": "Zweryfikowane profile",
+      "industries": "Branże",
+      "openOpportunities": "Otwarte możliwości"
+    },
+    "search": {
+      "label": "Wyszukaj firmy",
+      "placeholder": "Szukaj po nazwie, branży, tagach…",
+      "clear": "Wyczyść wyszukiwanie"
+    },
+    "filters": {
+      "toggle": "Filtry",
+      "active": "aktywne",
+      "industry": "Branża",
+      "size": "Wielkość firmy",
+      "status": "Status",
+      "sort": "Sortuj według",
+      "verifiedOnly": "Tylko zweryfikowane",
+      "all": "Wszystkie",
+      "clear": "Wyczyść filtry"
+    },
+    "sort": {
+      "relevance": "Trafność",
+      "name": "Nazwa firmy",
+      "size": "Wielkość firmy"
+    },
+    "results": {
+      "label": "Wyniki wyszukiwania firm",
+      "showing": "Wyświetlono {{count}} z {{total}} firm demo"
+    },
+    "card": {
+      "verified": "Zweryfikowana",
+      "demo": "Demo",
+      "tags": "Tagi",
+      "view": "Zobacz firmę"
+    },
+    "details": {
+      "close": "Zamknij szczegóły",
+      "size": "Wielkość firmy",
+      "status": "Status",
+      "verification": "Weryfikacja",
+      "employees": "Pracownicy",
+      "description": "Opis",
+      "tags": "Tagi",
+      "opportunities": "Możliwości",
+      "location": "Lokalizacja",
+      "website": "Strona internetowa"
+    },
+    "industries": {
+      "manufacturing": "Produkcja",
+      "logistics": "Logistyka",
+      "technology": "Technologia",
+      "construction": "Budownictwo",
+      "agriculture": "Rolnictwo",
+      "medical": "Medycyna",
+      "finance": "Finanse",
+      "tourism": "Turystyka",
+      "retail": "Handel detaliczny",
+      "professional-services": "Usługi profesjonalne"
+    },
+    "sizes": {
+      "micro": "Mikro",
+      "small": "Mała",
+      "medium": "Średnia",
+      "large": "Duża"
+    },
+    "statuses": {
+      "active": "Aktywna",
+      "inactive": "Nieaktywna",
+      "pending": "Oczekująca"
+    },
+    "emptyCity": {
+      "title": "Brak danych o firmach dla {{city}}",
+      "body": "To miasto jest obsługiwane na platformie, ale katalog firm demo nie zawiera jeszcze wpisów w tym miejscu."
+    },
+    "emptyFilters": {
+      "title": "Żadna firma nie pasuje do wybranych filtrów",
+      "body": "Spróbuj dostosować kryteria wyszukiwania lub filtry."
+    }
+  }
+}

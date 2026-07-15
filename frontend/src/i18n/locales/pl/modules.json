@@ -1,0 +1,28 @@
+{
+  "dashboard": { "name": "Panel", "description": "Twoja osobista przestrzeń robocza biznesowa" },
+  "marketplace": { "name": "Marketplace B2B", "description": "B2B marketplace produktów i usług" },
+  "transport": { "name": "Giełda transportowa", "description": "Fracht, spedycja i łańcuchy dostaw" },
+  "logistik": { "name": "Logistyka", "description": "Magazynowanie, fulfillment i dystrybucja" },
+  "lager": { "name": "Magazyny", "description": "Zarządzanie magazynami i optymalizacja zapasów" },
+  "unternehmen": { "name": "Firmy", "description": "Profile firm, sieć i compliance" },
+  "jobs": { "name": "Oferty pracy", "description": "Oferty pracy i dopasowanie talentów" },
+  "services": { "name": "Usługi biznesowe", "description": "Profesjonalne usługi B2B" },
+  "partner": { "name": "Partnerzy", "description": "Sieć partnerów i współpraca" },
+  "digitale-produkte": { "name": "Produkty cyfrowe", "description": "Oprogramowanie, licencje i aktywa cyfrowe" },
+  "akademie": { "name": "Akademia", "description": "Szkolenia i certyfikacje" },
+  "ki": { "name": "Asystent AI", "description": "Narzędzia AI, agenci i automatyzacja" },
+  "analytics": { "name": "Analityka", "description": "Metryki, raporty i analizy" },
+  "payments": { "name": "Płatności", "description": "Subskrypcje, faktury i transakcje" },
+  "notifications": { "name": "Powiadomienia", "description": "Alerty, aktualizacje i komunikaty systemowe" },
+  "admin": { "name": "Administracja", "description": "Administracja platformy" },
+  "status": { "active": "Aktywny", "beta": "Beta", "coming-soon": "Wkrótce" },
+  "openModule": "Otwórz moduł",
+  "notFound": "Nie znaleziono modułu",
+  "mockNotice": "Moduły EuroBusinessHub — dane demo, bez live API",
+  "allModules": "Wszystkie moduły",
+  "overview": "Piętnaście zintegrowanych modułów — jedno konto, jedno wyszukiwanie, jeden ekosystem.",
+  "workspace": {
+    "title": "Przestrzeń robocza modułu",
+    "description": "Ten moduł jest przygotowany jako placeholder. Dane demo będą wyświetlane do czasu podłączenia API backendu."
+  }
+}

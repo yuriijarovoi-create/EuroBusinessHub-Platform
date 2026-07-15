@@ -38,39 +38,39 @@ export const DEFAULT_ACTIVE_MAP_CONTEXT: ActiveMapContext = {
 
 export const LOGISTICS_LAYER_OPTIONS: Array<{
   id: LogisticsLayerId;
-  label: string;
+  labelKey: string;
   color: string;
 }> = [
-  { id: 'road', label: 'Road transport', color: '#3b8ede' },
-  { id: 'rail', label: 'Rail', color: '#34c759' },
-  { id: 'sea', label: 'Sea freight', color: '#ff8c42' },
-  { id: 'air', label: 'Air cargo', color: '#a78bfa' },
-  { id: 'river', label: 'River', color: '#22d3ee' },
+  { id: 'road', labelKey: 'layers.road', color: '#3b8ede' },
+  { id: 'rail', labelKey: 'layers.rail', color: '#34c759' },
+  { id: 'sea', labelKey: 'layers.sea', color: '#ff8c42' },
+  { id: 'air', labelKey: 'layers.air', color: '#a78bfa' },
+  { id: 'river', labelKey: 'layers.river', color: '#22d3ee' },
 ];
 
-export const BUSINESS_LAYER_OPTIONS: Array<{ id: BusinessLayerId; label: string }> = [
-  { id: 'marketplace', label: 'Marketplace' },
-  { id: 'transport', label: 'Transport' },
-  { id: 'companies', label: 'Companies' },
-  { id: 'jobs', label: 'Jobs' },
-  { id: 'warehouses', label: 'Warehouses' },
-  { id: 'businessServices', label: 'Business Services' },
-  { id: 'partners', label: 'Partners' },
-  { id: 'academy', label: 'Academy' },
-  { id: 'digitalProducts', label: 'Digital Products' },
-  { id: 'ai', label: 'AI' },
-  { id: 'events', label: 'Events' },
-  { id: 'investments', label: 'Investments' },
-  { id: 'startups', label: 'Startups' },
-  { id: 'manufacturing', label: 'Manufacturing' },
-  { id: 'agriculture', label: 'Agriculture' },
-  { id: 'construction', label: 'Construction' },
-  { id: 'medical', label: 'Medical' },
-  { id: 'tourism', label: 'Tourism' },
-  { id: 'technology', label: 'Technology' },
-  { id: 'finance', label: 'Finance' },
-  { id: 'legal', label: 'Legal' },
-  { id: 'education', label: 'Education' },
+export const BUSINESS_LAYER_OPTIONS: Array<{ id: BusinessLayerId; labelKey: string }> = [
+  { id: 'marketplace', labelKey: 'businessLayers.marketplace' },
+  { id: 'transport', labelKey: 'businessLayers.transport' },
+  { id: 'companies', labelKey: 'businessLayers.companies' },
+  { id: 'jobs', labelKey: 'businessLayers.jobs' },
+  { id: 'warehouses', labelKey: 'businessLayers.warehouses' },
+  { id: 'businessServices', labelKey: 'businessLayers.businessServices' },
+  { id: 'partners', labelKey: 'businessLayers.partners' },
+  { id: 'academy', labelKey: 'businessLayers.academy' },
+  { id: 'digitalProducts', labelKey: 'businessLayers.digitalProducts' },
+  { id: 'ai', labelKey: 'businessLayers.ai' },
+  { id: 'events', labelKey: 'businessLayers.events' },
+  { id: 'investments', labelKey: 'businessLayers.investments' },
+  { id: 'startups', labelKey: 'businessLayers.startups' },
+  { id: 'manufacturing', labelKey: 'businessLayers.manufacturing' },
+  { id: 'agriculture', labelKey: 'businessLayers.agriculture' },
+  { id: 'construction', labelKey: 'businessLayers.construction' },
+  { id: 'medical', labelKey: 'businessLayers.medical' },
+  { id: 'tourism', labelKey: 'businessLayers.tourism' },
+  { id: 'technology', labelKey: 'businessLayers.technology' },
+  { id: 'finance', labelKey: 'businessLayers.finance' },
+  { id: 'legal', labelKey: 'businessLayers.legal' },
+  { id: 'education', labelKey: 'businessLayers.education' },
 ];
 
 export function toggleLogisticsLayer(
@@ -111,12 +111,20 @@ export function setMobileBusinessLayer(layerId: BusinessLayerId | null): ActiveM
   };
 }
 
-export function getLogisticsLayerLabel(layerId: LogisticsLayerId): string {
-  return LOGISTICS_LAYER_OPTIONS.find((entry) => entry.id === layerId)?.label ?? layerId;
+export function getLogisticsLayerLabel(
+  layerId: LogisticsLayerId,
+  translate: (key: string) => string,
+): string {
+  const entry = LOGISTICS_LAYER_OPTIONS.find((item) => item.id === layerId);
+  return entry ? translate(entry.labelKey) : layerId;
 }
 
-export function getBusinessLayerLabel(layerId: BusinessLayerId): string {
-  return BUSINESS_LAYER_OPTIONS.find((entry) => entry.id === layerId)?.label ?? layerId;
+export function getBusinessLayerLabel(
+  layerId: BusinessLayerId,
+  translate: (key: string) => string,
+): string {
+  const entry = BUSINESS_LAYER_OPTIONS.find((item) => item.id === layerId);
+  return entry ? translate(entry.labelKey) : layerId;
 }
 
 export function isEuropeOverview(context: ActiveMapContext): boolean {

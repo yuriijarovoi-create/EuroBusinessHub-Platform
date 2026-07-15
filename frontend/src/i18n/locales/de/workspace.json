@@ -11,7 +11,7 @@
     "jobs": "Jobs",
     "transport": "Transport",
     "warehouses": "Lager",
-    "marketplace": "Marketplace",
+    "marketplace": "Marktplatz",
     "partners": "Partner",
     "digitalProducts": "Digitale Produkte",
     "services": "Services"
@@ -23,7 +23,7 @@
   "quickActions": "Schnellaktionen",
   "actions": {
     "search": "In Stadt suchen",
-    "marketplace": "Marketplace öffnen",
+    "marketplace": "Marktplatz öffnen",
     "ki": "KI-Assistent starten"
   },
   "companies": {

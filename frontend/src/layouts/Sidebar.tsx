@@ -21,7 +21,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           type="button"
           className={styles.backdrop}
           onClick={onClose}
-          aria-label="Menü schließen"
+          aria-label={t('common:nav.menuClose')}
         />
       )}
       <aside className={`${styles.sidebar} ${open ? styles.open : ''}`} aria-hidden={!open}>

@@ -1,6 +1,7 @@
 import type { PathOptions } from 'leaflet';
 import type { Feature, Geometry } from 'geojson';
 import type { MapCountry } from '@shared/types';
+import i18n from '@/i18n';
 import type { EuropeGeoStyles } from '../../utils/mapThemeUtils';
 import type { CountryBusinessStats } from '../data/countryStats';
 
@@ -45,12 +46,13 @@ export function buildCountryTooltipHtml(
   country: MapCountry,
   stats: CountryBusinessStats,
 ): string {
+  const tt = (key: string) => i18n.t(key, { ns: 'map' });
   return `<div class="ebh-country-tooltip-card">
     <div class="ebh-country-tooltip-title">${country.name}</div>
-    <div class="ebh-country-tooltip-row"><span>Companies</span><strong>${stats.companies.toLocaleString()}</strong></div>
-    <div class="ebh-country-tooltip-row"><span>Jobs</span><strong>${stats.jobs.toLocaleString()}</strong></div>
-    <div class="ebh-country-tooltip-row"><span>Warehouses</span><strong>${stats.warehouses}</strong></div>
-    <div class="ebh-country-tooltip-row"><span>Transport</span><strong>${stats.transport}</strong></div>
-    <div class="ebh-country-tooltip-row"><span>AI Score</span><strong class="ebh-country-tooltip-ai">${stats.aiScore}</strong></div>
+    <div class="ebh-country-tooltip-row"><span>${tt('tooltips.companies')}</span><strong>${stats.companies.toLocaleString()}</strong></div>
+    <div class="ebh-country-tooltip-row"><span>${tt('tooltips.jobs')}</span><strong>${stats.jobs.toLocaleString()}</strong></div>
+    <div class="ebh-country-tooltip-row"><span>${tt('tooltips.warehouses')}</span><strong>${stats.warehouses}</strong></div>
+    <div class="ebh-country-tooltip-row"><span>${tt('tooltips.transport')}</span><strong>${stats.transport}</strong></div>
+    <div class="ebh-country-tooltip-row"><span>${tt('tooltips.aiScore')}</span><strong class="ebh-country-tooltip-ai">${stats.aiScore}</strong></div>
   </div>`;
 }

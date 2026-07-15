@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './mobileMapControls.module.css';
 
 interface MobileAiPlaceholderModalProps {
@@ -7,6 +8,7 @@ interface MobileAiPlaceholderModalProps {
 }
 
 export function MobileAiPlaceholderModal({ open, onClose }: MobileAiPlaceholderModalProps) {
+  const { t } = useTranslation('map');
   const stopMapPropagation = useCallback((event: React.SyntheticEvent) => {
     event.stopPropagation();
   }, []);
@@ -31,11 +33,11 @@ export function MobileAiPlaceholderModal({ open, onClose }: MobileAiPlaceholderM
           🤖
         </div>
         <h3 id="mobile-ai-modal-title" className={styles.modalTitle}>
-          AI Map Assistant
+          {t('mobile.aiAssistantTitle')}
         </h3>
-        <p className={styles.modalSubtitle}>Coming soon</p>
+        <p className={styles.modalSubtitle}>{t('mobile.comingSoon')}</p>
         <button type="button" className={styles.modalClose} onClick={onClose}>
-          Close
+          {t('mobile.close')}
         </button>
       </div>
     </div>

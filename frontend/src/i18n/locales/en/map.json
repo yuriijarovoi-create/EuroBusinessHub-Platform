@@ -211,5 +211,455 @@
       "search": "Find transport",
       "create": "Create offer"
     }
+  },
+  "operating": {
+    "context": "Context",
+    "insights": "Live intelligence",
+    "activeMapMode": "Active map mode",
+    "logisticsLayer": "Logistics",
+    "businessLayer": "Business",
+    "country": "Country",
+    "city": "City",
+    "corridor": "Corridor",
+    "platform": "Platform activity",
+    "activeUsers": "Active users",
+    "marketplace": "Marketplace",
+    "filters": "Filters",
+    "logistics": "Logistics",
+    "business": "Business modules",
+    "mapControls": "Map controls",
+    "trending": "Trending cities"
+  },
+  "a11y": {
+    "togglePanel": "Toggle panel",
+    "mapViewport": "Europe business map",
+    "showCommandPanel": "Show command panel",
+    "hideCommandPanel": "Hide command panel"
+  },
+  "businessLayers": {
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "companies": "Companies",
+    "jobs": "Jobs",
+    "warehouses": "Warehouses",
+    "businessServices": "Business Services",
+    "partners": "Partners",
+    "academy": "Academy",
+    "digitalProducts": "Digital Products",
+    "ai": "AI",
+    "events": "Events",
+    "investments": "Investments",
+    "startups": "Startups",
+    "manufacturing": "Manufacturing",
+    "agriculture": "Agriculture",
+    "construction": "Construction",
+    "medical": "Medical",
+    "tourism": "Tourism",
+    "technology": "Technology",
+    "finance": "Finance",
+    "legal": "Legal",
+    "education": "Education"
+  },
+  "mobile": {
+    "map": "Map",
+    "transport": "Transport",
+    "jobs": "Jobs",
+    "companies": "Companies",
+    "warehouses": "Warehouses",
+    "ai": "AI",
+    "more": "More",
+    "mapControl": "Map Control",
+    "commandCenter": "Map control center",
+    "mapControls": "Map controls",
+    "commandWheel": "Map command wheel",
+    "moreBusinessLayers": "More business layers",
+    "businessLayers": "Business layers",
+    "activeLayer": "Active layer:",
+    "layerActive": "{{layer}} layer active",
+    "europeOverviewActive": "Europe overview active",
+    "aiComingSoon": "AI Map Assistant coming soon",
+    "exploreEcosystem": "Explore the EuroBusinessHub ecosystem",
+    "aiAssistantTitle": "AI Map Assistant",
+    "comingSoon": "Coming soon",
+    "close": "Close",
+    "closeLayersPanel": "Close layers panel",
+    "layerGroups": {
+      "transport": {
+        "title": "Transport Layers",
+        "road": "Road Transport",
+        "rail": "Rail",
+        "air": "Air Cargo",
+        "sea": "Sea Freight",
+        "river": "River"
+      },
+      "business": {
+        "title": "Business Modules",
+        "marketplace": "Marketplace",
+        "companies": "Companies",
+        "jobs": "Jobs",
+        "warehouses": "Warehouses",
+        "partners": "Partners"
+      },
+      "services": {
+        "title": "Services",
+        "legal": "Legal",
+        "finance": "Finance",
+        "medical": "Medical",
+        "education": "Education",
+        "technology": "Technology"
+      },
+      "industries": {
+        "title": "Industries",
+        "agriculture": "Agriculture",
+        "manufacturing": "Manufacturing",
+        "construction": "Construction",
+        "tourism": "Tourism"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "ai": "AI",
+        "startups": "Startups",
+        "digitalProducts": "Digital Products",
+        "academy": "Academy",
+        "investments": "Investments"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Marketplace",
+      "partners": "Partners",
+      "academy": "Academy",
+      "digital-products": "Digital Products",
+      "events": "Events",
+      "investments": "Investments",
+      "startups": "Startups",
+      "manufacturing": "Manufacturing",
+      "agriculture": "Agriculture",
+      "construction": "Construction",
+      "medical": "Medical",
+      "tourism": "Tourism",
+      "technology": "Technology",
+      "finance": "Finance",
+      "legal": "Legal",
+      "education": "Education"
+    }
+  },
+  "tooltips": {
+    "companies": "Companies",
+    "jobs": "Jobs",
+    "warehouses": "Warehouses",
+    "transport": "Transport",
+    "aiScore": "AI Score",
+    "origin": "Origin",
+    "destination": "Destination",
+    "routeType": "Route type",
+    "distance": "Distance",
+    "activeOffers": "Active offers",
+    "estTime": "Est. time",
+    "aiOptimized": "AI Optimized"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Europe Overview",
+      "recommendation": "Explore the full European business operating map — all corridors and hubs visible.",
+      "tickerEyebrow": "AI recommendations",
+      "tickerMessages": [
+        "High demand: Berlin → Izium reconstruction logistics",
+        "Expand corridor: Warsaw → Kyiv → Izium",
+        "Partner match: Istanbul → Odesa maritime logistics",
+        "New opportunity: Ukraine rebuilding supply chain"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Marketplace Mode",
+      "recommendation": "Brighter city glow highlights trading hotspots — discover B2B marketplace opportunities across Europe.",
+      "tickerEyebrow": "Marketplace signals",
+      "tickerMessages": [
+        "Rotterdam → Warsaw wholesale corridor trending",
+        "Berlin SME listings up 14% this week",
+        "Cross-border marketplace match: Vienna ↔ Prague",
+        "High buyer intent in Munich industrial supplies"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Transport Mode",
+      "recommendation": "Transport corridors are subtly emphasized — follow freight flows and logistics exchange activity.",
+      "tickerEyebrow": "Logistics recommendations",
+      "tickerMessages": [
+        "Rail slot available: Hamburg → Warsaw corridor",
+        "Sea freight demand rising on Rotterdam → Gdańsk",
+        "Road capacity opening: Lyon → Milan lane",
+        "Air cargo window: Frankfurt → Bucharest express"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Companies Mode",
+      "recommendation": "Company hub glow intensifies major business centres — ideal for enterprise discovery.",
+      "tickerEyebrow": "Company hub signals",
+      "tickerMessages": [
+        "Frankfurt enterprise cluster activity +11%",
+        "Paris HQ relocations trending toward Lyon",
+        "Warsaw tech campus expansion noted",
+        "Milan fashion houses seeking EU partners"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Jobs Mode",
+      "recommendation": "Hiring hotspot glow surfaces employment demand — explore open roles by city.",
+      "tickerEyebrow": "Employment recommendations",
+      "tickerMessages": [
+        "Berlin logistics roles +18% week over week",
+        "Warsaw engineering hiring surge continues",
+        "Remote-ready roles clustering in Dublin",
+        "Izium reconstruction projects posting skilled trades"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Warehouses Mode",
+      "recommendation": "Warehouse network feeling — distribution nodes pulse across logistics gateways.",
+      "tickerEyebrow": "Warehouse network signals",
+      "tickerMessages": [
+        "Rotterdam bonded storage at 92% utilization",
+        "Warsaw cold-chain expansion corridor active",
+        "Hamburg ↔ Berlin fulfillment lane optimized",
+        "Prague regional hub capacity opening Q3"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Business Services Mode",
+      "recommendation": "Service network glow connects professional service clusters across Europe.",
+      "tickerEyebrow": "Service network signals",
+      "tickerMessages": [
+        "Brussels compliance advisory demand rising",
+        "Zurich fiduciary services match in Prague",
+        "Barcelona creative services export growth",
+        "Vienna consulting corridor expanding east"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Partners Mode",
+      "recommendation": "Collaboration network feeling — partnership-ready cities shine for cross-border alliances.",
+      "tickerEyebrow": "Partnership signals",
+      "tickerMessages": [
+        "Nordic ↔ Baltic partner match score high",
+        "Istanbul gateway seeking EU distributors",
+        "Lyon manufacturing partner search active",
+        "Tallinn digital partners open to DACH market"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Academy Mode",
+      "recommendation": "Education ecosystem feeling — learning hubs and training corridors highlighted.",
+      "tickerEyebrow": "Academy signals",
+      "tickerMessages": [
+        "Heidelberg research exchange programs open",
+        "Barcelona bootcamp partnerships trending",
+        "Warsaw STEM academy cohort filling fast",
+        "Vienna executive education cross-border intake"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Digital Products Mode",
+      "recommendation": "Technology ecosystem feeling — digital product hubs glow across innovation cities.",
+      "tickerEyebrow": "Digital product signals",
+      "tickerMessages": [
+        "SaaS listings surge in Tallinn and Dublin",
+        "Berlin product studios seeking EU resellers",
+        "Amsterdam fintech APIs open for integration",
+        "Prague dev tools marketplace activity +9%"
+      ]
+    },
+    "ai": {
+      "panelTitle": "AI Mode",
+      "recommendation": "AI network feeling — intelligent corridors and AI-ready business nodes emphasized.",
+      "tickerEyebrow": "AI network signals",
+      "tickerMessages": [
+        "Frankfurt AI logistics routing pilot live",
+        "Warsaw ML talent pool match score 94%",
+        "Paris generative commerce tools trending",
+        "Helsinki AI compliance sandbox accepting partners"
+      ]
+    },
+    "events": {
+      "panelTitle": "Events Mode",
+      "recommendation": "Event hotspot feeling — conference and trade-fair cities pulse on the map.",
+      "tickerEyebrow": "Event hotspot signals",
+      "tickerMessages": [
+        "Hanover Messe corridor bookings rising",
+        "Barcelona mobile congress spillover demand",
+        "Vienna summit week accommodation tight",
+        "Milan design week supplier matchmaking open"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Investments Mode",
+      "recommendation": "Investment capital feeling — capital flows and funding hotspots subtly highlighted.",
+      "tickerEyebrow": "Investment signals",
+      "tickerMessages": [
+        "Frankfurt VC interest in Warsaw deeptech",
+        "Luxembourg fund routing via Amsterdam hub",
+        "Berlin seed round activity up 12%",
+        "Reconstruction capital targeting Izium corridor"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Startups Mode",
+      "recommendation": "Startup innovation feeling — founder ecosystems and scale-up corridors glow.",
+      "tickerEyebrow": "Startup innovation signals",
+      "tickerMessages": [
+        "Berlin ↔ Tallinn founder exchange active",
+        "Barcelona healthtech spinouts seeking pilots",
+        "Warsaw accelerator demo day inbound interest",
+        "Lisbon remote-first startup hiring surge"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Manufacturing Mode",
+      "recommendation": "Industrial network feeling — production hubs and supply corridors emphasized.",
+      "tickerEyebrow": "Industrial network signals",
+      "tickerMessages": [
+        "Stuttgart automotive suppliers seeking partners",
+        "Turin components corridor capacity available",
+        "Wrocław electronics assembly expansion",
+        "Lyon aerospace subcontractor match open"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Agriculture Mode",
+      "recommendation": "Agriculture ecosystem feeling — agrifood corridors and rural trade nodes glow.",
+      "tickerEyebrow": "Agriculture ecosystem signals",
+      "tickerMessages": [
+        "Danube grain corridor storage demand high",
+        "Netherlands cold-chain to Poland active",
+        "Valencia citrus export season ramping",
+        "Kraków organic distributor seeking partners"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Construction Mode",
+      "recommendation": "Infrastructure feeling — rebuild and construction supply corridors highlighted.",
+      "tickerEyebrow": "Infrastructure signals",
+      "tickerMessages": [
+        "Izium rebuild materials corridor prioritized",
+        "Berlin housing project subcontractor search",
+        "Warsaw infrastructure tender activity rising",
+        "Prague rail modernization supplier match"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Medical Mode",
+      "recommendation": "Healthcare ecosystem feeling — medical hubs and health logistics nodes emphasized.",
+      "tickerEyebrow": "Healthcare ecosystem signals",
+      "tickerMessages": [
+        "Basel pharma distribution lane stable",
+        "Warsaw medtech device listings +10%",
+        "Munich hospital procurement window open",
+        "Strasbourg cross-border care partnerships"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Tourism Mode",
+      "recommendation": "Tourism destination feeling — visitor economy hotspots glow across Europe.",
+      "tickerEyebrow": "Tourism destination signals",
+      "tickerMessages": [
+        "Barcelona summer hospitality bookings surge",
+        "Vienna cultural tourism partners wanted",
+        "Athens cruise transfer corridor active",
+        "Prague city-break packages trending DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Technology Mode",
+      "recommendation": "Technology hubs feeling — innovation clusters and tech corridors subtly brightened.",
+      "tickerEyebrow": "Technology hub signals",
+      "tickerMessages": [
+        "Munich deep-tech spinout interest rising",
+        "Eindhoven semiconductor partners sought",
+        "Tallinn cyber talent match score high",
+        "Cambridge ↔ Berlin research exchange open"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Finance Mode",
+      "recommendation": "Finance network feeling — capital centres and banking corridors highlighted.",
+      "tickerEyebrow": "Finance network signals",
+      "tickerMessages": [
+        "Frankfurt clearing activity steady",
+        "Luxembourg fund administration match open",
+        "Dublin fintech API partners trending",
+        "Zurich wealth services cross-border intake"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Legal Mode",
+      "recommendation": "Legal services feeling — regulatory and legal advisory clusters emphasized.",
+      "tickerEyebrow": "Legal services signals",
+      "tickerMessages": [
+        "Brussels regulatory advisory demand high",
+        "London ↔ Frankfurt compliance corridor",
+        "Warsaw EU law boutique expansion noted",
+        "Vienna arbitration hub partner search"
+      ]
+    },
+    "education": {
+      "panelTitle": "Education Mode",
+      "recommendation": "Education network feeling — universities and training corridors glow softly.",
+      "tickerEyebrow": "Education network signals",
+      "tickerMessages": [
+        "Erasmus corridor activity: Barcelona ↔ Bologna",
+        "Warsaw language school partnerships open",
+        "Heidelberg research intake cross-border",
+        "Dublin edtech credential exchange trending"
+      ]
+    },
+    "road": {
+      "panelTitle": "Road Transport Mode",
+      "recommendation": "Road corridors receive subtle emphasis — overland freight lanes glow on the network.",
+      "tickerEyebrow": "Road transport signals",
+      "tickerMessages": [
+        "Antwerp → Warsaw trucking capacity open",
+        "Milan → Munich lane utilization 78%",
+        "Barcelona → Lyon express slot available"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Rail Mode",
+      "recommendation": "Rail corridors emphasized — intermodal and freight rail lanes highlighted.",
+      "tickerEyebrow": "Rail corridor signals",
+      "tickerMessages": [
+        "Hamburg → Warsaw rail slot trending",
+        "Rotterdam intermodal handoff stable",
+        "Basel → Milan rail freight demand up"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Sea Freight Mode",
+      "recommendation": "Maritime corridors emphasized — port-to-port sea lanes glow on the map.",
+      "tickerEyebrow": "Sea freight signals",
+      "tickerMessages": [
+        "Rotterdam → Gdańsk container lane active",
+        "Hamburg → Odesa maritime interest rising",
+        "Barcelona Mediterranean routing stable"
+      ]
+    },
+    "air": {
+      "panelTitle": "Air Cargo Mode",
+      "recommendation": "Air cargo corridors emphasized — express aviation lanes highlighted.",
+      "tickerEyebrow": "Air cargo signals",
+      "tickerMessages": [
+        "Frankfurt → Bucharest express uplift open",
+        "Paris CDG ↔ Warsaw cargo window",
+        "Amsterdam air hub cross-dock active"
+      ]
+    },
+    "river": {
+      "panelTitle": "River Mode",
+      "recommendation": "River corridors emphasized — inland waterway freight lanes highlighted.",
+      "tickerEyebrow": "River freight signals",
+      "tickerMessages": [
+        "Danube corridor grain movement active",
+        "Rhine barge capacity available",
+        "Elbe inland port handoffs stable"
+      ]
+    }
   }
 }

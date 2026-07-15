@@ -247,7 +247,7 @@ export function BusinessOperatingMapInner({
         }`}
       >
         {showSidebars && (
-          <div className={styles.desktopControlRail} aria-label={t('operating.mapControls', { defaultValue: 'Map controls' })}>
+          <div className={styles.desktopControlRail} aria-label={t('operating.mapControls')}>
             <div className={styles.layerControlAnchor}>
               <button
                 type="button"
@@ -322,7 +322,7 @@ export function BusinessOperatingMapInner({
                   aria-controls="command-panel"
                   aria-expanded={isCommandPanelOpen}
                   aria-label={
-                    isCommandPanelOpen ? 'Hide command panel' : 'Show command panel'
+                    isCommandPanelOpen ? t('a11y.hideCommandPanel') : t('a11y.showCommandPanel')
                   }
                 >
                   <svg

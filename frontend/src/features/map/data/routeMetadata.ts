@@ -1,4 +1,5 @@
 import type { BusinessRouteDef, RoutePriorityLevel, TransportMode } from '../types/mapTypes';
+import i18n from '@/i18n';
 import { CITY_BY_ID } from './routeCityIndex';
 import { routeDistanceKm } from '../utils/routeGeometry';
 import { vehicleIconForMode } from '../utils/routeVehicleIcons';
@@ -153,23 +154,26 @@ export function buildRouteTooltipHtml(
   route: BusinessRouteDef,
   cityMap: Map<string, { name: string }>,
 ): string {
+  const tt = (key: string) => i18n.t(key, { ns: 'map' });
   const from = cityMap.get(route.fromCityId)?.name ?? route.fromCityId;
   const to = cityMap.get(route.toCityId)?.name ?? route.toCityId;
   const mode = MODE_LABELS[route.transportMode ?? route.mode] ?? route.mode;
   const time = route.estimatedTime != null ? formatEstimatedTime(route.estimatedTime) : '—';
   const offers = route.activeOffers != null ? String(route.activeOffers) : '—';
   const aiScore = route.reliabilityScore != null ? `${route.reliabilityScore}` : '—';
-  const aiTag = route.aiRecommended ? '<span class="ebh-route-tooltip-ai">AI Optimized</span>' : '';
+  const aiTag = route.aiRecommended
+    ? `<span class="ebh-route-tooltip-ai">${tt('tooltips.aiOptimized')}</span>`
+    : '';
 
   return `<div class="ebh-route-tooltip ebh-route-tooltip-premium">
     <div class="ebh-route-tooltip-title">${from} → ${to}</div>
     <div class="ebh-route-tooltip-type">${mode}${aiTag}</div>
-    <div class="ebh-route-tooltip-row"><span>Origin</span><strong>${from}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Destination</span><strong>${to}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Route type</span><strong>${mode}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Distance</span><strong>${route.distanceKm ?? route.distance ?? '—'} km</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Active offers</span><strong>${offers}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>Est. time</span><strong>${time}</strong></div>
-    <div class="ebh-route-tooltip-row"><span>AI score</span><strong class="ebh-route-tooltip-score">${aiScore}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>${tt('tooltips.origin')}</span><strong>${from}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>${tt('tooltips.destination')}</span><strong>${to}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>${tt('tooltips.routeType')}</span><strong>${mode}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>${tt('tooltips.distance')}</span><strong>${route.distanceKm ?? route.distance ?? '—'} km</strong></div>
+    <div class="ebh-route-tooltip-row"><span>${tt('tooltips.activeOffers')}</span><strong>${offers}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>${tt('tooltips.estTime')}</span><strong>${time}</strong></div>
+    <div class="ebh-route-tooltip-row"><span>${tt('tooltips.aiScore')}</span><strong class="ebh-route-tooltip-score">${aiScore}</strong></div>
   </div>`;
 }

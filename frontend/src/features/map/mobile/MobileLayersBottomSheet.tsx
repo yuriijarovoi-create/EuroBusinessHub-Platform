@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useRef, useState, type TouchEvent } from 'react';
-import { MOBILE_LAYER_GROUPS } from './mobileLayerGroups';
+import { useTranslation } from 'react-i18next';
 import styles from './mobileMapControls.module.css';
 
 const SWIPE_CLOSE_THRESHOLD_PX = 72;
+
+const LAYER_GROUP_CONFIG = [
+  { id: 'transport', items: ['road', 'rail', 'air', 'sea', 'river'] as const },
+  { id: 'business', items: ['marketplace', 'companies', 'jobs', 'warehouses', 'partners'] as const },
+  { id: 'services', items: ['legal', 'finance', 'medical', 'education', 'technology'] as const },
+  { id: 'industries', items: ['agriculture', 'manufacturing', 'construction', 'tourism'] as const },
+  { id: 'innovation', items: ['ai', 'startups', 'digitalProducts', 'academy', 'investments'] as const },
+] as const;
 
 interface MobileLayersBottomSheetProps {
   open: boolean;
@@ -10,6 +18,7 @@ interface MobileLayersBottomSheetProps {
 }
 
 export function MobileLayersBottomSheet({ open, onClose }: MobileLayersBottomSheetProps) {
+  const { t } = useTranslation('map');
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
     transport: true,
   });
@@ -74,20 +83,20 @@ export function MobileLayersBottomSheet({ open, onClose }: MobileLayersBottomShe
 
         <div className={styles.sheetHeader}>
           <h2 id="mobile-layers-sheet-title" className={styles.sheetTitle}>
-            Map Layers
+            {t('mobile.businessLayers')}
           </h2>
           <button
             type="button"
             className={styles.sheetClose}
             onClick={onClose}
-            aria-label="Close layers panel"
+            aria-label={t('mobile.closeLayersPanel')}
           >
             ×
           </button>
         </div>
 
         <div className={styles.sheetBody}>
-          {MOBILE_LAYER_GROUPS.map((group) => {
+          {LAYER_GROUP_CONFIG.map((group) => {
             const isOpen = Boolean(expandedGroups[group.id]);
             return (
               <section key={group.id} className={styles.group}>
@@ -97,7 +106,7 @@ export function MobileLayersBottomSheet({ open, onClose }: MobileLayersBottomShe
                   onClick={() => toggleGroup(group.id)}
                   aria-expanded={isOpen}
                 >
-                  <span>{group.title}</span>
+                  <span>{t(`mobile.layerGroups.${group.id}.title`)}</span>
                   <span className={`${styles.groupChevron} ${isOpen ? styles.groupChevronOpen : ''}`}>
                     ▾
                   </span>
@@ -105,17 +114,20 @@ export function MobileLayersBottomSheet({ open, onClose }: MobileLayersBottomShe
                 <div className={`${styles.groupBody} ${isOpen ? styles.groupBodyOpen : ''}`}>
                   <div className={styles.groupBodyInner}>
                     <div className={styles.chipGrid}>
-                      {group.items.map((item) => (
-                        <button
-                          key={item}
-                          type="button"
-                          className={styles.chip}
-                          aria-label={item}
-                          onClick={(event) => event.stopPropagation()}
-                        >
-                          {item}
-                        </button>
-                      ))}
+                      {group.items.map((item) => {
+                        const label = t(`mobile.layerGroups.${group.id}.${item}`);
+                        return (
+                          <button
+                            key={item}
+                            type="button"
+                            className={styles.chip}
+                            aria-label={label}
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            {label}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

@@ -3,7 +3,9 @@
     "name": "EuroBusinessHub",
     "tagline": "One Platform. Unlimited Business Opportunities.",
     "subtitle": "AI Business Operating System for Europe",
-    "description": "Transport, marketplace, logistics, jobs, partners and AI — united in one intelligent European ecosystem."
+    "description": "Transport, marketplace, logistics, jobs, partners and AI — united in one intelligent European ecosystem.",
+    "pageTitle": "EuroBusinessHub — AI Business Operating System",
+    "osTagline": "Business OS"
   },
   "hero": {
     "badge": "Live · European Network",
@@ -64,7 +66,10 @@
     "login": "Sign in",
     "register": "Register",
     "language": "Language",
-    "theme": "Theme"
+    "theme": "Theme",
+    "menuOpen": "Menu",
+    "menuClose": "Close menu",
+    "mainNav": "Main navigation"
   },
   "userMenu": {
     "guest": "Guest",
@@ -83,5 +88,10 @@
     "copyright": "© {{year}} EuroBusinessHub. All rights reserved.",
     "mockData": "Demo data — no real API connections",
     "tagline": "The European Business Operating System"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Dashboard",
+    "modules": "Modules",
+    "stats": "Live"
   }
 }

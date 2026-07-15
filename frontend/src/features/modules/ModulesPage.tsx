@@ -9,7 +9,7 @@ export function ModulesPage() {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1>{t('allModules')}</h1>
-        <p>EuroBusinessHub Module — Mock-Daten, keine Live-APIs</p>
+        <p>{t('mockNotice')}</p>
       </header>
       <ModuleGrid />
     </div>

@@ -11,7 +11,7 @@ export function HomeDashboardSection() {
   return (
     <section className={styles.section}>
       <SectionHeader
-        eyebrow="Dashboard"
+        eyebrow={t('sectionEyebrows.dashboard')}
         title={t('dashboard.title')}
         subtitle={t('dashboard.subtitle')}
         action={

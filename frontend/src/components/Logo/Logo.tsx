@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { routes } from '@/config';
 import styles from './Logo.module.css';
 
@@ -7,6 +8,8 @@ interface LogoProps {
 }
 
 export function Logo({ compact = false }: LogoProps) {
+  const { t } = useTranslation('common');
+
   return (
     <Link to={routes.home} className={`${styles.logo} ${compact ? styles.compact : ''}`}>
       <span className={styles.mark}>
@@ -25,7 +28,7 @@ export function Logo({ compact = false }: LogoProps) {
       {!compact && (
         <span className={styles.text}>
           <strong>EuroBusinessHub</strong>
-          <small>Business OS</small>
+          <small>{t('app.osTagline')}</small>
         </span>
       )}
     </Link>

@@ -1,0 +1,117 @@
+{
+  "title": "Рабочее пространство {{city}}",
+  "subtitle": "{{country}} · {{count}} компаний",
+  "stats": {
+    "activeUsers": "Активные пользователи",
+    "openOrders": "Открытые заказы",
+    "listings": "Объявления"
+  },
+  "metrics": {
+    "companies": "Компании",
+    "jobs": "Jobs",
+    "transport": "Transport",
+    "warehouses": "Склады",
+    "marketplace": "Маркетплейс",
+    "partners": "Партнёры",
+    "digitalProducts": "Цифровые продукты",
+    "services": "Services"
+  },
+  "ecosystemMetrics": "Бизнес-экосистема",
+  "activeModules": "Активные модули в этом городе",
+  "backToMap": "Назад к карте",
+  "backToEuropeMap": "Назад к карте Европы",
+  "quickActions": "Быстрые действия",
+  "actions": {
+    "search": "Поиск в городе",
+    "marketplace": "Открыть маркетплейс",
+    "ki": "Запустить ИИ-ассистента"
+  },
+  "companies": {
+    "title": "Компании в {{city}}",
+    "backToCity": "Назад к рабочему пространству города",
+    "demoNotice": "Демо-данные — без подключения к реестру компаний",
+    "notFoundCity": "Город не найден",
+    "loadMoreFoundation": "Архитектура пагинации и load-more готова для будущих API-наборов данных.",
+    "stats": {
+      "label": "Статистика компаний города",
+      "totalCompanies": "Всего компаний",
+      "verifiedProfiles": "Верифицированные профили",
+      "industries": "Отрасли",
+      "openOpportunities": "Открытые возможности"
+    },
+    "search": {
+      "label": "Поиск компаний",
+      "placeholder": "Поиск по названию, отрасли, тегам…",
+      "clear": "Очистить поиск"
+    },
+    "filters": {
+      "toggle": "Фильтры",
+      "active": "активные",
+      "industry": "Отрасль",
+      "size": "Размер компании",
+      "status": "Статус",
+      "sort": "Сортировать по",
+      "verifiedOnly": "Только верифицированные",
+      "all": "Все",
+      "clear": "Сбросить фильтры"
+    },
+    "sort": {
+      "relevance": "Релевантность",
+      "name": "Название компании",
+      "size": "Размер компании"
+    },
+    "results": {
+      "label": "Результаты поиска компаний",
+      "showing": "Показано {{count}} из {{total}} демо-компаний"
+    },
+    "card": {
+      "verified": "Верифицировано",
+      "demo": "Demo",
+      "tags": "Теги",
+      "view": "Просмотреть компанию"
+    },
+    "details": {
+      "close": "Закрыть детали",
+      "size": "Размер компании",
+      "status": "Статус",
+      "verification": "Верификация",
+      "employees": "Сотрудники",
+      "description": "Описание",
+      "tags": "Теги",
+      "opportunities": "Возможности",
+      "location": "Местоположение",
+      "website": "Веб-сайт"
+    },
+    "industries": {
+      "manufacturing": "Производство",
+      "logistics": "Логистика",
+      "technology": "Технологии",
+      "construction": "Строительство",
+      "agriculture": "Сельское хозяйство",
+      "medical": "Медицина",
+      "finance": "Финансы",
+      "tourism": "Туризм",
+      "retail": "Розничная торговля",
+      "professional-services": "Профессиональные услуги"
+    },
+    "sizes": {
+      "micro": "Микро",
+      "small": "Малая",
+      "medium": "Средняя",
+      "large": "Крупная"
+    },
+    "statuses": {
+      "active": "Активна",
+      "inactive": "Неактивна",
+      "pending": "Ожидает"
+    },
+    "emptyCity": {
+      "title": "Данные о компаниях для {{city}} пока отсутствуют",
+      "body": "Этот город поддерживается на платформе, но демо-каталог компаний пока не содержит записей здесь."
+    },
+    "emptyFilters": {
+      "title": "Ни одна компания не соответствует выбранным фильтрам",
+      "body": "Попробуйте изменить критерии поиска или фильтрации."
+    }
+  }
+}

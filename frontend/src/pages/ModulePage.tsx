@@ -17,7 +17,7 @@ export function ModulePage() {
   if (!mod) {
     return (
       <div className={styles.notFound}>
-        <h1>Modul nicht gefunden</h1>
+        <h1>{t('modules:notFound')}</h1>
         <Link to="/modules">← {t('modules:allModules')}</Link>
       </div>
     );

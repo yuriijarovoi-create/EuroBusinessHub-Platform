@@ -3,7 +3,9 @@
     "name": "EuroBusinessHub",
     "tagline": "Eine Plattform. Unbegrenzte Geschäftschancen.",
     "subtitle": "Das KI Business Operating System für Europa",
-    "description": "Transport, Marktplatz, Logistik, Jobs, Partner und KI — vereint in einem intelligenten europäischen Ökosystem."
+    "description": "Transport, Marktplatz, Logistik, Jobs, Partner und KI — vereint in einem intelligenten europäischen Ökosystem.",
+    "pageTitle": "EuroBusinessHub — KI Business Operating System",
+    "osTagline": "Business OS"
   },
   "hero": {
     "badge": "Live · Europäisches Netzwerk",
@@ -11,10 +13,10 @@
     "headlineLine2": "Unbegrenzte Geschäftschancen.",
     "cta": "Dashboard öffnen",
     "ctaButtons": {
-      "marketplace": "Marketplace",
+      "marketplace": "Marktplatz",
       "transport": "Transport",
       "unternehmen": "Unternehmen",
-      "jobs": "Jobs"
+      "jobs": "Stellen"
     },
     "stats": {
       "modules": "Module",
@@ -37,14 +39,14 @@
     "title": "Plattform-Dashboard",
     "subtitle": "Ihre Geschäftskennzahlen auf einen Blick",
     "viewAll": "Alle anzeigen",
-    "marketplace": "Marketplace",
+    "marketplace": "Marktplatz",
     "transport": "Transport",
-    "jobs": "Jobs",
+    "jobs": "Stellen",
     "companies": "Unternehmen",
     "revenue": "Umsatz",
     "deals": "Deals",
     "subscriptions": "Abonnements",
-    "analytics": "Analytics"
+    "analytics": "Analytik"
   },
   "modules": {
     "title": "Ihr europäisches Business-Ökosystem",
@@ -64,7 +66,10 @@
     "login": "Anmelden",
     "register": "Registrieren",
     "language": "Sprache",
-    "theme": "Design"
+    "theme": "Design",
+    "menuOpen": "Menü",
+    "menuClose": "Menü schließen",
+    "mainNav": "Hauptnavigation"
   },
   "userMenu": {
     "guest": "Gast",
@@ -83,5 +88,10 @@
     "copyright": "© {{year}} EuroBusinessHub. Alle Rechte vorbehalten.",
     "mockData": "Demo-Daten — keine echten API-Verbindungen",
     "tagline": "Das europäische Business Operating System"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Dashboard",
+    "modules": "Module",
+    "stats": "Live"
   }
 }

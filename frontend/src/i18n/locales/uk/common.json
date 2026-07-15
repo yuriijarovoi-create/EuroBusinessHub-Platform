@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "EuroBusinessHub",
+    "tagline": "Одна платформа. Необмежені бізнес-можливості.",
+    "subtitle": "AI Business Operating System для Європи",
+    "description": "Транспорт, маркетплейс, логістика, вакансії, партнери та ШІ — об'єднані в одній інтелектуальній європейській екосистемі.",
+    "pageTitle": "EuroBusinessHub — AI Business Operating System",
+    "osTagline": "Business OS"
+  },
+  "hero": {
+    "badge": "Live · Європейська мережа",
+    "headlineLine1": "Одна платформа.",
+    "headlineLine2": "Необмежені бізнес-можливості.",
+    "cta": "Відкрити панель",
+    "ctaButtons": {
+      "marketplace": "Маркетплейс",
+      "transport": "Транспорт",
+      "unternehmen": "Компанії",
+      "jobs": "Вакансії"
+    },
+    "stats": {
+      "modules": "Модулі",
+      "cities": "Міста",
+      "businesses": "Компанії"
+    }
+  },
+  "stats": {
+    "title": "Європейська бізнес-статистика",
+    "subtitle": "Дані в реальному часі з мережі EuroBusinessHub",
+    "companies": "Компанії",
+    "transportOrders": "Транспортні замовлення",
+    "openJobs": "Відкриті вакансії",
+    "warehouses": "Склади",
+    "marketplaceProducts": "Товари на маркетплейсі",
+    "users": "Користувачі",
+    "partners": "Партнери"
+  },
+  "dashboard": {
+    "title": "Панель платформи",
+    "subtitle": "Ваші бізнес-показники одним поглядом",
+    "viewAll": "Переглянути все",
+    "marketplace": "Маркетплейс",
+    "transport": "Транспорт",
+    "jobs": "Вакансії",
+    "companies": "Компанії",
+    "revenue": "Дохід",
+    "deals": "Угоди",
+    "subscriptions": "Підписки",
+    "analytics": "Аналітика"
+  },
+  "modules": {
+    "title": "Ваша європейська бізнес-екосистема",
+    "subtitle": "Усі бізнес-напрями — поєднані ШІ, пошуком та єдиним обліковим записом."
+  },
+  "ai": {
+    "title": "Можливості ШІ"
+  },
+  "nav": {
+    "home": "Головна",
+    "map": "Карта",
+    "modules": "Модулі",
+    "workspace": "Робочий простір",
+    "search": "Пошук",
+    "dashboard": "Панель",
+    "notifications": "Сповіщення",
+    "login": "Увійти",
+    "register": "Зареєструватися",
+    "language": "Мова",
+    "theme": "Тема",
+    "menuOpen": "Меню",
+    "menuClose": "Закрити меню",
+    "mainNav": "Головна навігація"
+  },
+  "userMenu": {
+    "guest": "Гість",
+    "company": "Корпоративний обліковий запис"
+  },
+  "notifications": {
+    "empty": "Немає сповіщень"
+  },
+  "future": {
+    "auth": "Автентифікація незабаром",
+    "payments": "Платежі незабаром",
+    "agents": "ШІ-агенти незабаром",
+    "automation": "Автоматизація n8n незабаром"
+  },
+  "footer": {
+    "copyright": "© {{year}} EuroBusinessHub. Усі права захищені.",
+    "mockData": "Демо-дані — без підключення до реальних API",
+    "tagline": "Європейська Business Operating System"
+  },
+  "sectionEyebrows": {
+    "dashboard": "Панель",
+    "modules": "Модулі",
+    "stats": "Live"
+  }
+}

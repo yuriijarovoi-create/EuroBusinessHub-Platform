@@ -1,4 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Marker, Tooltip, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { MapCountry } from '@shared/types';
@@ -26,6 +27,7 @@ export const LeafletCountryInfoCard = memo(function LeafletCountryInfoCard({
   infoCardCountryCode,
   countries,
 }: LeafletCountryInfoCardProps) {
+  const { t } = useTranslation('map');
   const map = useMap();
   const [displayCode, setDisplayCode] = useState<string | null>(null);
   const [exiting, setExiting] = useState(false);
@@ -127,23 +129,23 @@ export const LeafletCountryInfoCard = memo(function LeafletCountryInfoCard({
         <div className="ebh-country-tooltip-card">
           <div className="ebh-country-tooltip-title">{country.name}</div>
           <div className="ebh-country-tooltip-row">
-            <span>Companies</span>
+            <span>{t('tooltips.companies')}</span>
             <strong>{stats.companies.toLocaleString()}</strong>
           </div>
           <div className="ebh-country-tooltip-row">
-            <span>Jobs</span>
+            <span>{t('tooltips.jobs')}</span>
             <strong>{stats.jobs.toLocaleString()}</strong>
           </div>
           <div className="ebh-country-tooltip-row">
-            <span>Warehouses</span>
+            <span>{t('tooltips.warehouses')}</span>
             <strong>{stats.warehouses}</strong>
           </div>
           <div className="ebh-country-tooltip-row">
-            <span>Transport</span>
+            <span>{t('tooltips.transport')}</span>
             <strong>{stats.transport}</strong>
           </div>
           <div className="ebh-country-tooltip-row">
-            <span>AI Score</span>
+            <span>{t('tooltips.aiScore')}</span>
             <strong className="ebh-country-tooltip-ai">{stats.aiScore}</strong>
           </div>
         </div>

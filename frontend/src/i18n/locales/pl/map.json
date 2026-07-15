@@ -1,0 +1,665 @@
+{
+  "title": "Żywa europejska sieć biznesowa",
+  "eyebrow": "Mapa na żywo",
+  "subtitle": "Berlin jako centralny hub — interaktywna europejska sieć biznesowa",
+  "legend": "Interaktywna mapa Europy z węzłami biznesowymi",
+  "hubLabel": "Hub Berlin",
+  "liveNetwork": "Sieć na żywo aktywna",
+  "businesses": "{{count}} firm",
+  "zoomHint": "Wybierz miasto lub kraj · Każde miasto otwiera własną przestrzeń roboczą",
+  "interactionHint": "Przewijaj, aby powiększyć · Przeciągaj, aby przesunąć · Kliknij miasto, aby zobaczyć szczegóły",
+  "loading": "Ładowanie mapy…",
+  "controls": {
+    "zoomIn": "Powiększ",
+    "zoomOut": "Pomniejsz",
+    "reset": "Resetuj widok",
+    "backEurope": "Europa"
+  },
+  "nav": {
+    "europe": "Europa",
+    "backToEurope": "Powrót do Europy",
+    "selectCity": "Wybierz miasto"
+  },
+  "search": {
+    "placeholder": "Szukaj miasta",
+    "open": "Szukaj miasta",
+    "close": "Zamknij wyszukiwanie",
+    "results": "Wyniki wyszukiwania miast",
+    "noResults": "Brak pasujących miast",
+    "noLayerData": "Dla tej lokalizacji w bieżącej warstwie nie ma jeszcze danych.",
+    "voice": "Wyszukiwanie głosowe",
+    "voiceComingSoon": "Wyszukiwanie głosowe wkrótce"
+  },
+  "layers": {
+    "title": "Warstwy",
+    "routes": "Wszystkie trasy",
+    "road": "Transport drogowy",
+    "rail": "Transport kolejowy",
+    "air": "Fracht lotniczy",
+    "sea": "Trasy morskie",
+    "river": "Żegluga śródlądowa",
+    "companies": "Firmy",
+    "jobs": "Oferty pracy",
+    "warehouses": "Magazyny"
+  },
+  "activity": {
+    "liveActivity": "Aktywność na żywo",
+    "freightVolume": "Wolumen frachtu 24h",
+    "transportOffers": "Otwarte oferty transportowe",
+    "deliveryTime": "Śr. czas dostawy",
+    "co2Saving": "Oszczędność CO₂"
+  },
+  "live": {
+    "title": "Platforma na żywo",
+    "companies": "Firmy",
+    "jobs": "Oferty pracy",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "warehouses": "Magazyny",
+    "partners": "Partnerzy",
+    "digitalProducts": "Produkty cyfrowe",
+    "subscriptions": "Subskrypcje",
+    "aiRequests": "Zapytania AI"
+  },
+  "tooltip": {
+    "companies": "{{count}} firm",
+    "jobs": "{{count}} ofert pracy",
+    "warehouses": "{{count}} magazynów",
+    "transport": "{{count}} ofert transportowych",
+    "businessScore": "Wynik biznesowy {{score}}",
+    "networkConnections": "{{count}} połączeń sieciowych",
+    "aiScore": "Wynik AI {{score}}"
+  },
+  "country": {
+    "title": "Kraj {{country}}",
+    "cities": "{{count}} miast biznesowych",
+    "aiScore": "Wynik infrastruktury AI",
+    "selectCity": "Wybierz miasto na mapie, aby zobaczyć szczegóły"
+  },
+  "germany": {
+    "bundeslandPicker": "Wybierz land",
+    "bundeslandTitle": "Land {{name}}",
+    "bundeslandSubtitle": "Regionalny profil gospodarczy",
+    "selectCityInState": "Wybierz miasto w tym landzie",
+    "population": "Populacja",
+    "federalState": "Land",
+    "mainIndustry": "Główna branża",
+    "transportRole": "Rola transportowa",
+    "finance": "Finanse",
+    "tech": "Technologie",
+    "logistics": "Logistyka",
+    "innovation": "Innowacje",
+    "businessIndex": "Indeks biznesowy",
+    "sustainability": "Zrównoważony rozwój",
+    "gdpShort": "{{value}} mld € PKB",
+    "gdpEstimate": "Szacowany PKB: {{value}} mld €",
+    "marketplaceDesc": "Aktywne oferty marketplace w regionie",
+    "stats": {
+      "cities": "Miasta",
+      "gdp": "PKB (szac.)",
+      "logistics": "Wynik logistyki",
+      "businesses": "Firmy"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Infrastruktura w pobliżu",
+      "seaports": "Porty morskie",
+      "inlandPorts": "Porty śródlądowe",
+      "airCargo": "Huby frachtu lotniczego",
+      "industrialZones": "Strefy przemysłowe",
+      "logisticsHubs": "Huby logistyczne",
+      "importance": "Znaczenie {{score}}/100",
+      "types": {
+        "seaport": "Port morski",
+        "inland_port": "Port śródlądowy",
+        "air_cargo": "Hub frachtu lotniczego",
+        "industrial_zone": "Strefa przemysłowa"
+      }
+    },
+    "localNode": {
+      "title": "Usługi lokalne i hub regionalny",
+      "nearestHub": "Najbliższy duży hub",
+      "hubRoute": "Rekomendowana trasa",
+      "useCases": "Główne przypadki użycia",
+      "transport": "Transport lokalny",
+      "warehouses": "Magazyny w pobliżu",
+      "services": "Usługi lokalne",
+      "craft": "Rzemieślnicy",
+      "nearbyHubs": "Huby w pobliżu",
+      "marketplaceDesc": "Lokalne oferty marketplace w Twoim regionie",
+      "jobsDesc": "Oferty pracy w mieście i przez hub regionalny",
+      "jobsViaHub": "Praca dojeżdżających i logistyka przez {{hub}}",
+      "useCase": {
+        "local_transport": "Transport lokalny",
+        "moving_service": "Usługi przeprowadzkowe",
+        "warehouse_near_me": "Magazyn w pobliżu",
+        "jobs_near_me": "Oferty pracy w pobliżu",
+        "craftsmen": "Rzemieślnicy",
+        "business_services": "Business Services",
+        "local_marketplace": "Lokalny marketplace",
+        "regional_logistics": "Logistyka regionalna",
+        "agricultural_services": "Usługi rolnicze",
+        "tourism_services": "Usługi turystyczne"
+      }
+    }
+  },
+  "panel": {
+    "title": "Miasto {{city}}",
+    "close": "Zamknij",
+    "openWorkspace": "Otwórz przestrzeń roboczą",
+    "allRoutes": "Pokaż wszystkie trasy",
+    "companies": "Firmy",
+    "jobs": "Oferty pracy",
+    "warehouses": "Magazyny",
+    "transport": "Transport",
+    "marketplace": "Marketplace",
+    "partners": "Partnerzy",
+    "aiScore": "Wynik AI",
+    "digitalProducts": "Produkty cyfrowe",
+    "transportOffers": "Oferty transportowe",
+    "companiesDesc": "Zarejestrowane firmy w tym mieście",
+    "jobsDesc": "Aktywne oferty pracy",
+    "warehousesDesc": "Dostępna pojemność magazynowa",
+    "tabs": {
+      "overview": "Przegląd",
+      "companies": "Firmy",
+      "jobs": "Oferty pracy",
+      "warehouses": "Magazyny",
+      "routes": "Trasy",
+      "transport": "Transport",
+      "marketplace": "Marketplace",
+      "services": "Usługi",
+      "analytics": "Analityka",
+      "partners": "Partnerzy",
+      "activity": "Aktywność"
+    }
+  },
+  "routePanel": {
+    "title": "Trasa {{route}}",
+    "from": "Z",
+    "to": "Do",
+    "hours": "h",
+    "industries": "Główne branże",
+    "delivery": "Średni czas dostawy: {{time}}",
+    "lastActivity": "Ostatnia aktywność: {{time}}",
+    "warehousesHint": "Magazyny i huby logistyczne są dostępne wzdłuż tego korytarza.",
+    "status": {
+      "active": "Aktywna",
+      "congested": "Przeciążona",
+      "maintenance": "Konserwacja",
+      "seasonal": "Sezonowa"
+    },
+    "modes": {
+      "road": "Transport drogowy",
+      "rail": "Transport kolejowy",
+      "air": "Fracht lotniczy",
+      "sea": "Fracht morski",
+      "river": "Żegluga śródlądowa"
+    },
+    "stats": {
+      "distance": "Odległość",
+      "time": "Szac. czas (h)",
+      "volume": "Wolumen miesięczny (t)",
+      "offers": "Oferty transportowe",
+      "orders": "Aktywne zlecenia",
+      "companies": "Firmy",
+      "price": "Indeks cenowy",
+      "reliability": "Niezawodność",
+      "co2": "Szac. CO₂"
+    },
+    "actions": {
+      "open": "Otwórz trasę",
+      "search": "Znajdź transport",
+      "create": "Utwórz ofertę"
+    }
+  },
+  "operating": {
+    "context": "Kontekst",
+    "insights": "Analityka na żywo",
+    "activeMapMode": "Aktywny tryb mapy",
+    "logisticsLayer": "Logistyka",
+    "businessLayer": "Biznes",
+    "country": "Kraj",
+    "city": "Miasto",
+    "corridor": "Korytarz",
+    "platform": "Aktywność platformy",
+    "activeUsers": "Aktywni użytkownicy",
+    "marketplace": "Marketplace",
+    "filters": "Filtry",
+    "logistics": "Logistyka",
+    "business": "Moduły biznesowe",
+    "mapControls": "Sterowanie mapą",
+    "trending": "Popularne miasta"
+  },
+  "a11y": {
+    "togglePanel": "Przełącz panel",
+    "mapViewport": "Europejska mapa biznesowa",
+    "showCommandPanel": "Pokaż panel sterowania",
+    "hideCommandPanel": "Ukryj panel sterowania"
+  },
+  "businessLayers": {
+    "marketplace": "Marketplace",
+    "transport": "Transport",
+    "companies": "Firmy",
+    "jobs": "Oferty pracy",
+    "warehouses": "Magazyny",
+    "businessServices": "Usługi biznesowe",
+    "partners": "Partnerzy",
+    "academy": "Academy",
+    "digitalProducts": "Digital Products",
+    "ai": "AI",
+    "events": "Wydarzenia",
+    "investments": "Inwestycje",
+    "startups": "Startupy",
+    "manufacturing": "Produkcja",
+    "agriculture": "Rolnictwo",
+    "construction": "Budownictwo",
+    "medical": "Medycyna",
+    "tourism": "Turystyka",
+    "technology": "Technologia",
+    "finance": "Finanse",
+    "legal": "Prawo",
+    "education": "Edukacja"
+  },
+  "mobile": {
+    "map": "Mapa",
+    "transport": "Transport",
+    "jobs": "Oferty pracy",
+    "companies": "Firmy",
+    "warehouses": "Magazyny",
+    "ai": "AI",
+    "more": "Więcej",
+    "mapControl": "Sterowanie mapą",
+    "commandCenter": "Centrum sterowania mapą",
+    "mapControls": "Sterowanie mapą",
+    "commandWheel": "Koło poleceń mapy",
+    "moreBusinessLayers": "Więcej warstw biznesowych",
+    "businessLayers": "Warstwy biznesowe",
+    "activeLayer": "Aktywna warstwa:",
+    "layerActive": "Warstwa {{layer}} aktywna",
+    "europeOverviewActive": "Przegląd Europy aktywny",
+    "aiComingSoon": "Asystent mapy AI wkrótce",
+    "exploreEcosystem": "Poznaj ekosystem EuroBusinessHub",
+    "aiAssistantTitle": "Asystent mapy AI",
+    "comingSoon": "Wkrótce",
+    "close": "Zamknij",
+    "closeLayersPanel": "Zamknij panel warstw",
+    "layerGroups": {
+      "transport": {
+        "title": "Warstwy transportowe",
+        "road": "Transport drogowy",
+        "rail": "Kolej",
+        "air": "Fracht lotniczy",
+        "sea": "Fracht morski",
+        "river": "Żegluga śródlądowa"
+      },
+      "business": {
+        "title": "Moduły biznesowe",
+        "marketplace": "Marketplace",
+        "companies": "Firmy",
+        "jobs": "Oferty pracy",
+        "warehouses": "Magazyny",
+        "partners": "Partnerzy"
+      },
+      "services": {
+        "title": "Usługi",
+        "legal": "Prawo",
+        "finance": "Finanse",
+        "medical": "Medycyna",
+        "education": "Edukacja",
+        "technology": "Technologia"
+      },
+      "industries": {
+        "title": "Branże",
+        "agriculture": "Rolnictwo",
+        "manufacturing": "Produkcja",
+        "construction": "Budownictwo",
+        "tourism": "Turystyka"
+      },
+      "innovation": {
+        "title": "Innowacje",
+        "ai": "AI",
+        "startups": "Startups",
+        "digitalProducts": "Digital Products",
+        "academy": "Academy",
+        "investments": "Investments"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Marketplace",
+      "partners": "Partnerzy",
+      "academy": "Academy",
+      "digital-products": "Digital Products",
+      "events": "Wydarzenia",
+      "investments": "Inwestycje",
+      "startups": "Startupy",
+      "manufacturing": "Produkcja",
+      "agriculture": "Rolnictwo",
+      "construction": "Budownictwo",
+      "medical": "Medycyna",
+      "tourism": "Turystyka",
+      "technology": "Technologia",
+      "finance": "Finanse",
+      "legal": "Prawo",
+      "education": "Edukacja"
+    }
+  },
+  "tooltips": {
+    "companies": "Firmy",
+    "jobs": "Jobs",
+    "warehouses": "Magazyny",
+    "transport": "Transport",
+    "aiScore": "AI Score",
+    "origin": "Pochodzenie",
+    "destination": "Cel",
+    "routeType": "Typ trasy",
+    "distance": "Odległość",
+    "activeOffers": "Aktywne oferty",
+    "estTime": "Szac. czas",
+    "aiOptimized": "AI Optimized"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Przegląd Europy",
+      "recommendation": "Poznaj pełną europejską mapę operacyjną biznesu — wszystkie korytarze i huby widoczne.",
+      "tickerEyebrow": "Rekomendacje AI",
+      "tickerMessages": [
+        "Wysoki popyt: Berlin → Izium logistyka odbudowy",
+        "Rozszerz korytarz: Warsaw → Kyiv → Izium",
+        "Dopasowanie partnera: Istanbul → Odesa logistyka morska",
+        "Nowa szansa: łańcuch dostaw odbudowy Ukraine"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Tryb marketplace",
+      "recommendation": "Jaśniejsza poświata miast podkreśla hotspoty handlowe — odkryj możliwości B2B marketplace w całej Europie.",
+      "tickerEyebrow": "Sygnały marketplace",
+      "tickerMessages": [
+        "Rotterdam → Warsaw korytarz hurtowy w trendzie",
+        "Berlin ogłoszenia MŚP +14 % w tym tygodniu",
+        "Transgraniczne dopasowanie marketplace: Vienna ↔ Prague",
+        "Wysoka intencja kupna w Munich zaopatrzeniu przemysłowym"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Tryb transportu",
+      "recommendation": "Korytarze transportowe są subtelnie podkreślone — śledź przepływy frachtu i aktywność giełdy logistycznej.",
+      "tickerEyebrow": "Rekomendacje logistyczne",
+      "tickerMessages": [
+        "Dostępny slot kolejowy: Hamburg → Warsaw korytarz",
+        "Rosnący popyt na fracht morski Rotterdam → Gdańsk",
+        "Otwierana pojemność drogowa: Lyon → Milan pas",
+        "Okno frachtu lotniczego: Frankfurt → Bucharest ekspres"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Tryb firm",
+      "recommendation": "Poświata hubów firm wzmacnia główne centra biznesowe — idealne do odkrywania przedsiębiorstw.",
+      "tickerEyebrow": "Sygnały hubów firm",
+      "tickerMessages": [
+        "Frankfurt aktywność klastra enterprise +11 %",
+        "Paris relokacje HQ trendują w kierunku Lyon",
+        "Warsaw rozszerzenie kampusu tech odnotowane",
+        "Milan domy mody szukają partnerów UE"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Tryb ofert pracy",
+      "recommendation": "Poświata hotspotów rekrutacji pokazuje popyt na zatrudnienie — przeglądaj otwarte role według miast.",
+      "tickerEyebrow": "Rekomendacje zatrudnienia",
+      "tickerMessages": [
+        "Berlin role logistyczne +18 % tydzień do tygodnia",
+        "Warsaw rekrutacja inżynierska nadal rośnie",
+        "Role remote-ready koncentrują się w Dublin",
+        "Izium projekty odbudowy publikują wykwalifikowane zawody"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Tryb magazynów",
+      "recommendation": "Atmosfera sieci magazynowej — węzły dystrybucji pulsują na bramkach logistycznych.",
+      "tickerEyebrow": "Sygnały sieci magazynowej",
+      "tickerMessages": [
+        "Rotterdam skład celny przy 92 % wykorzystania",
+        "Warsaw korytarz rozbudowy cold-chain aktywny",
+        "Hamburg ↔ Berlin pas fulfillment zoptymalizowany",
+        "Prague regionalny hub otwiera pojemność Q3"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Tryb usług biznesowych",
+      "recommendation": "Poświata sieci usług łączy klastry usług profesjonalnych w całej Europie.",
+      "tickerEyebrow": "Sygnały sieci usług",
+      "tickerMessages": [
+        "Brussels rosnący popyt na doradztwo compliance",
+        "Zurich usługi powiernicze dopasowanie w Prague",
+        "Barcelona wzrost eksportu usług kreatywnych",
+        "Vienna korytarz konsultingowy rozszerza się na wschód"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Tryb partnerów",
+      "recommendation": "Atmosfera sieci współpracy — miasta gotowe do partnerstwa świecą dla transgranicznych sojuszy.",
+      "tickerEyebrow": "Sygnały partnerstwa",
+      "tickerMessages": [
+        "Nordic ↔ Baltic wysoki wynik dopasowania partnerów",
+        "Istanbul gateway szuka dystrybutorów UE",
+        "Lyon aktywne poszukiwanie partnera produkcyjnego",
+        "Tallinn partnerzy cyfrowi otwarci na rynek DACH"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Tryb akademii",
+      "recommendation": "Atmosfera ekosystemu edukacji — huby nauki i korytarze szkoleniowe podkreślone.",
+      "tickerEyebrow": "Sygnały akademii",
+      "tickerMessages": [
+        "Heidelberg otwarte programy wymiany badawczej",
+        "Barcelona partnerstwa bootcamp w trendzie",
+        "Warsaw akademia STEM szybko zapełnia kohortę",
+        "Vienna executive education nabór transgraniczny"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Tryb produktów cyfrowych",
+      "recommendation": "Atmosfera ekosystemu technologicznego — huby produktów cyfrowych świecą w miastach innowacji.",
+      "tickerEyebrow": "Sygnały produktów cyfrowych",
+      "tickerMessages": [
+        "SaaS ogłoszenia rosną w Tallinn i Dublin",
+        "Berlin studia produktowe szukają resellerów UE",
+        "Amsterdam fintech API otwarte na integrację",
+        "Prague dev tools aktywność marketplace +9 %"
+      ]
+    },
+    "ai": {
+      "panelTitle": "Tryb AI",
+      "recommendation": "Atmosfera sieci AI — inteligentne korytarze i węzły biznesowe gotowe na AI podkreślone.",
+      "tickerEyebrow": "Sygnały sieci AI",
+      "tickerMessages": [
+        "Frankfurt AI pilotaż routingu logistycznego live",
+        "Warsaw ML talent pool wynik dopasowania 94 %",
+        "Paris generative commerce narzędzia w trendzie",
+        "Helsinki AI compliance sandbox przyjmuje partnerów"
+      ]
+    },
+    "events": {
+      "panelTitle": "Tryb wydarzeń",
+      "recommendation": "Atmosfera hotspotów eventowych — miasta konferencji i targów pulsują na mapie.",
+      "tickerEyebrow": "Sygnały hotspotów eventowych",
+      "tickerMessages": [
+        "Hanover Messe rezerwacje korytarza rosną",
+        "Barcelona mobile congress spillover-popyt",
+        "Vienna tydzień szczytu — zakwaterowanie ograniczone",
+        "Milan design week matchmaking dostawców otwarty"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Tryb inwestycji",
+      "recommendation": "Atmosfera kapitału inwestycyjnego — przepływy kapitału i hotspoty finansowania subtelnie podświetlone.",
+      "tickerEyebrow": "Sygnały inwestycyjne",
+      "tickerMessages": [
+        "Frankfurt VC zainteresowanie Warsaw deeptech",
+        "Luxembourg routing funduszy przez Amsterdam hub",
+        "Berlin seed round aktywność +12 %",
+        "Kapitał odbudowy celuje w Izium korytarz"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Tryb startupów",
+      "recommendation": "Atmosfera innowacji startupowych — ekosystemy founderów i korytarze scale-up świecą.",
+      "tickerEyebrow": "Sygnały innowacji startupowych",
+      "tickerMessages": [
+        "Berlin ↔ Tallinn wymiana founderów aktywna",
+        "Barcelona healthtech spinouts szukają pilotów",
+        "Warsaw accelerator demo day przychodzące zainteresowanie",
+        "Lisbon remote-first startup rekrutacja rośnie"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Tryb produkcji",
+      "recommendation": "Atmosfera sieci przemysłowej — huby produkcyjne i korytarze dostaw podkreślone.",
+      "tickerEyebrow": "Sygnały sieci przemysłowej",
+      "tickerMessages": [
+        "Stuttgart dostawcy motoryzacyjni szukają partnerów",
+        "Turin korytarz komponentów — dostępna pojemność",
+        "Wrocław rozbudowa montażu elektroniki",
+        "Lyon aerospace podwykonawca dopasowanie otwarte"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Tryb rolnictwa",
+      "recommendation": "Atmosfera ekosystemu rolniczego — korytarze agrifood i wiejskie węzły handlowe świecą.",
+      "tickerEyebrow": "Sygnały ekosystemu rolniczego",
+      "tickerMessages": [
+        "Danube korytarz zbożowy — wysoki popyt na magazyny",
+        "Netherlands cold-chain do Poland aktywny",
+        "Valencia sezon eksportu cytrusów nabiera tempa",
+        "Kraków dystrybutor organiczny szuka partnerów"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Tryb budownictwa",
+      "recommendation": "Atmosfera infrastruktury — korytarze odbudowy i dostaw budowlanych podkreślone.",
+      "tickerEyebrow": "Sygnały infrastruktury",
+      "tickerMessages": [
+        "Izium korytarz materiałów odbudowy priorytetyzowany",
+        "Berlin projekt mieszkaniowy — poszukiwanie podwykonawców",
+        "Warsaw aktywność przetargów infrastrukturalnych rośnie",
+        "Prague modernizacja kolei dopasowanie dostawców"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Tryb medycyny",
+      "recommendation": "Atmosfera ekosystemu opieki zdrowotnej — huby medyczne i węzły logistyki zdrowia podkreślone.",
+      "tickerEyebrow": "Sygnały ekosystemu opieki zdrowotnej",
+      "tickerMessages": [
+        "Basel pas dystrybucji farmaceutycznej stabilny",
+        "Warsaw medtech urządzenia ogłoszenia +10 %",
+        "Munich okno zamówień szpitalnych otwarte",
+        "Strasbourg transgraniczne partnerstwa opieki"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Tryb turystyki",
+      "recommendation": "Atmosfera destynacji turystycznych — hotspoty ekonomii odwiedzających świecą w całej Europie.",
+      "tickerEyebrow": "Sygnały destynacji turystycznych",
+      "tickerMessages": [
+        "Barcelona letnie rezerwacje hotelowe rosną",
+        "Vienna turystyka kulturalna — potrzebni partnerzy",
+        "Athens korytarz transferu rejsowego aktywny",
+        "Prague pakiety city-break trendują DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Tryb technologii",
+      "recommendation": "Atmosfera hubów technologicznych — klastry innowacji i korytarze tech subtelnie rozjaśnione.",
+      "tickerEyebrow": "Sygnały hubów technologicznych",
+      "tickerMessages": [
+        "Munich deep-tech spinout zainteresowanie rośnie",
+        "Eindhoven partnerzy półprzewodnikowi poszukiwani",
+        "Tallinn cyber talent wynik dopasowania wysoki",
+        "Cambridge ↔ Berlin wymiana badawcza otwarta"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Tryb finansów",
+      "recommendation": "Atmosfera sieci finansowej — centra kapitału i korytarze bankowe podkreślone.",
+      "tickerEyebrow": "Sygnały sieci finansowej",
+      "tickerMessages": [
+        "Frankfurt aktywność rozliczeniowa stabilna",
+        "Luxembourg administracja funduszy dopasowanie otwarte",
+        "Dublin fintech API partnerzy w trendzie",
+        "Zurich wealth services nabór transgraniczny"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Tryb prawa",
+      "recommendation": "Atmosfera usług prawnych — klastry doradztwa regulacyjnego i prawnego podkreślone.",
+      "tickerEyebrow": "Sygnały usług prawnych",
+      "tickerMessages": [
+        "Brussels doradztwo regulacyjne — wysoki popyt",
+        "London ↔ Frankfurt korytarz compliance",
+        "Warsaw EU law butik rozszerzenie odnotowane",
+        "Vienna hub arbitrażowy — poszukiwanie partnera"
+      ]
+    },
+    "education": {
+      "panelTitle": "Tryb edukacji",
+      "recommendation": "Atmosfera sieci edukacyjnej — uniwersytety i korytarze szkoleniowe delikatnie świecą.",
+      "tickerEyebrow": "Sygnały sieci edukacyjnej",
+      "tickerMessages": [
+        "Erasmus korytarz aktywność: Barcelona ↔ Bologna",
+        "Warsaw szkoły językowe — partnerstwa otwarte",
+        "Heidelberg nabór badawczy transgraniczny",
+        "Dublin edtech wymiana certyfikatów w trendzie"
+      ]
+    },
+    "road": {
+      "panelTitle": "Tryb transportu drogowego",
+      "recommendation": "Korytarze drogowe otrzymują subtelne podkreślenie — lądowe pasy frachtu świecą w sieci.",
+      "tickerEyebrow": "Sygnały transportu drogowego",
+      "tickerMessages": [
+        "Antwerp → Warsaw trucking — pojemność dostępna",
+        "Milan → Munich wykorzystanie pasa 78 %",
+        "Barcelona → Lyon slot ekspresowy dostępny"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Tryb kolei",
+      "recommendation": "Korytarze kolejowe podkreślone — intermodalne i frachtowe pasy kolejowe wyróżnione.",
+      "tickerEyebrow": "Sygnały korytarzy kolejowych",
+      "tickerMessages": [
+        "Hamburg → Warsaw slot kolejowy w trendzie",
+        "Rotterdam przekazanie intermodalne stabilne",
+        "Basel → Milan fracht kolejowy — popyt rośnie"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Tryb frachtu morskiego",
+      "recommendation": "Korytarze morskie podkreślone — morskie pasy port-port świecą na mapie.",
+      "tickerEyebrow": "Sygnały frachtu morskiego",
+      "tickerMessages": [
+        "Rotterdam → Gdańsk pas kontenerowy aktywny",
+        "Hamburg → Odesa zainteresowanie morskie rośnie",
+        "Barcelona routing śródziemnomorski stabilny"
+      ]
+    },
+    "air": {
+      "panelTitle": "Tryb frachtu lotniczego",
+      "recommendation": "Korytarze frachtu lotniczego podkreślone — ekspresowe pasy lotnicze wyróżnione.",
+      "tickerEyebrow": "Sygnały frachtu lotniczego",
+      "tickerMessages": [
+        "Frankfurt → Bucharest ekspres uplift otwarty",
+        "Paris CDG ↔ Warsaw okno frachtu",
+        "Amsterdam hub lotniczy cross-dock aktywny"
+      ]
+    },
+    "river": {
+      "panelTitle": "Tryb żeglugi śródlądowej",
+      "recommendation": "Korytarze rzeczne podkreślone — śródlądowe pasy frachtu wodnego wyróżnione.",
+      "tickerEyebrow": "Sygnały frachtu rzecznego",
+      "tickerMessages": [
+        "Danube korytarz przewozu zboża aktywny",
+        "Rhine pojemność barek dostępna",
+        "Elbe porty śródlądowe — przekazania stabilne"
+      ]
+    }
+  }
+}

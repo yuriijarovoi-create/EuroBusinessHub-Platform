@@ -9,7 +9,7 @@ export function HomeStatsSection() {
   return (
     <section className={styles.section}>
       <SectionHeader
-        eyebrow="Live"
+        eyebrow={t('sectionEyebrows.stats')}
         title={t('stats.title')}
         subtitle={t('stats.subtitle')}
       />

@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { isMobileViewport } from '../utils/cityVisibilityUtils';
 import {
   filterCitiesByBusinessLayer,
@@ -70,6 +71,7 @@ export function EuropeBusinessMap({
   externalLayers,
   activeMapContext = DEFAULT_ACTIVE_MAP_CONTEXT,
 }: EuropeBusinessMapProps) {
+  const { t } = useTranslation('map');
   const session = useMapSessionStore();
   const [layers, setLayers] = useState<MapLayerState>(externalLayers ?? session.layers);
   const [layerOpen, setLayerOpen] = useState(false);
@@ -285,7 +287,7 @@ export function EuropeBusinessMap({
             className={styles.layerFab}
             onClick={() => setLayerOpen((o) => !o)}
             aria-expanded={layerOpen}
-            aria-label="Ebenen"
+            aria-label={t('layers.title')}
           >
             ☰
           </button>

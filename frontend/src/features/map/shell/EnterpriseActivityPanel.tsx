@@ -5,6 +5,7 @@ import { futureMapAPI } from '../engine/FutureAPIAdapter';
 import type { ActiveMapContext } from '../utils/mapLayerContext';
 import { DEFAULT_ACTIVE_MAP_CONTEXT } from '../utils/mapLayerContext';
 import { resolvePrimaryVisualMode } from '../utils/mapVisualModes';
+import { useMapVisualModeCopy } from '../hooks/useMapVisualModeCopy';
 import styles from './BusinessOperatingMap.module.css';
 
 interface EnterpriseActivityPanelProps {
@@ -21,6 +22,7 @@ export function EnterpriseActivityPanel({
     () => resolvePrimaryVisualMode(activeMapContext),
     [activeMapContext],
   );
+  const visualCopy = useMapVisualModeCopy(visualMode);
 
   useEffect(() => {
     futureMapAPI.fetchTrendingCities().then(setTrending);
@@ -29,7 +31,7 @@ export function EnterpriseActivityPanel({
   return (
     <footer className={styles.activityDock} aria-label={t('activity.liveActivity')}>
       <div className={styles.activitySection}>
-        <span className={styles.activityEyebrow}>{t('operating.trending', { defaultValue: 'Trending cities' })}</span>
+        <span className={styles.activityEyebrow}>{t('operating.trending')}</span>
         <div className={styles.activityRow}>
           {trending.map((c) => (
             <span key={c.id} className={styles.activityPill}>
@@ -41,9 +43,9 @@ export function EnterpriseActivityPanel({
       </div>
 
       <div className={styles.activitySection}>
-        <span className={styles.activityEyebrow}>{visualMode.tickerEyebrow}</span>
+        <span className={styles.activityEyebrow}>{visualCopy.tickerEyebrow}</span>
         <div className={styles.activityRow}>
-          {visualMode.tickerMessages.map((tip) => (
+          {visualCopy.tickerMessages.map((tip) => (
             <span key={tip} className={styles.activityTip}>
               {tip}
             </span>

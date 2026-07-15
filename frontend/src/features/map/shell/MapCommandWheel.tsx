@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import {
   MOBILE_MORE_CATEGORIES,
   MOBILE_MORE_LAYER_IDS,
@@ -50,6 +51,7 @@ export function MapCommandWheel({
   onActiveMapContextChange,
   onReturnToMainMap,
 }: MapCommandWheelProps) {
+  const { t } = useTranslation('map');
   const isMobileMapUi = useMobileMapUi();
   const [isCommandCenterOpen, setIsCommandCenterOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
@@ -127,8 +129,8 @@ export function MapCommandWheel({
 
   const activeLayerLabel = useMemo(() => {
     if (!activeMapContext.businessLayer) return null;
-    return getBusinessLayerLabel(activeMapContext.businessLayer);
-  }, [activeMapContext.businessLayer]);
+    return getBusinessLayerLabel(activeMapContext.businessLayer, t);
+  }, [activeMapContext.businessLayer, t]);
 
   const panelDragStyle = useMemo(
     () =>
@@ -236,35 +238,36 @@ export function MapCommandWheel({
   }, []);
 
   const activateLayer = useCallback(
-    (layerId: BusinessLayerId, label: string) => {
+    (layerId: BusinessLayerId) => {
+      const label = getBusinessLayerLabel(layerId, t);
       onReturnToMainMap?.();
       onActiveMapContextChange(setMobileBusinessLayer(layerId));
-      showStatus(`${label} layer active`);
+      showStatus(t('mobile.layerActive', { layer: label }));
       close();
     },
-    [close, onActiveMapContextChange, onReturnToMainMap, showStatus],
+    [close, onActiveMapContextChange, onReturnToMainMap, showStatus, t],
   );
 
   const handleMapFocus = useCallback(() => {
     onReturnToMainMap?.();
     onActiveMapContextChange(DEFAULT_ACTIVE_MAP_CONTEXT);
     setIsMoreOpen(false);
-    showStatus('Europe overview active');
+    showStatus(t('mobile.europeOverviewActive'));
     close();
-  }, [close, onActiveMapContextChange, onReturnToMainMap, showStatus]);
+  }, [close, onActiveMapContextChange, onReturnToMainMap, showStatus, t]);
 
   const handleRadialSelect = useCallback(
     (id: MobileRadialOrbitId) => {
       if (id === 'more') {
         setIsMoreOpen((current) => !current);
-        showStatus('More business layers');
+        showStatus(t('mobile.moreBusinessLayers'));
         return;
       }
 
       if (id === 'ai') {
         onReturnToMainMap?.();
         onActiveMapContextChange(setMobileBusinessLayer('ai'));
-        showStatus('AI Map Assistant coming soon');
+        showStatus(t('mobile.aiComingSoon'));
         close();
         return;
       }
@@ -273,14 +276,14 @@ export function MapCommandWheel({
       if (!action?.layerId) return;
 
       setIsMoreOpen(false);
-      activateLayer(action.layerId, action.label);
+      activateLayer(action.layerId);
     },
-    [activateLayer, close, onActiveMapContextChange, onReturnToMainMap, showStatus],
+    [activateLayer, close, onActiveMapContextChange, onReturnToMainMap, showStatus, t],
   );
 
   const handleMoreCategory = useCallback(
-    (layerId: BusinessLayerId, title: string) => {
-      activateLayer(layerId, title);
+    (layerId: BusinessLayerId) => {
+      activateLayer(layerId);
     },
     [activateLayer],
   );
@@ -296,7 +299,7 @@ export function MapCommandWheel({
     <div className={styles.mapCommandPortal} aria-hidden={false}>
       {activeLayerLabel ? (
         <div className={styles.mobileActiveLayerBadge} role="status" aria-live="polite">
-          <span className={styles.mobileActiveLayerBadgeLabel}>Active layer:</span>
+          <span className={styles.mobileActiveLayerBadgeLabel}>{t('mobile.activeLayer')}</span>
           <span className={styles.mobileActiveLayerBadgeValue}>{activeLayerLabel}</span>
         </div>
       ) : null}
@@ -311,13 +314,13 @@ export function MapCommandWheel({
         type="button"
         className={`${styles.commandWheelFab} ${isCommandCenterOpen ? styles.commandWheelFabOpen : ''}`}
         onClick={toggle}
-        aria-label="Map control center"
+        aria-label={t('mobile.commandCenter')}
         aria-expanded={isCommandCenterOpen}
       >
         <span className={styles.commandWheelFabIcon} aria-hidden="true">
           🎛
         </span>
-        <span className={styles.commandWheelFabLabel}>Map Control</span>
+        <span className={styles.commandWheelFabLabel}>{t('mobile.mapControl')}</span>
       </button>
 
       {isCommandCenterOpen ? (
@@ -334,7 +337,7 @@ export function MapCommandWheel({
               isDragging ? styles.commandWheelPanelDragging : ''
             }`}
             style={panelDragStyle}
-            aria-label="Map control center"
+            aria-label={t('mobile.commandCenter')}
             onClick={(event) => event.stopPropagation()}
             onClickCapture={guardDragClick}
             onPointerDown={handlePanelPointerDown}
@@ -347,12 +350,12 @@ export function MapCommandWheel({
               <span className={styles.commandWheelDragHandleDots}>⋮⋮</span>
             </div>
 
-            <span className={styles.mapCommandEyebrow}>Map control center</span>
+            <span className={styles.mapCommandEyebrow}>{t('mobile.commandCenter')}</span>
 
             <div className={styles.commandWheelWrap}>
               <div className={styles.commandWheelGlow} aria-hidden="true" />
 
-              <div className={styles.commandWheel} role="toolbar" aria-label="Map controls">
+              <div className={styles.commandWheel} role="toolbar" aria-label={t('mobile.mapControls')}>
                 <button
                   type="button"
                   className={`${styles.commandWheelBtn} ${styles.commandWheelCenter} ${
@@ -360,12 +363,12 @@ export function MapCommandWheel({
                   }`}
                   onClick={handleMapFocus}
                   aria-pressed={isEuropeOverview(activeMapContext)}
-                  aria-label={MOBILE_RADIAL_CENTER.label}
+                  aria-label={t('mobile.map')}
                 >
                   <span className={styles.commandWheelIcon} aria-hidden="true">
                     {MOBILE_RADIAL_CENTER.icon}
                   </span>
-                  <span className={styles.commandWheelLabel}>{MOBILE_RADIAL_CENTER.label}</span>
+                  <span className={styles.commandWheelLabel}>{t('mobile.map')}</span>
                 </button>
 
                 {MOBILE_RADIAL_ORBIT.map((button) => (
@@ -379,12 +382,12 @@ export function MapCommandWheel({
                     onClick={() => handleRadialSelect(button.id)}
                     aria-pressed={activeRadialId === button.id}
                     aria-expanded={button.id === 'more' ? isMoreOpen : undefined}
-                    aria-label={button.label}
+                    aria-label={t(`mobile.${button.id}`)}
                   >
                     <span className={styles.commandWheelIcon} aria-hidden="true">
                       {button.icon}
                     </span>
-                    <span className={styles.commandWheelLabel}>{button.label}</span>
+                    <span className={styles.commandWheelLabel}>{t(`mobile.${button.id}`)}</span>
                   </button>
                 ))}
               </div>
@@ -394,12 +397,12 @@ export function MapCommandWheel({
           <div
             className={`${styles.commandMoreSheet} ${isMoreOpen ? styles.commandMoreSheetOpen : ''}`}
             role="region"
-            aria-label="More business layers"
+            aria-label={t('mobile.moreBusinessLayers')}
             aria-hidden={!isMoreOpen}
             onClick={(event) => event.stopPropagation()}
           >
             <header className={styles.commandMoreHeader}>
-              <h3 className={styles.commandMoreTitle}>Business layers</h3>
+              <h3 className={styles.commandMoreTitle}>{t('mobile.businessLayers')}</h3>
             </header>
 
             <div className={styles.commandMoreBody}>
@@ -413,13 +416,15 @@ export function MapCommandWheel({
                         ? styles.commandMoreChipActive
                         : ''
                     }`}
-                    onClick={() => handleMoreCategory(category.layerId, category.title)}
+                    onClick={() => handleMoreCategory(category.layerId)}
                     aria-pressed={activeMapContext.businessLayer === category.layerId}
                   >
                     <span className={styles.commandMoreChipIcon} aria-hidden="true">
                       {category.icon}
                     </span>
-                    <span className={styles.commandMoreChipLabel}>{category.title}</span>
+                    <span className={styles.commandMoreChipLabel}>
+                      {t(`mobile.moreCategories.${category.id}`)}
+                    </span>
                   </button>
                 ))}
               </div>

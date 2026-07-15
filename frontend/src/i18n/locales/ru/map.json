@@ -1,0 +1,665 @@
+{
+  "title": "Живая европейская бизнес-сеть",
+  "eyebrow": "Карта в реальном времени",
+  "subtitle": "Берлин как центральный хаб — интерактивная европейская бизнес-сеть",
+  "legend": "Интерактивная карта Европы с бизнес-узлами",
+  "hubLabel": "Хаб Берлин",
+  "liveNetwork": "Сеть в реальном времени активна",
+  "businesses": "{{count}} компаний",
+  "zoomHint": "Выберите город или страну · Каждый город открывает своё рабочее пространство",
+  "interactionHint": "Прокручивайте для масштаба · Перетаскивайте для перемещения · Нажмите город для деталей",
+  "loading": "Загрузка карты…",
+  "controls": {
+    "zoomIn": "Увеличить",
+    "zoomOut": "Уменьшить",
+    "reset": "Сбросить вид",
+    "backEurope": "Европа"
+  },
+  "nav": {
+    "europe": "Европа",
+    "backToEurope": "Назад к Европе",
+    "selectCity": "Выбрать город"
+  },
+  "search": {
+    "placeholder": "Поиск города",
+    "open": "Поиск города",
+    "close": "Закрыть поиск",
+    "results": "Результаты поиска городов",
+    "noResults": "Нет подходящих городов",
+    "noLayerData": "Для этого места в текущем слое пока нет данных.",
+    "voice": "Голосовой поиск",
+    "voiceComingSoon": "Голосовой поиск скоро"
+  },
+  "layers": {
+    "title": "Слои",
+    "routes": "Все маршруты",
+    "road": "Автомобильные перевозки",
+    "rail": "Железнодорожные перевозки",
+    "air": "Авиагрузы",
+    "sea": "Морские маршруты",
+    "river": "Речные / внутренние водные",
+    "companies": "Компании",
+    "jobs": "Вакансии",
+    "warehouses": "Склады"
+  },
+  "activity": {
+    "liveActivity": "Активность в реальном времени",
+    "freightVolume": "Объём грузов за 24 ч",
+    "transportOffers": "Открытые транспортные предложения",
+    "deliveryTime": "Ср. время доставки",
+    "co2Saving": "Экономия CO₂"
+  },
+  "live": {
+    "title": "Платформа в реальном времени",
+    "companies": "Компании",
+    "jobs": "Вакансии",
+    "transport": "Транспорт",
+    "marketplace": "Маркетплейс",
+    "warehouses": "Склады",
+    "partners": "Партнёры",
+    "digitalProducts": "Цифровые продукты",
+    "subscriptions": "Подписки",
+    "aiRequests": "Запросы к ИИ"
+  },
+  "tooltip": {
+    "companies": "{{count}} компаний",
+    "jobs": "{{count}} вакансий",
+    "warehouses": "{{count}} складов",
+    "transport": "{{count}} транспортных предложений",
+    "businessScore": "Бизнес-рейтинг {{score}}",
+    "networkConnections": "{{count}} сетевых соединений",
+    "aiScore": "ИИ-рейтинг {{score}}"
+  },
+  "country": {
+    "title": "Страна {{country}}",
+    "cities": "{{count}} бизнес-городов",
+    "aiScore": "Оценка инфраструктуры ИИ",
+    "selectCity": "Выберите город на карте для деталей"
+  },
+  "germany": {
+    "bundeslandPicker": "Выбрать федеральную землю",
+    "bundeslandTitle": "Земля {{name}}",
+    "bundeslandSubtitle": "Региональный экономический профиль",
+    "selectCityInState": "Выберите город в этой земле",
+    "population": "Население",
+    "federalState": "Федеральная земля",
+    "mainIndustry": "Основная отрасль",
+    "transportRole": "Транспортная роль",
+    "finance": "Финансы",
+    "tech": "Технологии",
+    "logistics": "Логистика",
+    "innovation": "Инновации",
+    "businessIndex": "Бизнес-индекс",
+    "sustainability": "Устойчивость",
+    "gdpShort": "{{value}} млрд € ВВП",
+    "gdpEstimate": "Ориентировочный ВВП: {{value}} млрд €",
+    "marketplaceDesc": "Активные предложения marketplace в регионе",
+    "stats": {
+      "cities": "Города",
+      "gdp": "ВВП (ориент.)",
+      "logistics": "Оценка логистики",
+      "businesses": "Компании"
+    },
+    "infrastructure": {
+      "nearbyTitle": "Инфраструктура поблизости",
+      "seaports": "Морские порты",
+      "inlandPorts": "Внутренние порты",
+      "airCargo": "Хабы авиагрузов",
+      "industrialZones": "Промышленные зоны",
+      "logisticsHubs": "Логистические хабы",
+      "importance": "Значение {{score}}/100",
+      "types": {
+        "seaport": "Морской порт",
+        "inland_port": "Внутренний порт",
+        "air_cargo": "Хаб авиагрузов",
+        "industrial_zone": "Промышленная зона"
+      }
+    },
+    "localNode": {
+      "title": "Локальные услуги и региональный хаб",
+      "nearestHub": "Ближайший крупный хаб",
+      "hubRoute": "Рекомендуемый маршрут",
+      "useCases": "Основные сценарии использования",
+      "transport": "Локальный транспорт",
+      "warehouses": "Склады поблизости",
+      "services": "Локальные услуги",
+      "craft": "Ремесленники",
+      "nearbyHubs": "Хабы поблизости",
+      "marketplaceDesc": "Локальные предложения marketplace в вашем регионе",
+      "jobsDesc": "Вакансии в городе и через региональный хаб",
+      "jobsViaHub": "Вакансии для переездников и логистические работы через {{hub}}",
+      "useCase": {
+        "local_transport": "Локальный транспорт",
+        "moving_service": "Услуги переезда",
+        "warehouse_near_me": "Склад рядом",
+        "jobs_near_me": "Вакансии рядом",
+        "craftsmen": "Ремесленники",
+        "business_services": "Business Services",
+        "local_marketplace": "Локальный маркетплейс",
+        "regional_logistics": "Региональная логистика",
+        "agricultural_services": "Сельскохозяйственные услуги",
+        "tourism_services": "Туристические услуги"
+      }
+    }
+  },
+  "panel": {
+    "title": "Город {{city}}",
+    "close": "Закрыть",
+    "openWorkspace": "Открыть рабочее пространство",
+    "allRoutes": "Показать все маршруты",
+    "companies": "Компании",
+    "jobs": "Вакансии",
+    "warehouses": "Склады",
+    "transport": "Транспорт",
+    "marketplace": "Маркетплейс",
+    "partners": "Партнёры",
+    "aiScore": "ИИ-рейтинг",
+    "digitalProducts": "Цифровые продукты",
+    "transportOffers": "Транспортные предложения",
+    "companiesDesc": "Зарегистрированные компании в этом городе",
+    "jobsDesc": "Активные вакансии",
+    "warehousesDesc": "Доступная складская мощность",
+    "tabs": {
+      "overview": "Обзор",
+      "companies": "Компании",
+      "jobs": "Вакансии",
+      "warehouses": "Склады",
+      "routes": "Маршруты",
+      "transport": "Транспорт",
+      "marketplace": "Маркетплейс",
+      "services": "Услуги",
+      "analytics": "Аналитика",
+      "partners": "Партнёры",
+      "activity": "Активность"
+    }
+  },
+  "routePanel": {
+    "title": "Маршрут {{route}}",
+    "from": "Из",
+    "to": "В",
+    "hours": "ч",
+    "industries": "Основные отрасли",
+    "delivery": "Среднее время доставки: {{time}}",
+    "lastActivity": "Последняя активность: {{time}}",
+    "warehousesHint": "Склады и логистические хабы доступны вдоль этого коридора.",
+    "status": {
+      "active": "Активен",
+      "congested": "Перегружен",
+      "maintenance": "Обслуживание",
+      "seasonal": "Сезонный"
+    },
+    "modes": {
+      "road": "Автомобильные перевозки",
+      "rail": "Железнодорожные перевозки",
+      "air": "Авиагрузы",
+      "sea": "Морские перевозки",
+      "river": "Речные / внутренние водные"
+    },
+    "stats": {
+      "distance": "Расстояние",
+      "time": "Ориент. время (ч)",
+      "volume": "Месячный объём (т)",
+      "offers": "Транспортные предложения",
+      "orders": "Активные заказы",
+      "companies": "Компании",
+      "price": "Ценовой индекс",
+      "reliability": "Надёжность",
+      "co2": "Ориент. CO₂"
+    },
+    "actions": {
+      "open": "Открыть маршрут",
+      "search": "Найти транспорт",
+      "create": "Создать предложение"
+    }
+  },
+  "operating": {
+    "context": "Контекст",
+    "insights": "Аналитика в реальном времени",
+    "activeMapMode": "Активный режим карты",
+    "logisticsLayer": "Логистика",
+    "businessLayer": "Бизнес",
+    "country": "Страна",
+    "city": "Город",
+    "corridor": "Коридор",
+    "platform": "Активность платформы",
+    "activeUsers": "Активные пользователи",
+    "marketplace": "Маркетплейс",
+    "filters": "Фильтры",
+    "logistics": "Логистика",
+    "business": "Бизнес-модули",
+    "mapControls": "Управление картой",
+    "trending": "Популярные города"
+  },
+  "a11y": {
+    "togglePanel": "Показать/скрыть панель",
+    "mapViewport": "Европейская бизнес-карта",
+    "showCommandPanel": "Показать панель управления",
+    "hideCommandPanel": "Скрыть панель управления"
+  },
+  "businessLayers": {
+    "marketplace": "Маркетплейс",
+    "transport": "Транспорт",
+    "companies": "Компании",
+    "jobs": "Вакансии",
+    "warehouses": "Склады",
+    "businessServices": "Бизнес-услуги",
+    "partners": "Партнёры",
+    "academy": "Academy",
+    "digitalProducts": "Digital Products",
+    "ai": "ИИ",
+    "events": "События",
+    "investments": "Инвестиции",
+    "startups": "Стартапы",
+    "manufacturing": "Производство",
+    "agriculture": "Сельское хозяйство",
+    "construction": "Строительство",
+    "medical": "Медицина",
+    "tourism": "Туризм",
+    "technology": "Технологии",
+    "finance": "Финансы",
+    "legal": "Право",
+    "education": "Образование"
+  },
+  "mobile": {
+    "map": "Карта",
+    "transport": "Транспорт",
+    "jobs": "Вакансии",
+    "companies": "Компании",
+    "warehouses": "Склады",
+    "ai": "ИИ",
+    "more": "Ещё",
+    "mapControl": "Управление картой",
+    "commandCenter": "Центр управления картой",
+    "mapControls": "Управление картой",
+    "commandWheel": "Круговое меню карты",
+    "moreBusinessLayers": "Дополнительные бизнес-слои",
+    "businessLayers": "Бизнес-слои",
+    "activeLayer": "Активный слой:",
+    "layerActive": "Слой {{layer}} активен",
+    "europeOverviewActive": "Обзор Европы активен",
+    "aiComingSoon": "ИИ-ассистент карты скоро",
+    "exploreEcosystem": "Изучите экосистему EuroBusinessHub",
+    "aiAssistantTitle": "ИИ-ассистент карты",
+    "comingSoon": "Скоро",
+    "close": "Закрыть",
+    "closeLayersPanel": "Закрыть панель слоёв",
+    "layerGroups": {
+      "transport": {
+        "title": "Транспортные слои",
+        "road": "Автомобильный транспорт",
+        "rail": "Железная дорога",
+        "air": "Авиагрузы",
+        "sea": "Морские перевозки",
+        "river": "Речные"
+      },
+      "business": {
+        "title": "Бизнес-модули",
+        "marketplace": "Маркетплейс",
+        "companies": "Компании",
+        "jobs": "Вакансии",
+        "warehouses": "Склады",
+        "partners": "Партнёры"
+      },
+      "services": {
+        "title": "Услуги",
+        "legal": "Право",
+        "finance": "Финансы",
+        "medical": "Медицина",
+        "education": "Образование",
+        "technology": "Технологии"
+      },
+      "industries": {
+        "title": "Отрасли",
+        "agriculture": "Сельское хозяйство",
+        "manufacturing": "Производство",
+        "construction": "Строительство",
+        "tourism": "Туризм"
+      },
+      "innovation": {
+        "title": "Инновации",
+        "ai": "ИИ",
+        "startups": "Startups",
+        "digitalProducts": "Digital Products",
+        "academy": "Academy",
+        "investments": "Investments"
+      }
+    },
+    "moreCategories": {
+      "marketplace": "Маркетплейс",
+      "partners": "Партнёры",
+      "academy": "Academy",
+      "digital-products": "Digital Products",
+      "events": "События",
+      "investments": "Инвестиции",
+      "startups": "Стартапы",
+      "manufacturing": "Производство",
+      "agriculture": "Сельское хозяйство",
+      "construction": "Строительство",
+      "medical": "Медицина",
+      "tourism": "Туризм",
+      "technology": "Технологии",
+      "finance": "Финансы",
+      "legal": "Право",
+      "education": "Образование"
+    }
+  },
+  "tooltips": {
+    "companies": "Компании",
+    "jobs": "Jobs",
+    "warehouses": "Склады",
+    "transport": "Transport",
+    "aiScore": "AI Score",
+    "origin": "Пункт отправления",
+    "destination": "Пункт назначения",
+    "routeType": "Тип маршрута",
+    "distance": "Расстояние",
+    "activeOffers": "Активные предложения",
+    "estTime": "Ориент. время",
+    "aiOptimized": "AI Optimized"
+  },
+  "visualModes": {
+    "europe-overview": {
+      "panelTitle": "Обзор Европы",
+      "recommendation": "Изучите полную операционную бизнес-карту Европы — все коридоры и хабы видны.",
+      "tickerEyebrow": "Рекомендации ИИ",
+      "tickerMessages": [
+        "Высокий спрос: Berlin → Izium логистика восстановления",
+        "Расширить коридор: Warsaw → Kyiv → Izium",
+        "Подбор партнёра: Istanbul → Odesa морская логистика",
+        "Новая возможность: цепочка поставок восстановления Ukraine"
+      ]
+    },
+    "marketplace": {
+      "panelTitle": "Режим маркетплейса",
+      "recommendation": "Яркое свечение городов выделяет торговые точки — откройте B2B-возможности маркетплейса по всей Европе.",
+      "tickerEyebrow": "Сигналы маркетплейса",
+      "tickerMessages": [
+        "Rotterdam → Warsaw оптовый коридор в тренде",
+        "Berlin объявления МСП +14 % на этой неделе",
+        "Трансграничный match маркетплейса: Vienna ↔ Prague",
+        "Высокий намерение покупателей в Munich промышленных поставках"
+      ]
+    },
+    "transport": {
+      "panelTitle": "Режим транспорта",
+      "recommendation": "Транспортные коридоры деликатно подчёркнуты — отслеживайте грузопотоки и активность логистической биржи.",
+      "tickerEyebrow": "Логистические рекомендации",
+      "tickerMessages": [
+        "Доступный ж/д слот: Hamburg → Warsaw коридор",
+        "Растёт спрос на морские перевозки Rotterdam → Gdańsk",
+        "Открывается дорожная мощность: Lyon → Milan полоса",
+        "Окно авиагрузов: Frankfurt → Bucharest экспресс"
+      ]
+    },
+    "companies": {
+      "panelTitle": "Режим компаний",
+      "recommendation": "Свечение бизнес-хабов усиливает ключевые деловые центры — идеально для поиска предприятий.",
+      "tickerEyebrow": "Сигналы бизнес-хабов",
+      "tickerMessages": [
+        "Frankfurt активность корпоративного кластера +11 %",
+        "Paris перенос HQ трендит к Lyon",
+        "Warsaw расширение tech-кампуса зафиксировано",
+        "Milan модные дома ищут партнёров ЕС"
+      ]
+    },
+    "jobs": {
+      "panelTitle": "Режим вакансий",
+      "recommendation": "Свечение точек найма показывает спрос на работу — просматривайте открытые роли по городам.",
+      "tickerEyebrow": "Рекомендации по занятости",
+      "tickerMessages": [
+        "Berlin логистические роли +18 % неделя к неделе",
+        "Warsaw инженерный найм продолжает расти",
+        "Remote-ready роли концентрируются в Dublin",
+        "Izium проекты восстановления публикуют квалифицированные специальности"
+      ]
+    },
+    "warehouses": {
+      "panelTitle": "Режим складов",
+      "recommendation": "Атмосфера складской сети — узлы дистрибуции пульсируют на логистических воротах.",
+      "tickerEyebrow": "Сигналы складской сети",
+      "tickerMessages": [
+        "Rotterdam таможенное хранение на 92 % загрузки",
+        "Warsaw коридор расширения холодовой цепи активен",
+        "Hamburg ↔ Berlin fulfillment-полоса оптимизирована",
+        "Prague региональный хаб открывает мощность Q3"
+      ]
+    },
+    "businessServices": {
+      "panelTitle": "Режим бизнес-услуг",
+      "recommendation": "Свечение сервисной сети соединяет кластеры профессиональных услуг по всей Европе.",
+      "tickerEyebrow": "Сигналы сервисной сети",
+      "tickerMessages": [
+        "Brussels растёт спрос на compliance-консалтинг",
+        "Zurich фидуциарные услуги match в Prague",
+        "Barcelona рост экспорта креативных услуг",
+        "Vienna консалтинговый коридор расширяется на восток"
+      ]
+    },
+    "partners": {
+      "panelTitle": "Режим партнёров",
+      "recommendation": "Атмосфера сети сотрудничества — города, готовые к партнёрству, светятся для трансграничных альянсов.",
+      "tickerEyebrow": "Сигналы партнёрства",
+      "tickerMessages": [
+        "Nordic ↔ Baltic высокий score подбора партнёров",
+        "Istanbul gateway ищет дистрибьюторов ЕС",
+        "Lyon активный поиск производственного партнёра",
+        "Tallinn цифровые партнёры открыты к рынку DACH"
+      ]
+    },
+    "academy": {
+      "panelTitle": "Режим академии",
+      "recommendation": "Атмосфера образовательной экосистемы — учебные хабы и тренинговые коридоры подчёркнуты.",
+      "tickerEyebrow": "Сигналы академии",
+      "tickerMessages": [
+        "Heidelberg открытые программы научного обмена",
+        "Barcelona bootcamp-партнёрства в тренде",
+        "Warsaw STEM-академия быстро набирает когорту",
+        "Vienna executive education трансграничный набор"
+      ]
+    },
+    "digitalProducts": {
+      "panelTitle": "Режим цифровых продуктов",
+      "recommendation": "Атмосфера технологической экосистемы — хабы цифровых продуктов светятся в инновационных городах.",
+      "tickerEyebrow": "Сигналы цифровых продуктов",
+      "tickerMessages": [
+        "SaaS объявления растут в Tallinn и Dublin",
+        "Berlin продуктовые студии ищут реселлеров ЕС",
+        "Amsterdam fintech API открыты для интеграции",
+        "Prague dev tools активность маркетплейса +9 %"
+      ]
+    },
+    "ai": {
+      "panelTitle": "Режим ИИ",
+      "recommendation": "Атмосфера сети ИИ — интеллектуальные коридоры и ИИ-готовые бизнес-узлы подчёркнуты.",
+      "tickerEyebrow": "Сигналы сети ИИ",
+      "tickerMessages": [
+        "Frankfurt ИИ-пилот маршрутизации логистики live",
+        "Warsaw ML талант-пул match score 94 %",
+        "Paris generative commerce инструменты в тренде",
+        "Helsinki ИИ compliance sandbox принимает партнёров"
+      ]
+    },
+    "events": {
+      "panelTitle": "Режим событий",
+      "recommendation": "Атмосфера event-хотспотов — города конференций и выставок пульсируют на карте.",
+      "tickerEyebrow": "Сигналы event-хотспотов",
+      "tickerMessages": [
+        "Hanover Messe бронирования коридора растут",
+        "Barcelona mobile congress spillover-спрос",
+        "Vienna неделя саммита — жильё ограничено",
+        "Milan design week matchmaking поставщиков открыт"
+      ]
+    },
+    "investments": {
+      "panelTitle": "Режим инвестиций",
+      "recommendation": "Атмосфера инвестиционного капитала — потоки капитала и точки финансирования деликатно подсвечены.",
+      "tickerEyebrow": "Инвестиционные сигналы",
+      "tickerMessages": [
+        "Frankfurt VC интерес к Warsaw deeptech",
+        "Luxembourg маршрутизация фондов через Amsterdam hub",
+        "Berlin seed round активность +12 %",
+        "Капитал восстановления нацелен на Izium коридор"
+      ]
+    },
+    "startups": {
+      "panelTitle": "Режим стартапов",
+      "recommendation": "Атмосфера стартап-инноваций — экосистемы основателей и коридоры масштабирования светятся.",
+      "tickerEyebrow": "Сигналы стартап-инноваций",
+      "tickerMessages": [
+        "Berlin ↔ Tallinn обмен основателей активен",
+        "Barcelona healthtech spinouts ищут пилоты",
+        "Warsaw accelerator demo day входящий интерес",
+        "Lisbon remote-first стартап найм растёт"
+      ]
+    },
+    "manufacturing": {
+      "panelTitle": "Режим производства",
+      "recommendation": "Атмосфера промышленной сети — производственные хабы и коридоры поставок подчёркнуты.",
+      "tickerEyebrow": "Сигналы промышленной сети",
+      "tickerMessages": [
+        "Stuttgart автомобильные поставщики ищут партнёров",
+        "Turin коридор компонентов — доступная мощность",
+        "Wrocław расширение сборки электроники",
+        "Lyon aerospace субподрядчик match открыт"
+      ]
+    },
+    "agriculture": {
+      "panelTitle": "Режим сельского хозяйства",
+      "recommendation": "Атмосфера агроэкосистемы — агропродовольственные коридоры и сельские торговые узлы светятся.",
+      "tickerEyebrow": "Сигналы агроэкосистемы",
+      "tickerMessages": [
+        "Danube зерновой коридор — высокий спрос на хранилища",
+        "Netherlands холодовая цепь до Poland активна",
+        "Valencia сезон экспорта цитрусовых набирает обороты",
+        "Kraków органический дистрибьютор ищет партнёров"
+      ]
+    },
+    "construction": {
+      "panelTitle": "Режим строительства",
+      "recommendation": "Атмосфера инфраструктуры — коридоры восстановления и строительных материалов подчёркнуты.",
+      "tickerEyebrow": "Инфраструктурные сигналы",
+      "tickerMessages": [
+        "Izium коридор материалов восстановления приоритизирован",
+        "Berlin жилой проект — поиск субподрядчиков",
+        "Warsaw активность инфраструктурных тендеров растёт",
+        "Prague модернизация железной дороги match поставщиков"
+      ]
+    },
+    "medical": {
+      "panelTitle": "Режим медицины",
+      "recommendation": "Атмосфера медицинской экосистемы — медицинские хабы и узлы медлогистики подчёркнуты.",
+      "tickerEyebrow": "Сигналы медицинской экосистемы",
+      "tickerMessages": [
+        "Basel фарма-дистрибуционная полоса стабильна",
+        "Warsaw medtech устройства объявления +10 %",
+        "Munich окно закупок больниц открыто",
+        "Strasbourg трансграничные партнёрства ухода"
+      ]
+    },
+    "tourism": {
+      "panelTitle": "Режим туризма",
+      "recommendation": "Атмосфера туристических направлений — точки экономики посетителей светятся по всей Европе.",
+      "tickerEyebrow": "Сигналы туристических направлений",
+      "tickerMessages": [
+        "Barcelona летние гостиничные бронирования растут",
+        "Vienna культурный туризм — нужны партнёры",
+        "Athens круизный трансферный коридор активен",
+        "Prague city-break пакеты трендят DACH"
+      ]
+    },
+    "technology": {
+      "panelTitle": "Режим технологий",
+      "recommendation": "Атмосфера tech-хабов — инновационные кластеры и tech-коридоры деликатно освещены.",
+      "tickerEyebrow": "Сигналы tech-хабов",
+      "tickerMessages": [
+        "Munich deep-tech spinout интерес растёт",
+        "Eindhoven полупроводниковые партнёры нужны",
+        "Tallinn cyber талант match score высокий",
+        "Cambridge ↔ Berlin научный обмен открыт"
+      ]
+    },
+    "finance": {
+      "panelTitle": "Режим финансов",
+      "recommendation": "Атмосфера финансовой сети — центры капитала и банковские коридоры подчёркнуты.",
+      "tickerEyebrow": "Сигналы финансовой сети",
+      "tickerMessages": [
+        "Frankfurt клиринговая активность стабильна",
+        "Luxembourg администрирование фондов match открыт",
+        "Dublin fintech API партнёры в тренде",
+        "Zurich wealth services трансграничный набор"
+      ]
+    },
+    "legal": {
+      "panelTitle": "Режим права",
+      "recommendation": "Атмосфера юридических услуг — регуляторные и правовые консалтинговые кластеры подчёркнуты.",
+      "tickerEyebrow": "Сигналы юридических услуг",
+      "tickerMessages": [
+        "Brussels регуляторный консалтинг — высокий спрос",
+        "London ↔ Frankfurt compliance коридор",
+        "Warsaw EU law бутик расширение зафиксировано",
+        "Vienna арбитражный хаб — поиск партнёра"
+      ]
+    },
+    "education": {
+      "panelTitle": "Режим образования",
+      "recommendation": "Атмосфера образовательной сети — университеты и тренинговые коридоры мягко светятся.",
+      "tickerEyebrow": "Сигналы образовательной сети",
+      "tickerMessages": [
+        "Erasmus коридор активность: Barcelona ↔ Bologna",
+        "Warsaw языковые школы — партнёрства открыты",
+        "Heidelberg научный набор трансграничный",
+        "Dublin edtech обмен сертификатами в тренде"
+      ]
+    },
+    "road": {
+      "panelTitle": "Режим автомобильного транспорта",
+      "recommendation": "Дорожные коридоры получают деликатное подчёркивание — наземные грузовые полосы светятся в сети.",
+      "tickerEyebrow": "Сигналы автомобильного транспорта",
+      "tickerMessages": [
+        "Antwerp → Warsaw грузоперевозки — мощность доступна",
+        "Milan → Munich загрузка полосы 78 %",
+        "Barcelona → Lyon экспресс-слот доступен"
+      ]
+    },
+    "rail": {
+      "panelTitle": "Режим железной дороги",
+      "recommendation": "Железнодорожные коридоры подчёркнуты — интермодальные и грузовые ж/д полосы выделены.",
+      "tickerEyebrow": "Сигналы ж/д коридоров",
+      "tickerMessages": [
+        "Hamburg → Warsaw ж/д слот в тренде",
+        "Rotterdam интермодальная передача стабильна",
+        "Basel → Milan ж/д груз — спрос растёт"
+      ]
+    },
+    "sea": {
+      "panelTitle": "Режим морских перевозок",
+      "recommendation": "Морские коридоры подчёркнуты — порт-порт морские полосы светятся на карте.",
+      "tickerEyebrow": "Сигналы морских перевозок",
+      "tickerMessages": [
+        "Rotterdam → Gdańsk контейнерная полоса активна",
+        "Hamburg → Odesa морской интерес растёт",
+        "Barcelona средиземноморская маршрутизация стабильна"
+      ]
+    },
+    "air": {
+      "panelTitle": "Режим авиагрузов",
+      "recommendation": "Коридоры авиагрузов подчёркнуты — экспресс-авиационные полосы выделены.",
+      "tickerEyebrow": "Сигналы авиагрузов",
+      "tickerMessages": [
+        "Frankfurt → Bucharest экспресс uplift открыт",
+        "Paris CDG ↔ Warsaw окно грузов",
+        "Amsterdam авиа-хаб cross-dock активен"
+      ]
+    },
+    "river": {
+      "panelTitle": "Режим речного транспорта",
+      "recommendation": "Речные коридоры подчёркнуты — внутренние водные грузовые полосы выделены.",
+      "tickerEyebrow": "Сигналы речного транспорта",
+      "tickerMessages": [
+        "Danube коридор зерновых перевозок активен",
+        "Rhine баржевая мощность доступна",
+        "Elbe внутренние порты — передачи стабильны"
+      ]
+    }
+  }
+}

@@ -22,7 +22,7 @@ export function Header({ onMenuToggle }: HeaderProps) {
           type="button"
           className={styles.menuBtn}
           onClick={onMenuToggle}
-          aria-label="Menü"
+          aria-label={t('nav.menuOpen')}
         >
           <span className={styles.menuIcon} />
         </button>
