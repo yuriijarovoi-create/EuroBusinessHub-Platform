@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useMemo } from 'react';
-import { Marker, useMap } from 'react-leaflet';
+import { Marker, Tooltip, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { MapCityRecord } from '../../types/mapTypes';
 import { DEFAULT_HUB_ID } from '../../data/mapData';
@@ -63,7 +63,6 @@ function createCityIcon(
   isHub: boolean,
   displayTier: CityDisplayTier,
   zoom: number,
-  isHoverOnly = false,
 ) {
   const size = markerSizeForTier(displayTier, isHub, zoom, city.id);
   const anchor = size / 2;
@@ -80,7 +79,6 @@ function createCityIcon(
     displayTier === 4 ? 'ebh-marker-tier4' : '',
     displayTier === 5 ? 'ebh-marker-tier5' : '',
     isHighlighted ? 'ebh-marker-selected' : '',
-    isHoverOnly ? 'ebh-marker-hovered' : '',
     displayTier >= 3 && !isHub ? 'ebh-marker-small' : '',
   ]
     .filter(Boolean)
@@ -97,32 +95,40 @@ function createCityIcon(
 interface LeafletCityMarkerProps {
   city: MapCityRecord;
   isSelected: boolean;
-  isHovered: boolean;
   isMobile: boolean;
   zoom: number;
   onSelect: (city: MapCityRecord) => void;
-  onCityHover: (cityId: string) => void;
-  onCityHoverLeave: () => void;
+}
+
+function closeOpenSettlementTooltips(map: L.Map): void {
+  map.eachLayer((layer) => {
+    if (!(layer instanceof L.Marker)) return;
+    const tooltip = layer.getTooltip();
+    if (!tooltip?.isOpen()) return;
+    const el = tooltip.getElement();
+    if (el?.classList.contains('ebh-settlement-name-tooltip')) {
+      layer.closeTooltip();
+    }
+  });
 }
 
 const LeafletCityMarker = memo(
   function LeafletCityMarker({
     city,
     isSelected,
-    isHovered,
     isMobile,
     zoom,
     onSelect,
-    onCityHover,
-    onCityHoverLeave,
   }: LeafletCityMarkerProps) {
     const isHub = Boolean(city.isMajorHub) || city.id === DEFAULT_HUB_ID;
-    const isHighlighted = isSelected || isHovered;
+    const isHighlighted = isSelected;
     const displayTier = getCityDisplayTier(city);
+    const markerSize = markerSizeForTier(displayTier, isHub, zoom, city.id);
     const icon = useMemo(
-      () => createCityIcon(city, isHighlighted, isHub, displayTier, zoom, isHovered && !isSelected),
-      [city, isHighlighted, isHub, displayTier, zoom, isHovered && !isSelected],
+      () => createCityIcon(city, isHighlighted, isHub, displayTier, zoom),
+      [city, isHighlighted, isHub, displayTier, zoom],
     );
+    const nameTooltipOffset: [number, number] = [0, -(Math.round(markerSize / 2) + 6)];
 
     const activateCity = () => {
       onSelect(city);
@@ -141,6 +147,9 @@ const LeafletCityMarker = memo(
           click: (e) => {
             L.DomEvent.stop(e);
             if (isCityMarkerTouchGuardActive()) return;
+            if (e.target instanceof L.Marker) {
+              e.target.closeTooltip();
+            }
             activateCity();
           },
           dblclick: (e) => {
@@ -154,18 +163,28 @@ const LeafletCityMarker = memo(
                   activateCity();
                 },
               }
-            : {
-                mouseover: () => onCityHover(city.id),
-                mouseout: () => onCityHoverLeave(),
-              }),
+            : {}),
         }}
-      />
+      >
+        {!isMobile && !isSelected && (
+          <Tooltip
+            permanent={false}
+            sticky={false}
+            interactive={false}
+            direction="top"
+            offset={nameTooltipOffset}
+            opacity={0.95}
+            className="ebh-tooltip ebh-settlement-name-tooltip"
+          >
+            {city.name}
+          </Tooltip>
+        )}
+      </Marker>
     );
   },
   (prev, next) =>
     prev.city.id === next.city.id &&
     prev.isSelected === next.isSelected &&
-    prev.isHovered === next.isHovered &&
     prev.isMobile === next.isMobile &&
     prev.zoom === next.zoom,
 );
@@ -176,8 +195,6 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   hoveredCityId,
   searchResultCityId,
   onSelect,
-  onCityHover,
-  onCityHoverLeave,
   onClearInfoCard,
   onMapBackgroundClick,
   countryFocusActive = false,
@@ -199,39 +216,38 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
     onMapBackgroundClick();
   }, [onMapBackgroundClick]);
 
+  const handleMapInteractionStart = useCallback(() => {
+    closeOpenSettlementTooltips(map);
+    onClearInfoCard();
+  }, [map, onClearInfoCard]);
+
   useEffect(() => {
     if (countryFocusActive) return;
 
-    const onDragStart = () => onClearInfoCard();
-    const onZoomStart = () => onClearInfoCard();
-
     map.on('click', handleMapBackgroundClick);
-    map.on('dragstart', onDragStart);
-    map.on('zoomstart', onZoomStart);
+    map.on('dragstart', handleMapInteractionStart);
+    map.on('zoomstart', handleMapInteractionStart);
 
     return () => {
       if (!isMapAlive(map)) return;
       map.off('click', handleMapBackgroundClick);
-      map.off('dragstart', onDragStart);
-      map.off('zoomstart', onZoomStart);
+      map.off('dragstart', handleMapInteractionStart);
+      map.off('zoomstart', handleMapInteractionStart);
     };
-  }, [map, onClearInfoCard, handleMapBackgroundClick, countryFocusActive]);
+  }, [map, handleMapBackgroundClick, handleMapInteractionStart, countryFocusActive]);
 
   useEffect(() => {
     if (!countryFocusActive) return;
 
-    const onDragStart = () => onClearInfoCard();
-    const onZoomStart = () => onClearInfoCard();
-
-    map.on('dragstart', onDragStart);
-    map.on('zoomstart', onZoomStart);
+    map.on('dragstart', handleMapInteractionStart);
+    map.on('zoomstart', handleMapInteractionStart);
 
     return () => {
       if (!isMapAlive(map)) return;
-      map.off('dragstart', onDragStart);
-      map.off('zoomstart', onZoomStart);
+      map.off('dragstart', handleMapInteractionStart);
+      map.off('zoomstart', handleMapInteractionStart);
     };
-  }, [map, onClearInfoCard, countryFocusActive]);
+  }, [map, handleMapInteractionStart, countryFocusActive]);
 
   const displayItems = useMemo(() => {
     const visible = getVisibleCityNodes(
@@ -279,11 +295,8 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
             city={item.city}
             zoom={zoom}
             isSelected={item.city.id === selectedCityId}
-            isHovered={item.city.id === hoveredCityId}
             isMobile={isMobile}
             onSelect={onSelect}
-            onCityHover={onCityHover}
-            onCityHoverLeave={onCityHoverLeave}
           />
         );
       })}

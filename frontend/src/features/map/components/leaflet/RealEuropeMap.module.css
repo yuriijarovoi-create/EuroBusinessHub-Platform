@@ -328,6 +328,13 @@
   pointer-events: none !important;
 }
 
+:global(.leaflet-tooltip.ebh-settlement-name-tooltip) {
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 5px 9px !important;
+  pointer-events: none !important;
+}
+
 :global(.ebh-tooltip-country) {
   opacity: 0.78;
   font-size: 10px;
@@ -373,6 +380,12 @@
 
 :global(.ebh-marker-interactive) {
   cursor: pointer !important;
+}
+
+:global(.ebh-marker-interactive:hover .ebh-marker-core) {
+  box-shadow:
+    0 0 0 2px rgb(141 216 252 / 0.55),
+    0 0 14px rgb(45 156 255 / 0.45);
 }
 
 :global(.ebh-country-interactive) {
