@@ -92,6 +92,10 @@ export function BusinessOperatingMapInner({
   useEffect(() => {
     if (!pendingReturnRestore || !returnRestoreMode) return;
 
+    // Workspace → map: collapse desktop command panel for this return only.
+    // Manual open/close afterward is unchanged; not persisted in map session.
+    setIsCommandPanelOpen(false);
+
     if (returnRestoreMode === 'fallback') {
       selectCountry(null, null);
       selectCity(null, { fly: false, openWorkspace: false });

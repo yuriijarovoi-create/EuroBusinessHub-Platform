@@ -17,6 +17,7 @@ import { GERMANY_BY_NODE_DEFS } from './germanyBayernNodes.generated';
 import { GERMANY_NRW_NODE_DEFS } from './germanyNordrheinWestfalenNodes.generated';
 import { GERMANY_NI_NODE_DEFS } from './germanyNiedersachsenNodes.generated';
 import { GERMANY_SH_NODE_DEFS } from './germanySchleswigHolsteinNodes.generated';
+import { GERMANY_MV_NODE_DEFS } from './germanyMecklenburgVorpommernNodes.generated';
 import {
   dedupeSettlementDefs,
   DUPLICATE_SETTLEMENT_SLUGS,
@@ -39,6 +40,7 @@ const GERMANY_LOCAL_NODE_SEED_DEFS = dedupeSettlementDefs([
   ...GERMANY_NRW_NODE_DEFS,
   ...GERMANY_NI_NODE_DEFS,
   ...GERMANY_SH_NODE_DEFS,
+  ...GERMANY_MV_NODE_DEFS,
 ]);
 
 const SEED_DEF_IDS = new Set(GERMANY_LOCAL_NODE_SEED_DEFS.map((def) => def.id));
