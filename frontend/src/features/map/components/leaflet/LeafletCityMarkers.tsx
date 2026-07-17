@@ -15,6 +15,10 @@ import {
   buildCityMarkerDisplayItems,
 } from '../../utils/cityClusterUtils';
 import {
+  computeSettlementMarkerViewportStats,
+  filterCitiesInViewportBounds,
+} from '../../utils/viewportBoundsUtils';
+import {
   shouldShowUkraineFlagMarker,
   UKRAINE_FLAG_MARKER_CITY_ID,
 } from '../../utils/ukraineMarkerVisibility';
@@ -201,7 +205,7 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
   selectedCountryCode,
 }: LeafletCityMarkersProps) {
   const map = useMap();
-  const { zoom, center, isMobile } = useLeafletMapViewport();
+  const { zoom, center, bounds, isMobile, ready } = useLeafletMapViewport();
 
   const forcedIds = useMemo(() => {
     const ids = new Set<string>();
@@ -249,16 +253,26 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
     };
   }, [map, handleMapInteractionStart, countryFocusActive]);
 
+  const zoomEligibleCities = useMemo(
+    () =>
+      getVisibleCityNodes(
+        cities,
+        zoom,
+        selectedCityId,
+        hoveredCityId ?? undefined,
+        searchResultCityId ?? undefined,
+        isMobile,
+      ),
+    [cities, zoom, selectedCityId, hoveredCityId, searchResultCityId, isMobile],
+  );
+
+  const viewportCities = useMemo(
+    () => filterCitiesInViewportBounds(zoomEligibleCities, ready ? bounds : null, forcedIds),
+    [zoomEligibleCities, ready, bounds, forcedIds],
+  );
+
   const displayItems = useMemo(() => {
-    const visible = getVisibleCityNodes(
-      cities,
-      zoom,
-      selectedCityId,
-      hoveredCityId ?? undefined,
-      searchResultCityId ?? undefined,
-      isMobile,
-    );
-    const items = buildCityMarkerDisplayItems(visible, zoom, forcedIds);
+    const items = buildCityMarkerDisplayItems(viewportCities, zoom, forcedIds);
     const showUkraineFlag = shouldShowUkraineFlagMarker({
       zoom,
       mapCenterLat: center.lat,
@@ -273,17 +287,26 @@ export const LeafletCityMarkers = memo(function LeafletCityMarkers({
       (item) => item.type !== 'city' || item.city.id !== UKRAINE_FLAG_MARKER_CITY_ID,
     );
   }, [
-    cities,
+    viewportCities,
     zoom,
     center.lat,
     center.lng,
     selectedCountryCode,
     selectedCityId,
-    hoveredCityId ?? undefined,
+    hoveredCityId,
     searchResultCityId,
-    isMobile,
     forcedIds,
   ]);
+
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    const stats = computeSettlementMarkerViewportStats(
+      cities.length,
+      zoomEligibleCities.length,
+      viewportCities.length,
+    );
+    console.debug('[EBH settlement markers]', stats);
+  }, [cities.length, zoomEligibleCities.length, viewportCities.length]);
 
   return (
     <>

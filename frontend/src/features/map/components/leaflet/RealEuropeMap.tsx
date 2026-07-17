@@ -25,6 +25,7 @@ import { LeafletPortLayer } from './LeafletPortLayer';
 import { LeafletAirportLayer } from './LeafletAirportLayer';
 import { LeafletHubHaloLayer } from './LeafletHubHaloLayer';
 import { LeafletCityMarkers } from './LeafletCityMarkers';
+import { LeafletMapViewportSync } from './LeafletMapViewportSync';
 import { LeafletCityTooltipLayer } from './LeafletCityHoverTooltip';
 import { LeafletCountryInfoCard } from './LeafletCountryInfoCard';
 import {
@@ -209,6 +210,7 @@ export const RealEuropeMap = memo(function RealEuropeMap({
           attributionControl={false}
         >
           <AttributionControl position="bottomright" prefix={false} />
+          <LeafletMapViewportSync />
           <TileLayer key={tileUrl} url={tileUrl} attribution={TILE_ATTRIBUTION} />
           <CountryLayer
             countries={countries}
