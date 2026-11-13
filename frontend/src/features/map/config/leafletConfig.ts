@@ -1,19 +1,77 @@
 import type { LatLngBoundsExpression } from 'leaflet';
 
-/** CartoDB Dark Matter — enterprise dark basemap */
-export const DARK_TILE_URL =
+/**
+ * CARTO Dark Matter / Positron raster tiles now require an API key.
+ * Unkeyed requests still return HTTP 200 PNGs with an "API KEY REQUIRED" watermark.
+ * Default basemap is Esri World Gray Canvas (no private key). If
+ * VITE_CARTO_BASEMAP_KEY is set at build time, CARTO is used instead.
+ */
+
+const CARTO_KEY = (import.meta.env.VITE_CARTO_BASEMAP_KEY ?? '').trim();
+
+export const CARTO_DARK_TILE_URL =
   'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
 
-/** CartoDB Positron — premium light basemap */
-export const LIGHT_TILE_URL =
+export const CARTO_LIGHT_TILE_URL =
   'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
+/** Esri World Dark Gray Canvas — XYZ path uses {z}/{y}/{x} */
+export const ESRI_DARK_BASE_URL =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+
+export const ESRI_DARK_LABELS_URL =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}';
+
+export const ESRI_LIGHT_BASE_URL =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+
+export const ESRI_LIGHT_LABELS_URL =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}';
+
+export const DARK_TILE_URL = CARTO_KEY ? CARTO_DARK_TILE_URL : ESRI_DARK_BASE_URL;
+
+export const LIGHT_TILE_URL = CARTO_KEY ? CARTO_LIGHT_TILE_URL : ESRI_LIGHT_BASE_URL;
 
 export function getTileUrlForTheme(theme: 'light' | 'dark'): string {
   return theme === 'light' ? LIGHT_TILE_URL : DARK_TILE_URL;
 }
 
-export const TILE_ATTRIBUTION =
+export const CARTO_TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
+export const ESRI_TILE_ATTRIBUTION =
+  'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, FAO, NOAA, USGS, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, and the GIS User Community';
+
+export const TILE_ATTRIBUTION = CARTO_KEY ? CARTO_TILE_ATTRIBUTION : ESRI_TILE_ATTRIBUTION;
+
+export interface BasemapLayerSpec {
+  id: string;
+  url: string;
+  attribution?: string;
+}
+
+function withCartoKey(url: string): string {
+  return `${url}?key=${encodeURIComponent(CARTO_KEY)}`;
+}
+
+export function getBasemapLayersForTheme(theme: 'light' | 'dark'): BasemapLayerSpec[] {
+  if (CARTO_KEY) {
+    const url = withCartoKey(theme === 'light' ? CARTO_LIGHT_TILE_URL : CARTO_DARK_TILE_URL);
+    return [{ id: `carto-${theme}`, url, attribution: CARTO_TILE_ATTRIBUTION }];
+  }
+
+  if (theme === 'light') {
+    return [
+      { id: 'esri-light-base', url: ESRI_LIGHT_BASE_URL, attribution: ESRI_TILE_ATTRIBUTION },
+      { id: 'esri-light-labels', url: ESRI_LIGHT_LABELS_URL },
+    ];
+  }
+
+  return [
+    { id: 'esri-dark-base', url: ESRI_DARK_BASE_URL, attribution: ESRI_TILE_ATTRIBUTION },
+    { id: 'esri-dark-labels', url: ESRI_DARK_LABELS_URL },
+  ];
+}
 
 export const EUROPE_CENTER: [number, number] = [54.0, 15.0];
 

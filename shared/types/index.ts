@@ -94,3 +94,4 @@ export * from './map';
 export * from './ai';
 export * from './payments';
 export * from './commissions';
+export * from './companies';

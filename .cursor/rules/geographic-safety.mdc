@@ -1,0 +1,37 @@
+---
+description: Verified OpenStreetMap coordinates for all settlement imports
+globs: frontend/src/features/map/data/**/*.ts,frontend/src/data/cities.ts
+alwaysApply: true
+---
+
+# Geographic Safety
+
+Before importing or updating any settlement (city, town, village), verify coordinates against the **official OpenStreetMap location**.
+
+## Required workflow
+
+1. **Analyze** — confirm settlement name, region, and whether it already exists in data
+2. **Verify** — get coordinates from OpenStreetMap (node/way/relation center or `place=*` tag)
+3. **Compare** — grep existing data; update/enrich if present, never duplicate
+4. **Import** — write lat/lng only after verification
+5. **Test** — confirm marker sits on real location at high zoom
+
+## Coordinate rules
+
+- Use the **official geographic center** of the settlement (OSM `admin_centre`, place node, or documented municipal center)
+- Store at least **4 decimal places** (≈11 m); prefer OSM full precision when available
+- **Maximum allowed deviation: ±5 meters** from the verified OSM point
+- **Never** approximate, estimate, offset for spacing, or invent positions
+- If OSM coordinates cannot be verified → **skip the settlement**; do not guess
+
+## Map behavior (do not use coordinates to fix)
+
+- If places are close, use clustering/zoom behavior — not fake coordinates
+- Markers must stay at real lat/lng; labels may hide for overlap
+- Spiderfy/artificial spreading is not a substitute for correct coordinates
+
+## Sources (in order)
+
+1. OpenStreetMap (primary)
+2. Wikipedia municipal coordinates only when they match OSM within ±5 m
+3. GeoNames only as cross-check, not if it disagrees with OSM beyond ±5 m

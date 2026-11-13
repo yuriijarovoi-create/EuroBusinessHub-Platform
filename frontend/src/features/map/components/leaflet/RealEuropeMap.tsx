@@ -4,8 +4,7 @@ import type { Map as LeafletMap } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { MapCountry } from '@shared/types';
 import {
-  getTileUrlForTheme,
-  TILE_ATTRIBUTION,
+  getBasemapLayersForTheme,
   EUROPE_CENTER,
   EUROPE_DEFAULT_ZOOM,
   EUROPE_MIN_ZOOM,
@@ -116,8 +115,8 @@ export const RealEuropeMap = memo(function RealEuropeMap({
   const [mapReady, setMapReady] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const themeRev = useMapThemeRevision();
-  const tileUrl = useMemo(
-    () => getTileUrlForTheme(getResolvedMapTheme()),
+  const basemapLayers = useMemo(
+    () => getBasemapLayersForTheme(getResolvedMapTheme()),
     [themeRev],
   );
 
@@ -211,7 +210,13 @@ export const RealEuropeMap = memo(function RealEuropeMap({
         >
           <AttributionControl position="bottomright" prefix={false} />
           <LeafletMapViewportSync />
-          <TileLayer key={tileUrl} url={tileUrl} attribution={TILE_ATTRIBUTION} />
+          {basemapLayers.map((layer) => (
+            <TileLayer
+              key={layer.id}
+              url={layer.url}
+              attribution={layer.attribution}
+            />
+          ))}
           <CountryLayer
             countries={countries}
             selectedCountryCode={selectedCountryCode}

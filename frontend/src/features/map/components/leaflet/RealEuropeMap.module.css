@@ -43,7 +43,7 @@
   opacity: 1 !important;
 }
 
-/* Basemap attribution — OSM/CARTO text only, premium dark UI */
+/* Basemap attribution — OSM/Esri (or CARTO when keyed) text only, premium dark UI */
 .map :global(.leaflet-control-attribution) {
   right: 0;
   bottom: 0;
